@@ -23,3 +23,5 @@ I don't want to re copy and paste those code again and again. And I real have
 no need to use a CMS. So I build this to help me to manage those boring things.
 
 Hope your guys enjoy it!
+
+> Later to implement the `gatsby-theme-zoe-app`
