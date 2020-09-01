@@ -24,4 +24,20 @@ no need to use a CMS. So I build this to help me to manage those boring things.
 
 Hope your guys enjoy it!
 
-> Later to implement the `gatsby-theme-zoe-app`
+
+
+
+---
+
+Futher more:
+
+> Later to implement the `gatsby-theme-zoe-app` and multi `gatsby-plugin-zoe-xxx`
+
+
+---
+
+`zoe site` load from `zoe-site.yaml` generate a `gatsby` project, and run command with `gatsbycli`.
+
+```
+- use lib/gen.js to generate gatsby-config.js
+```
