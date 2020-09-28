@@ -65,14 +65,6 @@ const DownloadButtons = ({
     // 直接输入各平台的下载链接
 
     let [vdata, setVdata] = useState(null)
-    
-    if (
-        !repo &&
-        Object.keys(assets).length === 0 &&
-        Object.keys(urls).length === 0
-    ) {
-        return <_nodata />
-    }
 
 
     useEffect(() => {
@@ -82,7 +74,14 @@ const DownloadButtons = ({
             setVdata(v)
         })
     }, [])
-
+    
+    if (
+        !repo &&
+        Object.keys(assets).length === 0 &&
+        Object.keys(urls).length === 0
+    ) {
+        return <_nodata />
+    }
 
     // URL or ASSET first
     let ats = Object.keys(assets);
