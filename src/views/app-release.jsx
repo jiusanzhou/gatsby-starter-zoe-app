@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 
 import { FaAppStore } from "react-icons/fa";
-import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
+import { Box, Button, Flex, SimpleGrid, Stack, Text, Tooltip } from "@chakra-ui/core";
 
 const _icons = {
     android: AiOutlineAndroid,
@@ -30,10 +30,12 @@ const _labels = {
 };
 
 const _nodata = () => {
-    return <Box bg="tomato" px="1em" py=".5em">
-    <Text color="white">暂未发布任何版本</Text>
-</Box>
-}
+    return (
+        <Box bg="tomato" px="1em" py=".5em">
+            <Text color="white">暂未发布任何版本</Text>
+        </Box>
+    );
+};
 
 const DownloadButtons = ({
     repo,
@@ -64,61 +66,74 @@ const DownloadButtons = ({
     // TODO: only support platform, icon-label mode
     // 直接输入各平台的下载链接
 
-    let [vdata, setVdata] = useState(null)
-
+    let [loaded, setLoaded] = useState(true);
+    let [vdata, setVdata] = useState(null);
 
     useEffect(() => {
-        let ver = new GithubVersionProvider('moeapp/mtb-mobile')
-        ver.latestVersion().then((v) => {
-            console.log("====>", v)
-            setVdata(v)
-        })
-    }, [])
-    
+        setLoaded(false);
+        let ver = new GithubVersionProvider(repo);
+        ver.latestVersion()
+            .then((v) => {
+                setVdata(v);
+            })
+            .finally(() => setLoaded(true));
+    }, []);
+
     if (
         !repo &&
         Object.keys(assets).length === 0 &&
         Object.keys(urls).length === 0
     ) {
-        return <_nodata />
+        return <_nodata />;
     }
 
-    // URL or ASSET first
-    let ats = Object.keys(assets);
-    let uls = Object.keys(urls); // TODO:
-
     return (
-        <Flex flexWrap="wrap" w="100%" justifyContent="center" {...props}>
+        <Flex
+            spacing={2}
+            flexWrap="wrap"
+            w="100%"
+            justify="center"
+            {...props}
+        >
             {supportPlatforms
                 .filter((e) => !hiddenUnsupported || assets[e] || urls[e])
                 .map((e, idx) => (
-                    <_withTooltip
-                        key={`btn_${idx}`}
-                        label={
-                            null && !assets[e] && !urls[e]
-                                ? unsuportedTooltip
-                                : null
-                        }
-                    >
-                        <Flex>
+                    // <_withTooltip
+                    //     key={`btn_${idx}`}
+                    //     label={
+                    //         null && !assets[e] && !urls[e]
+                    //             ? unsuportedTooltip
+                    //             : null
+                    //     }
+                    // >
+                        <Flex p=".4em">
                             <Button
                                 rounded={rounded ? "full" : null}
                                 leftIcon={_icons[e]}
                                 // variantColor={variantColor}
                                 // variant={variant}
+                                isLoading={!loaded}
                                 isDisabled={!assets[e] && !urls[e]}
                                 {...itemProps}
-                                onClick={() =>
-                                    window.open(
-                                        assets[e] || urls[e],
-                                        isExternal ? "" : "_self"
-                                    )
-                                }
+                                onClick={() => {
+                                    let u = vdata && vdata.assets[e];
+                                    u = u || assets[e] || urls[e];
+                                    if (!u) {
+                                        // alsert error
+                                        return;
+                                    }
+                                    window.open(u, isExternal ? "" : "_self");
+                                }}
                             >
-                                <Text>{itemPrefix}{_labels[e]}{itemSuffix}</Text>
+                                <Text>
+                                    {itemPrefix}
+                                    {_labels[e]}
+                                    {itemSuffix}
+                                </Text>
+                                {/* TODO: google play, apple store */}
                             </Button>
                         </Flex>
-                    </_withTooltip>
+                    // </_withTooltip>
                 )) || <_nodata />}
         </Flex>
     );
@@ -132,7 +147,6 @@ export { DownloadButtons };
 
 // Github Provider 加载最新版本的数据
 class GithubVersionProvider {
-
     constructor(repo, options = {}) {
         let { base_api, assetRegexPatterns = {} } = options;
         this._base_api = base_api || this._base_api;
@@ -178,7 +192,7 @@ class GithubVersionProvider {
             // 找到assets中的文件标识
             let _rexp = RegExp(p);
             for (let i in o.assets || []) {
-                let e = o.assets[i]
+                let e = o.assets[i];
                 if (_rexp.test(e.name)) {
                     assets[k] = e.browser_download_url;
                 }
@@ -222,8 +236,8 @@ class GithubVersionProvider {
         return this.loadVersion().then((vs) => {
             let v;
             for (let i in vs) {
-                let e = vs[i]
-                if (!this.prerelease && e.prerelease) continue
+                let e = vs[i];
+                if (!this.prerelease && e.prerelease) continue;
                 v = e;
                 break;
             }

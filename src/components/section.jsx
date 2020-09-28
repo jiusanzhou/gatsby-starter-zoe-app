@@ -17,21 +17,20 @@ const _defaultProps = {
     },
     title: {
         fontFamily: null,
-        fontSize: ["xl", "2xl", "4xl", "5xl"],
+        fontSize: ["md", "xl", "xl", "2xl"],
         fontWeight: "bold",
+        my: [".2em", ".5em", ".5em", "1em"]
     },
     subTitle: {
         fontFamily: null,
-        fontSize: ["md", "xl", "2xl"],
+        fontSize: ["sm", "md", "md", "xl"],
         fontWeight: "medium",
         color: "gray",
-        mb: "1em",
     },
     desc: {
         fontFamily: null,
         fontWeight: "normal",
         color: "gray",
-        mt: "2em",
     },
 };
 
@@ -95,6 +94,7 @@ const _positionProps = {
         section: {
             flexDirection: "column",
             justifyContent: "center",
+            textAlign: "center",
         },
     },
 };

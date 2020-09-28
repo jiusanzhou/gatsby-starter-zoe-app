@@ -1,22 +1,38 @@
-import React from "react"
+import React from "react";
 
-import PropTypes from "prop-types"
-import { Flex } from "@chakra-ui/core"
+import PropTypes from "prop-types";
+import { Flex } from "@chakra-ui/core";
+import Logo from "../views/logo";
 
 const Header = ({ children, ...props }) => {
-    return <Flex
-    h={["3em", "5em"]}
-    borderBottom="1px solid #E2E8F0" {...props}>
-        {/* Logo */}
-        {/* Menu */}
-        {/* Other */}
-        {children}
-    </Flex>
-}
+    // TODO: fixed header with scroll
+    return (
+        <header>
+            <Flex w="100%" position="absolute" borderBottom="1px solid #E2E8F0">
+                <Flex
+                    h={["3em", "3.5em", "4em", "4.5em"]}
+                    left="0"
+                    right="0"
+                    top="0"
+                    px={["1em", "0", "0", "0"]}
+                    w={["100%", "80%", "80%", "80%", "60em"]}
+                    margin="0 auto"
+                    {...props}
+                >
+                    {/* Logo */}
+                    <Logo />
+                    {/* Menu */}
+                    {/* Other */}
+                    {children}
+                </Flex>
+            </Flex>
+        </header>
+    );
+};
 
 Header.propTypes = {
     menuOpend: PropTypes.bool,
     onToggle: PropTypes.func,
-}
+};
 
-export default Header
+export default Header;

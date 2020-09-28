@@ -2,6 +2,10 @@ body {
   font-family: "Microsoft Jhenghei", "Microsoft YaHei", Fredoka One, Roboto, Georgia, Cambria,"Times New Roman", Times, "Hiragino Sans GB", sans-serif !important;
 }
 
+a:focus, button:focus {
+    box-shadow: none!important;
+}
+
 /* details,
 main {
     display: block;

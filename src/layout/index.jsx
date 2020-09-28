@@ -1,33 +1,36 @@
-import React, { useState } from "react"
-import PropTypes from "prop-types"
-import { Helmet } from "react-helmet"
+import React, { useState } from "react";
+import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 
-import SEO from "../views/seo"
-import Header from "./header"
-import Footer from "./footer"
+import SEO from "../views/seo";
+import Header from "./header";
+import Footer from "./footer";
 
-import "../styles/global.css"
+import "../styles/global.css";
 
 const Layout = ({ children, extendFooter }) => {
-    const [ opened, setOpened ] = useState(false)
-    return <>
-        <Helmet>
-            <meta name="viewport" value="width=device-width, initial-scale=1.0, minimum-scale=1.0"></meta>
-        </Helmet>
-        <SEO />
-        <header>
+    const [opened, setOpened] = useState(false);
+    return (
+        <>
+            <Helmet>
+                <meta
+                    name="viewport"
+                    value="width=device-width, initial-scale=1.0, minimum-scale=1.0"
+                ></meta>
+            </Helmet>
+            <SEO />
             <Header />
-        </header>
-        <main >{children}</main>
-        <footer>
-            <Footer>{ null && extendFooter }</Footer>
-        </footer>
-    </>
-}
+            <main pt={["3em", "3.5em", "4em", "4.5em"]}>{children}</main>
+            <footer>
+                <Footer>{null && extendFooter}</Footer>
+            </footer>
+        </>
+    );
+};
 
 Layout.propTypes = {
     children: PropTypes.node.isRequired,
     extendFooter: PropTypes.node,
-}
+};
 
-export default Layout
+export default Layout;
