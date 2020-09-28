@@ -2,8 +2,6 @@ import React from "react"
 import PropTypes from "prop-types"
 import { css, cx } from "linaria"
 
-import { min, max } from "../utils/media"
-
 import Button from "./button"
 
 const stylesAction = css`

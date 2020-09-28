@@ -1,0 +1,332 @@
+body {
+  font-family: "Microsoft Jhenghei", "Microsoft YaHei", Fredoka One, Roboto, Georgia, Cambria,"Times New Roman", Times, "Hiragino Sans GB", sans-serif !important;
+}
+
+/* details,
+main {
+    display: block;
+}
+hr {
+    box-sizing: content-box;
+    overflow: visible;
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: 0;
+    margin-bottom: calc(1.1625rem - 1px);
+    background: hsla(0, 0%, 0%, 0.2);
+    border: none;
+    height: 1px;
+    padding: 0;
+}
+code,
+kbd,
+pre,
+samp {
+    font-family: monospace, monospace;
+}
+a {
+    background-color: transparent;
+}
+small {
+    font-size: 80%;
+}
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+sub {
+    bottom: -0.25em;
+}
+sup {
+    top: -0.5em;
+}
+img {
+    border-style: none;
+    max-width: 100%;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0;
+}
+button,
+input {
+    overflow: visible;
+}
+button,
+select {
+    text-transform: none;
+}
+[type="button"],
+[type="reset"],
+[type="submit"],
+button {
+    -webkit-appearance: button;
+}
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner,
+button::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+}
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring,
+button:-moz-focusring {
+    outline: ButtonText dotted 1px;
+}
+legend {
+    box-sizing: border-box;
+    color: inherit;
+    display: table;
+    max-width: 100%;
+    padding: 0;
+    white-space: normal;
+}
+progress {
+    vertical-align: baseline;
+}
+textarea {
+    overflow: auto;
+}
+[type="checkbox"],
+[type="radio"] {
+    box-sizing: border-box;
+    padding: 0;
+}
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+[type="search"] {
+    -webkit-appearance: textfield;
+    outline-offset: -2px;
+}
+[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+::-webkit-file-upload-button {
+    -webkit-appearance: button;
+    font: inherit;
+}
+summary {
+    display: list-item;
+}
+[hidden],
+template {
+    display: none;
+}
+html {
+    font: 100%/1.55 Poppins, Roboto, sans-serif;
+    box-sizing: border-box;
+    overflow-y: scroll;
+}
+*,
+:after,
+:before {
+    box-sizing: inherit;
+}
+body {
+    margin: 0;
+    color: hsla(0, 0%, 0%, 0.8);
+    font-family: Poppins, Roboto, sans-serif;
+    font-weight: 400;
+    word-wrap: break-word;
+    font-kerning: normal;
+    font-feature-settings: "kern" 1;
+    text-rendering: optimizeLegibility;
+}
+h1 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 3.375rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+h2 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 2.07474rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+h3 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 1.62671rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+h4 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 1rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+h5 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 0.78405rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+h6 {
+    color: inherit;
+    font-family: Fredoka One, Roboto, sans-serif;
+    font-weight: 700;
+    text-rendering: optimizeLegibility;
+    font-size: 0.69425rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+address,
+dd,
+dl,
+fieldset,
+figure,
+form,
+hgroup,
+iframe,
+noscript,
+p {
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+ol,
+ul {
+    list-style-position: outside;
+    list-style-image: none;
+    padding: 0;
+    margin: 0 0 1.1625rem 1.55rem;
+}
+pre {
+    font-size: 0.85rem;
+    line-height: 1.55rem;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+table {
+    font-size: 1rem;
+    line-height: 1.55rem;
+    border-collapse: collapse;
+    width: 100%;
+    padding: 0;
+    margin: 0 0 1.1625rem;
+}
+blockquote {
+    padding: 0;
+    margin: 0 1.55rem 1.1625rem;
+}
+b,
+dt,
+strong,
+th {
+    font-weight: 700;
+}
+li {
+    margin-bottom: calc(1.1625rem / 2);
+}
+ol li,
+ul li {
+    padding-left: 0;
+}
+li > ol,
+li > ul {
+    margin-left: 1.55rem;
+    margin-bottom: calc(1.1625rem / 2);
+    margin-top: calc(1.1625rem / 2);
+}
+blockquote :last-child,
+li :last-child,
+p :last-child {
+    margin-bottom: 0;
+}
+li > p {
+    margin-bottom: calc(1.1625rem / 2);
+}
+code,
+kbd,
+samp {
+    font-size: 0.85rem;
+    line-height: 1.55rem;
+}
+abbr,
+acronym {
+    border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
+    cursor: help;
+}
+abbr[title] {
+    border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
+    cursor: help;
+    text-decoration: none;
+}
+thead {
+    text-align: left;
+}
+td,
+th {
+    text-align: left;
+    border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
+    font-feature-settings: "tnum";
+    padding-left: 1.03333rem;
+    padding-right: 1.03333rem;
+    padding-top: 0.775rem;
+    padding-bottom: calc(0.775rem - 1px);
+}
+td:first-child,
+th:first-child {
+    padding-left: 0;
+}
+td:last-child,
+th:last-child {
+    padding-right: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    line-height: 1.33;
+}
+@media only screen and (max-width: 575px) {
+    body {
+        font-size: 0.875rem;
+    }
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.5rem;
+    }
+    h3 {
+        font-size: 1.25rem;
+    }
+}
+@media only screen and (max-width: 992px) {
+    h1 {
+        font-size: 2rem;
+    }
+} */

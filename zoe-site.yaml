@@ -1,5 +1,5 @@
-title: 1Hour
-description: 每天你应该花3分钟了解自己，1小时了解世界，可能你需要《1小时指南》。
+title: 大集市
+description: 一个专业的拉单赚钱平台。
 url: https://1hour.guide
 favicon:
 logo:
@@ -16,54 +16,14 @@ organization:
   url: ${zoe.url}
   logo: ${zoe.logo.img}
 copyright:
-  content: © 1hour.guide - All rights reserved. Made with ❤️ by Zoe
+  content: © 大集市 - All rights reserved. Made with ❤️ by 大集市 
 socials:
-  email: hi@zoe.im
-  github: jiusanzhou
-  twitter: jiusanzhou
-  facebook: jiusanzhou
-  telegram: jiusanzhou
-  linkedin: in/johnzoe
-
-links:
-- title: Company
-  items:
-  - title: Home
-    href: /
-  - title: About
-    href: /about
-  - title: Blog
-    href: /blog
-
-- title: Products
-  items: 
-  - title: Rust
-    href: /rust
-  - title: More >>>
-    href: /products
-
-- title: Services
-  items: 
-  - title: Golang
-    href: /golang
-  - title: More >>>
-    href: /projects
-
-
-menu:
-- title: Home
-  href: /
-- title: About
-  href: /about
-- title: Services
-  href: /services
-  items:
-  - title: Golang turorials
-    href: /services/golang
-  - title: Frontend from zero
-    href: /services/frontend
-- title: Blog
-  href: /blog
+  email: hi@dajishi.net
+  github: ''
+  twitter: ''
+  facebook: ''
+  telegram: ''
+  linkedin: ''
 
 plugins:
 - gatsby-source-filesystem:
@@ -86,6 +46,10 @@ plugins:
     theme_color: "#663399"
     display: minimal-ui
     icon: src/images/gatsby-icon.png
+
+- gatsby-plugin-chakra-ui:
+    isResettingCSS: true
+    isUsingColorMode: true
 
 - gatsby-plugin-react-helmet
 - gatsby-transformer-sharp

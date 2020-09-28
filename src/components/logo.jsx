@@ -3,7 +3,6 @@ import { Link } from "gatsby"
 
 import { css, cx } from "linaria"
 
-import { min, max } from "../utils/media"
 
 import PropTypes from "prop-types"
 
@@ -22,12 +21,6 @@ const styles = {
             font-size: 1.9em;
             font-family: Fredoka One, Roboto, sans-serif;
         }
-
-        ${max(640, `
-            span {
-                display: none;
-            }
-        `)}
     `,
     logoImg: css`
         max-width: 6.25rem;

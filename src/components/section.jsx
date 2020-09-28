@@ -1,181 +1,227 @@
-import React from "react"
-import { css, cx } from "linaria"
-import { min, max } from "../utils/media"
+import React from "react";
+import PropTypes from "prop-types";
+import { Box, Button, Flex, Text } from "@chakra-ui/core";
 
-import PropTypes from "prop-types"
+import Action from "../components/action";
 
-import Action from "../components/action"
+const _defaultProps = {
+    wraper: {
+        justifyContent: 'center'
+    },
+    section: {
+        p: ["1em", "2em", "2.5em", "5em"],
+        mb: [".5em", "1em", "1.5em", "2em"],
+        maxW: ["100%", "100%", "100%", "120em"],
+        marginLeft: 'auto',
+        marginRight: 'auto'
+    },
+    title: {
+        fontFamily: null,
+        fontSize: ["xl", "2xl", "4xl", "5xl"],
+        fontWeight: "bold",
+    },
+    subTitle: {
+        fontFamily: null,
+        fontSize: ["md", "xl", "2xl"],
+        fontWeight: "medium",
+        color: "gray",
+        mb: "1em",
+    },
+    desc: {
+        fontFamily: null,
+        fontWeight: "normal",
+        color: "gray",
+        mt: "2em",
+    },
+};
 
-const themes = {
+const _themesProps = {
     dark: {
-        background: '#000',
-        color: '#fff'
+        section: {
+            background: "#000",
+            color: "#fff",
+        },
     },
     light: {
-        background: '#fff',
-        color: '#000'
+        section: {
+            background: "#fff",
+            color: "#000",
+        },
     },
     grey: {
-        background: '#f5f9fb',
-        color: '#000'
-    }
-}
-
-const styles = {
-    section: css`
-        // display: grid;
-
-        align-items: center;
-        padding-bottom: 3.1rem;
-        margin: 0 auto 3.1rem;
-        border-bottom: 1px solid hsla(0,0%,100%,.1);
-        row-gap: 3.1rem;
-
-        display: flex;
-        flex-direction: column;
-
-        background: var(--section-theme-background);
-
-        ${min(768, `
-            padding: 4.65rem 4vw;
-            margin-left: 0;
-            margin-right: 0;
-
-            // padding-bottom: 4.65rem;
-            // margin-bottom: 4.65rem;
-            // grid-template-columns: auto 40%;
-            // column-gap: 2.325rem;
-        `)}
-    `,
-
-    header: css`
-        max-width: 43.4rem;
-        // margin: 0 auto;
-        text-align: center;
-        color: var(--section-theme-color);
-    `,
-
-    footer: css`
-        margin-top: 1.55rem;
-        text-align: center;
-        max-width: 40.300000000000004rem;
-        margin: 0 auto;
-    `,
-
-    subTitle: css`
-        text-transform: uppercase;
-        letter-spacing: .125rem;
-        font-family: Poppins,Helvetica,sans-serif;
-        font-size: .625rem;
-        font-weight: 700;
-        margin-bottom: 1.55rem;
-
-        color: var(--section-theme-color);
-        opacity: 0.75;
-
-        font-size: .875rem;
-        margin-bottom: 2.325rem;
-        letter-spacing: .1875rem;
-    `,
-    title: css`
-        font-size: 2.75rem;
-    `,
-    desc: css`
-        color: var(--section-theme-color);
-        opacity: 0.70;
-        
-        line-height: 1.8;
-        font-size: 1.25rem;
-    `,
-    subDesc: css`
-        margin-top: 1.55rem;
-        ${min(768, `
-            margin-top: 2.325rem;
-        `)}
-    `,
-    action: css`
-        // width: max-content;
-    `,
-
-    position: {
-        left: {
-            section: css`
-                ${min(768, `
-                    flex-direction: row;
-                    justify-content: space-between;
-                `)}
-            `,
-            action: css`
-                align-items: flex-start;
-            `
+        section: {
+            background: "#f5f9fb",
+            color: "#000",
         },
-        right: {
-            section: css`
-                ${min(768, `
-                    flex-direction: row-reverse;
-                    justify-content: space-between;
-                `)}
-            `,
-            action: css`
-                align-items: flex-end;
-            `
-        }
-    }
-}
+    },
+};
+
+const _positionProps = {
+    left: {
+        section: {
+            flexDirection: "row",
+            justifyContent: "space-between",
+            textAlign: "left",
+        },
+    },
+    right: {
+        section: {
+            flexDirection: "row-reverse",
+            justifyContent: "space-between",
+            textAlign: "right",
+        },
+    },
+    top: {
+        section: {
+            flexDirection: "column",
+            justifyContent: "space-between",
+            textAlign: "center",
+        },
+        header: {
+            mb: "2em",
+        },
+    },
+    bottom: {
+        section: {
+            flexDirection: "column-reverse",
+            justifyContent: "space-between",
+            textAlign: "center",
+        },
+        header: {
+            mt: "2em",
+        },
+    },
+    center: {
+        section: {
+            flexDirection: "column",
+            justifyContent: "center",
+        },
+    },
+};
 
 const Section = ({
-    title, subTitle, description, action, subDescription,
-    borderRadius, background, position,
-    className, theme,
-    
+    title,
+    subTitle,
+    description,
+    action,
     children,
+    wraperBg,
+    position = "center",
+    theme = "light",
+    wraperProps = {},
+    ...props
 }) => {
-    const needHeader = title || subTitle || description
-    const needFooter = action || subDescription
+    const _need_header = title || subTitle || description;
 
-    const textAlign = [ 'left', 'right' ].indexOf(position) >= 0 ? position : null
+    return (
+        // bg put here
+        <Flex
+            {..._getValue(_defaultProps, {}, "wraper")}
+            {...wraperProps}>
+            <Flex
+                as="section"
+                {..._getValue(_defaultProps, {}, "section")}
+                {..._getValue(_positionProps, {}, position, "section")}
+                {..._getValue(_themesProps, {}, theme, "section")}
+                {..._mustValue({})}
+                {...props}
+            >
+                {_need_header && (
+                    <Box
+                        as="header"
+                        {..._getValue(_defaultProps, {}, "header")}
+                        {..._getValue(_positionProps, {}, position, "header")}
+                        {..._getValue(_themesProps, {}, theme, "header")}
+                    >
+                        {subTitle ? (
+                            <Text
+                                as="h3"
+                                {..._getValue(_defaultProps, {}, "subTitle")}
+                                {..._getValue(
+                                    _positionProps,
+                                    {},
+                                    position,
+                                    "subTitle"
+                                )}
+                                {..._getValue(
+                                    _themesProps,
+                                    {},
+                                    theme,
+                                    "subTitle"
+                                )}
+                            >
+                                {subTitle}
+                            </Text>
+                        ) : null}
+                        {title ? (
+                            <Text
+                                as="h2"
+                                {..._getValue(_defaultProps, {}, "title")}
+                                {..._getValue(
+                                    _positionProps,
+                                    {},
+                                    position,
+                                    "title"
+                                )}
+                                {..._getValue(_themesProps, {}, theme, "title")}
+                            >
+                                {title}
+                            </Text>
+                        ) : null}
+                        {description ? (
+                            <Text
+                                as="p"
+                                {..._getValue(_defaultProps, {}, "desc")}
+                                {..._getValue(
+                                    _positionProps,
+                                    {},
+                                    position,
+                                    "desc"
+                                )}
+                                {..._getValue(_themesProps, {}, theme, "desc")}
+                            >
+                                {description}
+                            </Text>
+                        ) : null}
+                        {action && (
+                            <Box mt="1em" mb="2em">
+                                {React.isValidElement(action) ? (
+                                    action
+                                ) : (
+                                    <Action {...action} />
+                                )}
+                            </Box>
+                        )}
+                        {/* { action?<Action { ...action } className={ cx(styles.action, extendStyles.action) } />:null } */}
+                    </Box>
+                )}
+                {/* main body */}
+                {children}
+                {/* {React.createElement(children, _getValue(_defaultProps, {}, "children"))} */}
+            </Flex>
+        </Flex>
+    );
+};
 
-    const extendStyles = styles.position[position] || {}
+const _getValue = (m, v, ...ks) => {
+    if (ks.length === 0) return m || v;
+    return _getValue(m[ks[0]] || {}, v, ...ks.slice(1));
+};
 
-    const buildStyles = {
-        background, borderRadius,
-    }
-
-    Object.keys(themes[theme] || {}).map(key => {
-        buildStyles[`--section-theme-${key}`] = themes[theme][key]
-    })
-
-    return <section className={ cx(styles.section, className, extendStyles.section) } style={ buildStyles }>
-        {needHeader?<header className={ cx(styles.header) } style={ { textAlign } }>
-            { subTitle?<h3 className={ styles.subTitle }>{ subTitle }</h3>:null }
-            { title?<h2 className={ styles.title }>{ title }</h2>:null }
-            { description?<p className={ styles.desc }>{ description }</p>:null }
-            { action?<Action { ...action } className={ cx(styles.action, extendStyles.action) } />:null }
-        </header>:null}
-
-        {/* main body */}
-        { children }
-
-        {/* TODO: */}
-        {/* {needFooter?<footer className={ styles.footer }>
-            { subDescription?<p className={ styles.subDesc }>{ subDescription }</p>:null }
-            { action?<Action { ...action } className={ styles.action } />:null }
-        </footer>:null} */}
-    </section>
-}
+const _mustValue = (m = {}) => {
+    Object.keys(m).forEach((i) => !m[i] && delete (m, i));
+    return m;
+};
 
 Section.propTypes = {
     title: PropTypes.string,
     subTitle: PropTypes.string,
     description: PropTypes.string,
     children: PropTypes.node,
-    subDescription: PropTypes.string,
     action: PropTypes.object,
-    position: PropTypes.oneOf(["left", "right", "top", "bottom"]),
-    borderRadius: PropTypes.oneOfType([Number, String]),
-    background: PropTypes.string,
+    position: PropTypes.oneOf(["left", "right", "top", "bottom", "center"]),
     className: PropTypes.string,
     theme: PropTypes.string,
-}
+};
 
-export default Section
+export default Section;

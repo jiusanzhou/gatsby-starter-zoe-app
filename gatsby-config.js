@@ -6,7 +6,7 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 
 // define zoe configuration file.
-const zoefile = `${__dirname}/zoe.yaml`;
+const zoefile = `${__dirname}/zoe-site.yaml`;
 
 // for global access
 var zoe = {};

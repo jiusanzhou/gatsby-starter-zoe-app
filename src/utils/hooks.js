@@ -1,7 +1,7 @@
 import { useStaticQuery, graphql } from 'gatsby'
 
 // this is a tick way to trigger HMR
-import zoefile from "../../zoe.yaml"
+import zoefile from "../../zoe-site.yaml"
 
 const useSiteMetadata = () => {
   const { site } = useStaticQuery(graphql`
@@ -22,28 +22,13 @@ const useSiteMetadata = () => {
               name
               img
             }
-            socials {          
+            socials {
               email
               facebook
               github
               telegram
               twitter
               linkedin
-            }
-            menu {
-              title
-              href
-              items {
-                title
-                href
-              }
-            }
-            links {
-              title
-              items {
-                title
-                href
-              }
             }
             copyright {
               content

@@ -1,7 +1,6 @@
 import React from "react"
 import { Link } from "gatsby"
 import { css } from "linaria"
-import { min, max } from "../utils/media"
 
 import {
     IoLogoFacebook, IoLogoTwitter,
@@ -36,13 +35,6 @@ const styles = {
     list: css`
         display: flex;
 
-        ${max(768, `
-            grid-column: 1/2;
-        `)}
-
-        ${min(768, `
-            justify-content: flex-end;
-        `)}
 
         li + li {
             margin-left: 1.55rem;
@@ -60,9 +52,9 @@ export const SocialLink = ({ type, username, base }) => {
     ` } target="_blank" href={ `${base}${username}` } title={ username }>{ icon && React.createElement(icon) }</a>
 }
 
-export const Socials = ({ socials }) => {
+export const Socials = ({ socials = [] }) => {
     return <ul className={ styles.list }>
-        { Object.keys(socials).map(key => <li><SocialLink type={ key } username={ socials[key] } /></li>) }
+        { Object.keys(socials).map(key => <li key={`_${key}`}><SocialLink type={ key } username={ socials[key] } /></li>) }
     </ul>
 }
 

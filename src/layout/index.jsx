@@ -1,74 +1,26 @@
 import React, { useState } from "react"
-import { css, cx } from "linaria"
-
 import PropTypes from "prop-types"
-
-import { min, max } from "../utils/media"
+import { Helmet } from "react-helmet"
 
 import SEO from "../views/seo"
-
 import Header from "./header"
 import Footer from "./footer"
 
-import "./global.css"
+import "../styles/global.css"
 
-const stylesHeader = css`
-    position: sticky;
-    top: 0;
-    background: #fff;
-    z-index: 9;
-`
-
-const stylesMain = css`
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 8vw;
-    padding-right: 8vw;
-
-    ${min(768, `
-        padding-left:4vw;
-        padding-right:4vw;
-        overflow:hidden
-    `)}
-
-    ${min(1522, `
-        padding-left:0;
-        padding-right:0;
-        max-width:87.5rem;
-        overflow:visible
-    `)}
-`
-
-const stylesFooter = css`
-    ${min(768, `
-        padding-left: 4vw;
-        padding-right: 4vw;
-        margin: 0 auto 3.1rem;
-    `)}
-
-    ${min(1522, `     
-        padding:0;
-        max-width:87.5rem;
-        margin-left:auto;
-        margin-right:auto
-    `)}
-`
-
-const Layout = ({ children, header, footer, extendFooter }) => {
+const Layout = ({ children, extendFooter }) => {
     const [ opened, setOpened ] = useState(false)
     return <>
+        <Helmet>
+            <meta name="viewport" value="width=device-width, initial-scale=1.0, minimum-scale=1.0"></meta>
+        </Helmet>
         <SEO />
-        <header className={ cx(stylesHeader, opened?css`
-            height: 100vh;
-            ${max(1085, `
-                overflow:auto;
-            `)}
-        `:'') }>
-            <Header onToggle={ (v) => { setOpened(v) } } />
+        <header>
+            <Header />
         </header>
-        <main className={ stylesMain }>{children}</main>
-        <footer className={ stylesFooter }>
-            <Footer>{ extendFooter }</Footer>
+        <main >{children}</main>
+        <footer>
+            <Footer>{ null && extendFooter }</Footer>
         </footer>
     </>
 }

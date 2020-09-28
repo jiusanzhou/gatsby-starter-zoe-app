@@ -2,11 +2,7 @@ import React from "react"
 import { css, cx } from "linaria"
 import { Link } from "gatsby"
 
-import { min, max } from "../utils/media"
 import { useSiteMetadata } from "../utils/hooks"
-import Button from "../components/button"
-import Logo from "../views/logo"
-import Section from "../components/section"
 import { Socials } from "../components/socials"
 
 import PropTypes from "prop-types"
@@ -18,18 +14,6 @@ const styles = {
         padding: 3.1rem 8vw 1.55rem;
         position: relative;
 
-        ${min(768, `
-            border-radius:16px;
-            padding-top:4.65rem;
-            padding-left:4.65rem;
-            padding-right:4.65rem
-        `)}
-
-        ${min(1522, `   
-            padding-top:4.65rem;
-            padding-left:7.75rem;
-            padding-right:7.75rem
-        `)}
     `,
     gotop: css`
         border-radius: 100%;
@@ -46,31 +30,11 @@ const styles = {
             transform: translateY(-50%);
         }
 
-        ${min(768, `
-            display:flex
-        `)}
-
-        ${min(1522, `
-            right:7.75rem
-        `)}
     `,
     main: css`
         display: grid;
         margin-bottom: 1.55rem;
         row-gap: 4.65rem;
-
-        ${min(1085, `
-            margin-bottom: 3.1rem;
-            grid-template-columns: 2fr 5fr;
-        `)}
-
-        ${min(1200, `
-            grid-template-columns:2fr 5fr
-        `)}
-
-        ${min(1522, `
-            grid-template-columns:2fr 4fr
-        `)}
 
         ul {
             list-style: none;
@@ -108,9 +72,6 @@ const styles = {
 
         grid-template-columns: auto auto 140px;
 
-        ${min(768, `
-            grid-template-columns: auto auto auto;
-        `)}
 
         ul {
             margin: 0;
@@ -166,20 +127,20 @@ const _data = {
 const Footer = ( { children } ) => {
 
     const siteMeta = useSiteMetadata()
-    const { copyright, links, socials } = siteMeta
+    const { copyright, links = [], socials = {} } = siteMeta
 
     return <div className={ styles.footer }>
         {/* back to top button */}
-        <Button className={ styles.gotop } href="#">
+        {/* <Button className={ styles.gotop } href="#">
             <svg width="16" height="22"><path d="M8 21V1M1 8l7-7 7 7" fill="none" fillRule="evenodd" stroke="#FFF" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-        </Button>
+        </Button> */}
 
         {/* extend section */}
         { children }
 
         {/* footer main section */}
         <section className={ styles.main }>
-            <Logo className={ styles.logo } />
+            {/* <Logo className={ styles.logo } /> */}
             {/* TODO: use links to section generate grid layout */}
             <nav className={ styles.links }>
                 { links.map(i => <div>
