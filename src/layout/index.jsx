@@ -7,6 +7,7 @@ import Header from "./header";
 import Footer from "./footer";
 
 import "../styles/global.css";
+import { Box } from "@chakra-ui/core";
 
 const Layout = ({ children, extendFooter }) => {
     const [opened, setOpened] = useState(false);
@@ -18,11 +19,12 @@ const Layout = ({ children, extendFooter }) => {
                     value="width=device-width, initial-scale=1.0, minimum-scale=1.0"
                 ></meta>
             </Helmet>
+
             <SEO />
             <Header />
-            <main pt={["3em", "3.5em", "4em", "4.5em"]}>{children}</main>
+            <Box as="main" pt={["3em", "3.5em", "4em", "4.5em"]}>{children}</Box>
             <footer>
-                <Footer>{null && extendFooter}</Footer>
+                <Footer>{extendFooter}</Footer>
             </footer>
         </>
     );

@@ -98,15 +98,7 @@ const DownloadButtons = ({
             {supportPlatforms
                 .filter((e) => !hiddenUnsupported || assets[e] || urls[e])
                 .map((e, idx) => (
-                    // <_withTooltip
-                    //     key={`btn_${idx}`}
-                    //     label={
-                    //         null && !assets[e] && !urls[e]
-                    //             ? unsuportedTooltip
-                    //             : null
-                    //     }
-                    // >
-                        <Flex p=".4em">
+                        <Flex key={`_${idx}`} p=".4em">
                             <Button
                                 rounded={rounded ? "full" : null}
                                 leftIcon={_icons[e]}
@@ -133,7 +125,6 @@ const DownloadButtons = ({
                                 {/* TODO: google play, apple store */}
                             </Button>
                         </Flex>
-                    // </_withTooltip>
                 )) || <_nodata />}
         </Flex>
     );

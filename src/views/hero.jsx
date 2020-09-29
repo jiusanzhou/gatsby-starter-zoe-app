@@ -1,11 +1,26 @@
-import React, { useState } from "react"
+import React from "react";
+import Section from "../components/section";
+import { DownloadButtons } from "./app-release";
 
-import { Link } from "gatsby"
+export default ({
+    title, subTitle, description,
+    action = {}, // register actions
+...props }) => {
+    return (
+        <Section
+            title={title}
+            subTitle={subTitle}
+            description={description}
+            action={<Action {...action} />}
+            h="calc(100vh - 5em)"
+        ></Section>
+    );
+};
 
-import Section from "../components/section"
+const _actions = {
+    'downloader-app': DownloadButtons,
+}
 
-const Hero = () => {
-    return <Section>
-        
-    </Section>
+const Action = ({ type, ...props }) => {
+    return _actions[type] && React.createElement(_actions[type], props)
 }

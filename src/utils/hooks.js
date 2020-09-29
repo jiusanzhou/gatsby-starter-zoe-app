@@ -8,31 +8,7 @@ const useSiteMetadata = () => {
     query {
       site {
         siteMetadata {
-            title
-            description
-            url
-            lang
-            author {
-              name
-              minibio
-              avatar
-              email
-            }
-            logo {
-              name
-              img
-            }
-            socials {
-              email
-              facebook
-              github
-              telegram
-              twitter
-              linkedin
-            }
-            copyright {
-              content
-            }
+          title
         }
       }
     }
@@ -40,7 +16,7 @@ const useSiteMetadata = () => {
 
   site.siteMetadata._raw = zoefile
 
-  return site.siteMetadata
+  return zoefile
 }
 
 const useAssets = () => {

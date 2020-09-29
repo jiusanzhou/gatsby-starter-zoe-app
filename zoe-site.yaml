@@ -1,29 +1,48 @@
-title: 大集市
-description: 一个专业的拉单赚钱平台。
-url: https://dajishi.net
+title: ZoeAPP
+description: A starter template for zoe app
+url: https://labs.zoe.im/zoe-app
 favicon:
 logo:
-  name: 大集市
-  img: https://avatars2.githubusercontent.com/u/44012811?s=200&v=4
+  name: ZoeAPP
+  img: https://avatars1.githubusercontent.com/u/2942042?s=200
 lang: zh-CN
 author:
-  name: 周筱鲁
+  name: Zoe
   email: hi@zoe.im
-  avatar: https://avatars1.githubusercontent.com/u/2942042?s=200&v=4
+  avatar: https://avatars1.githubusercontent.com/u/2942042?s=200
   minibio: 知行合一
 organization:
   name: ${zoe.title}
   url: ${zoe.url}
   logo: ${zoe.logo.img}
 copyright:
-  content: © 大集市 - All rights reserved. Made with ❤️ by 大集市 
+  content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
 socials:
-  email: hi@dajishi.net
+  email: ''
   github: ''
   twitter: ''
   facebook: ''
   telegram: ''
   linkedin: ''
+
+# global props for pages
+props:
+  variantColor: red
+
+# for the index page to download
+hero:
+  title: ZoeAPP
+  subTitle: Create your app landing page without code.
+  description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
+  action: # this is a simple action or with type
+    type: downloader-app # take a action type
+    provider: github # select a provider
+    repo: moeapp/mtb-mobile
+    itemPrefix: 'Download '
+    hiddenUnsupported: true
+    itemProps:
+      variantColor: red
+
 
 plugins:
 - gatsby-source-filesystem:
@@ -45,7 +64,6 @@ plugins:
     background_color: "#663399"
     theme_color: "#663399"
     display: minimal-ui
-    icon: src/images/gatsby-icon.png
 
 - gatsby-plugin-chakra-ui:
     isResettingCSS: true

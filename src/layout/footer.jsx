@@ -79,51 +79,6 @@ const styles = {
     `,
 }
 
-const _data = {
-    copyright: {
-        content: "© 1hour.me - All rights reserved. Made with ❤️ by Zoe"
-    },
-    links: [
-        {
-            title: "Company",
-            items: [
-                {
-                    title: "Home",
-                    href: "/",
-                },
-                {
-                    title: "About",
-                    href: "/about",
-                },
-                {
-                    title: "Blog",
-                    href: "/blog",
-                },
-            ]
-        },
-        {
-            title: "Services",
-            items: [
-                {
-                    title: "Golang",
-                    href: "/golang",
-                },
-                {
-                    title: "More >>>",
-                    href: "/projects",
-                },
-            ]
-        }
-    ],
-    socials: {
-        twitter: 'jiusanzhou',
-        facebook: 'jiusanzhou',
-        github: 'jiusanzhou',
-        telegram: 'jiusanzhou',
-        email: 'hi@zoe.im',
-    }
-}
-
 const Footer = ( { children } ) => {
 
     const siteMeta = useSiteMetadata()
