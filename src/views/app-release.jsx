@@ -94,7 +94,7 @@ const DownloadButtons = ({
             {...props}
         >
             {supportPlatforms
-                .filter((e) => !hiddenUnsupported || assets[e] || urls[e])
+                .filter((e) => !hiddenUnsupported || assets[e] || urls[e] || (vdata && vdata.assets && vdata.assets[e]))
                 .map((e, idx) => (
                         <Flex key={`_${idx}`} p=".4em">
                             <Button
@@ -103,7 +103,7 @@ const DownloadButtons = ({
                                 // variantColor={variantColor}
                                 // variant={variant}
                                 isLoading={!loaded}
-                                isDisabled={!assets[e] && !urls[e]}
+                                isDisabled={!assets[e] && !urls[e] && !(vdata && vdata.assets[e])}
                                 {...itemProps}
                                 onClick={() => {
                                     let u = vdata && vdata.assets[e];
