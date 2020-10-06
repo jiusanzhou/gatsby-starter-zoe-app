@@ -39,9 +39,7 @@ const _nodata = () => {
 
 const DownloadButtons = ({
     repo,
-    assets = {
-        android: "https://www.coolapk.com/",
-    },
+    assets = {},
     urls = {},
 
     hiddenUnsupported = true,
