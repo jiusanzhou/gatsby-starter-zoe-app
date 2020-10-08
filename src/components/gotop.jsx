@@ -6,10 +6,6 @@ import scrollToAnchor from "../utils/scroll-to-anchor";
 import { ArrowUpIcon } from "@chakra-ui/icons"
 
 export default () => {
-    let _ref = createRef();
-    useEffect(() => {
-        _ref.current = document
-    }, [])
     return (
         <IconButton
             rounded="full"
@@ -19,7 +15,10 @@ export default () => {
             top="0"
             right="0"
             transform="translateY(-50%)"
-            onClick={scrollToAnchor(_ref.current, () => {})}
+            onClick={(e) => {
+                let fn = scrollToAnchor(document, () => {})
+                fn(e)
+            }}
         />
     );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Flex, Image, Link, Text } from "@chakra-ui/core";
+import { Avatar, Flex, Link, Text } from "@chakra-ui/core";
 
 const Logo = ({ href, name, img, expend = true, ...props }) => {
     // h={["3em", "3.5em", "4em", "4.5em"]}
@@ -18,10 +18,11 @@ const Logo = ({ href, name, img, expend = true, ...props }) => {
         >
             <Flex h="100%" alignItems="center" {...props}>
                 {img && (
-                    <Image
+                    <Avatar
+                        borderRadius="0"
                         mr=".4em"
                         h={["1.5em", "1.75em", "1.75em", "2em"]}
-                        alt={name}
+                        name={name}
                         src={img}
                     />
                 )}

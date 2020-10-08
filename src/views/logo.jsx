@@ -6,5 +6,5 @@ import { useSiteMetadata } from "../utils/hooks"
 
 export default ({...props}) => {
     const siteMeta = useSiteMetadata()
-    return <Logo { ...siteMeta.logo } {...props} />
+    return <Logo name={siteMeta.title} img={siteMeta.logo} {...props} />
 }

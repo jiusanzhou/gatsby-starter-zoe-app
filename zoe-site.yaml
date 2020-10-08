@@ -1,10 +1,9 @@
+# merge with providerd
 title: ZoeAPP
 description: A starter template for zoe app
 url: https://labs.zoe.im/zoe-app
 favicon:
-logo:
-  name: ZoeAPP
-  img: https://avatars1.githubusercontent.com/u/2942042?s=200
+logo: https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
 author:
   name: Zoe
@@ -14,7 +13,7 @@ author:
 organization:
   name: ${zoe.title}
   url: ${zoe.url}
-  logo: ${zoe.logo.img}
+  logo: ${zoe.logo}
 copyright:
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
   holder: MoeAPP
@@ -88,7 +87,7 @@ hero:
 plugins:
 - gatsby-source-filesystem:
     name: images
-    path: ${__dirname}/src/images
+    path: ${__dirname}/images
 
 - gatsby-plugin-google-analytics:
     trackingId: 'xxxxxxx'

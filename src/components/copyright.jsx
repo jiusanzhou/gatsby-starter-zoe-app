@@ -9,11 +9,11 @@ export default ({ copyright = {}, author = {}, ...props }) => {
                 <Text>{copyright.content}</Text>
             ) : (
                 [
-                    <Text>
+                    <Text key="__1">
                         {"©"} {new Date().getFullYear()} {copyright.holder}
                         {" - All rights reserved.  "}
                     </Text>,
-                    <Text>
+                    <Text key="__2">
                         Made with <Icon as={AiFillHeart} color="tomato" />
                         {author && [
                             ` by `,
