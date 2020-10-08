@@ -11,7 +11,7 @@ import Copyright from "../components/copyright";
 
 const Footer = ({ children, ...props }) => {
     const siteMeta = useSiteMetadata();
-    const { copyright, author, links = [], socials = {} } = siteMeta;
+    const { copyright, primaryColor, author, links = [], socials = {} } = siteMeta;
 
     return (
         <Box w="100%" position="absolute" borderTop="1px solid #E2E8F0">
@@ -28,7 +28,7 @@ const Footer = ({ children, ...props }) => {
                 {...props}
             >
                 {/* back to top button */}
-                <GoTop />
+                <GoTop colorScheme={primaryColor} />
 
                 {/* extend section */}
                 {children}

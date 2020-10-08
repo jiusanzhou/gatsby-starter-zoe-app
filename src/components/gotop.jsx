@@ -5,11 +5,10 @@ import scrollToAnchor from "../utils/scroll-to-anchor";
 
 import { ArrowUpIcon } from "@chakra-ui/icons"
 
-export default () => {
+export default ({...props}) => {
     return (
         <IconButton
             rounded="full"
-            colorScheme="red"
             icon={<ArrowUpIcon />}
             position="absolute"
             top="0"
@@ -19,6 +18,7 @@ export default () => {
                 let fn = scrollToAnchor(document, () => {})
                 fn(e)
             }}
+            {...props}
         />
     );
 };

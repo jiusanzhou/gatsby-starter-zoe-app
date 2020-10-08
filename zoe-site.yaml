@@ -18,6 +18,7 @@ copyright:
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
   holder: MoeAPP
   location: Hangzhou
+
 links:
 - title: Home
   category: Company
@@ -63,7 +64,7 @@ socials:
   telegram: 'zoeim'
   linkedin: 'zoeim'
 
-primaryColor: tomato
+primaryColor: purple # tomato how to change to colorSchema
 # global props for pages
 props:
   colorScheme: red
