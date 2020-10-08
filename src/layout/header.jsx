@@ -3,12 +3,14 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Flex } from "@chakra-ui/core";
 import Logo from "../views/logo";
+import { useSiteMetadata } from "../utils/hooks";
 
 const Header = ({ children, ...props }) => {
     // TODO: fixed header with scroll
+    const { styles: { border } = {} } = useSiteMetadata()
     return (
         <header>
-            <Flex w="100%" position="absolute" borderBottom="1px solid #E2E8F0">
+            <Flex w="100%" position="absolute" borderBottom={border?"1px solid #E2E8F0":null}>
                 <Flex
                     h={["3em", "3.5em", "4em", "4.5em"]}
                     left="0"

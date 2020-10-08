@@ -11,10 +11,20 @@ import Copyright from "../components/copyright";
 
 const Footer = ({ children, ...props }) => {
     const siteMeta = useSiteMetadata();
-    const { copyright, primaryColor, author, links = [], socials = {} } = siteMeta;
-
+    const {
+        copyright,
+        primaryColor,
+        author,
+        links = [],
+        socials = {},
+    } = siteMeta;
+    const { styles: { border } = {} } = siteMeta;
     return (
-        <Box w="100%" position="absolute" borderTop="1px solid #E2E8F0">
+        <Box
+            w="100%"
+            position="absolute"
+            borderTop={border ? "1px solid #E2E8F0" : null}
+        >
             <Box
                 left="0"
                 right="0"
@@ -48,12 +58,7 @@ const Footer = ({ children, ...props }) => {
 
                             {/* social links */}
                             <Socials
-                                justifyContent={[
-                                    null,
-                                    null,
-                                    null,
-                                    "flex-end",
-                                ]}
+                                justifyContent={[null, null, null, "flex-end"]}
                                 socials={socials}
                             />
                         </SimpleGrid>

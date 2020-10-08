@@ -18,7 +18,8 @@ copyright:
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
   holder: MoeAPP
   location: Hangzhou
-
+styles:
+  border: true
 links:
 - title: Home
   category: Company
