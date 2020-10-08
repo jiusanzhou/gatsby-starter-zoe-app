@@ -2,8 +2,8 @@
 title: ZoeAPP
 description: A starter template for zoe app
 url: https://labs.zoe.im/zoe-app
-favicon:
-logo: https://via.placeholder.com/120x60/E53E3E.png/fff
+favicon: # same with logo?
+logo: logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
 author:
   name: Zoe
@@ -70,18 +70,24 @@ props:
 
 # pages:
 # for the index page to download
+
+# just for index page
+blocks:
+- type: section
+  title: 
+  # ...props others are props for extends
 hero:
   title: ZoeAPP
   subTitle: Create your app landing page without code.
   description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
   action: # this is a simple action or with type
-    type: downloader-app # take a action type
-    provider: github # select a provider
-    repo: moeapp/mtb-mobile
-    itemPrefix: 'Download '
-    hiddenUnsupported: true
-    itemProps:
-      colorScheme: red
+    # type: downloader-app # take a action type
+    # provider: github # select a provider
+    # repo: moeapp/mtb-mobile
+    # itemPrefix: 'Download '
+    # hiddenUnsupported: true
+    # itemProps:
+    #   colorScheme: red
 
 
 plugins:

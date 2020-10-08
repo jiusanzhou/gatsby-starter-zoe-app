@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from 'gatsby'
 import React from 'react'
 
 import Logo from '../components/logo'
