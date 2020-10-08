@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { graphql, Link as NavLink, useStaticQuery } from "gatsby";
+import { Link as NavLink, useStaticQuery } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Avatar, Flex, Link, Text } from "@chakra-ui/core";
+import { Flex, Link, Text } from "@chakra-ui/core";
 
 import Image from "../components/image"
 
