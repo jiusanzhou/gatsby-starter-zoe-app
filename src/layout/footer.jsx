@@ -1,10 +1,6 @@
 import React from "react";
 
-import {
-    Box,
-    IconButton,
-    SimpleGrid,
-} from "@chakra-ui/core";
+import { Box, SimpleGrid } from "@chakra-ui/core";
 
 import { useSiteMetadata } from "../utils/hooks";
 import { Socials } from "../components/socials";
@@ -13,9 +9,9 @@ import GoTop from "../components/gotop";
 import Navlinks from "../components/navlinks";
 import Copyright from "../components/copyright";
 
-const Footer = ({ children }) => {
+const Footer = ({ children, ...props }) => {
     const siteMeta = useSiteMetadata();
-    const { copyright, author, links = [], socials = {}, ...props } = siteMeta;
+    const { copyright, author, links = [], socials = {} } = siteMeta;
 
     return (
         <Box w="100%" position="absolute" borderTop="1px solid #E2E8F0">
@@ -41,13 +37,27 @@ const Footer = ({ children }) => {
                 <Box>
                     <Logo />
                     {/* TODO: use links to section generate grid layout */}
-                    <SimpleGrid mt="2rem" columns={[1, 3, 3, 4]} spacing="1rem">
-                        {/* nav links */}
-                        <Navlinks links={links} />
+                    {(links.length > 0 || Object.keys(socials).length > 0) && (
+                        <SimpleGrid
+                            mt="2rem"
+                            columns={[1, 3, 3, 4]}
+                            spacing="1rem"
+                        >
+                            {/* nav links */}
+                            <Navlinks links={links} />
 
-                        {/* social links */}
-                        <Socials justifyContent={['flex-start', 'flex-end']} socials={socials} />
-                    </SimpleGrid>
+                            {/* social links */}
+                            <Socials
+                                justifyContent={[
+                                    null,
+                                    null,
+                                    null,
+                                    "flex-end",
+                                ]}
+                                socials={socials}
+                            />
+                        </SimpleGrid>
+                    )}
                 </Box>
 
                 {/* copyright */}
