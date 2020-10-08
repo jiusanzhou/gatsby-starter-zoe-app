@@ -6,12 +6,10 @@ import {
     SimpleGrid,
 } from "@chakra-ui/core";
 
-import { ArrowUpIcon } from "@chakra-ui/icons"
-
 import { useSiteMetadata } from "../utils/hooks";
 import { Socials } from "../components/socials";
 import Logo from "../views/logo";
-import scrollToAnchor from "../utils/scroll-to-anchor";
+import GoTop from "../components/gotop";
 import Navlinks from "../components/navlinks";
 import Copyright from "../components/copyright";
 
@@ -34,16 +32,7 @@ const Footer = ({ children }) => {
                 {...props}
             >
                 {/* back to top button */}
-                <IconButton
-                    rounded="full"
-                    colorScheme="red"
-                    icon={<ArrowUpIcon />}
-                    position="absolute"
-                    top="0"
-                    right="0"
-                    transform="translateY(-50%)"
-                    onClick={scrollToAnchor(document, () => {})}
-                />
+                <GoTop />
 
                 {/* extend section */}
                 {children}
