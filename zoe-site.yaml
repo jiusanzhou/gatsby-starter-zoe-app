@@ -64,6 +64,7 @@ socials:
   telegram: 'zoeim'
   linkedin: 'zoeim'
 
+primaryColor: tomato
 # global props for pages
 props:
   colorScheme: red

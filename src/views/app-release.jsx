@@ -12,10 +12,10 @@ import { FaAppStore } from "react-icons/fa";
 import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
 
 const _icons = {
-    android: AiOutlineAndroid,
-    ios: FaAppStore,
-    windows: AiOutlineWindows,
-    macos: AiOutlineApple,
+    android: <AiOutlineAndroid />,
+    ios: <FaAppStore />,
+    windows: <AiOutlineWindows />,
+    macos: <AiOutlineApple />,
 };
 
 const _unsupportedTooltip = "马不停蹄地开发中...";
