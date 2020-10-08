@@ -1,31 +1,36 @@
-import React from "react"
-import PropTypes from "prop-types"
+import React from "react";
+import PropTypes from "prop-types";
+import { Image } from "@chakra-ui/core";
 
-import { useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
+import { useStaticQuery, graphql } from "gatsby";
+import Img from "gatsby-image";
 
-const query = (src) => `
-    query {
-        placeholderImage: file(relativePath: { eq: "${src}" }) {
-            childImageSharp {
-                fluid {
-                    ...GatsbyImageSharpFluid
+const MyImage = ({ src, ...props }) => {
+    const _queryImages = useStaticQuery(graphql`
+        query {
+            allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+                nodes {
+                    name
+                    relativePath
+                    publicURL
                 }
             }
         }
-    }
-`
+    `);
+    let _src =
+        src.indexOf("://") >= 0
+            ? src
+            : (() => {
+                  let x = _queryImages.allFile.nodes.find(
+                      (e) => e.relativePath === src
+                  );
+                  return x ? x.publicURL : null;
+              })();
+    return <Image src={_src} {...props} />;
+};
 
-const Image = ( { ...props } ) => {
-    // const data = useStaticQuery(graphql`${query(src)}`)
-    // return <Img { ...props } fluid={data.placeholderImage.childImageSharp.fluid} />
-
-    const src = 'https://via.placeholder.com/640x480/09f.png/fff'
-    return <img src={ src } />
-}
-
-Image.protoTypes = {
+MyImage.protoTypes = {
     src: PropTypes.string.isRequired,
-}
+};
 
-export default Image
+export default MyImage;

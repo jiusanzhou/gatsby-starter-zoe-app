@@ -2,23 +2,12 @@ import React, { useContext } from "react";
 import { graphql, Link as NavLink, useStaticQuery } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Avatar, Flex, Image, Link, Text } from "@chakra-ui/core";
+import { Avatar, Flex, Link, Text } from "@chakra-ui/core";
+
+import Image from "../components/image"
 
 const Logo = ({ href, name, img, expend = true, ...props }) => {
     // h={["3em", "3.5em", "4em", "4.5em"]}
-    useContext({ img: "logo-512x512.png" });
-    const _queryImages = useStaticQuery(graphql`
-        query {
-            allFile(filter: { sourceInstanceName: { eq: "images" } }) {
-                nodes {
-                    name
-                    relativePath
-                    publicURL
-                }
-            }
-        }
-    `);
-
     return (
         <Link
             zIndex={99}
@@ -36,16 +25,7 @@ const Logo = ({ href, name, img, expend = true, ...props }) => {
                         mr=".4em"
                         h={["1.5em", "1.75em", "1.75em", "2em"]}
                         alt={name}
-                        src={
-                            img.indexOf("://") >= 0
-                                ? img
-                                : (() => {
-                                      let x = _queryImages.allFile.nodes.find(
-                                          (e) => e.relativePath === img
-                                      );
-                                      return x ? x.publicURL : null;
-                                  })()
-                        } // img is a remote or local one
+                        src={img} // img is a remote or local one
                     />
                 )}
                 {expend && (

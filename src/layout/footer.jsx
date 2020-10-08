@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, SimpleGrid } from "@chakra-ui/core";
+import { Box, Flex, SimpleGrid } from "@chakra-ui/core";
 
 import { useSiteMetadata } from "../utils/hooks";
 import { Socials } from "../components/socials";
@@ -34,7 +34,7 @@ const Footer = ({ children, ...props }) => {
                 {children}
 
                 {/* footer main section */}
-                <Box>
+                <Flex flexDirection="column">
                     <Logo />
                     {/* TODO: use links to section generate grid layout */}
                     {(links.length > 0 || Object.keys(socials).length > 0) && (
@@ -58,7 +58,7 @@ const Footer = ({ children, ...props }) => {
                             />
                         </SimpleGrid>
                     )}
-                </Box>
+                </Flex>
 
                 {/* copyright */}
                 {/* {copyright && <Text mt="2rem">{copyright.content}</Text>} */}
