@@ -1,32 +1,34 @@
-import React from "react"
-import PropTypes from "prop-types"
-import { css, cx } from "linaria"
+import React from "react";
+import PropTypes from "prop-types";
 
-import Button from "./button"
+import { Box, Button, Text } from "@chakra-ui/core";
 
-const stylesAction = css`
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    p {
-        margin-top: 1.55rem;
-    }
-`
-
-const Action = ({ children, title, className, description, position = 'bottom', to, onClick }) => {
-    return <div className={ cx(stylesAction, className) }>
-        <Button to={ to } onClick={ onClick }>{ [title, children].filter(i => i) }</Button>
-        { description?<p>{ description }</p>:null }
-    </div>
-}
+const Action = ({
+    children,
+    title,
+    className,
+    description,
+    position = "bottom",
+    to,
+    onClick,
+}) => {
+    return (
+        <Box>
+            <Button to={to} onClick={onClick}>
+                {[title, children].filter((i) => i)}
+            </Button>
+            {description ? <Text>{description}</Text> : null}
+        </Box>
+    );
+};
 
 Action.propTypes = {
     description: PropTypes.node,
     children: PropTypes.node,
-    position: PropTypes.oneOf(['top', 'bottom']),
+    position: PropTypes.oneOf(["top", "bottom"]),
     to: PropTypes.string,
     onClick: PropTypes.func,
     className: PropTypes.string,
-}
+};
 
-export default Action
+export default Action;

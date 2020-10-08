@@ -19,7 +19,7 @@ const useSiteMetadata = () => {
   return zoefile
 }
 
-const useAssets = () => {
+export const useAssets = () => {
   
 }
 

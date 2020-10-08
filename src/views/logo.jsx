@@ -4,7 +4,7 @@ import Logo from '../components/logo'
 
 import { useSiteMetadata } from "../utils/hooks"
 
-export default () => {
+export default ({...props}) => {
     const siteMeta = useSiteMetadata()
-    return <Logo { ...siteMeta.logo } />
+    return <Logo { ...siteMeta.logo } {...props} />
 }

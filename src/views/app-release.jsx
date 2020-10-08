@@ -9,7 +9,7 @@ import {
 } from "react-icons/ai";
 
 import { FaAppStore } from "react-icons/fa";
-import { Box, Button, Flex, SimpleGrid, Stack, Text, Tooltip } from "@chakra-ui/core";
+import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
 
 const _icons = {
     android: AiOutlineAndroid,
@@ -56,7 +56,7 @@ const DownloadButtons = ({
     itemPrefix,
     itemSuffix,
 
-    // variantColor = "teal",
+    // colorScheme = "teal",
     // variant = "solid",
 
     ...props
@@ -75,7 +75,7 @@ const DownloadButtons = ({
                 setVdata(v);
             })
             .finally(() => setLoaded(true));
-    }, []);
+    }, [ repo ]);
 
     if (
         !repo &&
@@ -100,7 +100,7 @@ const DownloadButtons = ({
                             <Button
                                 rounded={rounded ? "full" : null}
                                 leftIcon={_icons[e]}
-                                // variantColor={variantColor}
+                                // colorScheme={colorScheme}
                                 // variant={variant}
                                 isLoading={!loaded}
                                 isDisabled={!assets[e] && !urls[e] && !(vdata && vdata.assets[e])}
@@ -128,7 +128,7 @@ const DownloadButtons = ({
     );
 };
 
-const _withTooltip = (props) => {
+export const _withTooltip = (props) => {
     return props.label ? <Tooltip {...props} /> : props.children;
 };
 
@@ -142,7 +142,7 @@ class GithubVersionProvider {
         this.assetRegexPatterns = assetRegexPatterns || this.assetRegexPatterns;
         this.repo = repo;
 
-        if (!this.repo) throw "miss repo offered.";
+        if (!this.repo) throw new Error("miss repo offered.");
     }
 
     _base_api = "https://api.github.com/repos";
@@ -261,4 +261,4 @@ class GithubVersionProvider {
 }
 
 // VersionProvider
-class VersionProvider {}
+export class VersionProvider {}

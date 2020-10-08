@@ -1,124 +1,74 @@
-import React from "react"
-import { css, cx } from "linaria"
-import { Link } from "gatsby"
+import React from "react";
 
-import { useSiteMetadata } from "../utils/hooks"
-import { Socials } from "../components/socials"
+import {
+    Box,
+    IconButton,
+    SimpleGrid,
+} from "@chakra-ui/core";
 
-import PropTypes from "prop-types"
+import { ArrowUpIcon } from "@chakra-ui/icons"
 
-const styles = {
-    footer: css`
-        background: #0a0012;
-        color: #fff;
-        padding: 3.1rem 8vw 1.55rem;
-        position: relative;
+import { useSiteMetadata } from "../utils/hooks";
+import { Socials } from "../components/socials";
+import Logo from "../views/logo";
+import scrollToAnchor from "../utils/scroll-to-anchor";
+import Navlinks from "../components/navlinks";
+import Copyright from "../components/copyright";
 
-    `,
-    gotop: css`
-        border-radius: 100%;
-        width: 3.5rem;
-        height: 3.5rem;
-        position: absolute;
-        right: 4.65rem;
-        top: 0;
-        display:none;
-        transform: translateY(-50%);
-        padding: 0;
-        min-width: unset;
-        &:hover {
-            transform: translateY(-50%);
-        }
+const Footer = ({ children }) => {
+    const siteMeta = useSiteMetadata();
+    const { copyright, author, links = [], socials = {}, ...props } = siteMeta;
 
-    `,
-    main: css`
-        display: grid;
-        margin-bottom: 1.55rem;
-        row-gap: 4.65rem;
+    return (
+        <Box w="100%" position="absolute" borderTop="1px solid #E2E8F0">
+            <Box
+                left="0"
+                right="0"
+                top="0"
+                px={["1em", "0", "0", "0"]}
+                pt="2rem"
+                pb="1rem"
+                w={["100%", "80%", "80%", "80%", "60em"]}
+                margin="0 auto"
+                position="relative"
+                {...props}
+            >
+                {/* back to top button */}
+                <IconButton
+                    rounded="full"
+                    colorScheme="red"
+                    icon={<ArrowUpIcon />}
+                    position="absolute"
+                    top="0"
+                    right="0"
+                    transform="translateY(-50%)"
+                    onClick={scrollToAnchor(document, () => {})}
+                />
 
-        ul {
-            list-style: none;
-            font-size: .875rem;
+                {/* extend section */}
+                {children}
 
-            li {
-                margin-bottom: 1.55rem;
-            }
+                {/* footer main section */}
+                <Box>
+                    <Logo />
+                    {/* TODO: use links to section generate grid layout */}
+                    <SimpleGrid mt="2rem" columns={[1, 3, 3, 4]} spacing="1rem">
+                        {/* nav links */}
+                        <Navlinks links={links} />
 
-            a {
-                color: #fff;
-                text-decoration: none;
-                opacity: .5;
-                transition: all .15s cubic-bezier(.7,0,1,.5);
+                        {/* social links */}
+                        <Socials justifyContent={['flex-start', 'flex-end']} socials={socials} />
+                    </SimpleGrid>
+                </Box>
 
-                &:hover {
-                    opacity: 1;
-                    transition-timing-function: cubic-bezier(.1,.9,.2,1);
-                }
-            }
-        }
-    `,
-    logo: css`
-        span {
-            color: #fff;
-        }
-    `,
-    links: css`
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        -webkit-column-gap: 1.55rem;
-        -moz-column-gap: 1.55rem;
-        column-gap: 1.55rem;
-        row-gap: 2.325rem;
+                {/* copyright */}
+                {/* {copyright && <Text mt="2rem">{copyright.content}</Text>} */}
+                <Copyright mt="2rem" copyright={copyright} author={author} />
+            </Box>
+        </Box>
+    );
+};
 
-        grid-template-columns: auto auto 140px;
+Footer.propTypes = {};
 
-
-        ul {
-            margin: 0;
-        }
-    `,
-}
-
-const Footer = ( { children } ) => {
-
-    const siteMeta = useSiteMetadata()
-    const { copyright, links = [], socials = {} } = siteMeta
-
-    return <div className={ styles.footer }>
-        {/* back to top button */}
-        {/* <Button className={ styles.gotop } href="#">
-            <svg width="16" height="22"><path d="M8 21V1M1 8l7-7 7 7" fill="none" fillRule="evenodd" stroke="#FFF" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"></path></svg>
-        </Button> */}
-
-        {/* extend section */}
-        { children }
-
-        {/* footer main section */}
-        <section className={ styles.main }>
-            {/* <Logo className={ styles.logo } /> */}
-            {/* TODO: use links to section generate grid layout */}
-            <nav className={ styles.links }>
-                { links.map(i => <div>
-                    <p>{ i.title }</p>
-                    <ul>
-                        { i.items.map(i => <li>
-                            <Link to={ i.href }>{ i.title }</Link>
-                        </li>) }
-                    </ul>
-                </div>) }
-
-                {/* social links */}
-                <Socials socials={ socials } />
-            </nav>
-        </section>
-
-        {/* copyright */}
-        { copyright ? <p className={ styles.copyright }>{ copyright.content }</p> : null }
-    </div>
-}
-
-Footer.propTypes = {
-
-}
-
-export default Footer
+export default Footer;

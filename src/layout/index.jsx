@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Helmet } from "react-helmet";
 
@@ -10,7 +10,7 @@ import "../styles/global.css";
 import { Box } from "@chakra-ui/core";
 
 const Layout = ({ children, extendFooter }) => {
-    const [opened, setOpened] = useState(false);
+    // const [opened, setOpened] = useState(false);
     return (
         <>
             <Helmet>
@@ -22,10 +22,10 @@ const Layout = ({ children, extendFooter }) => {
 
             <SEO />
             <Header />
-            <Box as="main" pt={["3em", "3.5em", "4em", "4.5em"]}>{children}</Box>
-            <footer>
-                <Footer>{extendFooter}</Footer>
-            </footer>
+            <Box as="main" pt={["3em", "3.5em", "4em", "4.5em"]}>
+                {children}
+            </Box>
+            <Footer>{extendFooter}</Footer>
         </>
     );
 };

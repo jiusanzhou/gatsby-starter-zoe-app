@@ -16,19 +16,59 @@ organization:
   url: ${zoe.url}
   logo: ${zoe.logo.img}
 copyright:
-  content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
+  # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
+  holder: MoeAPP
+  location: Hangzhou
+links:
+- title: Home
+  category: Company
+  href: /
+- title: About
+  category: Company
+  href: /about
+- title: Blog
+  category: Company
+  href: /blog
+- title: Rust
+  category: Products
+  href: /rust
+- title: More >>>
+  category: Products
+  href: /products
+- title: Golang
+  category: Services
+  href: /golang
+- title: More >>>
+  category: Services
+  href: /projects
+
+menu:
+- title: Home
+  href: /
+- title: About
+  href: /about
+- title: Services
+  href: /services
+  items:
+  - title: Golang turorials
+    href: /services/golang
+  - title: Frontend from zero
+    href: /services/frontend
+- title: Blog
+  href: /blog
 socials:
-  email: ''
-  github: ''
-  twitter: ''
-  facebook: ''
-  telegram: ''
-  linkedin: ''
+  email: 'hi@zoe.im'
+  github: 'zoeim'
+  twitter: 'zoeim'
+  facebook: 'zoeim'
+  telegram: 'zoeim'
+  linkedin: 'zoeim'
 
 # global props for pages
 props:
-  variantColor: red
+  colorScheme: red
 
+# pages:
 # for the index page to download
 hero:
   title: ZoeAPP
@@ -41,7 +81,7 @@ hero:
     itemPrefix: 'Download '
     hiddenUnsupported: true
     itemProps:
-      variantColor: red
+      colorScheme: red
 
 
 plugins:
@@ -53,9 +93,9 @@ plugins:
     trackingId: 'xxxxxxx'
     respectDNT: true
 
-- gatsby-plugin-web-font-loader:
-    google:
-      families: ['Poppins', 'Recoleta', 'Fredoka One', 'Cabin', 'Open Sans']
+# - gatsby-plugin-web-font-loader:
+#     google:
+#       families: ['Poppins', 'Recoleta', 'Fredoka One', 'Cabin', 'Open Sans']
 
 - gatsby-plugin-manifest:
     name: ${zoe.title}
@@ -67,13 +107,8 @@ plugins:
 
 - gatsby-plugin-chakra-ui:
     isResettingCSS: true
-    isUsingColorMode: true
+    isUsingColorMode: false
 
 - gatsby-plugin-react-helmet
 - gatsby-transformer-sharp
-- gatsby-plugin-theme-ui
-- gatsby-plugin-linaria
 - gatsby-plugin-offline
-- gatsby-plugin-emotion
-- gatsby-plugin-sharp
-- gatsby-plugin-less

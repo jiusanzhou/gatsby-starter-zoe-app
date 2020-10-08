@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Button, Flex, Text } from "@chakra-ui/core";
+import { Box, Flex, Text } from "@chakra-ui/core";
 
 import Action from "../components/action";
 
@@ -192,7 +192,6 @@ const Section = ({
                                 )}
                             </Box>
                         )}
-                        {/* { action?<Action { ...action } className={ cx(styles.action, extendStyles.action) } />:null } */}
                     </Box>
                 )}
                 {/* main body */}
