@@ -1,12 +1,21 @@
 body {
-  font-family: "Microsoft Jhenghei", "Microsoft YaHei", Roboto, Georgia, Cambria,"Times New Roman", Times, "Hiragino Sans GB", sans-serif !important;
+    font-family: "Microsoft Jhenghei", "Microsoft YaHei", Roboto, Georgia,
+        Cambria, "Times New Roman", Times, "Hiragino Sans GB", sans-serif !important;
 }
 
-*, ::before, ::after {
-  border-color: #E2E8F0;
-  word-wrap: break-word;
+*,
+::before,
+::after {
+    border-color: #e2e8f0;
+    word-wrap: break-word;
 }
 
-a:focus, button:focus {
-    box-shadow: none!important;
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+a:focus,
+button:focus {
+    box-shadow: none !important;
 }

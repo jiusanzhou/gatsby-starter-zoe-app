@@ -71,10 +71,14 @@ socials:
   telegram: 'zoeim'
   linkedin: 'zoeim'
 
+# theme for global
 primaryColor: purple # tomato how to change to colorSchema
-# global props for pages
-props:
-  colorScheme: red
+
+layouts:
+  default:
+    maxWidth: 60rem
+    header:
+    footer:
 
 # pages:
 # for the index page to download

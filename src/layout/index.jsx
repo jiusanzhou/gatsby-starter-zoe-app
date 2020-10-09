@@ -42,4 +42,6 @@ Layout.propTypes = {
     extendFooter: PropTypes.node,
 };
 
+// multi layout and register with layouts
+
 export default Layout;

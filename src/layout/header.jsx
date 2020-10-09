@@ -12,7 +12,8 @@ const Header = ({ children, ...props }) => {
         <header>
             <Flex
                 w="100%"
-                position="absolute"
+                position="fixed"
+                top="0"
                 borderBottomStyle="solid"
                 borderBottomWidth={border ? "1px" : "0"}
             >
