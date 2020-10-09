@@ -1,10 +1,5 @@
 import React from "react";
-import {
-    Flex,
-    Icon,
-    Link,
-    Text,
-} from "@chakra-ui/core";
+import { Flex, Icon, Link, Text } from "@chakra-ui/core";
 import { AiFillHeart } from "react-icons/ai";
 
 export default ({ copyright = {}, author = {}, ...props }) => {
@@ -16,10 +11,11 @@ export default ({ copyright = {}, author = {}, ...props }) => {
                 <>
                     <Text>
                         {"©"} {new Date().getFullYear()} {copyright.holder}
-                        {" - All rights reserved. "}
+                        {" - All rights reserved."}
                     </Text>
                     <Text>
-                        Made with <Icon as={AiFillHeart} color="tomato" />
+                        {" Made with "}
+                        <Icon as={AiFillHeart} color="tomato" />
                         {author && (
                             <>
                                 {" by "}
@@ -29,6 +25,7 @@ export default ({ copyright = {}, author = {}, ...props }) => {
                             </>
                         )}
                         {copyright.location && ` in ${copyright.location}`}
+                        {"."}
                     </Text>
                 </>
             )}
