@@ -4,7 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 
 export default ({ copyright = {}, author = {}, ...props }) => {
     return (
-        <Flex {...props}>
+        <Flex justifyContent="space-between" {...props}>
             {copyright.content ? (
                 <Text>{copyright.content}</Text>
             ) : (
