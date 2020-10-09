@@ -7,10 +7,15 @@ import { useSiteMetadata } from "../utils/hooks";
 
 const Header = ({ children, ...props }) => {
     // TODO: fixed header with scroll
-    const { styles: { border } = {} } = useSiteMetadata()
+    const { styles: { border } = {} } = useSiteMetadata();
     return (
         <header>
-            <Flex w="100%" position="absolute" borderBottom={border?"1px solid #E2E8F0":null}>
+            <Flex
+                w="100%"
+                position="absolute"
+                borderBottomStyle="solid"
+                borderBottomWidth={border ? "1px" : "0"}
+            >
                 <Flex
                     h={["3em", "3.5em", "4em", "4.5em"]}
                     left="0"

@@ -1,9 +1,11 @@
 
-import React, { createRef, useEffect } from "react";
+import React from "react";
 import { IconButton } from "@chakra-ui/core";
-import scrollToAnchor from "../utils/scroll-to-anchor";
 
-import { ArrowUpIcon } from "@chakra-ui/icons"
+import { ArrowUpIcon } from "@chakra-ui/icons";
+
+import smoothscroll from 'smoothscroll-polyfill';
+smoothscroll.polyfill();
 
 export default ({...props}) => {
     return (
@@ -15,8 +17,7 @@ export default ({...props}) => {
             right="0"
             transform="translateY(-50%)"
             onClick={(e) => {
-                let fn = scrollToAnchor(document, () => {})
-                fn(e)
+                window.scroll({ top: 0, left: 0, behavior: 'smooth' });
             }}
             {...props}
         />

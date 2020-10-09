@@ -967,9 +967,10 @@
   dependencies:
     "@chakra-ui/utils" "1.0.0-rc.5"
 
-"@chakra-ui/core@next":
+"@chakra-ui/core@^1.0.0-next.6":
   version "1.0.0-rc.5"
   resolved "https://registry.yarnpkg.com/@chakra-ui/core/-/core-1.0.0-rc.5.tgz#16571a30702d68b7cdbef564bf2280437bb5b850"
+  integrity sha512-s+z7vGomX3SnsoeFzW4yuuYPDnr52TDo1GETcTgzaUDfs2keQKXphzvFUxUFFY0VgHOejfXDyoNypPnAR6eqXw==
   dependencies:
     "@chakra-ui/accordion" "1.0.0-rc.5"
     "@chakra-ui/alert" "1.0.0-rc.5"
@@ -11478,6 +11479,11 @@ slice-ansi@^3.0.0:
 slugify@^1.4.4:
   version "1.4.5"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.4.5.tgz#a7517acf5f4c02a4df41e735354b660a4ed1efcf"
+
+smoothscroll-polyfill@^0.4.4:
+  version "0.4.4"
+  resolved "https://registry.yarnpkg.com/smoothscroll-polyfill/-/smoothscroll-polyfill-0.4.4.tgz#3a259131dc6930e6ca80003e1cb03b603b69abf8"
+  integrity sha512-TK5ZA9U5RqCwMpfoMq/l1mrH0JAR7y7KRvOBx0n2869aLxch+gT9GhN3yUfjiw+d/DiF1mKo14+hd62JyMmoBg==
 
 snapdragon-node@^2.0.1:
   version "2.1.1"

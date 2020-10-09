@@ -23,7 +23,8 @@ const Footer = ({ children, ...props }) => {
         <Box
             w="100%"
             position="absolute"
-            borderTop={border ? "1px solid #E2E8F0" : null}
+            borderTopStyle="solid"
+            borderTopWidth={border ? "1px" : '0'}
         >
             <Box
                 left="0"

@@ -3,23 +3,28 @@ title: ZoeAPP
 description: A starter template for zoe app
 url: https://labs.zoe.im/zoe-app
 favicon: # same with logo?
-logo: logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
+logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
+
 author:
   name: Zoe
   email: hi@zoe.im
   avatar: https://avatars1.githubusercontent.com/u/2942042?s=200
   minibio: 知行合一
+
 organization:
   name: ${zoe.title}
   url: ${zoe.url}
   logo: ${zoe.logo}
+
 copyright:
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
-  holder: MoeAPP
+  holder: MoeAPP # take value from organization - author
   location: Hangzhou
+
 styles:
   border: true
+
 links:
 - title: Home
   category: Company
@@ -57,6 +62,7 @@ menu:
     href: /services/frontend
 - title: Blog
   href: /blog
+
 socials:
   email: 'hi@zoe.im'
   github: 'zoeim'
@@ -91,11 +97,17 @@ hero:
     # itemProps:
     #   colorScheme: red
 
+# extend for app landing page
+
+# previews
+
+# reviews
 
 plugins:
 - gatsby-source-filesystem:
-    name: images
-    path: ${__dirname}/images
+    name: default
+    path: ${__dirname} # default load all files in current directory
+    ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
 
 - gatsby-plugin-google-analytics:
     trackingId: 'xxxxxxx'
@@ -112,6 +124,7 @@ plugins:
     background_color: "#663399"
     theme_color: "#663399"
     display: minimal-ui
+    icon: ${zoe.logo}
 
 - gatsby-plugin-chakra-ui:
     isResettingCSS: true

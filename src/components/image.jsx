@@ -6,9 +6,10 @@ import { useStaticQuery, graphql } from "gatsby";
 import Img from "gatsby-image";
 
 const MyImage = ({ src, ...props }) => {
+    // we need to add `images` for relativePath
     const _queryImages = useStaticQuery(graphql`
         query {
-            allFile(filter: { sourceInstanceName: { eq: "images" } }) {
+            allFile(filter: { sourceInstanceName: {} }) {
                 nodes {
                     name
                     relativePath
