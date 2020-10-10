@@ -9,12 +9,15 @@ import Footer from "./footer";
 import "../styles/global.css";
 import { Box, ColorModeScript } from "@chakra-ui/core";
 
-const Layout = ({ children, extendFooter }) => {
+const Layout = ({ title, description, children, extendFooter }) => {
     // const [opened, setOpened] = useState(false);
     return (
         <>
             <ColorModeScript initialColorMode="light" />
-            <Helmet
+            {/* inject seo header */}
+            <SEO
+                title={title}
+                description={description}
                 meta={[
                     {
                         name: "viewport",
@@ -23,8 +26,6 @@ const Layout = ({ children, extendFooter }) => {
                     },
                 ]}
             />
-
-            <SEO />
             {/* header */}
             <Header />
             {/* main body */}
