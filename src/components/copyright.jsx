@@ -4,7 +4,7 @@ import { AiFillHeart } from "react-icons/ai";
 
 export default ({ copyright = {}, author = {}, ...props }) => {
     return (
-        <Flex justifyContent="space-between" {...props}>
+        <Flex justifyContent="center" {...props}>
             {copyright.content ? (
                 <Text>{copyright.content}</Text>
             ) : (
@@ -13,7 +13,7 @@ export default ({ copyright = {}, author = {}, ...props }) => {
                         {"©"} {new Date().getFullYear()} {copyright.holder}
                         {" - All rights reserved."}
                     </Text>
-                    <Text>
+                    <Text ml=".5rem">
                         {" Made with "}
                         <Icon as={AiFillHeart} color="tomato" />
                         {author && (

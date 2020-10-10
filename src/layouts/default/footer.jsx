@@ -66,7 +66,7 @@ const Footer = ({ children, ...props }) => {
                 {/* copyright */}
                 <Copyright
                     flexWrap="wrap"
-                    mt="1rem"
+                    mt="2rem"
                     copyright={copyright}
                     author={author}
                 />
