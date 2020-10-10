@@ -45,9 +45,9 @@ export const SocialLink = ({ type, username, base }) => {
 
 export const Socials = ({ socials = [], ...props }) => {
     return (
-        <List d="flex" {...props}>
+        <List d="flex" flexWrap="wrap" {...props}>
             {Object.keys(socials).map((key) => (
-                <ListItem mr="1rem" key={`_${key}`} _last={{
+                <ListItem mr="1rem" mt="1rem" key={`_${key}`} _last={{
                     mr: '0rem'
                 }}>
                     <SocialLink type={key} username={socials[key]} />

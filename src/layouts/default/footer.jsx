@@ -56,7 +56,7 @@ const Footer = ({ children, ...props }) => {
                         {/* logo */}
                         <Logo expend={true} />
                         {/* social links */}
-                        <Socials mt="1rem" socials={socials} />
+                        <Socials socials={socials} />
                     </Box>
 
                     {/* nav links */}
