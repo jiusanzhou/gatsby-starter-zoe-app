@@ -5,7 +5,7 @@ import Layout from "../layout";
 import Section from "../components/section";
 
 const NotFoundPage = () => (
-    <Layout>
+    <Layout title="404 Page not found">
         <Section
             wraperProps={{ minH: "calc(100vh - 10em)" }}
             title="NOT FOUND"
