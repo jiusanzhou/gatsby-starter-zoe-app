@@ -6,7 +6,7 @@ import SEO from "../../views/seo";
 import Header from "./header";
 import Footer from "./footer";
 
-const Layout = ({ title, description, children, extendFooter }) => {
+const Layout = ({ title, description, header = {}, footer = {}, children, extendFooter }) => {
     // const [opened, setOpened] = useState(false);
     return (
         <>
@@ -24,13 +24,13 @@ const Layout = ({ title, description, children, extendFooter }) => {
                 ]}
             />
             {/* header */}
-            <Header />
+            <Header {...header} />
             {/* main body */}
             <Box as="main" pt={["3em", "3.5em", "4em", "4.5em"]}>
                 {children}
             </Box>
             {/* footer */}
-            <Footer>{extendFooter}</Footer>
+            <Footer {...footer}>{extendFooter}</Footer>
         </>
     );
 };

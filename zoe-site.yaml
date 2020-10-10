@@ -22,9 +22,6 @@ copyright:
   holder: MoeAPP # take value from organization - author
   location: Hangzhou
 
-styles:
-  border: true
-
 links:
 - title: Home
   category: Company
@@ -77,17 +74,15 @@ primaryColor: purple # #663399 # tomato how to change to colorSchema
 layouts:
   default:
     maxWidth: 60rem
-    header:
     footer:
+      border: true
 
 # pages:
 # for the index page to download
 
-# just for index page
-blocks:
-- type: section
-  title: 
-  # ...props others are props for extends
+pages:
+  index:
+    layout: default
 
 # temp for hero
 hero:

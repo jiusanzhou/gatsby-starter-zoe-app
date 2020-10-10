@@ -9,16 +9,14 @@ import GoTop from "../../components/gotop";
 import Navlinks from "../../components/navlinks";
 import Copyright from "../../components/copyright";
 
-const Footer = ({ children, ...props }) => {
-    const siteMeta = useSiteMetadata();
+const Footer = ({ children, border, ...props }) => {
     const {
         copyright,
         primaryColor,
         author,
         links = [],
         socials = {},
-    } = siteMeta;
-    const { styles: { border } = {} } = siteMeta;
+    } = useSiteMetadata();
     return (
         <Box
             w="100%"
@@ -36,6 +34,7 @@ const Footer = ({ children, ...props }) => {
                 w={["100%", "80%", "80%", "80%", "60em"]}
                 margin="0 auto"
                 position="relative"
+                borderTopStyle="solid"
                 {...props}
             >
                 {/* back to top button */}

@@ -3,11 +3,10 @@ import React from "react";
 import PropTypes from "prop-types";
 import { Flex } from "@chakra-ui/core";
 import Logo from "../../views/logo";
-import { useSiteMetadata } from "../../utils/hooks";
 
-const Header = ({ children, ...props }) => {
+const Header = ({ children, border, ...props }) => {
     // TODO: fixed header with scroll
-    const { styles: { border } = {} } = useSiteMetadata();
+    // TODO: navigation urls
     return (
         <header>
             <Flex
