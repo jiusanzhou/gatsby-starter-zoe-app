@@ -59,7 +59,7 @@ const Footer = ({ children, ...props }) => {
 
                             {/* social links */}
                             <Socials
-                                justifyContent={[null, null, null, "flex-end"]}
+                                justifyContent="space-between"
                                 socials={socials}
                             />
                         </SimpleGrid>
@@ -67,8 +67,7 @@ const Footer = ({ children, ...props }) => {
                 </Flex>
 
                 {/* copyright */}
-                {/* {copyright && <Text mt="2rem">{copyright.content}</Text>} */}
-                <Copyright mt="2rem" copyright={copyright} author={author} />
+                <Copyright mt="1rem" copyright={copyright} author={author} />
             </Box>
         </Box>
     );
