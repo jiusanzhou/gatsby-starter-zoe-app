@@ -8,7 +8,22 @@ const MyImage = ({ src, ...props }) => {
     // we need to add `images` for relativePath
     const _queryImages = useStaticQuery(graphql`
         query {
-            allFile(filter: { sourceInstanceName: {} }) {
+            allFile(
+                filter: {
+                    extension: {
+                        in: [
+                            "png"
+                            "jpeg"
+                            "svg"
+                            "gif"
+                            "jpg"
+                            "webp"
+                            "ico"
+                            "bmp"
+                        ]
+                    }
+                }
+            ) {
                 nodes {
                     name
                     relativePath
