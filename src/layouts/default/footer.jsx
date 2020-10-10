@@ -48,7 +48,7 @@ const Footer = ({ children, ...props }) => {
                 <Flex flexDirection="column">
                     {/* TODO: use links to section generate grid layout */}
                     {/* {(links.length > 0 || Object.keys(socials).length > 0) && ( */}
-                    <SimpleGrid mt={["1rem", "1.5rem", "1.5rem", "2rem"]} columns={[1, 3, 3, 5]} spacing="1rem">
+                    <SimpleGrid mt={[".5rem", ".7rem", ".7rem", "1rem"]} columns={[1, 3, 3, 5]} spacing="1rem">
                         {/* logo */}
                         <Logo expend={true} />
 
