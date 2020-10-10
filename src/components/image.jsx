@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import { Image } from "@chakra-ui/core";
 
 import { useStaticQuery, graphql } from "gatsby";
-import Img from "gatsby-image";
 
 const MyImage = ({ src, ...props }) => {
     // we need to add `images` for relativePath

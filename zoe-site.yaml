@@ -107,15 +107,31 @@ hero:
 
 # reviews
 
+
+
+
+
+
+
+googleAnalytics:
+  trackingId: 'xxxxxxx'
+  respectDNT: true
+
+
+# can register a component
+
+# important and just modify by template
+# because we need to install node package
+# but if we can install it with config
+# we can add one
+
 plugins:
 - gatsby-source-filesystem:
     name: default
     path: ${__dirname} # default load all files in current directory
     ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
 
-- gatsby-plugin-google-analytics:
-    trackingId: 'xxxxxxx'
-    respectDNT: true
+- gatsby-plugin-google-analytics: ${zoe.googleAnalytics}
 
 # - gatsby-plugin-web-font-loader:
 #     google:

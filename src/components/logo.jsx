@@ -1,5 +1,5 @@
-import React, { useContext } from "react";
-import { Link as NavLink, useStaticQuery } from "gatsby";
+import React from "react";
+import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
 import { Flex, Link, Text, Tooltip } from "@chakra-ui/core";

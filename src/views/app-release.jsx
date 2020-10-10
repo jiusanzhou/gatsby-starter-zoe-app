@@ -10,7 +10,6 @@ import {
 
 import { FaAppStore } from "react-icons/fa";
 import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
-import { graphql } from "gatsby";
 
 const _icons = {
     android: <AiOutlineAndroid />,
@@ -261,7 +260,7 @@ class GithubVersionProvider {
     }
 }
 
-const _githubReleasesQuery = `
+export const _githubReleasesQuery = `
 {
     repository(owner: "moeapp", name: "mtb-mobile") {
       releases(first: 10) {
