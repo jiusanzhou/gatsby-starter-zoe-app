@@ -2,12 +2,11 @@
 title: ZoeAPP
 description: A starter template for zoe app.
 url: https://labs.zoe.im/zoe-app
-favicon: # same with logo?
 logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
 
 # display in the right of the logo
-version: Beta
+version: beta
 
 author:
   name: Zoe
@@ -22,7 +21,7 @@ organization:
 
 copyright:
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
-  holder: MoeAPP # take value from organization - author
+  holder: Zoe # take value from organization - author
   location: Hangzhou
 
 links:
@@ -63,17 +62,19 @@ navs:
 - title: Blog
   href: /blog
 
+# social links with icons
 socials:
   email: 'hi@zoe.im'
   github: 'zoeim'
-  twitter: 'zoeim'
-  facebook: 'zoeim'
-  telegram: 'zoeim'
-  linkedin: 'zoeim'
+  twitter: 'jiusanzhou'
+  facebook: 'jiusanzhou'
+  telegram: 'jiusanzhou'
+  linkedin: 'johnzoe'
 
 # theme for global
 primaryColor: 'purple' #663399 # tomato how to change to colorSchema
 
+# layouts configuration
 layouts:
   default:
     maxWidth: 70rem
@@ -84,8 +85,18 @@ layouts:
 # for the index page to download
 
 pages:
-  index:
-    layout: default
+  index: # this is the url or we need to set a path for url
+    layout: default # or with object: { name: default, ...props }
+    path: index
+    children:
+    - section: # the key is the name of element
+        action: # this must be the props, but why value is not just obejct
+          _on: action !== undefined # when action is not false
+
+        children:
+    - views/hero-for-index # require React component from directory
+
+
 
 # temp for hero
 hero:
@@ -93,13 +104,13 @@ hero:
   subTitle: Create your app landing page without code.
   description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
   action: # this is a simple action or with type
-    # type: downloader-app # take a action type
-    # provider: github # select a provider
-    # repo: moeapp/mtb-mobile
-    # itemPrefix: 'Download '
-    # hiddenUnsupported: true
-    # itemProps:
-    #   colorScheme: red
+    type: downloader-app # take a action type
+    provider: github # select a provider
+    repo: moeapp/mtb-mobile
+    itemPrefix: 'Download '
+    hiddenUnsupported: false
+    itemProps:
+      colorScheme: 'purple'
 
 # extend for app landing page
 

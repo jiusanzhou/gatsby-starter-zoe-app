@@ -49,7 +49,7 @@ const Logo = ({
                         <Text
                             textColor={"var(--colors-accent-800)"}
                             fontWeight="bold"
-                            fontSize="2xl"
+                            fontSize={["xl", "2xl"]}
                             as="h2"
                         >
                             {name}

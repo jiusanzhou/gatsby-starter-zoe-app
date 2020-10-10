@@ -23,7 +23,7 @@ import { Link, List, ListItem, IconButton } from "@chakra-ui/core";
 const _data_base = {
     facebook: "https://www.facebook.com/",
     twitter: "https://twitter.com/",
-    linkedin: "https://www.linkedin.com/",
+    linkedin: "https://www.linkedin.com/in/",
     github: "https://github.com/",
     telegram: "https://t.me/",
     email: "mailto:",
