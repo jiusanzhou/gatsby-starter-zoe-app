@@ -14,6 +14,7 @@ export default ({ ...props }) => {
                 description={description}
                 img={logo}
                 sup={version}
+                colorSchema={primaryColor}
                 textColor={primaryColor}
                 {...props}
             />

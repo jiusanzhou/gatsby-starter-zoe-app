@@ -7,8 +7,9 @@ import {
     IoLogoLinkedin,
     IoMdMail,
 } from "react-icons/io";
+import { FiTwitter, FiGithub, FiLinkedin, FiMail, FiFacebook } from 'react-icons/fi'
 
-import { FaTelegramPlane } from "react-icons/fa";
+import { RiTelegramLine } from "react-icons/ri";
 
 import PropTypes from "prop-types";
 import { Link, List, ListItem, IconButton } from "@chakra-ui/core";
@@ -23,12 +24,12 @@ const _data_base = {
 };
 
 const _data_icon = {
-    facebook: <IoLogoFacebook />,
-    linkedin: <IoLogoLinkedin />,
-    twitter: <IoLogoTwitter />,
-    telegram: <FaTelegramPlane />,
-    github: <IoLogoGithub />,
-    email: <IoMdMail />,
+    facebook: <FiFacebook />,
+    linkedin: <FiLinkedin />,
+    twitter: <FiTwitter />,
+    telegram: <RiTelegramLine />,
+    github: <FiGithub />,
+    email: <FiMail />,
 };
 
 export const SocialLink = ({ type, username, base, ...props }) => {
