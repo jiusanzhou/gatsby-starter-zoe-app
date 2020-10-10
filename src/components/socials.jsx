@@ -7,7 +7,13 @@ import {
     IoLogoLinkedin,
     IoMdMail,
 } from "react-icons/io";
-import { FiTwitter, FiGithub, FiLinkedin, FiMail, FiFacebook } from 'react-icons/fi'
+import {
+    FiTwitter,
+    FiGithub,
+    FiLinkedin,
+    FiMail,
+    FiFacebook,
+} from "react-icons/fi";
 
 import { RiTelegramLine } from "react-icons/ri";
 
@@ -54,15 +60,12 @@ export const Socials = ({ socials = [], colorScheme, ...props }) => {
     return (
         <List d="flex" flexWrap="wrap" {...props}>
             {Object.keys(socials).map((key) => (
-                <ListItem
-                    // mr=".2rem"
-                    // mt=".2em"
-                    key={`_${key}`}
-                    _last={{
-                        mr: "0rem",
-                    }}
-                >
-                    <SocialLink type={key} username={socials[key]} colorScheme={colorScheme} />
+                <ListItem key={`_${key}`}>
+                    <SocialLink
+                        type={key}
+                        username={socials[key]}
+                        colorScheme={colorScheme}
+                    />
                 </ListItem>
             ))}
         </List>
