@@ -1,6 +1,6 @@
 body {
-    font-family: "Microsoft Jhenghei", "Microsoft YaHei", Roboto, Georgia,
-        Cambria, "Times New Roman", Times, "Hiragino Sans GB", sans-serif !important;
+    font-family: Roboto, Georgia, Cambria, "Times New Roman", Times,
+        "Hiragino Sans GB", "Microsoft Jhenghei", "Microsoft YaHei", sans-serif !important;
 }
 
 *,
