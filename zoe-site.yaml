@@ -72,7 +72,7 @@ socials:
   linkedin: 'zoeim'
 
 # theme for global
-primaryColor: purple # tomato how to change to colorSchema
+primaryColor: purple # #663399 # tomato how to change to colorSchema
 
 layouts:
   default:
@@ -88,6 +88,8 @@ blocks:
 - type: section
   title: 
   # ...props others are props for extends
+
+# temp for hero
 hero:
   title: ZoeAPP
   subTitle: Create your app landing page without code.
@@ -111,12 +113,7 @@ hero:
 
 
 
-
-
-googleAnalytics:
-  trackingId: 'xxxxxxx'
-  respectDNT: true
-
+googleAnalyticsTrackingId: 'xxxxxxx'
 
 # can register a component
 
@@ -131,7 +128,9 @@ plugins:
     path: ${__dirname} # default load all files in current directory
     ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
 
-- gatsby-plugin-google-analytics: ${zoe.googleAnalytics}
+- gatsby-plugin-google-analytics: 
+    trackingId: ${zoe.googleAnalyticsTrackingId}
+    respectDNT: true
 
 # - gatsby-plugin-web-font-loader:
 #     google:
@@ -141,8 +140,8 @@ plugins:
     name: ${zoe.title}
     short_name: ${zoe.title}
     start_url: /
-    background_color: "#663399"
-    theme_color: "#663399"
+    background_color: ${zoe.primaryColor}
+    theme_color: ${zoe.primaryColor}
     display: minimal-ui
     icon: ${zoe.logo}
 
