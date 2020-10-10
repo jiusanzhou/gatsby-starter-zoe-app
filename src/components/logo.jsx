@@ -2,7 +2,7 @@ import React from "react";
 import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Flex, Link, Text, Tooltip, Box } from "@chakra-ui/core";
+import { Flex, Link, Text, Tooltip, Box, Badge } from "@chakra-ui/core";
 
 import Image from "../components/image";
 
@@ -16,11 +16,11 @@ const Logo = ({
     img,
     description,
     sup,
+    colorScheme,
     minimal = false,
     expend = false,
     ...props
 }) => {
-
     return (
         <Flex
             flexDirection="column"
@@ -46,15 +46,28 @@ const Logo = ({
                         />
                     )}
                     {!minimal && (
-                        <Text fontWeight="bold" as="h2">
+                        <Text
+                            textColor={"var(--colors-accent-800)"}
+                            fontWeight="bold"
+                            fontSize="2xl"
+                            as="h2"
+                        >
                             {name}
                         </Text>
                     )}
-                    {sup && <Text ml=".5rem" as="sup">{sup}</Text>}
+                    {sup && (
+                        <Badge
+                            alignSelf="flex-start"
+                            ml=".5rem"
+                            colorScheme={colorScheme}
+                        >
+                            {sup}
+                        </Badge>
+                    )}
                 </Flex>
             </Link>
             {!minimal && expend && description && (
-                <Text mt=".5rem" fontSize="sm" colorScheme="black.800">
+                <Text mt=".5rem" fontSize="sm">
                     {description}
                 </Text>
             )}

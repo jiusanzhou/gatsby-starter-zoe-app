@@ -1,10 +1,11 @@
-import React from "react"
+import React from "react";
 
 import _default from "./default";
 import empty from "./empty";
 
 import "../styles/global.css";
 import { useSiteMetadata } from "../utils/hooks";
+import { AccentGlobal } from "../components/accent";
 
 const _layouts = {
     default: _default,
@@ -29,10 +30,15 @@ export default ({ layout = "default", ...props }) => {
     }
 
     // merge props from siteMeta
-    const { layouts = {} } = useSiteMetadata()
+    const { layouts = {} } = useSiteMetadata();
 
-    _props = { ..._props, ...(layouts[name] || {}) }
+    _props = { ..._props, ...(layouts[name] || {}) };
 
     // create children in here???
-    return React.createElement(_layouts[name] || _default, _props);
+    return (
+        <>
+            <AccentGlobal />
+            {React.createElement(_layouts[name] || _default, _props)}
+        </>
+    );
 };

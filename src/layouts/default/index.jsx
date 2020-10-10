@@ -21,7 +21,6 @@ const Layout = ({
     // const [opened, setOpened] = useState(false);
     return (
         <>
-            <AccentGlobal />
             <ColorModeScript initialColorMode="light" />
             {/* inject seo header */}
             <SEO

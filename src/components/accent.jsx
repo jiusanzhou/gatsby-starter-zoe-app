@@ -3,9 +3,14 @@ import { css, Global } from '@emotion/core'
 
 import { theme } from "../styles/theme"
 
-export const AccentGlobal = () => {
-    const accentKey = "teal"
-    const accent = theme.colors[accentKey]
+export const AccentGlobal = ({ primaryColor }) => {
+    const accentKey = primaryColor
+    let accent = theme.colors[accentKey]
+    if (!accent) {
+      // TODO: primaryColor is just a color
+      accent = theme.colors["purple"]
+    }
+
     const styles = React.useMemo(
       () => css`
         :root {
