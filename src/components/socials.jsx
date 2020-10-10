@@ -11,7 +11,7 @@ import {
 import { FaTelegramPlane } from "react-icons/fa";
 
 import PropTypes from "prop-types";
-import { Link, List, ListItem } from "@chakra-ui/core";
+import { Link, List, ListItem, IconButton } from "@chakra-ui/core";
 
 const _data_base = {
     facebook: "https://www.facebook.com/",
@@ -23,34 +23,45 @@ const _data_base = {
 };
 
 const _data_icon = {
-    facebook: IoLogoFacebook,
-    linkedin: IoLogoLinkedin,
-    twitter: IoLogoTwitter,
-    telegram: FaTelegramPlane,
-    github: IoLogoGithub,
-    email: IoMdMail,
+    facebook: <IoLogoFacebook />,
+    linkedin: <IoLogoLinkedin />,
+    twitter: <IoLogoTwitter />,
+    telegram: <FaTelegramPlane />,
+    github: <IoLogoGithub />,
+    email: <IoMdMail />,
 };
 
-export const SocialLink = ({ type, username, base }) => {
+export const SocialLink = ({ type, username, base, ...props }) => {
     // build url with type and username
     if (!base) base = _data_base[type];
     if (!username || !base) return null;
     const icon = _data_icon[type];
     return (
         <Link isExternal href={`${base}${username}`} title={username}>
-            {icon && React.createElement(icon)}
+            <IconButton
+                border=""
+                rounded="full"
+                variant="outline"
+                icon={icon}
+                {...props}
+            />
         </Link>
     );
 };
 
-export const Socials = ({ socials = [], ...props }) => {
+export const Socials = ({ socials = [], colorScheme, ...props }) => {
     return (
         <List d="flex" flexWrap="wrap" {...props}>
             {Object.keys(socials).map((key) => (
-                <ListItem mr="1rem" mt="1rem" key={`_${key}`} _last={{
-                    mr: '0rem'
-                }}>
-                    <SocialLink type={key} username={socials[key]} />
+                <ListItem
+                    // mr=".2rem"
+                    // mt=".2em"
+                    key={`_${key}`}
+                    _last={{
+                        mr: "0rem",
+                    }}
+                >
+                    <SocialLink type={key} username={socials[key]} colorScheme={colorScheme} />
                 </ListItem>
             ))}
         </List>

@@ -54,7 +54,7 @@ const Footer = ({ children, border, ...props }) => {
                         {/* logo */}
                         <Logo expend={true} />
                         {/* social links */}
-                        <Socials socials={socials} />
+                        <Socials mt="1rem" socials={socials} colorScheme={primaryColor} />
                     </Box>
 
                     {/* nav links */}

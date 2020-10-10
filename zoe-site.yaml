@@ -72,7 +72,7 @@ socials:
   linkedin: 'zoeim'
 
 # theme for global
-primaryColor: '#663399' # purple #  # tomato how to change to colorSchema
+primaryColor: 'purple' #663399 # tomato how to change to colorSchema
 
 layouts:
   default:
