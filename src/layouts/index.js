@@ -10,7 +10,7 @@ const _layouts = {
     empty,
 };
 
-export default ({ layout = "empty", ...props }) => {
+export default ({ layout = "default", ...props }) => {
     // if layout is string create with or { name }
     let name;
     let _props = {};
@@ -28,5 +28,5 @@ export default ({ layout = "empty", ...props }) => {
     }
 
     // create children in here???
-    return React.createElement(_layouts[name] || empty, _props);
+    return React.createElement(_layouts[name] || _default, _props);
 };
