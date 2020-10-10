@@ -45,27 +45,31 @@ const Footer = ({ children, ...props }) => {
                 {children}
 
                 {/* footer main section */}
-                <Flex flexDirection="column">
-                    {/* TODO: use links to section generate grid layout */}
-                    {/* {(links.length > 0 || Object.keys(socials).length > 0) && ( */}
-                    <SimpleGrid mt={[".5rem", ".7rem", ".7rem", "1rem"]} columns={[1, 3, 3, 5]} spacing="1rem">
+                {/* TODO: use links to section generate grid layout */}
+                <SimpleGrid
+                    w="100%"
+                    mt={[".5rem", ".7rem", ".7rem", "1rem"]}
+                    columns={[1, 3, 3, 4]}
+                    spacing="1rem"
+                >
+                    <Box>
                         {/* logo */}
                         <Logo expend={true} />
-
-                        {/* nav links */}
-                        <Navlinks links={links} />
-
                         {/* social links */}
-                        <Socials
-                            justifyContent="space-between"
-                            socials={socials}
-                        />
-                    </SimpleGrid>
-                    {/* )} */}
-                </Flex>
+                        <Socials mt="1rem" socials={socials} />
+                    </Box>
+
+                    {/* nav links */}
+                    <Navlinks links={links} />
+                </SimpleGrid>
 
                 {/* copyright */}
-                <Copyright mt="1rem" copyright={copyright} author={author} />
+                <Copyright
+                    flexWrap="wrap"
+                    mt="1rem"
+                    copyright={copyright}
+                    author={author}
+                />
             </Box>
         </Box>
     );

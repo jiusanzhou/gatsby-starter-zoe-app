@@ -113,6 +113,8 @@ hero:
 
 # we need to merge zoefile and zoefile
 
+# auto load .md for something else in current directory
+
 googleAnalyticsTrackingId: 'xxxxxxx'
 
 # can register a component
