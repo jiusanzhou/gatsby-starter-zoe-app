@@ -24,7 +24,7 @@ const Footer = ({ children, ...props }) => {
             w="100%"
             position="absolute"
             borderTopStyle="solid"
-            borderTopWidth={border ? "1px" : '0'}
+            borderTopWidth={border ? "1px" : "0"}
         >
             <Box
                 left="0"
@@ -46,24 +46,22 @@ const Footer = ({ children, ...props }) => {
 
                 {/* footer main section */}
                 <Flex flexDirection="column">
-                    <Logo />
                     {/* TODO: use links to section generate grid layout */}
-                    {(links.length > 0 || Object.keys(socials).length > 0) && (
-                        <SimpleGrid
-                            mt="2rem"
-                            columns={[1, 3, 3, 4]}
-                            spacing="1rem"
-                        >
-                            {/* nav links */}
-                            <Navlinks links={links} />
+                    {/* {(links.length > 0 || Object.keys(socials).length > 0) && ( */}
+                    <SimpleGrid mt={["1rem", "1.5rem", "1.5rem", "2rem"]} columns={[1, 3, 3, 5]} spacing="1rem">
+                        {/* logo */}
+                        <Logo expend={true} />
 
-                            {/* social links */}
-                            <Socials
-                                justifyContent="space-between"
-                                socials={socials}
-                            />
-                        </SimpleGrid>
-                    )}
+                        {/* nav links */}
+                        <Navlinks links={links} />
+
+                        {/* social links */}
+                        <Socials
+                            justifyContent="space-between"
+                            socials={socials}
+                        />
+                    </SimpleGrid>
+                    {/* )} */}
                 </Flex>
 
                 {/* copyright */}

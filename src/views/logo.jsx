@@ -6,11 +6,12 @@ import Logo from "../components/logo";
 import { useSiteMetadata } from "../utils/hooks";
 
 export default ({ ...props }) => {
-    const { title, logo } = useSiteMetadata();
+    const { title, logo, description } = useSiteMetadata();
     return (
         <Flex w="fit-content">
             <Logo
                 name={title}
+                description={description}
                 img={logo}
                 {...props}
             />
