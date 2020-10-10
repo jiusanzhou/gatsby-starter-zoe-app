@@ -5,6 +5,7 @@ import { Box, ColorModeScript } from "@chakra-ui/core";
 import SEO from "../../views/seo";
 import Header from "./header";
 import Footer from "./footer";
+import { AccentGlobal } from "../../components/accent";
 
 const Layout = ({
     title,
@@ -20,6 +21,7 @@ const Layout = ({
     // const [opened, setOpened] = useState(false);
     return (
         <>
+            <AccentGlobal />
             <ColorModeScript initialColorMode="light" />
             {/* inject seo header */}
             <SEO
