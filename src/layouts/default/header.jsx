@@ -2,8 +2,8 @@ import React from "react";
 
 import PropTypes from "prop-types";
 import { Flex } from "@chakra-ui/core";
-import Logo from "../views/logo";
-import { useSiteMetadata } from "../utils/hooks";
+import Logo from "../../views/logo";
+import { useSiteMetadata } from "../../utils/hooks";
 
 const Header = ({ children, ...props }) => {
     // TODO: fixed header with scroll

@@ -1,13 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Helmet } from "react-helmet";
+import { Box, ColorModeScript } from "@chakra-ui/core";
 
-import SEO from "../views/seo";
+import SEO from "../../views/seo";
 import Header from "./header";
 import Footer from "./footer";
-
-import "../styles/global.css";
-import { Box, ColorModeScript } from "@chakra-ui/core";
 
 const Layout = ({ title, description, children, extendFooter }) => {
     // const [opened, setOpened] = useState(false);

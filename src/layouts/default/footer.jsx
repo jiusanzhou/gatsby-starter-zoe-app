@@ -2,12 +2,12 @@ import React from "react";
 
 import { Box, Flex, SimpleGrid } from "@chakra-ui/core";
 
-import { useSiteMetadata } from "../utils/hooks";
-import { Socials } from "../components/socials";
-import Logo from "../views/logo";
-import GoTop from "../components/gotop";
-import Navlinks from "../components/navlinks";
-import Copyright from "../components/copyright";
+import { useSiteMetadata } from "../../utils/hooks";
+import { Socials } from "../../components/socials";
+import Logo from "../../views/logo";
+import GoTop from "../../components/gotop";
+import Navlinks from "../../components/navlinks";
+import Copyright from "../../components/copyright";
 
 const Footer = ({ children, ...props }) => {
     const siteMeta = useSiteMetadata();
