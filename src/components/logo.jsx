@@ -15,11 +15,12 @@ const Logo = ({
     name,
     img,
     description,
+    sup,
     minimal = false,
     expend = false,
     ...props
 }) => {
-    // h={["3em", "3.5em", "4em", "4.5em"]}
+
     return (
         <Flex
             flexDirection="column"
@@ -49,6 +50,7 @@ const Logo = ({
                             {name}
                         </Text>
                     )}
+                    {sup && <Text ml=".5rem" as="sup">{sup}</Text>}
                 </Flex>
             </Link>
             {!minimal && expend && description && (

@@ -6,6 +6,9 @@ favicon: # same with logo?
 logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
 
+# display in the right of the logo
+version: Beta
+
 author:
   name: Zoe
   email: hi@zoe.im
@@ -69,7 +72,7 @@ socials:
   linkedin: 'zoeim'
 
 # theme for global
-primaryColor: purple # #663399 # tomato how to change to colorSchema
+primaryColor: '#663399' # purple #  # tomato how to change to colorSchema
 
 layouts:
   default:
