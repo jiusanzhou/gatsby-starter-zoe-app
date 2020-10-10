@@ -21,7 +21,10 @@ const Logo = ({
 }) => {
     // h={["3em", "3.5em", "4em", "4.5em"]}
     return (
-        <Flex flexDirection="column">
+        <Flex
+            flexDirection="column"
+            justifyContent={!expend ? "center" : "null"}
+        >
             <Link
                 zIndex={99}
                 as={NavLink}
