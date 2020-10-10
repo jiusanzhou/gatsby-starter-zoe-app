@@ -31,7 +31,6 @@ const Footer = ({ children, border, ...props }) => {
                 px={["1em", "0", "0", "0"]}
                 pt="2rem"
                 pb="1rem"
-                w={["100%", "80%", "80%", "80%", "60em"]}
                 margin="0 auto"
                 position="relative"
                 borderTopStyle="solid"

@@ -73,7 +73,7 @@ primaryColor: purple # #663399 # tomato how to change to colorSchema
 
 layouts:
   default:
-    maxWidth: 60rem
+    maxWidth: 70rem
     footer:
       border: true
 

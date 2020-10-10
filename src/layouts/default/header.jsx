@@ -22,7 +22,6 @@ const Header = ({ children, border, ...props }) => {
                     right="0"
                     top="0"
                     px={["1em", "0", "0", "0"]}
-                    w={["100%", "80%", "80%", "80%", "60em"]}
                     margin="0 auto"
                     {...props}
                 >
