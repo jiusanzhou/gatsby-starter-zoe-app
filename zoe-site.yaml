@@ -81,20 +81,54 @@ layouts:
     footer:
       border: true
 
-# pages:
-# for the index page to download
+features:
+- title: Performance built-in
+  description: |
+    Gatsby automates code splitting, image optimization, inlining critical styles,
+    lazy-loading, prefetching resources, and more to ensure your site is fully optimized.
+    **No manual tuning required.**
+- title: Scalability — affordable and instant 
+  description: |
+    Gatsby sites don't require complex scaling operations or expensive hosting.
+    They scale when needed, but when traffic drops so does your usage — and your costs.
+    **Host at scale for pennies.**
+- title: Security by default
+  description: |
+    Gatsby’s serverless rendering generates static HTML at build time.
+    No server and no reachable database equals no malicious requests, DDOS attacks, or accidental exposure.
+    **A Gatsby site’s attack surface is nonexistent.**
+- title: Accessibility by design
+  description: |
+    Recognized by WebAIM as the most accessible web framework, we build in best practices like accessible routing,
+    progressive page enhancement and a built-in linting tool to find accessibility errors.
+    **Help make the web work for everyone.**
 
+# views, auto load from src/views, views
+views:
+  hero:
+
+# pages, auto laod from src/pages
 pages:
-  index: # this is the url or we need to set a path for url
-    layout: default # or with object: { name: default, ...props }
-    path: index
+  index:
+    layout: default
     children:
-    - section: # the key is the name of element
-        action: # this must be the props, but why value is not just obejct
-          _on: action !== undefined # when action is not false
+    - hero # from zoe.views or src/views, ./hero.jsx
+    - src/views/hero.jsx:
+        title: ZoeAPP
+        subTitle: Create your app landing page without code.
+        description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
+        action: # this is a simple action or with type, with component? how do I know this is not a obejct props
+          # type: downloader-app # take a action type
+          # provider: github # select a provider
+          # repo: moeapp/mtb-mobile
+          # itemPrefix: 'Download '
+          # hiddenUnsupported: true
+          # itemProps:
+          #   colorScheme: red
+    - section: # section is a global views called section
+        children: # generate from features
 
-        children:
-    - views/hero-for-index # require React component from directory
+      
 
 
 
