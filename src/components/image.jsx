@@ -4,26 +4,25 @@ import { Image } from "@chakra-ui/core";
 
 import { useStaticQuery, graphql } from "gatsby";
 
+
+// extension: {
+//     in: [
+//         "png"
+//         "jpeg"
+//         "svg"
+//         "gif"
+//         "jpg"
+//         "webp"
+//         "ico"
+//         "bmp"
+//     ]
+// }
+
 const MyImage = ({ src, ...props }) => {
     // we need to add `images` for relativePath
     const _queryImages = useStaticQuery(graphql`
-        query {
-            allFile(
-                filter: {
-                    extension: {
-                        in: [
-                            "png"
-                            "jpeg"
-                            "svg"
-                            "gif"
-                            "jpg"
-                            "webp"
-                            "ico"
-                            "bmp"
-                        ]
-                    }
-                }
-            ) {
+        query LocalImage {
+            allFile(filter: { internal: { mediaType: { regex: "/image/" } } }) {
                 nodes {
                     name
                     relativePath

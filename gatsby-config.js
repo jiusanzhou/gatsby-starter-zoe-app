@@ -2,6 +2,10 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
+// install global proxy
+const { bootstrap } = require("global-agent")
+bootstrap()
+
 const yaml = require("js-yaml");
 const fs = require("fs");
 

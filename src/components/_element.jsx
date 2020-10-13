@@ -5,8 +5,8 @@ import React from "react"
 // _onClick for event
 // data set for default data
 
-// add section
-
-export default () => {
+const element = ({ type, children, ...props }) => {
     
 }
+
+export default element

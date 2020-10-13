@@ -19,8 +19,11 @@
     "gatsby-plugin-sharp": "^2.2.19",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.21",
+    "gatsby-source-github-api": "^0.2.1",
+    "gatsby-source-graphql": "^2.7.6",
     "gatsby-transformer-sharp": "^2.2.13",
     "js-yaml": "^3.13.1",
+    "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
@@ -29,6 +32,7 @@
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
+    "global-agent": "^2.1.12",
     "prettier": "^1.18.2",
     "svg-react-loader": "^0.4.6"
   },

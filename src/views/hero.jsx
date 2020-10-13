@@ -16,7 +16,10 @@ export default ({
             subTitle={subTitle}
             description={description}
             action={action && <MyAction {...action} />}
+            theme="grey"
             h="calc(100vh - 5em)"
+            rounded="1rem"
+            mt="2rem"
         ></Section>
     );
 };

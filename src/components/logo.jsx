@@ -49,7 +49,7 @@ const Logo = ({
                         <Text
                             textColor={"var(--colors-accent-800)"}
                             fontWeight="bold"
-                            fontSize={["xl", "2xl"]}
+                            fontSize={["xl"]}
                             as="h2"
                         >
                             {name}
@@ -60,6 +60,7 @@ const Logo = ({
                             alignSelf="flex-start"
                             ml=".5rem"
                             colorScheme={colorScheme}
+                            fontSize=".5rem"
                         >
                             {sup}
                         </Badge>

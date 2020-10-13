@@ -30,14 +30,19 @@ export default ({ layout = "default", ...props }) => {
     }
 
     // merge props from siteMeta
-    const { layouts = {} } = useSiteMetadata();
+    const { primaryColor, layouts = {} } = useSiteMetadata();
 
     _props = { ..._props, ...(layouts[name] || {}) };
+
+    // generate the max width
+    // _props.maxWidth = Array.isArray(_props.maxWidth) ? _props.maxWidth : ["100%", "80%", "80%", "80%", _props.maxWidth]
+
+    // store _props in global css
 
     // create children in here???
     return (
         <>
-            <AccentGlobal />
+            <AccentGlobal primaryColor={primaryColor} {..._props} />
             {React.createElement(_layouts[name] || _default, _props)}
         </>
     );

@@ -112,7 +112,7 @@ pages:
   index:
     layout: default
     children:
-    - hero # from zoe.views or src/views, ./hero.jsx
+    - hero:  # from zoe.views or src/views, ./hero.jsx
     - src/views/hero.jsx:
         title: ZoeAPP
         subTitle: Create your app landing page without code.

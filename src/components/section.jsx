@@ -11,7 +11,7 @@ const _defaultProps = {
     section: {
         p: ["1em", "2em", "2.5em", "5em"],
         mb: [".5em", "1em", "1.5em", "2em"],
-        maxW: ["100%", "100%", "100%", "120em"],
+        width: ["100%", "100%", "100%", "70rem"], // with siteMetaa
         marginLeft: 'auto',
         marginRight: 'auto'
     },
@@ -111,6 +111,7 @@ const Section = ({
     wraperProps = {},
     ...props
 }) => {
+
     const _need_header = title || subTitle || description;
 
     return (
