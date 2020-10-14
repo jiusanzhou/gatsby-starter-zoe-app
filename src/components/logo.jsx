@@ -60,7 +60,8 @@ const Logo = ({
                             alignSelf="flex-start"
                             ml=".5rem"
                             colorScheme={colorScheme}
-                            fontSize=".5rem"
+                            fontSize=".6rem"
+                            fontWeight="normal"
                         >
                             {sup}
                         </Badge>
