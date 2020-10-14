@@ -19,7 +19,7 @@ export default ({ copyright = {}, author = {}, ...props }) => {
                         {author && (
                             <>
                                 {" by "}
-                                <Link isExternal href={author.href}>
+                                <Link isExternal href={author.href || author.homepage}>
                                     {author.name}
                                 </Link>
                             </>
