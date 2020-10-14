@@ -158,8 +158,12 @@ const DownloadButtons = ({
     );
 };
 
-export const _withTooltip = (props) => {
+const _withTooltip = (props) => {
     return props.label ? <Tooltip {...props} /> : props.children;
 };
 
-export { DownloadButtons };
+const AppRelease = (props) => {
+    return <DownloadButtons {...props} />
+}
+
+export default AppRelease;

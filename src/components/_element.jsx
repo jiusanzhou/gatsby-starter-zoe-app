@@ -1,6 +1,6 @@
 import React from "react";
-import chakracore from "@chakra-ui/core";
-import chakraicons from "@chakra-ui/icons";
+import * as chakracore from "@chakra-ui/core";
+import * as chakraicons from "@chakra-ui/icons";
 
 import _Error from "./_error";
 
@@ -60,21 +60,30 @@ const _genName = (n) => {
         .join("");
 };
 
-export const _installComponent = (name, { key = "default", as = [] } = {}) => {
-    try {
-        let c = require(name)[key || "default"];
-        if (as.length > 0) {
-            as.forEach((e) => (_componentRegistry[e] = c));
-        } else {
-            _componentRegistry[name] = c;
-            _componentRegistry[_genName(name)] = c;
-        }
-    } catch (err) {
-        console.log("=>>>>>> can't require component:", name);
+const _ = (m, { key = "default", as = [] } = {}) => {
+    let c = m[key || "default"];
+    if (!c) return;
+    if (as.length > 0) {
+        as.forEach((e) => (_componentRegistry[e] = c));
+    } else {
+        _componentRegistry[c.name] = c;
+        // _componentRegistry[_genName(name)] = c;
     }
 };
 
 // load all component !!!!!!!!!!!!!! if we want compoennt can be used
 // must install at here
-// _installComponent("section");
-_installComponent("../views/app-release", { key: "DownloadButtons"});
+
+// elements
+_(require("./copyright"));
+_(require("./gotop"));
+_(require("./image"));
+_(require("./logo"));
+_(require("./navlinks"));
+_(require("./screenshot"));
+_(require("./section"));
+_(require("./seo"));
+_(require("./socials"));
+
+// views
+_(require("../views/app-release"));

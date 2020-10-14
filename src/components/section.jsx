@@ -4,8 +4,6 @@ import { Box, Flex, Text } from "@chakra-ui/core";
 
 import Action from "../components/action";
 
-import { _installComponent } from "./_element";
-
 const _defaultProps = {
     wraper: {
         justifyContent: 'center'
@@ -229,6 +227,3 @@ Section.propTypes = {
 };
 
 export default Section;
-
-// register
-_installComponent("section") // or current file name

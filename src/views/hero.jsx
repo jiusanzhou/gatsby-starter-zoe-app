@@ -25,7 +25,7 @@ export default ({
 };
 
 const _actions = {
-    "downloader-app": DownloadButtons,
+    "AppRelease": DownloadButtons,
 };
 
 const MyAction = ({ type, ...props }) => {
