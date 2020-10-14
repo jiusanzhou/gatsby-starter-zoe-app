@@ -5,8 +5,9 @@
  */
 
 const crypto = require("crypto");
-const path = require('path')
-const template = require('lodash.template')
+const path = require('path');
+const template = require('lodash.template');
+const { loadZoefile } = require("./src/utils/zoefile");
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -28,6 +29,9 @@ exports.sourceNodes = ({ actions }) => {
   // get siteMeta data
   // create node
 
+  // load siteMetadata from zoefile
+  const { siteMetadata } = loadZoefile()
+
   return new Promise((resolve, reject) => {
 
     // loads all nodes we need to create
@@ -41,7 +45,7 @@ exports.sourceNodes = ({ actions }) => {
       }
 
       // name, and data
-      c.createData && c.createData({ repo: 'moeapp/mtb-mobile' }).then((res) => {
+      c.createData && c.createData(siteMetadata).then((res) => {
         res.forEach((v) => {
           // create release node
           actions.createNode({

@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 
-import yaml from "js-yaml";
-
 import {
     AiOutlineApple,
     AiOutlineAndroid,
@@ -12,6 +10,8 @@ import { FaAppStore } from "react-icons/fa";
 import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
 
 import { GithubVersionProvider } from "../helper/app-release"
+import { useStaticQuery, graphql } from "gatsby";
+import { useSiteMetadata } from "../utils/hooks";
 
 const _icons = {
     android: <AiOutlineAndroid />,
@@ -48,7 +48,7 @@ const DownloadButtons = ({
     icons = {},
     labels = {},
     rounded = true,
-    itemProps = { m: ".5em", size: "lg", variant: "outline" },
+    itemProps = {},
 
     isExternal = true,
 
@@ -58,8 +58,7 @@ const DownloadButtons = ({
     itemPrefix,
     itemSuffix,
 
-    // colorScheme = "teal",
-    // variant = "solid",
+    colorScheme,
 
     ...props
 }) => {
@@ -70,46 +69,38 @@ const DownloadButtons = ({
     let [vdata, setVdata] = useState(null);
 
     // query release first
-    // const data = useStaticQuery(graphql`
-    // query GithubRelease {
-    //     github {
-    //         repository(owner: ${owner}, name: ${reponame}) {
-    //           releases(first: 10) {
-    //             totalCount
-    //             nodes {
-    //               id
-    //               publishedAt
-    //               createdAt
-    //               isDraft
-    //               tagName
-    //               author {
-    //                 name
-    //                 email
-    //               }
-    //               description
-    //             }
-    //             pageInfo {
-    //               hasNextPage
-    //             }
-    //           }
-    //           description
-    //         }
-    //       }
-    // }`)
-    // console.log("===>", data)
+    const data = useStaticQuery(graphql`
+        query GithubRelease {
+            allGithubRelease {
+                nodes {
+                  created_at
+                  id
+                  assets {
+                    android
+                  }
+                  prerelease
+                  published_at
+                  release_note
+                  title
+                  version
+                }
+            }
+        }`)
 
     useEffect(() => {
         setLoaded(false);
 
         // how to start as server build
         // if we are dynamic load
-        let ver = new GithubVersionProvider(repo);
+        let ver = new GithubVersionProvider(repo, { versions: data.allGithubRelease.nodes });
         ver.latestVersion()
             .then((v) => {
                 setVdata(v);
             })
             .finally(() => setLoaded(true));
     }, [repo]);
+
+    const { primaryColor } = useSiteMetadata()
 
     if (
         !repo &&
@@ -134,7 +125,6 @@ const DownloadButtons = ({
                         <Button
                             rounded={rounded ? "full" : null}
                             leftIcon={_icons[e]}
-                            // colorScheme={colorScheme}
                             // variant={variant}
                             isLoading={!loaded}
                             isDisabled={
@@ -142,6 +132,8 @@ const DownloadButtons = ({
                                 !urls[e] &&
                                 !(vdata && vdata.assets[e])
                             }
+                            // variant="outline"
+                            colorScheme={primaryColor}
                             {...itemProps}
                             onClick={() => {
                                 let u = vdata && vdata.assets[e];

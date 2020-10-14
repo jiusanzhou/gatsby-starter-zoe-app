@@ -129,9 +129,8 @@ pages:
     - section: # section is a global views called section
         children: # generate from features
 
-      
 
-
+releaseRepo: moeapp/mtb-mobile
 
 # temp for hero
 hero:
@@ -144,8 +143,8 @@ hero:
     repo: moeapp/mtb-mobile
     itemPrefix: 'Download '
     hiddenUnsupported: false
-    itemProps:
-      colorScheme: 'purple'
+    # itemProps:
+    #   colorScheme: ${zoe.primaryColor}
 
 # extend for app landing page
 

@@ -4,12 +4,13 @@ const yaml = require("js-yaml");
 // Github Provider 加载最新版本的数据
 class GithubVersionProvider {
     constructor(repo, options = {}) {
-        let { base_api, staticData, assetRegexPatterns = {} } = options;
+        let { base_api, versions, assetRegexPatterns = {} } = options;
         this._base_api = base_api || this._base_api;
         this.assetRegexPatterns = assetRegexPatterns || this.assetRegexPatterns;
         this.repo = repo;
+        this._versions = versions;
 
-        if (!this.repo) throw new Error("miss repo offered.");
+        if (!this.repo && !versions) throw new Error("miss repo and versions offered.");
     }
 
     _base_api = "https://api.github.com/repos";
@@ -99,7 +100,7 @@ class GithubVersionProvider {
     }
 
     async loadVersions() {
-        if (!this._versions)
+        if (this._versions && this._versions.length > 0)
             return new Promise((resolve, reject) => resolve(this._versions));
 
         // TODO: order versions list
@@ -130,7 +131,7 @@ const createNode = {
     mediaType: 'appplication/json',
     // how to provider the data: []
     data: [],
-    createData: ({ repo }) => (new GithubVersionProvider(repo)).loadVersions()
+    createData: ({ releaseRepo }) => (new GithubVersionProvider(releaseRepo)).loadVersions()
 };
 
 exports.GithubVersionProvider = GithubVersionProvider
