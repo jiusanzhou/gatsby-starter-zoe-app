@@ -20,6 +20,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     })
 }
 
+// ======== createe node ======
+
 const _needCreateNodes = [
   'src/helper/app-release'
 ]
