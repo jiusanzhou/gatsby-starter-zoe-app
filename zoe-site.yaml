@@ -104,32 +104,36 @@ features:
     progressive page enhancement and a built-in linting tool to find accessibility errors.
     **Help make the web work for everyone.**
 
+# elements register elements
+elements:
+  hero:
+
 # views, auto load from src/views, views
 views:
-  hero:
+  hero: 
 
 # pages, auto laod from src/pages
 pages:
   index:
     layout: default
     children:
-    - hero:  # from zoe.views or src/views, ./hero.jsx
-    - src/views/hero.jsx:
+    - hero: null # from zoe.views or src/views, ./hero.jsx
+    - src/components/section:
         title: ZoeAPP
         subTitle: Create your app landing page without code.
         description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
         action: # this is a simple action or with type, with component? how do I know this is not a obejct props
-          # type: downloader-app # take a action type
-          # provider: github # select a provider
-          # repo: moeapp/mtb-mobile
-          # itemPrefix: 'Download '
-          # hiddenUnsupported: true
-          # itemProps:
-          #   colorScheme: red
+          type: downloader-app # take a element
+          provider: github # select a provider
+          repo: moeapp/mtb-mobile
+          itemPrefix: 'Download '
+          hiddenUnsupported: true
+          itemProps:
+            colorScheme: red
     - section: # section is a global views called section
         children: # generate from features
 
-
+# for app release, we need to add github release source
 releaseRepo: moeapp/mtb-mobile
 
 # temp for hero
@@ -138,7 +142,7 @@ hero:
   subTitle: Create your app landing page without code.
   description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
   action: # this is a simple action or with type
-    type: downloader-app # take a action type
+    type: AppRelease # take a action type
     provider: github # select a provider
     repo: moeapp/mtb-mobile
     itemPrefix: 'Download '

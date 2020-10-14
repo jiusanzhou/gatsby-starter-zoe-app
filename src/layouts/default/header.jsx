@@ -16,6 +16,7 @@ const Header = ({ children, border, ...props }) => {
                 borderBottomStyle="solid"
                 borderBottomWidth={border ? "1px" : "0"}
                 bg="white" // "rgb(248, 249, 252)"
+                zIndex="9999"
             >
                 <Flex
                     h={["3em", "3.5em", "4em", "4.5em"]}

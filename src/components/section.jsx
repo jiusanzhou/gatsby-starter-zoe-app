@@ -4,6 +4,8 @@ import { Box, Flex, Text } from "@chakra-ui/core";
 
 import Action from "../components/action";
 
+import { _installComponent } from "./_element";
+
 const _defaultProps = {
     wraper: {
         justifyContent: 'center'
@@ -59,6 +61,7 @@ const _positionProps = {
     left: {
         section: {
             flexDirection: "row",
+            alignItems: "center",
             justifyContent: "space-between",
             textAlign: "left",
         },
@@ -66,6 +69,7 @@ const _positionProps = {
     right: {
         section: {
             flexDirection: "row-reverse",
+            alignItems: "center",
             justifyContent: "space-between",
             textAlign: "right",
         },
@@ -225,3 +229,6 @@ Section.propTypes = {
 };
 
 export default Section;
+
+// register
+_installComponent("section") // or current file name
