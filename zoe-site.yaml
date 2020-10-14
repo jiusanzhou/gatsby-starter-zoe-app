@@ -149,6 +149,10 @@ hero:
     hiddenUnsupported: false
     # itemProps:
     #   colorScheme: ${zoe.primaryColor}
+  h: calc(100vh - 5rem)
+  theme: grey
+  rounded: 2rem
+  mt: 1rem
 
 # extend for app landing page
 
