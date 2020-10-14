@@ -54,7 +54,7 @@ const _genVal = (s) => {
       }
     case "string":
       // check if we have ${} TODO: improve
-      return s.indexOf("${") < 0 ? s : eval("`" + s + "`");
+      return s.indexOf("${") < 0 ? s : (s.slice(-1) === '}' ? eval(s.slice(2, -1)) : eval("`" + s + "`"));
     default:
       return s;
   }
