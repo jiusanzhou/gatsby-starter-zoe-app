@@ -218,9 +218,9 @@ const _mustValue = (m = {}) => {
 };
 
 Section.propTypes = {
-    title: PropTypes.string,
-    subTitle: PropTypes.string,
-    description: PropTypes.string,
+    title: PropTypes.node,
+    subTitle: PropTypes.node,
+    description: PropTypes.node,
     children: PropTypes.node,
     action: PropTypes.object,
     position: PropTypes.oneOf(["left", "right", "top", "bottom", "center"]),
