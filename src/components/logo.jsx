@@ -19,8 +19,10 @@ const Logo = ({
     colorScheme,
     minimal = false,
     expend = false,
+    imageProps = {},
     ...props
 }) => {
+    console.log("======>", imageProps)
     return (
         <Flex
             flexDirection="column"
@@ -39,10 +41,11 @@ const Logo = ({
                     {img && (
                         <Image
                             borderRadius="0"
-                            mr=".4em"
-                            h={["1.5em", "1.75em", "1.75em", "2em"]}
                             alt={name}
+                            mr={minimal ? '' : ".4em"}
+                            w={["1.5em", "1.75em", "1.75em", "2em"]}
                             src={img} // img is a remote or local one
+                            {...imageProps}
                         />
                     )}
                     {!minimal && (
@@ -55,7 +58,7 @@ const Logo = ({
                             {name}
                         </Text>
                     )}
-                    {sup && (
+                    {!minimal && sup && (
                         <Badge
                             alignSelf="flex-start"
                             ml=".5rem"

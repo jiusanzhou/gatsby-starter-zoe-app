@@ -120,8 +120,11 @@ pages:
     - hero: null # from zoe.views or src/views, ./hero.jsx
     - src/components/section:
         title: ZoeAPP
-        subTitle: Create your app landing page without code.
-        description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
+        subTitle:
+          type: logo
+        description: | 
+          Create your app landing page without code.
+          Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
         action: # this is a simple action or with type, with component? how do I know this is not a obejct props
           type: downloader-app # take a element
           provider: github # select a provider
@@ -141,8 +144,18 @@ releaseRepo:
 # temp for hero
 hero:
   title: ZoeAPP
-  subTitle: Create your app landing page without code.
-  description: Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
+  subTitle:
+    type: Center
+    children:
+      type: ViewLogo
+      minimal: true
+      imageProps:
+        w: 10rem
+  description:
+    children:
+    - Create your app landing page without code.
+    - type: br
+    - Static websites and Progressive Web Applications are secure, scalable, SEO-friendly, and even up to 10x faster.
   action: # this is a simple action or with type
     type: AppRelease # take a action type
     provider: github # select a provider

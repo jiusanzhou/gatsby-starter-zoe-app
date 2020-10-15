@@ -5,7 +5,7 @@ import Logo from "../components/logo";
 
 import { useSiteMetadata } from "../utils/hooks";
 
-export default ({ ...props }) => {
+const ViewLogo = ({ ...props }) => {
     const { title, logo, version, description, primaryColor } = useSiteMetadata();
     return (
         <Flex w="fit-content">
@@ -20,3 +20,5 @@ export default ({ ...props }) => {
         </Flex>
     );
 };
+
+export default ViewLogo

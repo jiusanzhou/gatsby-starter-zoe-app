@@ -3,6 +3,7 @@ import * as chakracore from "@chakra-ui/core";
 import * as chakraicons from "@chakra-ui/icons";
 
 import _Error from "./_error";
+import _Empty from "./_empty";
 
 const _componentRegistry = {
     // default system component
@@ -30,8 +31,9 @@ const createElement = ({ type, _isobject, ...props }) => {
     Object.keys(props).map((e) => {
         const _v = props[e];
         if (Array.isArray(_v)) {
-            _props[e] = _v.map((_e) => createElement(_e));
-        } else if (typeof _v === "object") {
+            // only when we are a array or object createElemetn again
+            _props[e] = _v.map((_e) => typeof _e === 'object' ? createElement(_e) : _e);
+        } else if (typeof _v === "object" && !/[Pp]rops/.test(e || '')) {
             _props[e] = createElement(_v);
         } else {
             // just return
@@ -43,8 +45,10 @@ const createElement = ({ type, _isobject, ...props }) => {
 
     // ok do next crate the element
     // load component with type
-    return React.createElement(_componentRegistry[type] || _Error, {
-        type,
+    if (!type) return React.createElement(_Empty, _props)
+
+    return React.createElement(_componentRegistry[type] || type, {
+        // type,
         ..._props,
     });
 };
@@ -87,3 +91,4 @@ _(require("./socials"));
 
 // views
 _(require("../views/app-release"));
+_(require("../views/logo"));
