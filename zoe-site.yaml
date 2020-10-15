@@ -134,7 +134,9 @@ pages:
         children: # generate from features
 
 # for app release, we need to add github release source
-releaseRepo: moeapp/mtb-mobile
+releaseRepo:
+- moeapp/mtb-mobile
+- strapi/strapi
 
 # temp for hero
 hero:

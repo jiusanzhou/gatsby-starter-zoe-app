@@ -9,7 +9,7 @@ import {
 import { FaAppStore } from "react-icons/fa";
 import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
 
-import { GithubVersionProvider } from "../helper/app-release"
+import { GithubVersionProvider } from "../helper/app-release";
 import { useStaticQuery, graphql } from "gatsby";
 import { useSiteMetadata } from "../utils/hooks";
 
@@ -20,7 +20,7 @@ const _icons = {
     macos: <AiOutlineApple />,
 };
 
-const _unsupportedTooltip = "马不停蹄地开发中...";
+const _unsupportedTooltip = "It's under development...";
 
 const _platforms = ["android", "ios", "windows", "macos"];
 
@@ -34,7 +34,7 @@ const _labels = {
 const _nodata = () => {
     return (
         <Box bg="tomato" px="1em" py=".5em">
-            <Text color="white">暂未发布任何版本</Text>
+            <Text color="white">There is no any release.</Text>
         </Box>
     );
 };
@@ -73,26 +73,30 @@ const DownloadButtons = ({
         query GithubRelease {
             allGithubRelease {
                 nodes {
-                  created_at
-                  id
-                  assets {
-                    android
-                  }
-                  prerelease
-                  published_at
-                  release_note
-                  title
-                  version
+                    id
+                    repo
+                    title
+                    version
+                    created_at
+                    prerelease
+                    published_at
+                    release_note
+                    assets {
+                        android
+                    }
                 }
             }
-        }`)
+        }
+    `);
 
     useEffect(() => {
         setLoaded(false);
 
         // how to start as server build
         // if we are dynamic load
-        let ver = new GithubVersionProvider(repo, { versions: data.allGithubRelease.nodes });
+        let ver = new GithubVersionProvider(repo, {
+            versions: data.allGithubRelease.nodes.filter((e) => e.repo === repo),
+        });
         ver.latestVersion()
             .then((v) => {
                 setVdata(v);
@@ -100,7 +104,7 @@ const DownloadButtons = ({
             .finally(() => setLoaded(true));
     }, [repo]);
 
-    const { primaryColor } = useSiteMetadata()
+    const { primaryColor } = useSiteMetadata();
 
     if (
         !repo &&
@@ -163,7 +167,7 @@ const _withTooltip = (props) => {
 };
 
 const AppRelease = (props) => {
-    return <DownloadButtons {...props} />
-}
+    return <DownloadButtons {...props} />;
+};
 
 export default AppRelease;

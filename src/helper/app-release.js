@@ -10,7 +10,8 @@ class GithubVersionProvider {
         this.repo = repo;
         this._versions = versions;
 
-        if (!this.repo && !versions) throw new Error("miss repo and versions offered.");
+        if (!this.repo && !versions)
+            throw new Error("miss repo and versions offered.");
     }
 
     _base_api = "https://api.github.com/repos";
@@ -37,6 +38,8 @@ class GithubVersionProvider {
 
         res.id = `${o.id}`;
         res.title = o.name;
+        res.url = o.url;
+        res.repo = this.repo;
         res.version = o.tag_name;
         res.prerelease = o.prerelease;
         res.created_at = o.created_at;
@@ -110,7 +113,7 @@ class GithubVersionProvider {
             .then((res) => res.json()) // or use staticData
             .then((data) => {
                 if (!Array.isArray(data)) {
-                    return [] // TODO: reject an error
+                    return []; // TODO: reject an error
                 }
                 // check the data type if is not a array, reject a error
                 this._versions = data
@@ -122,18 +125,32 @@ class GithubVersionProvider {
 
     async latestVersion() {
         // parse from list
-        return this.loadVersions().then((vs) => vs.find((e) => !(!this.prerelease && e.prerelease)));
+        return this.loadVersions().then((vs) =>
+            vs.find((e) => !(!this.prerelease && e.prerelease))
+        );
     }
 }
 
 const createNode = {
     name: "GithubRelease",
-    mediaType: 'appplication/json',
+    mediaType: "appplication/json",
     // how to provider the data: []
     data: [],
-    createData: ({ releaseRepo }) => (new GithubVersionProvider(releaseRepo)).loadVersions()
+    createData: ({ releaseRepo }) => {
+        // check type of releaseRepo
+        if (Array.isArray(releaseRepo)) {
+            return Promise.all(
+                releaseRepo.map((e) =>
+                    new GithubVersionProvider(e).loadVersions()
+                )
+            ).then((r) => [].concat.apply([], r));
+        } else {
+            // must be string
+            return new GithubVersionProvider(releaseRepo).loadVersions();
+        }
+    },
 };
 
-exports.GithubVersionProvider = GithubVersionProvider
+exports.GithubVersionProvider = GithubVersionProvider;
 
-exports.createNode = createNode
+exports.createNode = createNode;
