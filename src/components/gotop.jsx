@@ -14,7 +14,7 @@ export default ({...props}) => {
             icon={<ArrowUpIcon />}
             position="absolute"
             top="0"
-            right="0"
+            right={["1rem", "0"]}
             transform="translateY(-50%)"
             onClick={(e) => {
                 window.scroll({ top: 0, left: 0, behavior: 'smooth' });

@@ -80,7 +80,11 @@ layouts:
   default:
     maxWidth: 70rem
     footer:
-      border: true
+      disableBorder: true
+      disableGotop: true
+      disableLogo: true
+      disableSocials: true
+      disableLinks: true
 
 features:
 - title: Performance built-in
@@ -131,6 +135,7 @@ pages:
           repo: moeapp/mtb-mobile
           itemPrefix: 'Download '
           hiddenUnsupported: true
+          justify: flex-start
           itemProps:
             colorScheme: red
     - section: # section is a global views called section
@@ -145,14 +150,6 @@ releaseRepo:
 hero:
   title: ZoeAPP
   subTitle:
-    type: Center
-    children:
-      type: ViewLogo
-      minimal: true
-      clickable: false
-      imageProps:
-        w: 10rem
-        rounded: 1rem
   description:
     children:
     - Create your app landing page without code.
@@ -163,12 +160,24 @@ hero:
     provider: github # select a provider
     repo: moeapp/mtb-mobile
     itemPrefix: 'Download '
-    hiddenUnsupported: false
+    justify: [center, center, flex-start, flex-start]
+    # hiddenUnsupported: false
     # itemProps:
     #   colorScheme: ${zoe.primaryColor}
-  h: calc(100vh - 5rem)
-  theme: grey
-  rounded: 2rem
+  children:
+    type: Center
+    mr: [0, 0, 5rem, 5rem]
+    children:
+      type: ViewLogo
+      minimal: true
+      clickable: false
+      imageProps:
+        w: [5rem, 5rem, 15rem, 15rem]
+        rounded: [1rem, 1rem, 2rem, 2rem]
+  position: right
+  minH: calc(100vh - 20rem)
+  # theme: grey
+  # rounded: 2rem
   mt: 1rem
 
 # extend for app landing page
@@ -198,7 +207,8 @@ plugins:
     path: ${__dirname} # default load all files in current directory
     ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
 
-- gatsby-plugin-google-analytics: 
+- gatsby-plugin-google-analytics:
+    # TODO: extrac all fonts from siteMeta
     trackingId: ${zoe.googleAnalyticsTrackingId}
     respectDNT: true
 

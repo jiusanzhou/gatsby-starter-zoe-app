@@ -49,6 +49,7 @@ const DownloadButtons = ({
     labels = {},
     rounded = true,
     itemProps = {},
+    provider,
 
     isExternal = true,
 
@@ -115,7 +116,7 @@ const DownloadButtons = ({
     }
 
     return (
-        <Flex spacing={2} flexWrap="wrap" w="100%" justify="center" {...props}>
+        <Flex flexWrap="wrap" w="100%" justify="center" {...props}>
             {supportPlatforms
                 .filter(
                     (e) =>

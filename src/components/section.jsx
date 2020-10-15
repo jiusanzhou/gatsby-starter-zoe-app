@@ -9,9 +9,9 @@ const _defaultProps = {
         justifyContent: 'center'
     },
     section: {
-        p: ["1em", "2em", "2.5em", "5em"],
+        p: ["1em", "2em", "2.5em 0", "5em 0"],
         mb: [".5em", "1em", "1.5em", "2em"],
-        width: ["100%", "100%", "100%", "70rem"], // with siteMetaa
+        width: ["100%", "100%", "100%", "70rem"], // TODO: with siteMeta and layout props
         marginLeft: 'auto',
         marginRight: 'auto'
     },
@@ -43,7 +43,7 @@ const _themesProps = {
     },
     light: {
         section: {
-            background: "#fff",
+            // background: "#fff",
             color: "#000",
         },
     },
@@ -58,18 +58,18 @@ const _themesProps = {
 const _positionProps = {
     left: {
         section: {
-            flexDirection: "row",
+            flexDirection: ["column", "column", "row", "row"],
             alignItems: "center",
             justifyContent: "space-between",
-            textAlign: "left",
+            textAlign: ["center", "center", "left", "left"],
         },
     },
     right: {
         section: {
-            flexDirection: "row-reverse",
+            flexDirection: ["column-reverse", "column-reverse", "row-reverse", "row-reverse"],
             alignItems: "center",
             justifyContent: "space-between",
-            textAlign: "right",
+            textAlign: ["center", "center", "left", "left"], // TODO: right or left
         },
     },
     top: {
@@ -116,6 +116,8 @@ const Section = ({
 
     const _need_header = title || subTitle || description;
 
+    // props from siteMeta
+
     return (
         // bg put here
         <Flex
@@ -126,7 +128,7 @@ const Section = ({
                 {..._getValue(_defaultProps, {}, "section")}
                 {..._getValue(_positionProps, {}, position, "section")}
                 {..._getValue(_themesProps, {}, theme, "section")}
-                {..._mustValue({})}
+                {..._mustValue({width: ["100%", "80%", "80%", "80%", '70rem']})} // TODO: from layout
                 {...props}
             >
                 {_need_header && (

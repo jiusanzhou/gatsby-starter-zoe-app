@@ -21,7 +21,11 @@ const _componentRegistry = {
 // type: element to render
 // children: render first
 // props
-const createElement = ({ type, _isobject, ...props }) => {
+const createElement = (opts) => {
+    // return normal type data
+    if (!opts || typeof opts !== 'object') return opts
+
+    const { type, _isobject, ...props } = opts
     // we just a orignal object
     if (_isobject) return { type, _isobject, ...props };
 

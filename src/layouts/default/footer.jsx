@@ -9,7 +9,15 @@ import GoTop from "../../components/gotop";
 import Navlinks from "../../components/navlinks";
 import Copyright from "../../components/copyright";
 
-const Footer = ({ children, border, ...props }) => {
+const Footer = ({
+    children,
+    disableBorder,
+    disableGotop,
+    disableLogo,
+    disableSocials,
+    disableLinks,
+    ...props
+}) => {
     const {
         copyright,
         primaryColor,
@@ -22,7 +30,7 @@ const Footer = ({ children, border, ...props }) => {
             w="100%"
             position="absolute"
             borderTopStyle="solid"
-            borderTopWidth={border ? "1px" : "0"}
+            borderTopWidth={!disableBorder ? "1px" : "0"}
         >
             <Box
                 left="0"
@@ -37,7 +45,7 @@ const Footer = ({ children, border, ...props }) => {
                 {...props}
             >
                 {/* back to top button */}
-                <GoTop colorScheme={primaryColor} />
+                {!disableGotop && <GoTop colorScheme={primaryColor} />}
 
                 {/* extend section */}
                 {children}
@@ -47,18 +55,18 @@ const Footer = ({ children, border, ...props }) => {
                 <SimpleGrid
                     w="100%"
                     mt={[".5rem", ".7rem", ".7rem", "1rem"]}
-                    columns={[1, 3, 3, 4]}
+                    columns={[1, 1, 3, 4]}
                     spacing="1rem"
                 >
                     <Box>
                         {/* logo */}
-                        <Logo expend={true} />
+                        {!disableLogo && <Logo expend={true} />}
                         {/* social links */}
-                        <Socials mt="1rem" socials={socials} />
+                        {!disableSocials && <Socials mt="1rem" socials={socials} />}
                     </Box>
 
                     {/* nav links */}
-                    <Navlinks links={links} />
+                    {!disableLinks && <Navlinks links={links} />}
                 </SimpleGrid>
 
                 {/* copyright */}
