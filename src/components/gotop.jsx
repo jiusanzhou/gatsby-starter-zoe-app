@@ -1,13 +1,15 @@
 
-import React from "react";
+import React, { useEffect } from "react";
 import { IconButton } from "@chakra-ui/core";
 
 import { ArrowUpIcon } from "@chakra-ui/icons";
 
 import smoothscroll from 'smoothscroll-polyfill';
-smoothscroll.polyfill();
 
 export default ({...props}) => {
+    useEffect(() => {
+        smoothscroll.polyfill();
+    }, [])
     return (
         <IconButton
             rounded="full"
