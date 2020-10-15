@@ -6,9 +6,13 @@ import { Flex, Link, Text, Tooltip, Box, Badge } from "@chakra-ui/core";
 
 import Image from "../components/image";
 
-export const _withTooltip = ({ label, ...props }) => {
+const _withTooltip = ({ label, ...props }) => {
     return label ? <Tooltip label={label} {...props} /> : props.children;
 };
+
+const _withClickable = ({ clickable, children, ...props }) => {
+    return clickable ? <Link {...props}>{children}</Link> : children
+}
 
 const Logo = ({
     href,
@@ -19,20 +23,21 @@ const Logo = ({
     colorScheme,
     minimal = false,
     expend = false,
+    clickable = true,
     imageProps = {},
     ...props
 }) => {
-    console.log("======>", imageProps)
     return (
         <Flex
             flexDirection="column"
             justifyContent={!expend ? "center" : "null"}
         >
-            <Link
+            <_withClickable
                 zIndex={99}
                 as={NavLink}
                 to={href || "/"}
                 textDecoration="none"
+                clickable={clickable}
                 _hover={{
                     textDecoration: "none",
                 }}
@@ -45,6 +50,7 @@ const Logo = ({
                             mr={minimal ? '' : ".4em"}
                             w={["1.5em", "1.75em", "1.75em", "2em"]}
                             src={img} // img is a remote or local one
+                            rounded="full"
                             {...imageProps}
                         />
                     )}
@@ -70,7 +76,7 @@ const Logo = ({
                         </Badge>
                     )}
                 </Flex>
-            </Link>
+            </_withClickable>
             {!minimal && expend && description && (
                 <Text mt=".5rem" fontSize="sm">
                     {description}

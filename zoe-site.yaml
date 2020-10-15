@@ -149,8 +149,10 @@ hero:
     children:
       type: ViewLogo
       minimal: true
+      clickable: false
       imageProps:
         w: 10rem
+        rounded: 1rem
   description:
     children:
     - Create your app landing page without code.
