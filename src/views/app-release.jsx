@@ -126,7 +126,7 @@ const DownloadButtons = ({
                         (vdata && vdata.assets && vdata.assets[e])
                 )
                 .map((e, idx) => (
-                    <Flex key={`_${idx}`} p=".4em">
+                    <Flex key={`_${idx}`} p=".4em" flexDir="column" alignItems="center">
                         <Button
                             rounded={rounded ? "full" : null}
                             leftIcon={_icons[e]}
@@ -157,6 +157,7 @@ const DownloadButtons = ({
                             </Text>
                             {/* TODO: google play, apple store */}
                         </Button>
+                        {/* <Text mt=".4rem" opacity=".5">Update at: </Text> */}
                     </Flex>
                 )) || <_nodata />}
         </Flex>
