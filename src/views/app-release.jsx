@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 
 import { FaAppStore } from "react-icons/fa";
-import { Box, Button, Flex, Text, Tooltip } from "@chakra-ui/core";
+import { Box, Button, Flex, Text } from "@chakra-ui/core";
 
 import { GithubVersionProvider } from "../helper/app-release";
 import { useStaticQuery, graphql } from "gatsby";
@@ -103,7 +103,7 @@ const DownloadButtons = ({
                 setVdata(v);
             })
             .finally(() => setLoaded(true));
-    }, [repo]);
+    }, [repo, data]);
 
     const { primaryColor } = useSiteMetadata();
 
@@ -162,10 +162,6 @@ const DownloadButtons = ({
                 )) || <_nodata />}
         </Flex>
     );
-};
-
-const _withTooltip = (props) => {
-    return props.label ? <Tooltip {...props} /> : props.children;
 };
 
 const AppRelease = (props) => {

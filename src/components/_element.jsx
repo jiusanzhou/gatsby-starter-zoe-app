@@ -2,7 +2,6 @@ import React from "react";
 import * as chakracore from "@chakra-ui/core";
 import * as chakraicons from "@chakra-ui/icons";
 
-import _Error from "./_error";
 import _Empty from "./_empty";
 
 const _componentRegistry = {
@@ -32,7 +31,7 @@ const createElement = (opts) => {
     const _props = {};
 
     // render the props
-    Object.keys(props).map((e) => {
+    Object.keys(props).forEach((e) => {
         const _v = props[e];
         if (Array.isArray(_v)) {
             // only when we are a array or object createElemetn again

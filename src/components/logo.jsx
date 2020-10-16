@@ -2,13 +2,9 @@ import React from "react";
 import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Flex, Link, Text, Tooltip, Box, Badge } from "@chakra-ui/core";
+import { Flex, Link, Text, Badge } from "@chakra-ui/core";
 
 import Image from "../components/image";
-
-const _withTooltip = ({ label, ...props }) => {
-    return label ? <Tooltip label={label} {...props} /> : props.children;
-};
 
 const _withClickable = ({ clickable, children, ...props }) => {
     return clickable ? <Link {...props}>{children}</Link> : children

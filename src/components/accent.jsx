@@ -26,7 +26,7 @@ export const AccentGlobal = ({ primaryColor }) => {
           --colors-accent-900: ${accent[900]};
         }
       `,
-      [accentKey]
+      [accent]
     )
     return <Global styles={styles} />
   }

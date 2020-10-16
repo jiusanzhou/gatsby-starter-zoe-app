@@ -150,6 +150,10 @@ releaseRepo:
 hero:
   title: ZoeAPP
   subTitle:
+    type: IconButton
+    isRound: true
+    icon:
+      type: SunIcon
   description:
     children:
     - type: Markdown
@@ -168,7 +172,7 @@ hero:
     #   colorScheme: ${zoe.primaryColor}
   children:
     type: Center
-    mr: [0, 0, 5rem, 5rem]
+    mr: ['0', '0', 5rem, 5rem]
     children:
       type: ViewLogo
       minimal: true

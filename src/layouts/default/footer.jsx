@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Flex, SimpleGrid } from "@chakra-ui/core";
+import { Box, SimpleGrid } from "@chakra-ui/core";
 
 import { useSiteMetadata } from "../../utils/hooks";
 import { Socials } from "../../components/socials";
