@@ -153,10 +153,10 @@ hero:
   description:
     children:
     - type: Markdown
-      source: Create your app landing page ~~without code~~.
-    - type: br
-    - type: Markdown
-      source: Static websites and Progressive Web Applications are **secure**, **scalable**, **SEO-friendly**, and even up to **10x faster**.
+      source: |
+        Create your app landing page ~~without code~~.
+        
+        Static websites and Progressive Web Applications are **secure**, **scalable**, **SEO-friendly**, and even up to **10x faster**.
   action: # this is a simple action or with type
     type: AppRelease # take a action type
     provider: github # select a provider
