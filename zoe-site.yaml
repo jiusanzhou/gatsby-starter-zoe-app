@@ -235,6 +235,10 @@ plugins:
     isResettingCSS: true
     isUsingColorMode: false
 
+# auto create remoteImageNode from siteMeta
+- gatsby-plugin-remote-images:
+
 - gatsby-plugin-react-helmet
+- gatsby-plugin-sharp
 - gatsby-transformer-sharp
 - gatsby-plugin-offline
