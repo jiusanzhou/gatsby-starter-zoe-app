@@ -2,7 +2,7 @@ import React from "react";
 import { Flex, Icon, Link, Text } from "@chakra-ui/core";
 import { AiFillHeart } from "react-icons/ai";
 
-export default ({ copyright = {}, author = {}, ...props }) => {
+const Copyright = ({ copyright = {}, author = {}, ...props }) => {
     return (
         <Flex justifyContent="center" {...props}>
             {copyright.content ? (
@@ -32,3 +32,5 @@ export default ({ copyright = {}, author = {}, ...props }) => {
         </Flex>
     );
 };
+
+export default Copyright

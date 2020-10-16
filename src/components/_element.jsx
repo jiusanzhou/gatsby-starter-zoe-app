@@ -23,9 +23,9 @@ const _componentRegistry = {
 // props
 const createElement = (opts) => {
     // return normal type data
-    if (!opts || typeof opts !== 'object') return opts
+    if (!opts || typeof opts !== "object") return opts;
 
-    const { type, _isobject, ...props } = opts
+    const { type, _isobject, ...props } = opts;
     // we just a orignal object
     if (_isobject) return { type, _isobject, ...props };
 
@@ -36,8 +36,10 @@ const createElement = (opts) => {
         const _v = props[e];
         if (Array.isArray(_v)) {
             // only when we are a array or object createElemetn again
-            _props[e] = _v.map((_e) => typeof _e === 'object' ? createElement(_e) : _e);
-        } else if (typeof _v === "object" && !/[Pp]rops/.test(e || '')) {
+            _props[e] = _v.map((_e) =>
+                typeof _e === "object" ? createElement(_e) : _e
+            );
+        } else if (typeof _v === "object" && !/[Pp]rops/.test(e || "")) {
             _props[e] = createElement(_v);
         } else {
             // just return
@@ -49,7 +51,7 @@ const createElement = (opts) => {
 
     // ok do next crate the element
     // load component with type
-    if (!type) return React.createElement(_Empty, _props)
+    if (!type) return React.createElement(_Empty, _props);
 
     return React.createElement(_componentRegistry[type] || type, {
         // type,
@@ -59,40 +61,49 @@ const createElement = (opts) => {
 
 export default createElement;
 
-const _genName = (n) => {
-    if (!n) return n;
-    // TODO: imporve
-    return n
-        .split(/[-_]/)
-        .map((e) => e[0].toUpperCase() + e.slice(1))
-        .join("");
-};
+// const _genName = (n) => {
+//     if (!n) return n;
+//     // TODO: imporve
+//     return n
+//         .split(/[-_]/)
+//         .map((e) => e[0].toUpperCase() + e.slice(1))
+//         .join("");
+// };
 
-const _ = (m, { key = "default", as = [] } = {}) => {
+const _ = (m, { key = "default", as } = {}) => {
     let c = m[key || "default"];
-    if (!c) return;
-    if (as.length > 0) {
-        as.forEach((e) => (_componentRegistry[e] = c));
+    if (!c) {
+        if (typeof m !== "function") return;
+        c = m;
+    }
+    if (as) {
+        if (Array.isArray(as)) {
+            as.forEach((e) => (_componentRegistry[e] = c));
+        } else {
+            _componentRegistry[as] = c;
+        }
     } else {
         _componentRegistry[c.name] = c;
-        // _componentRegistry[_genName(name)] = c;
     }
 };
 
 // load all component !!!!!!!!!!!!!! if we want compoennt can be used
 // must install at here
 
-// elements
+// import third package
+_(require("react-markdown"), { as: 'Markdown' });
+
+// install custom component
 _(require("./copyright"));
 _(require("./gotop"));
 _(require("./image"));
 _(require("./logo"));
-_(require("./navlinks"));
-_(require("./screenshot"));
+_(require("./navlinks"), { as: "NavLinks" });
+_(require("./screenshot"), { as: "ScreenShot" });
 _(require("./section"));
 _(require("./seo"));
 _(require("./socials"));
 
-// views
+// install custom views
 _(require("../views/app-release"));
 _(require("../views/logo"));

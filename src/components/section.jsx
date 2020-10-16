@@ -174,8 +174,7 @@ const Section = ({
                             </Text>
                         ) : null}
                         {description ? (
-                            <Text
-                                as="p"
+                            <Text as={Box}
                                 {..._getValue(_defaultProps, {}, "desc")}
                                 {..._getValue(
                                     _positionProps,

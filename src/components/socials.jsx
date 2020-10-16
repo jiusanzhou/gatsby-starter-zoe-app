@@ -1,12 +1,12 @@
 import React from "react";
 
-import {
-    IoLogoFacebook,
-    IoLogoTwitter,
-    IoLogoGithub,
-    IoLogoLinkedin,
-    IoMdMail,
-} from "react-icons/io";
+// import {
+//     IoLogoFacebook,
+//     IoLogoTwitter,
+//     IoLogoGithub,
+//     IoLogoLinkedin,
+//     IoMdMail,
+// } from "react-icons/io";
 import {
     FiTwitter,
     FiGithub,
@@ -14,7 +14,6 @@ import {
     FiMail,
     FiFacebook,
 } from "react-icons/fi";
-
 import { RiTelegramLine } from "react-icons/ri";
 
 import PropTypes from "prop-types";
