@@ -4,11 +4,7 @@ import * as chakraicons from "@chakra-ui/icons";
 
 import _Empty from "./_empty";
 
-const _componentRegistry = {
-    // default system component
-    ...chakracore,
-    ...chakraicons,
-};
+const _componentRegistry = {};
 
 // auto load from components and views
 
@@ -61,15 +57,15 @@ const createElement = (opts) => {
 export default createElement;
 
 // const _genName = (n) => {
-//     if (!n) return n;
-//     // TODO: imporve
 //     return n
-//         .split(/[-_]/)
-//         .map((e) => e[0].toUpperCase() + e.slice(1))
-//         .join("");
+//         ? n
+//               .split(/[-_]/)
+//               .map((e) => e[0].toUpperCase() + e.slice(1))
+//               .join("")
+//         : n;
 // };
 
-const _ = (m, { key = "default", as } = {}) => {
+export const installComponent = (m, { key = "default", as } = {}) => {
     let c = m[key || "default"];
     if (!c) {
         if (typeof m !== "function") return;
@@ -81,28 +77,40 @@ const _ = (m, { key = "default", as } = {}) => {
         } else {
             _componentRegistry[as] = c;
         }
+    } else if (key !== "default") {
+        _componentRegistry[key] = c;
     } else {
-        _componentRegistry[c.name] = c;
+        // TODO: after compile c.name is no correct
     }
 };
 
 // load all component !!!!!!!!!!!!!! if we want compoennt can be used
 // must install at here
+[chakracore, chakraicons].forEach((v) => {
+    Object.keys(v).forEach((e) => {
+        // Only component
+        if (/[A-Z]/.test(e[0])) {
+            _componentRegistry[e] = v[e];
+        }
+    });
+});
+
+// TODO: how to generate the install component script
 
 // import third package
-_(require("react-markdown"), { as: 'Markdown' });
+installComponent(require("react-markdown"), { as: "Markdown" });
 
 // install custom component
-_(require("./copyright"));
-_(require("./gotop"));
-_(require("./image"));
-_(require("./logo"));
-_(require("./navlinks"), { as: "NavLinks" });
-_(require("./screenshot"), { as: "ScreenShot" });
-_(require("./section"));
-_(require("./seo"));
-_(require("./socials"));
+installComponent(require("./copyright"), { key: "Copyright" });
+installComponent(require("./gotop"), { as: "Gotop" });
+installComponent(require("./image"), { as: "MImage" });
+installComponent(require("./logo"), { as: "Logo" });
+installComponent(require("./navlinks"), { as: "NavLinks" });
+installComponent(require("./screenshot"), { as: "ScreenShot" });
+installComponent(require("./section"), { as: "MSection" });
+installComponent(require("./seo"), { as: "SEO" });
+installComponent(require("./socials"), { key: "Socials" });
 
 // install custom views
-_(require("../views/app-release"));
-_(require("../views/logo"));
+installComponent(require("../views/app-release"), { as: "AppRelease" });
+installComponent(require("../views/logo"), { as: "ViewLogo" });

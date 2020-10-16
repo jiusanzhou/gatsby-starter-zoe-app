@@ -2,13 +2,10 @@ import React from "react";
 import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Flex, Link, Text, Badge } from "@chakra-ui/core";
+import { Flex, Text, Badge } from "@chakra-ui/core";
 
 import Image from "../components/image";
-
-const _withClickable = ({ clickable, children, ...props }) => {
-    return clickable ? <Link {...props}>{children}</Link> : children
-}
+import { _withClickable } from "./_with";
 
 const Logo = ({
     href,

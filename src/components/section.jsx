@@ -101,7 +101,7 @@ const _positionProps = {
     },
 };
 
-const Section = ({
+const MSection = ({
     title,
     subTitle,
     description,
@@ -216,7 +216,7 @@ const _mustValue = (m = {}) => {
     return m;
 };
 
-Section.propTypes = {
+MSection.propTypes = {
     title: PropTypes.node,
     subTitle: PropTypes.node,
     description: PropTypes.node,
@@ -227,4 +227,4 @@ Section.propTypes = {
     theme: PropTypes.string,
 };
 
-export default Section;
+export default MSection;

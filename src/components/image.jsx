@@ -4,7 +4,7 @@ import { Image } from "@chakra-ui/core";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-const MyImage = ({ src, ...props }) => {
+const MImage = ({ src, ...props }) => {
     // we need to add `images` for relativePath
     const _queryImages = useStaticQuery(graphql`
         query LocalImage {
@@ -29,8 +29,8 @@ const MyImage = ({ src, ...props }) => {
     return <Image src={_src} {...props} />;
 };
 
-MyImage.protoTypes = {
+MImage.protoTypes = {
     src: PropTypes.string.isRequired,
 };
 
-export default MyImage;
+export default MImage;

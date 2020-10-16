@@ -8,7 +8,7 @@ const IndexPage = () => {
     const siteMeta = useSiteMetadata();
     return (
         <Layout layout="default">
-            {siteMeta.hero && <_element type="Section" {...siteMeta.hero} />}
+            {siteMeta.hero && <_element type="MSection" {...siteMeta.hero} />}
         </Layout>
     );
 };
