@@ -28,7 +28,6 @@ const Footer = ({
     return (
         <Box
             w="100%"
-            position="absolute"
             borderTopStyle="solid"
             borderTopWidth={!disableBorder ? "1px" : "0"}
         >

@@ -26,6 +26,8 @@ const createElement = (opts) => {
 
     const _props = {};
 
+    // TODO: useMemo load views or components from siteMeta
+
     // render the props
     Object.keys(props).forEach((e) => {
         const _v = props[e];
