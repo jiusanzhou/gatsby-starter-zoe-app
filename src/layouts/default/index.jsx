@@ -27,7 +27,6 @@ const Layout = ({
         repeat: "repeat-x",
         attachment: "scroll",
         image: "images/bg-shapes.svg",
-        // image: "https://assets.website-files.com/5e1c4fb5db4d5243c0021d34/5e1c4fb5db4d526c44021d44_bg-shapes.svg",
     };
 
     // const [opened, setOpened] = useState(false);

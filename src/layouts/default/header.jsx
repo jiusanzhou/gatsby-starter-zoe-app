@@ -15,7 +15,7 @@ const Header = ({ children, border, wraperBg, ...props }) => {
                 top="0"
                 borderBottomStyle="solid"
                 borderBottomWidth={border ? "1px" : "0"}
-                // bg="white" // "rgb(248, 249, 252)"
+                // bg="white" // TODO: scroll header height to set bg white or layout bg
                 bg={wraperBg}
                 zIndex="9999"
             >

@@ -12,7 +12,8 @@ author:
   name: Zoe
   email: hi@zoe.im
   homepage: 'https://zoe.im'
-  avatar: https://avatars1.githubusercontent.com/u/2942042?s=200
+  # TODO: or use _zoe: Object
+  avatar: zoe(sharp=true)https://avatars1.githubusercontent.com/u/2942042?s=200
   minibio: 知行合一
 
 organization:
@@ -236,7 +237,10 @@ plugins:
     isUsingColorMode: false
 
 # auto create remoteImageNode from siteMeta
+# TODO: auto register this plugin
 - gatsby-plugin-remote-images:
+    nodeType: 'RemoteImage' # default node name when we create
+    imagePath: '.url'
 
 - gatsby-plugin-react-helmet
 - gatsby-plugin-sharp

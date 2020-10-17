@@ -25,7 +25,7 @@ const _systemKeys = {
     },
     proxy: {
         type: Object,
-        keys: ["mapping"],
+        keys: ["proxy"],
     },
 };
 
@@ -54,12 +54,16 @@ const _genVal = (s) => {
                 return d;
             }
         case "string":
-            // check if we have ${} TODO: improve
-            return s.indexOf("${") < 0
+            // TODO: improve, check if we have ${} 
+            // a${a} ${a}a ${a}
+            const v = s.indexOf("${") < 0
                 ? s
                 : s.slice(-1) === "}"
-                ? eval(s.slice(2, -1))
-                : eval("`" + s + "`");
+                ? eval(s.slice(2, -1)) // run the code
+                : eval("`" + s + "`"); // get the string
+
+            // TODO: load value hooks
+            return v
         default:
             return s;
     }
@@ -119,6 +123,8 @@ const buildConfig = (zoefile) => {
 
     return config;
 };
+
+// TODO: parse remote images and use gatsby-plugin-remote-images
 
 exports.loadZoefile = (zoefile = `${__dirname}/zoe-site.yaml`) => {
     return buildConfig(zoefile);

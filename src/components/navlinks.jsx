@@ -6,9 +6,11 @@ export default ({ links = [] }) => {
     // merge links with catetory
     let blocks = {};
     links.forEach((e) => {
-        if (!blocks[e.category]) blocks[e.category] = [];
-        blocks[e.category].push(e);
+        if (!blocks[e.category]) blocks[e.category||''] = [];
+        blocks[e.category||''].push(e);
     });
+
+    // TODO: calc the count of blocks, if only '', split to
 
     return Object.keys(blocks).map((c) => (
         <Box key={`_${c}`}>
