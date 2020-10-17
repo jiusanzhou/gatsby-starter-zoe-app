@@ -25,59 +25,40 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 const _needCreateNodes = ["src/helper/app-release"];
 
 // import nodes to create, how to create multi
-exports.sourceNodes = ({ actions }) => {
+exports.sourceNodes = async ({ actions }) => {
     // get siteMeta data
     // create node
 
     // load siteMetadata from zoefile
     const { siteMetadata } = loadZoefile();
 
-    return new Promise((resolve, reject) => {
-        // loads all nodes we need to create
-        _needCreateNodes.forEach((e) => {
-            const c = require(path.resolve(__dirname, e)).createNode;
-            if (!c) {
-                resolve();
-                return;
-            }
+    // loads all nodes we need to create
+    await Promise.all(_needCreateNodes.map(async (e) => {
+        const c = require(path.resolve(__dirname, e)).createNode;
+        if (!c) return;
 
-            if (typeof c === "function") {
-                // just call the function
-                resolve();
-                return c(actions);
-            }
+        // just call the function
+        if (typeof c === "function") return c(actions);
 
-            // name, and data
-            if (c.createData) {
-                const data = c.createData(siteMetadata);
-                const _res =
-                    typeof data.then === "function"
-                        ? data
-                        : Promise.resolve(data);
-                _res.then((res) => {
-                    res.forEach((v) => {
-                        // create release node
-                        actions.createNode({
-                            ...v,
-                            internal: {
-                                type: c.name,
-                                contentDigest: crypto
-                                    .createHash(`md5`)
-                                    .update(JSON.stringify(v))
-                                    .digest(`hex`),
-                                mediaType: c.mediaType || "application/json",
-                            },
-                        });
-                    });
+        // name, and data
+        if (!c.createData) return;
+        const data = c.createData(siteMetadata);
+        const res = typeof data.then !== "function" ? data : await data;
 
-                    resolve();
-                }).catch((e) => {
-                    console.log("====>", e);
-                    reject(e);
-                });
-            } else {
-                resolve();
-            }
+        // TODO: check is res is a array
+        if (Array.isArray(res)) res.forEach((v) => {
+            // create release node
+            actions.createNode({
+                ...v,
+                internal: {
+                    type: c.name,
+                    contentDigest: crypto
+                        .createHash(`md5`)
+                        .update(JSON.stringify(v))
+                        .digest(`hex`),
+                    mediaType: c.mediaType || "application/json",
+                },
+            });
         });
-    });
+    }));
 };
