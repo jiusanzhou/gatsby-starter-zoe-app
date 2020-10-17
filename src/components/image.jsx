@@ -39,7 +39,7 @@ const MImage = ({ src, mode = 'fluid', ...props }) => {
     // check if we are a remote image
     if (src.indexOf("://") >= 0) return <Image src={src} {...props} />;
     
-    const v = match.childImageSharp && match.childImageSharp[mode];
+    const v = match && match.childImageSharp && match.childImageSharp[mode];
     
     return !v ? (
         <Image src={match.publicURL} {...props} />

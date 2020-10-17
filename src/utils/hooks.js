@@ -1,22 +1,14 @@
-import { useStaticQuery, graphql } from 'gatsby'
-
 // this is a tick way to trigger HMR
 import zoefile from "../../zoe-site.yaml"
+import { buildZoefile } from './zoefile-parser'
+
+var zoe = null;
 
 const useSiteMetadata = () => {
-  const { site } = useStaticQuery(graphql`
-    query {
-      site {
-        siteMetadata {
-          title
-        }
-      }
-    }
-  `)
+  // site.siteMetadata._raw = zoefile
+  if (!zoe) zoe = buildZoefile(zoefile)
 
-  site.siteMetadata._raw = zoefile
-
-  return zoefile
+  return zoe.siteMetadata
 }
 
 export const useAssets = () => {
