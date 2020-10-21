@@ -16,6 +16,7 @@ const Footer = ({
     disableLogo,
     disableSocials,
     disableLinks,
+    logoProps = {},
     ...props
 }) => {
     const {
@@ -59,7 +60,7 @@ const Footer = ({
                 >
                     <Box>
                         {/* logo */}
-                        {!disableLogo && <Logo expend={true} />}
+                        {!disableLogo && <Logo expend={true} {...logoProps} />}
                         {/* social links */}
                         {!disableSocials && <Socials mt="1rem" socials={socials} />}
                     </Box>

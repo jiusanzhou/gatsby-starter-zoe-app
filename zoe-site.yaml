@@ -89,6 +89,9 @@ layouts:
       disableLogo: false
       disableSocials: false
       disableLinks: false
+      logoProps:
+        textColor: 'unset'
+
 
 features:
 - title: Performance built-in
