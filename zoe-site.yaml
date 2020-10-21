@@ -80,6 +80,9 @@ primaryColor: 'purple' #663399 # tomato how to change to colorSchema
 layouts:
   default:
     maxWidth: 70rem
+    header:
+      logoProps:
+        textColor: 'unset'
     footer:
       disableBorder: true
       disableGotop: false

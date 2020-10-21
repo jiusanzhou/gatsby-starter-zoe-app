@@ -17,6 +17,7 @@ const Logo = ({
     minimal = false,
     expend = false,
     clickable = true,
+    textColor = "",
     imageProps = {},
     ...props
 }) => {
@@ -40,7 +41,7 @@ const Logo = ({
                         <Image
                             borderRadius="0"
                             alt={name}
-                            mr={minimal ? '' : ".4em"}
+                            mr={minimal ? "" : ".4em"}
                             w={["1.5em", "1.75em", "1.75em", "2em"]}
                             src={img} // img is a remote or local one
                             rounded="full"
@@ -53,6 +54,7 @@ const Logo = ({
                             fontWeight="bold"
                             fontSize={["xl"]}
                             as="h2"
+                            {...(textColor ? { textColor } : {})}
                         >
                             {name}
                         </Text>

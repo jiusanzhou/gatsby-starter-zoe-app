@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Flex } from "@chakra-ui/core";
 import Logo from "../../views/logo";
 
-const Header = ({ children, border, wraperBg, ...props }) => {
+const Header = ({ children, border, wraperBg, logoProps, ...props }) => {
     // TODO: fixed header with scroll
     // TODO: navigation urls
     return (
@@ -29,7 +29,7 @@ const Header = ({ children, border, wraperBg, ...props }) => {
                     {...props}
                 >
                     {/* Logo */}
-                    <Logo />
+                    <Logo {...logoProps} />
                     {/* Menu */}
                     {/* Other */}
                     {children}
