@@ -13,7 +13,7 @@ author:
   email: hi@zoe.im
   homepage: 'https://zoe.im'
   # TODO: or use _zoe: Object
-  avatar: zoe(sharp=true)https://avatars1.githubusercontent.com/u/2942042?s=200
+  avatar: https://avatars1.githubusercontent.com/u/2942042?s=200 # zoe(sharp=true)
   minibio: 知行合一
 
 organization:
@@ -207,6 +207,9 @@ hero:
 
 googleAnalyticsTrackingId: 'xxxxxxx'
 
+remoteImageUrlPatterns: # must has :// as default
+- avatars[0-9]?\.githubusercontent\.com
+
 # can register a component
 
 # important and just modify by template
@@ -246,7 +249,7 @@ plugins:
 # TODO: auto register this plugin
 - gatsby-plugin-remote-images:
     nodeType: 'RemoteImage' # default node name when we create
-    imagePath: '.url'
+    imagePath: 'url'
 
 - gatsby-plugin-react-helmet
 - gatsby-plugin-sharp

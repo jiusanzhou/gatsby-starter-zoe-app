@@ -5,7 +5,7 @@ import Img from "gatsby-image";
 
 import { useStaticQuery, graphql } from "gatsby";
 
-const MImage = ({ src, mode = 'fluid', ...props }) => {
+const MImage = ({ src, mode = "fluid", ...props }) => {
     // TODO: take the width and height from props and put to query
 
     // we need to add `images` for relativePath
@@ -27,24 +27,49 @@ const MImage = ({ src, mode = 'fluid', ...props }) => {
                     }
                 }
             }
+            allRemoteImage {
+                nodes {
+                    url
+                    localImage {
+                        publicURL
+                        childImageSharp {
+                            fixed {
+                                ...GatsbyImageSharpFixed
+                            }
+                            fluid {
+                                ...GatsbyImageSharpFluid
+                            }
+                        }
+                    }
+                }
+            }
         }
     `);
 
-    const match = useMemo(
+    const isRemote = src.indexOf("://") >= 0;
+
+    let match = useMemo(
         () =>
-            data.allFile.nodes.find(({ relativePath }) => src === relativePath),
+            data[
+                isRemote ? "allRemoteImage" : "allFile"
+            ].nodes.find(({ relativePath, url }) =>
+                isRemote ? src === url : src === relativePath
+            ),
         [data, src]
     );
 
+    if (isRemote) match = match.localImage; // important!!!
+
     // check if we are a remote image
-    if (src.indexOf("://") >= 0) return <Image src={src} {...props} />;
-    
-    const v = match && match.childImageSharp && match.childImageSharp[mode];
-    
+    // if (isRemote && !match) return <Image src={src} {...props} />;
+    if (!match) match = {};
+
+    const v = match.childImageSharp && match.childImageSharp[mode];
+
     return !v ? (
-        <Image src={match.publicURL} {...props} />
+        <Image src={match.publicURL || match.url || src} {...props} />
     ) : (
-        <Image as={Box} overflow='hidden' {...props}>
+        <Image as={Box} overflow="hidden" {...props}>
             <Img {...{ [mode]: v }} />
         </Image>
     );

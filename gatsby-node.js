@@ -21,8 +21,8 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 };
 
 // ======== createe node ======
-
-const _needCreateNodes = ["src/helper/app-release"];
+// TODO: auto search in src and find module.createNode
+const _needCreateNodes = ["src/helper/app-release", "src/helper/remote-image"];
 
 // import nodes to create, how to create multi
 exports.sourceNodes = async ({ actions }) => {
@@ -33,32 +33,36 @@ exports.sourceNodes = async ({ actions }) => {
     const { siteMetadata } = loadZoefile();
 
     // loads all nodes we need to create
-    await Promise.all(_needCreateNodes.map(async (e) => {
-        const c = require(path.resolve(__dirname, e)).createNode;
-        if (!c) return;
+    await Promise.all(
+        _needCreateNodes.map(async (e) => {
+            const c = require(path.resolve(__dirname, e)).createNode;
+            if (!c) return;
 
-        // just call the function
-        if (typeof c === "function") return c(actions);
+            // just call the function
+            if (typeof c === "function") return c(actions);
 
-        // name, and data
-        if (!c.createData) return;
-        const data = c.createData(siteMetadata);
-        const res = typeof data.then !== "function" ? data : await data;
+            // name, and data
+            if (!c.createData) return;
+            const data = c.createData(siteMetadata);
+            const res = typeof data.then !== "function" ? data : await data;
 
-        // TODO: check is res is a array
-        if (Array.isArray(res)) res.forEach((v) => {
-            // create release node
-            actions.createNode({
-                ...v,
-                internal: {
-                    type: c.name,
-                    contentDigest: crypto
-                        .createHash(`md5`)
-                        .update(JSON.stringify(v))
-                        .digest(`hex`),
-                    mediaType: c.mediaType || "application/json",
-                },
-            });
-        });
-    }));
+            // TODO: check is res is a array
+            if (Array.isArray(res))
+                res.forEach((v) => {
+                    // create release node
+                    actions.createNode({
+                        ...v,
+                        id: v.id || "" + Date.now(), // TODO: use a rela id
+                        internal: {
+                            type: c.name,
+                            contentDigest: crypto
+                                .createHash(`md5`)
+                                .update(JSON.stringify(v))
+                                .digest(`hex`),
+                            mediaType: c.mediaType || "application/json",
+                        },
+                    });
+                });
+        })
+    );
 };
