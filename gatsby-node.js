@@ -86,8 +86,6 @@ exports.createPages = async ({ graphql, actions }) => {
         const page = pages[key];
 
         // create page from pageProps
-        console.log("===>", key, page);
-
         actions.createPage({
             path: page.path || key,
             component: path.resolve('./src/components/_page.jsx'),
