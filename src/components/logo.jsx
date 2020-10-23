@@ -27,7 +27,6 @@ const Logo = ({
             justifyContent={!expend ? "center" : "null"}
         >
             <_withClickable
-                zIndex={99}
                 as={NavLink}
                 to={href || "/"}
                 textDecoration="none"

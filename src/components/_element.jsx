@@ -33,8 +33,8 @@ const createElement = (opts) => {
         const _v = props[e];
         if (Array.isArray(_v)) {
             // only when we are a array or object createElemetn again
-            _props[e] = _v.map((_e) =>
-                typeof _e === "object" ? createElement(_e) : _e
+            _props[e] = _v.map((_e, idx) =>
+                typeof _e === "object" ? createElement({ key: idx, ..._e }) : _e
             );
         } else if (typeof _v === "object" && !/[Pp]rops/.test(e || "")) {
             _props[e] = createElement(_v);

@@ -55,7 +55,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
             ].nodes.find(({ relativePath, url }) =>
                 isRemote ? src === url : src === relativePath
             ),
-        [data, src]
+        [data, src, isRemote]
     );
 
     if (isRemote) match = match.localImage; // important!!!

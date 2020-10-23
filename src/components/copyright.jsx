@@ -7,9 +7,7 @@ import {
     Popover,
     PopoverContent,
     PopoverTrigger,
-    Portal,
     Text,
-    Tooltip,
 } from "@chakra-ui/core";
 import { AiFillHeart } from "react-icons/ai";
 

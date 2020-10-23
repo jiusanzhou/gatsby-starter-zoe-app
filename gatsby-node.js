@@ -20,7 +20,7 @@ exports.onCreateWebpackConfig = ({ actions }) => {
     });
 };
 
-// ======== createe node ======
+// ======== create node source ======
 // TODO: auto search in src and find module.createNode
 const _needCreateNodes = ["src/helper/app-release", "src/helper/remote-image"];
 
@@ -65,4 +65,36 @@ exports.sourceNodes = async ({ actions }) => {
                 });
         })
     );
+};
+
+// on the create node
+// no need at this time
+exports.onCreateNode = ({ node }) => {};
+
+// create pages
+exports.createPages = async ({ graphql, actions }) => {
+    // load siteMetadata from zoefile
+    const {
+        siteMetadata: { pages = {} },
+    } = loadZoefile();
+
+    // create pages from metadata, if we can found component page, set as a layout
+    Object.keys(pages).forEach((key) => {
+        // set p as a path, but how to set page like a template
+        // in some case, we define a page layout which can generate
+        // multi pages by data.
+        const page = pages[key];
+
+        // create page from pageProps
+        console.log("===>", key, page);
+
+        actions.createPage({
+            path: page.path || key,
+            component: path.resolve('./src/components/_page.jsx'),
+            context: {
+                key,
+                page,
+            }
+        });
+    });
 };
