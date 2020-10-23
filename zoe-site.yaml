@@ -14,7 +14,12 @@ author:
   homepage: 'https://zoe.im'
   # TODO: or use _zoe: Object
   avatar: https://avatars1.githubusercontent.com/u/2942042?s=200 # zoe(sharp=true)
-  minibio: 知行合一
+  minibio: 知行合一。人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。骊山语罢清宵半，泪雨霖铃终不怨。何如薄幸锦衣郎，比翼连枝当日愿。 
+  github: 'zoeim'
+  twitter: 'jiusanzhou'
+  facebook: 'jiusanzhou'
+  telegram: 'jiusanzhou'
+  linkedin: 'johnzoe'
 
 organization:
   name: ${zoe.title}

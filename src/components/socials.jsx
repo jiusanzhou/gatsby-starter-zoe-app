@@ -13,6 +13,7 @@ import {
     FiLinkedin,
     FiMail,
     FiFacebook,
+    FiLink,
 } from "react-icons/fi";
 import { RiTelegramLine } from "react-icons/ri";
 
@@ -26,6 +27,7 @@ const _data_base = {
     github: "https://github.com/",
     telegram: "https://t.me/",
     email: "mailto:",
+    homepage: '',
 };
 
 const _data_icon = {
@@ -35,12 +37,13 @@ const _data_icon = {
     telegram: <RiTelegramLine />,
     github: <FiGithub />,
     email: <FiMail />,
+    homepage: <FiLink />
 };
 
 export const SocialLink = ({ type, username, base, ...props }) => {
     // build url with type and username
     if (!base) base = _data_base[type];
-    if (!username || !base) return null;
+    if (!username || typeof base !== 'string') return null;
     const icon = _data_icon[type];
     return (
         <Link isExternal href={`${base}${username}`} title={username}>

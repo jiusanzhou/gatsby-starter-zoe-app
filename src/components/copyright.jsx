@@ -5,6 +5,7 @@ import {
     Icon,
     Link,
     Popover,
+    PopoverArrow,
     PopoverContent,
     PopoverTrigger,
     Text,
@@ -12,6 +13,7 @@ import {
 import { AiFillHeart } from "react-icons/ai";
 
 import Image from "./image";
+import { Socials } from "./socials";
 
 const Copyright = ({ copyright = {}, author = {}, ...props }) => {
     return (
@@ -41,15 +43,39 @@ const Copyright = ({ copyright = {}, author = {}, ...props }) => {
                                             {author.name}
                                         </Link>
                                     </PopoverTrigger>
-                                    <PopoverContent>
-                                        <Box p="1rem 2rem">
-                                            <Image
-                                                src={author.avatar}
-                                                rounded="full"
-                                                width="5rem"
-                                                height="5rem"
-                                            />
-                                        </Box>
+                                    <PopoverArrow />
+                                    <PopoverContent p="1rem" rounded="1rem">
+                                        <Flex>
+                                            <Box>
+                                                <Image
+                                                    src={author.avatar}
+                                                    rounded="full"
+                                                    width="4rem"
+                                                    height="4rem"
+                                                />
+                                            </Box>
+                                            <Box ml=".5rem">
+                                                <Text
+                                                    ml=".6rem"
+                                                    as={"h3"}
+                                                    fontWeight="bold"
+                                                >
+                                                    {author.name}
+                                                </Text>
+                                                {/* TODO: just add need */}
+                                                <Socials
+                                                    socials={author}
+                                                    mt=".2rem"
+                                                />
+                                            </Box>
+                                        </Flex>
+                                        {author.minibio && (
+                                            <Box mt=".5rem">
+                                                <Text fontSize="sm">
+                                                    {author.minibio}
+                                                </Text>
+                                            </Box>
+                                        )}
                                     </PopoverContent>
                                 </Popover>
                             </>
