@@ -49,6 +49,7 @@ export const SocialLink = ({ type, username, base, ...props }) => {
         <Link isExternal href={`${base}${username}`} title={username}>
             <IconButton
                 border=""
+                size="sm"
                 rounded="full"
                 variant="outline"
                 icon={icon}
@@ -60,7 +61,7 @@ export const SocialLink = ({ type, username, base, ...props }) => {
 
 export const Socials = ({ socials = [], colorScheme, ...props }) => {
     return (
-        <List d="flex" flexWrap="wrap" {...props}>
+        <List d="flex" flexWrap="wrap" transform="translateX(-0.5rem)" {...props}>
             {Object.keys(socials).map((key) => (
                 <ListItem key={`_${key}`}>
                     <SocialLink
