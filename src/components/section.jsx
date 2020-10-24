@@ -6,20 +6,20 @@ import Action from "../components/action";
 
 const _defaultProps = {
     wraper: {
-        justifyContent: 'center'
+        justifyContent: "center",
     },
     section: {
         p: ["1em", "2em", "2.5em 0", "5em 0"],
         mb: [".5em", "1em", "1.5em", "2em"],
         width: ["100%", "100%", "100%", "70rem"], // TODO: with siteMeta and layout props
-        marginLeft: 'auto',
-        marginRight: 'auto'
+        marginLeft: "auto",
+        marginRight: "auto",
     },
     title: {
         fontFamily: null,
         fontSize: ["md", "xl", "xl", "2xl"],
         fontWeight: "bold",
-        my: [".2em", ".5em", ".5em", "1em"]
+        my: [".2em", ".5em", ".5em", "1em"],
     },
     subTitle: {
         fontFamily: null,
@@ -66,7 +66,12 @@ const _positionProps = {
     },
     right: {
         section: {
-            flexDirection: ["column-reverse", "column-reverse", "row-reverse", "row-reverse"],
+            flexDirection: [
+                "column-reverse",
+                "column-reverse",
+                "row-reverse",
+                "row-reverse",
+            ],
             alignItems: "center",
             justifyContent: "space-between",
             textAlign: ["center", "center", "left", "left"], // TODO: right or left
@@ -111,24 +116,26 @@ const MSection = ({
     position = "center",
     theme = "light",
     wraperProps = {},
+    titleProps = {},
+    subTitleProps = {},
+    descProps = {},
     ...props
 }) => {
-
     const _need_header = title || subTitle || description;
 
     // props from siteMeta
 
     return (
         // bg put here
-        <Flex
-            {..._getValue(_defaultProps, {}, "wraper")}
-            {...wraperProps}>
+        <Flex {..._getValue(_defaultProps, {}, "wraper")} {...wraperProps}>
             <Flex
                 as="section"
                 {..._getValue(_defaultProps, {}, "section")}
                 {..._getValue(_positionProps, {}, position, "section")}
                 {..._getValue(_themesProps, {}, theme, "section")}
-                {..._mustValue({width: ["100%", "80%", "80%", "80%", '70rem']})} // TODO: from layout
+                {..._mustValue({
+                    width: ["100%", "80%", "80%", "80%", "70rem"],
+                })} // TODO: from layout
                 {...props}
             >
                 {_need_header && (
@@ -154,6 +161,7 @@ const MSection = ({
                                     theme,
                                     "subTitle"
                                 )}
+                                {...subTitleProps}
                             >
                                 {subTitle}
                             </Text>
@@ -169,12 +177,14 @@ const MSection = ({
                                     "title"
                                 )}
                                 {..._getValue(_themesProps, {}, theme, "title")}
+                                {...titleProps}
                             >
                                 {title}
                             </Text>
                         ) : null}
                         {description ? (
-                            <Text as={Box}
+                            <Text
+                                as={Box}
                                 {..._getValue(_defaultProps, {}, "desc")}
                                 {..._getValue(
                                     _positionProps,
@@ -183,6 +193,7 @@ const MSection = ({
                                     "desc"
                                 )}
                                 {..._getValue(_themesProps, {}, theme, "desc")}
+                                {...descProps}
                             >
                                 {description}
                             </Text>
