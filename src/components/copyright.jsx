@@ -6,6 +6,7 @@ import {
     Link,
     Popover,
     PopoverArrow,
+    PopoverBody,
     PopoverContent,
     PopoverTrigger,
     Text,
@@ -43,42 +44,52 @@ const Copyright = ({ copyright = {}, author = {}, ...props }) => {
                                             {author.name}
                                         </Link>
                                     </PopoverTrigger>
-                                    <PopoverArrow />
                                     <PopoverContent p="1rem" rounded="1rem">
-                                        <Flex>
-                                            {author.avatar && (
-                                                <Box>
-                                                    <Image
-                                                        src={author.avatar}
-                                                        rounded="full"
-                                                        width="4rem"
-                                                        height="4rem"
-                                                    />
-                                                </Box>
-                                            )}
-                                            {author.name && (
-                                                <Box ml="1rem">
-                                                    <Text
-                                                        as={"h3"}
-                                                        fontWeight="bold"
-                                                    >
-                                                        {author.name}
+                                        <PopoverArrow />
+                                        <PopoverBody>
+                                            <Flex>
+                                                {author.avatar && (
+                                                    <Box>
+                                                        <Image
+                                                            src={author.avatar}
+                                                            rounded="full"
+                                                            width="4rem"
+                                                            height="4rem"
+                                                        />
+                                                    </Box>
+                                                )}
+                                                {author.name && (
+                                                    <Box ml="1rem">
+                                                        <Text
+                                                            as={"h3"}
+                                                            fontWeight="bold"
+                                                        >
+                                                            {author.name}
+                                                        </Text>
+                                                        {/* TODO: just add need */}
+                                                        <Socials
+                                                            socials={(() => {
+                                                                const data = {
+                                                                    ...author,
+                                                                };
+                                                                delete data.name;
+                                                                delete data.avatar;
+                                                                delete data.minibio;
+                                                                return data;
+                                                            })()}
+                                                            mt=".2rem"
+                                                        />
+                                                    </Box>
+                                                )}
+                                            </Flex>
+                                            {author.minibio && (
+                                                <Box mt=".5rem">
+                                                    <Text fontSize="sm">
+                                                        {author.minibio}
                                                     </Text>
-                                                    {/* TODO: just add need */}
-                                                    <Socials
-                                                        socials={author}
-                                                        mt=".2rem"
-                                                    />
                                                 </Box>
                                             )}
-                                        </Flex>
-                                        {author.minibio && (
-                                            <Box mt=".5rem">
-                                                <Text fontSize="sm">
-                                                    {author.minibio}
-                                                </Text>
-                                            </Box>
-                                        )}
+                                        </PopoverBody>
                                     </PopoverContent>
                                 </Popover>
                             </>
