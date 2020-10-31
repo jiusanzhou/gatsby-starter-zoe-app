@@ -58,7 +58,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
         [data, src, isRemote]
     );
 
-    if (isRemote) match = match.localImage; // important!!!
+    if (isRemote && match) match = match.localImage; // important!!!
 
     // check if we are a remote image
     // if (isRemote && !match) return <Image src={src} {...props} />;
