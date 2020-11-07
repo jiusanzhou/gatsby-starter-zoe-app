@@ -34,7 +34,10 @@ const createNode = {
     data: [],
     createData: ({ remoteImageUrlPatterns, ...siteMeta }) => {
         // TODO: view each value and parse the url of images
-        let res = [];
+        // we must push a example image must to generate a image schema
+        let res = [
+            "https://avatars2.githubusercontent.com/u/62942163?s=200&v=4",
+        ];
         parseImageUrl(siteMeta, res, remoteImageUrlPatterns);
         // create nodes contains images [{url: ''}]
         // can we auto add plugins config
