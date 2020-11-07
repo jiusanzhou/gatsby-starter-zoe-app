@@ -17,6 +17,7 @@
     "gatsby-plugin-react-helmet": "^3.1.6",
     "gatsby-plugin-react-svg": "^2.1.2",
     "gatsby-plugin-remote-images": "^2.2.0",
+    "gatsby-plugin-remove-serviceworker": "^1.0.0",
     "gatsby-plugin-sharp": "^2.2.19",
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.1.21",
