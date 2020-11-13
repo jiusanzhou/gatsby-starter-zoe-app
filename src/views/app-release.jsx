@@ -51,6 +51,7 @@ const DownloadButtons = ({
     itemProps = {},
     provider,
 
+    disableLabel = false,
     isExternal = true,
 
     supportPlatforms = _platforms,
@@ -152,7 +153,7 @@ const DownloadButtons = ({
                         >
                             <Text>
                                 {itemPrefix}
-                                {_labels[e]}
+                                {!disableLabel && (labels[e] || _labels[e])}
                                 {itemSuffix}
                             </Text>
                             {/* TODO: google play, apple store */}
