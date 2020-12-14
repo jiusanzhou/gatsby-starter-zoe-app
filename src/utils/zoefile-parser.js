@@ -21,6 +21,10 @@ const _systemKeys = {
         type: Object,
         keys: ["mapping"],
     },
+    flags: {
+        type: Object,
+        keys: ["flags"],
+    },
     proxy: {
         type: Object,
         keys: ["proxy"],
@@ -42,6 +46,8 @@ const _sysKeysMap = () => {
 const _eval = (s) => {
     const __dirname = _global.__dirname
     const zoe = _global.zoe
+    // ignore the lint
+    if (__dirname === zoe) {}
     return eval(s)
 }
 

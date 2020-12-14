@@ -8,6 +8,7 @@ const crypto = require("crypto");
 const path = require("path");
 const template = require("lodash.template");
 const { loadZoefile } = require("./src/utils/zoefile");
+const { pageWrapHelper } = require("./src/helper/page-wrapper");
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -24,13 +25,13 @@ exports.onCreateWebpackConfig = ({ actions }) => {
 // TODO: auto search in src and find module.createNode
 const _needCreateNodes = ["src/helper/app-release", "src/helper/remote-image"];
 
+// load siteMetadata from zoefile
+const { siteMetadata } = loadZoefile();
+
 // import nodes to create, how to create multi
 exports.sourceNodes = async ({ actions }) => {
     // get siteMeta data
     // create node
-
-    // load siteMetadata from zoefile
-    const { siteMetadata } = loadZoefile();
 
     // loads all nodes we need to create
     await Promise.all(
@@ -72,11 +73,9 @@ exports.sourceNodes = async ({ actions }) => {
 exports.onCreateNode = ({ node }) => {};
 
 // create pages
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ actions }) => {
     // load siteMetadata from zoefile
-    const {
-        siteMetadata: { pages = {} },
-    } = loadZoefile();
+    const { pages = {} } = siteMetadata;
 
     // create pages from metadata, if we can found component page, set as a layout
     Object.keys(pages).forEach((key) => {
@@ -84,15 +83,32 @@ exports.createPages = async ({ graphql, actions }) => {
         // in some case, we define a page layout which can generate
         // multi pages by data.
         const page = pages[key];
+        const _path = page.path || key;
 
         // create page from pageProps
+        // we need to modify the page with pageWrapper
         actions.createPage({
-            path: page.path || key,
+            path: _path,
             component: path.resolve('./src/components/_page.jsx'),
             context: {
                 key,
                 page,
+                pageWrapper: pageWrapHelper(siteMetadata.pageWrappers, _path)
             }
         });
     });
 };
+
+// add more options or data to page
+exports.onCreatePage = ({ page, actions }) => {
+    let c = pageWrapHelper(siteMetadata.pageWrappers, page.path)
+    if (!c) return;
+    actions.deletePage(page)
+    actions.createPage({
+        ...page,
+        context: {
+            ...page.context,
+            pageWrapper: c,
+        }
+    })
+}

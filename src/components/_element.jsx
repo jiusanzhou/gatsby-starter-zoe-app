@@ -116,3 +116,4 @@ installComponent(require("./socials"), { key: "Socials" });
 // install custom views
 installComponent(require("../views/app-release"), { as: "AppRelease" });
 installComponent(require("../views/logo"), { as: "ViewLogo" });
+installComponent(require("../views/_wechat-broken-guide"), { as: "WechatBrokenGuide" });
