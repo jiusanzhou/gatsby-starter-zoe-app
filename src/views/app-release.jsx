@@ -7,7 +7,7 @@ import {
 } from "react-icons/ai";
 
 import { FaAppStore } from "react-icons/fa";
-import { Box, Button, Flex, Text } from "@chakra-ui/core";
+import { Box, Button, Flex, SimpleGrid, Text } from "@chakra-ui/core";
 
 import { GithubVersionProvider } from "../helper/app-release";
 import { useStaticQuery, graphql } from "gatsby";
@@ -30,6 +30,11 @@ const _labels = {
     windows: "Windows",
     macos: "MacOS",
 };
+
+const _metaLabels = {
+    updateAt: 'Update at:',
+    version: 'Version:',
+}
 
 const _nodata = () => {
     return (
@@ -59,6 +64,8 @@ const DownloadButtons = ({
 
     itemPrefix,
     itemSuffix,
+
+    metaLabels = {},
 
     colorScheme,
 
@@ -158,7 +165,10 @@ const DownloadButtons = ({
                             </Text>
                             {/* TODO: google play, apple store */}
                         </Button>
-                        {/* <Text mt=".4rem" opacity=".5">Update at: </Text> */}
+                        <SimpleGrid mt=".2rem" rows="2">
+                            <Text opacity=".5">{metaLabels['version'] || _metaLabels['version']} {vdata.version}</Text>
+                            <Text opacity=".5">{metaLabels['updateAt'] || _metaLabels['updateAt']} {vdata.created_at}</Text>
+                        </SimpleGrid>
                     </Flex>
                 )) || <_nodata />}
         </Flex>
