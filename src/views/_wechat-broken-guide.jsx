@@ -17,7 +17,7 @@ export default ({
             w="100vw"
             p="2rem"
         >
-            <Center flexDir="column">
+            <Center flexDir="column" h="100vh">
                 <Logo
                     imageProps={{
                         w: "5rem",
