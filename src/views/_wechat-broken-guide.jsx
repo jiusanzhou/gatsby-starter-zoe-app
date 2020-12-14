@@ -4,6 +4,7 @@ import Logo from "./logo";
 
 export default ({
     title = "Zoe App",
+    description = "We can't open in WeChat, please open the url in browser.",
     tip = "Click the button, Open the url in Browser.",
     tipProps = {},
 }) => {
@@ -14,6 +15,7 @@ export default ({
             alignItems="center"
             h="100vh"
             w="100vw"
+            p="2rem"
         >
             <Center flexDir="column">
                 <Logo
@@ -24,19 +26,23 @@ export default ({
                     clickable={false}
                     minimal={true}
                 />
-                <Text mt="1rem">{title}</Text>
+                {title && <Text mt="1rem">{title}</Text>}
+                {description && <Text mt=".5rem" textAlign="center">{description}</Text>}
             </Center>
-            <Box
-                borderStyle="solid"
-                borderWidth="1px"
-                borderColor="blue.300"
-                borderRadius=".5rem"
-                position="fixed"
-                right="1rem"
-                top="1rem"
-                p=".5rem"
-                {...tipProps}
-            >{tip}</Box>
+            {tip && (
+                <Box
+                    borderRadius=".5rem"
+                    position="fixed"
+                    right="1rem"
+                    top="1rem"
+                    p=".5rem"
+                    bg="green.500"
+                    color="white"
+                    {...tipProps}
+                >
+                    {tip}
+                </Box>
+            )}
         </Flex>
     );
 };

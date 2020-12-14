@@ -138,6 +138,7 @@ pages:
       subTitle:
         type: IconButton
         isRound: true
+        mt: 1rem
         icon:
           type: SunIcon
       description:
@@ -171,6 +172,8 @@ pages:
       # theme: grey
       # rounded: 2rem
       mt: 1rem
+      wraperProps:
+        p: 1rem
 
 # for app release, we need to add github release source
 releaseRepo:
@@ -195,38 +198,9 @@ remoteImageUrlPatterns: # must has :// as default
 
 pageWrappers:
 - path: "*"
-  match: "/[Mm]icro[Mm]essager|[Aa]lipay/.test(navigator.userAgent)"
+  match: "/[Mm]icro[Mm]essenger|[Aa]lipay/.test(navigator.userAgent)"
   component:
-    type: Flex
-    bg: grey.50
-    justifyContent: center
-    alignItems: center
-    h: 100vh
-    w: 100vw
-    children:
-    - type: Center
-      flexDir: column
-      children:
-      - type: ViewLogo
-        minimal: true
-        clickable: false
-        imageProps:          
-          w: 5rem
-          rounded: 1rem
-      - type: Text
-        mt: 1rem
-        children: "Zoe App"
-    - type: Box      
-      borderStyle: solid
-      borderWidth: 1px
-      borderColor: blue.300
-      borderRadius: .5rem
-      position: fixed
-      right: 1rem
-      top: 1rem
-      p: .5rem
-      children: "Click the button, Open the url in Browser."
-
+    type: WechatBrokenGuide
 
 # can register a component
 

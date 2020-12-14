@@ -1,8 +1,6 @@
 import React from "react";
 import _element from "./_element";
 
-import WechatBrokenGuide from "../views/_wechat-broken-guide"
-
 const wrapElement = ({ element, props: { pageContext: { pageWrapper = {} } } }) => {
     let m = false;
     try { m = eval(pageWrapper.match) } catch (err) {}
@@ -17,9 +15,6 @@ const wrapElement = ({ element, props: { pageContext: { pageWrapper = {} } } }) 
     //         return element;
     //     }
     // }
-
-    // TODO: remove, this just for debug
-    // return <WechatBrokenGuide />;
 
     // just return config element
     return <_element {...pageWrapper.component} />;
