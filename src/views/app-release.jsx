@@ -165,7 +165,7 @@ const DownloadButtons = ({
                             </Text>
                             {/* TODO: google play, apple store */}
                         </Button>
-                        <SimpleGrid mt=".2rem" rows="2">
+                        <SimpleGrid mt=".8rem" rows="2">
                             <Text opacity=".5">{metaLabels['version'] || _metaLabels['version']} {vdata.version}</Text>
                             <Text opacity=".5">{metaLabels['updateAt'] || _metaLabels['updateAt']} {vdata.created_at}</Text>
                         </SimpleGrid>
