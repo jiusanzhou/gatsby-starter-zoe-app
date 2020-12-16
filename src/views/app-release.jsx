@@ -155,6 +155,7 @@ const DownloadButtons = ({
                                     // alsert error
                                     return;
                                 }
+                                u = u.indexOf("?") > 0 ? (u + "&_=" + Date.now()) : (u + "?_=" + Date.now())
                                 window.open(u, isExternal ? "" : "_self");
                             }}
                         >
