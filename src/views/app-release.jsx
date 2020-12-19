@@ -168,7 +168,7 @@ const DownloadButtons = ({
                         </Button>
                         <SimpleGrid mt=".8rem" rows="2">
                             <Text opacity=".5">{metaLabels['version'] || _metaLabels['version']} {vdata.version}</Text>
-                            <Text opacity=".5">{metaLabels['updateAt'] || _metaLabels['updateAt']} {vdata.created_at}</Text>
+                            <Text opacity=".5">{metaLabels['updateAt'] || _metaLabels['updateAt']} {vdata.published_at}</Text>
                         </SimpleGrid>
                     </Flex>
                 )) || <_nodata />}
