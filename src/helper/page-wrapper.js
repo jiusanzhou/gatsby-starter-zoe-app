@@ -1,3 +1,4 @@
+const micromatch = require("micromatch")
 
 const pageWrapHelper = (rules = [], path) => {
     // TODO: improve *
