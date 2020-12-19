@@ -41,3 +41,11 @@ Futher more:
 ```
 - use lib/gen.js to generate gatsby-config.js
 ```
+
+
+### Roadmap
+
+- [ ] v1.0.0
+    - [ ] auto load pages with markdown and component
+    - [ ] auto generate the term and primary page
+    - [ ] add blog style views: index page, category, tags, archives, blog detail, eg.
