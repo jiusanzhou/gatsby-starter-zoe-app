@@ -9,7 +9,10 @@ import {
 import { FaAppStore } from "react-icons/fa";
 import { Box, Button, Flex, SimpleGrid, Text } from "@chakra-ui/core";
 
-import { GithubVersionProvider } from "../helper/app-release";
+import {
+    GithubVersionProvider,
+    GiteeVersionProvider,
+} from "../helper/app-release";
 import { useStaticQuery, graphql } from "gatsby";
 import { useSiteMetadata } from "../utils/hooks";
 
@@ -32,14 +35,20 @@ const _labels = {
 };
 
 const _metaLabels = {
-    updateAt: 'Update at:',
-    version: 'Version:',
-}
+    updateAt: "Update at:",
+    version: "Version:",
+};
 
-const _nodata = () => {
+const _providers = {
+    github: GithubVersionProvider,
+    gitee: GiteeVersionProvider,
+};
+
+const _nodata = ({ message }) => {
     return (
         <Box bg="tomato" px="1em" py=".5em">
             <Text color="white">There is no any release.</Text>
+            {message && <Text color="white">{message}</Text>}
         </Box>
     );
 };
@@ -49,12 +58,16 @@ const DownloadButtons = ({
     assets = {},
     urls = {},
 
+    // dynamic load versions data
+    dynamic = false,
+    // versions data provider
+    provider = "github",
+
     hiddenUnsupported = true,
     icons = {},
     labels = {},
     rounded = true,
     itemProps = {},
-    provider,
 
     disableLabel = false,
     isExternal = true,
@@ -78,9 +91,10 @@ const DownloadButtons = ({
     let [vdata, setVdata] = useState(null);
 
     // query release first
+    // TODO: change this to VersionRelease use provider to filter the github/gitee
     const data = useStaticQuery(graphql`
-        query GithubRelease {
-            allGithubRelease {
+        query VersionRelease {
+            allVersionRelease {
                 nodes {
                     id
                     repo
@@ -103,17 +117,26 @@ const DownloadButtons = ({
 
         // how to start as server build
         // if we are dynamic load
-        let ver = new GithubVersionProvider(repo, {
-            versions: data.allGithubRelease.nodes.filter((e) => e.repo === repo),
+        // TODO: provider can be a class
+        let ver = new _providers[provider](repo, {
+            versions: dynamic
+                ? null
+                : data.allVersionRelease.nodes.filter(
+                      (e) => e.repo === repo && e.provider === provider
+                  ),
         });
         ver.latestVersion()
             .then((v) => {
                 setVdata(v);
             })
             .finally(() => setLoaded(true));
-    }, [repo, data]);
+    }, [repo, data, dynamic, provider]);
 
     const { primaryColor } = useSiteMetadata();
+
+    if (!_providers[provider]) {
+        return <_nodata message={"Unknown provider: " + provider} />;
+    }
 
     if (
         !repo &&
@@ -134,7 +157,12 @@ const DownloadButtons = ({
                         (vdata && vdata.assets && vdata.assets[e])
                 )
                 .map((e, idx) => (
-                    <Flex key={`_${idx}`} p=".4em" flexDir="column" alignItems="center">
+                    <Flex
+                        key={`_${idx}`}
+                        p=".4em"
+                        flexDir="column"
+                        alignItems="center"
+                    >
                         <Button
                             rounded={rounded ? "full" : null}
                             leftIcon={_icons[e]}
@@ -155,7 +183,10 @@ const DownloadButtons = ({
                                     // alsert error
                                     return;
                                 }
-                                u = u.indexOf("?") > 0 ? (u + "&_=" + Date.now()) : (u + "?_=" + Date.now())
+                                u =
+                                    u.indexOf("?") > 0
+                                        ? u + "&_=" + Date.now()
+                                        : u + "?_=" + Date.now();
                                 window.open(u, isExternal ? "" : "_self");
                             }}
                         >
@@ -167,8 +198,16 @@ const DownloadButtons = ({
                             {/* TODO: google play, apple store */}
                         </Button>
                         <SimpleGrid mt=".8rem" rows="2">
-                            <Text opacity=".5">{metaLabels['version'] || _metaLabels['version']} {vdata.version}</Text>
-                            <Text opacity=".5">{metaLabels['updateAt'] || _metaLabels['updateAt']} {vdata.created_at}</Text>
+                            <Text opacity=".5">
+                                {metaLabels["version"] ||
+                                    _metaLabels["version"]}{" "}
+                                {vdata.version}
+                            </Text>
+                            <Text opacity=".5">
+                                {metaLabels["updateAt"] ||
+                                    _metaLabels["updateAt"]}{" "}
+                                {vdata.created_at}
+                            </Text>
                         </SimpleGrid>
                     </Flex>
                 )) || <_nodata />}

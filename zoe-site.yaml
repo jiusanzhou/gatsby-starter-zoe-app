@@ -151,7 +151,8 @@ pages:
       action: # this is a simple action or with type
         type: AppRelease # take a action type
         provider: github # select a provider
-        repo: moeapp/mtb-mobile
+        dynamic: true
+        repo: mstripe/stripe-go
         itemPrefix: 'Download '
         justify: [center, center, flex-start, flex-start]
         # hiddenUnsupported: false
@@ -176,8 +177,13 @@ pages:
         p: 1rem
 
 # for app release, we need to add github release source
-releaseRepo:
-- moeapp/mtb-mobile
+releases:
+- provider: github
+  repo: moeapp/automate
+
+# Just for github [DEPRECATED]
+# releaseRepo:
+# - stripe/stripe-go
 
 # extend for app landing page
 
