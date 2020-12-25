@@ -25,6 +25,7 @@
     "gatsby-source-graphql": "^2.7.6",
     "gatsby-transformer-sharp": "^2.2.13",
     "js-yaml": "^3.13.1",
+    "micromatch": "^4.0.2",
     "node-fetch": "^2.6.1",
     "prop-types": "^15.7.2",
     "react": "^16.9.0",

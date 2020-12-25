@@ -206,7 +206,7 @@ const DownloadButtons = ({
                             <Text opacity=".5">
                                 {metaLabels["updateAt"] ||
                                     _metaLabels["updateAt"]}{" "}
-                                {vdata.created_at}
+                                {vdata.published_at}
                             </Text>
                         </SimpleGrid>
                     </Flex>
