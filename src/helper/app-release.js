@@ -175,7 +175,7 @@ class GiteeVersionProvider {
         res.version = o.tag_name;
         res.prerelease = o.prerelease;
         res.created_at = o.created_at;
-        res.published_at = o.published_at;
+        res.published_at = o.published_at || o.created_at;
 
         // parse the assets
         let assets = {};
