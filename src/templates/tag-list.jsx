@@ -10,7 +10,7 @@ const TagList = ({ data }) => {
     return <Layout title="文章标签">
       <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
       title="标签" description={`共有 ${tags.length} 个标签`}>
-        <Tags items={tags.map((tag) => ({
+        <Tags mt="2" items={tags.map((tag) => ({
           ...tag,
           name: tag.fieldValue,
         }))} counted />

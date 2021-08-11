@@ -54,11 +54,11 @@ const _viewTypeContainers = {
         leadingProps: {
             h: ["4rem", "6rem"],
             w: ["5rem", "8rem"],
-            fontSize: [".7rem", ".9rem"]
+            fontSize: [".7rem", ".9rem"],
+            mr: 5,
         },
         bodyProps: {
             flex: 1,
-            ml: 5,
             overflow: "hidden"
         }
     }

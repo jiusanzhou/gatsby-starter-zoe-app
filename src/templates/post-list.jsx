@@ -18,7 +18,7 @@ const PostList = ({ data, pageContext }) => {
 
   return <Layout layout="default" title="博客">
     <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
-      title="博客文章">
+      title="博客文章" description="写作是一种自我学习的方式">
       <HStack my="2rem" spacing="5" justifyContent="flex-end">
         {/* <MLink href="archives">查看归档</MLink> */}
         <MLink href="tags">全部标签</MLink>
@@ -30,13 +30,13 @@ const PostList = ({ data, pageContext }) => {
       }))} subTitle={({ data: { tags }, ...props }) => (
         <Flex color={useColorModeValue("gray.400", "gray.700")} mt=".3rem">
           {/* <Text>{createdTime}</Text> */}
-          <Tags simple items={tags} />
+          <Tags simple items={tags.slice(0, 3)} />
         </Flex>
       )} trailing={({ data: { createdTime }, ...props}) => (
         <Flex display={["none", "none", "flex", "flex", "flex"]} ml="1rem" alignItems="center" w="fit-content" color={useColorModeValue("gray.400", "gray.700")}>
           <Text>{createdTime}</Text>
         </Flex>
-      )} />
+      )} leading={({ data: {}, ...props}) => null}/>
     </MSection>
   </Layout>
 }
