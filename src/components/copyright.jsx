@@ -10,11 +10,13 @@ import {
     PopoverContent,
     PopoverTrigger,
     Text,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { AiFillHeart } from "react-icons/ai";
 
 import Image from "./image";
 import { Socials } from "./socials";
+import AuthorCard from "../views/author-card";
+import MLink from "./link";
 
 const Copyright = ({ copyright = {}, author = {}, ...props }) => {
     return (
@@ -24,7 +26,7 @@ const Copyright = ({ copyright = {}, author = {}, ...props }) => {
             ) : (
                 <>
                     <Text>
-                        {"©"} {new Date().getFullYear()} {copyright.holder}
+                        {"©"} {copyright.from && `${copyright.from} -`} {new Date().getFullYear()} {copyright.holder}
                         {" - All rights reserved."}
                     </Text>
                     <Text as={Box} ml=".5rem">
@@ -35,60 +37,16 @@ const Copyright = ({ copyright = {}, author = {}, ...props }) => {
                                 {" by "}
                                 <Popover trigger="hover">
                                     <PopoverTrigger>
-                                        <Link
-                                            isExternal
-                                            href={
-                                                author.href || author.homepage
-                                            }
-                                        >
-                                            {author.name}
-                                        </Link>
+                                        <Box as="span">
+                                            <MLink href={author.href || author.homepage}>
+                                                {author.name}
+                                            </MLink>
+                                        </Box>
                                     </PopoverTrigger>
                                     <PopoverContent p="1rem" rounded="1rem">
                                         <PopoverArrow />
                                         <PopoverBody>
-                                            <Flex>
-                                                {author.avatar && (
-                                                    <Box>
-                                                        <Image
-                                                            src={author.avatar}
-                                                            rounded="full"
-                                                            width="4rem"
-                                                            height="4rem"
-                                                        />
-                                                    </Box>
-                                                )}
-                                                {author.name && (
-                                                    <Box ml="1rem">
-                                                        <Text
-                                                            as={"h3"}
-                                                            fontWeight="bold"
-                                                        >
-                                                            {author.name}
-                                                        </Text>
-                                                        {/* TODO: just add need */}
-                                                        <Socials
-                                                            socials={(() => {
-                                                                const data = {
-                                                                    ...author,
-                                                                };
-                                                                delete data.name;
-                                                                delete data.avatar;
-                                                                delete data.minibio;
-                                                                return data;
-                                                            })()}
-                                                            mt=".2rem"
-                                                        />
-                                                    </Box>
-                                                )}
-                                            </Flex>
-                                            {author.minibio && (
-                                                <Box mt=".5rem">
-                                                    <Text fontSize="sm">
-                                                        {author.minibio}
-                                                    </Text>
-                                                </Box>
-                                            )}
+                                            <AuthorCard />
                                         </PopoverBody>
                                     </PopoverContent>
                                 </Popover>

@@ -1,6 +1,6 @@
 
 import React, { useEffect } from "react";
-import { IconButton } from "@chakra-ui/core";
+import { IconButton } from "@chakra-ui/react";
 
 import { ArrowUpIcon } from "@chakra-ui/icons";
 

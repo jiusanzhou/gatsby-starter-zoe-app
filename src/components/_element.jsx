@@ -1,5 +1,5 @@
 import React from "react";
-import * as chakracore from "@chakra-ui/core";
+import * as chakracore from "@chakra-ui/react";
 import * as chakraicons from "@chakra-ui/icons";
 
 import _Empty from "./_empty";
@@ -67,6 +67,8 @@ export default createElement;
 //         : n;
 // };
 
+export const allComponents = _componentRegistry;
+
 export const installComponent = (m, { key = "default", as } = {}) => {
     let c = m[key || "default"];
     if (!c) {
@@ -101,6 +103,7 @@ export const installComponent = (m, { key = "default", as } = {}) => {
 
 // import third package
 installComponent(require("react-markdown"), { as: "Markdown" });
+installComponent(require("gatsby-plugin-mdx"), { key: "MDXRenderer" });
 
 // install custom component
 installComponent(require("./copyright"), { key: "Copyright" });
@@ -109,11 +112,22 @@ installComponent(require("./image"), { as: "MImage" });
 installComponent(require("./logo"), { as: "Logo" });
 installComponent(require("./navlinks"), { as: "NavLinks" });
 installComponent(require("./screenshot"), { as: "ScreenShot" });
-installComponent(require("./section"), { as: "MSection" });
+installComponent(require("./section"), { as: ["MSection", "Section"] });
 installComponent(require("./seo"), { as: "SEO" });
 installComponent(require("./socials"), { key: "Socials" });
+installComponent(require("./colormode"), { as: "ColorModeSwitcher" });
+installComponent(require("./mdx"), { as: ["mdxProvider", "MDXProvider"] });
 
 // install custom views
 installComponent(require("../views/app-release"), { as: "AppRelease" });
 installComponent(require("../views/logo"), { as: "ViewLogo" });
+installComponent(require("../views/author-card"), { as: "AuthorCard" });
+installComponent(require("../views/posts-preview"), { as: "PostsPreview" });
+installComponent(require("../views/projects-preview"), { as: "ProjectsPreview"})
 installComponent(require("../views/_wechat-broken-guide"), { as: "WechatBrokenGuide" });
+
+// with functoins
+installComponent(require("./_with"), { key: "_withBackground" })
+
+// templates for alone veiw
+

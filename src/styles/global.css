@@ -15,7 +15,6 @@ body {
     scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
 }
 
-a:focus,
-button:focus {
+*:focus, *[data-focus] {
     box-shadow: none !important;
 }

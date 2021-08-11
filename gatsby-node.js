@@ -4,11 +4,25 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const crypto = require("crypto");
 const path = require("path");
-const template = require("lodash.template");
+const kebabCase = require(`lodash.kebabcase`);
+
 const { loadZoefile } = require("./src/utils/zoefile");
-const { pageWrapHelper } = require("./src/helper/page-wrapper");
+const { pageWrapHelper } = require("./src/utils/wraper");
+const { mdxResolverPassthrough, purePath } = require("./src/utils/helper");
+
+// load siteMetadata from zoefile
+const { siteMetadata } = loadZoefile();
+
+// TODO: auto search in src and
+const plugins = [
+    "src/plugins/app-release",
+    "src/plugins/remote-image",
+    "src/plugins/static-page", // must before custom page
+    "src/plugins/custom-page",
+    "src/plugins/repo-project",
+    "src/plugins/blog-post",
+];
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -17,26 +31,67 @@ exports.onCreateWebpackConfig = ({ actions }) => {
         resolve: {
             modules: [path.resolve(__dirname, "src"), "node_modules"],
             alias: { $: path.resolve(__dirname, "src") },
+            fallback: {
+              path: require.resolve('path-browserify'),
+            },
         },
     });
 };
 
-// ======== create node source ======
-// TODO: auto search in src and find module.createNode
-const _needCreateNodes = ["src/helper/app-release", "src/helper/remote-image"];
+// Create general interfaces that you could can use to leverage other data sources
+// The core theme sets up MDX as a type for the general interface
+exports.createSchemaCustomization = ({ actions, schema }, themeOptions = {}) => {
+  const { createTypes, createFieldExtension } = actions;
 
-// load siteMetadata from zoefile
-const { siteMetadata } = loadZoefile();
+  const { basePath = "/" } = siteMetadata;
+
+  const slugify = (source) => {
+    const slug = source.slug || kebabCase(source.title);
+    return purePath(`/${basePath}/${slug}`)
+  }
+
+  createFieldExtension({
+    name: `slugify`,
+    extend() {
+      return {
+        resolve: slugify,
+      }
+    },
+  });
+
+  createFieldExtension({
+      name: `mdxpassthrough`,
+      args: {
+        fieldName: `String!`,
+      },
+      extend({ fieldName }) {
+          return {
+              resolve: mdxResolverPassthrough(fieldName),
+          }
+      }
+  });
+
+  // ok let's create the types
+  createTypes(plugins.map((e) => {
+    let td = require(path.resolve(__dirname, e)).typeData;
+    switch (typeof td) {
+      case 'string': return td;
+      case 'function': return td(siteMetadata);
+    }
+    return;
+  }).filter((i) => i).join(`
+  
+  `));
+}
+
+// ======== create node source ======
 
 // import nodes to create, how to create multi
-exports.sourceNodes = async ({ actions }) => {
-    // get siteMeta data
-    // create node
-
+exports.sourceNodes = async ({ actions, createContentDigest }) => {
     // loads all nodes we need to create
     await Promise.all(
-        _needCreateNodes.map(async (e) => {
-            const c = require(path.resolve(__dirname, e)).createNode;
+        plugins.map(async (e) => {
+            const c = require(path.resolve(__dirname, e)).sourceNode;
             if (!c) return;
 
             // just call the function
@@ -48,55 +103,50 @@ exports.sourceNodes = async ({ actions }) => {
             const res = typeof data.then !== "function" ? data : await data;
 
             // TODO: check is res is a array
-            if (Array.isArray(res))
-                res.forEach((v) => {
-                    // create release node
-                    actions.createNode({
-                        ...v,
-                        id: v.id || "" + Date.now(), // TODO: use a rela id
-                        internal: {
-                            type: c.name,
-                            contentDigest: crypto
-                                .createHash(`md5`)
-                                .update(JSON.stringify(v))
-                                .digest(`hex`),
-                            mediaType: c.mediaType || "application/json",
-                        },
-                    });
+            if (!Array.isArray(res)) return;
+
+            res.forEach((v) => {
+                // create release node
+                actions.createNode({
+                    ...v,
+                    id: v.id || "" + Date.now(), // TODO: use a rela id
+                    internal: {
+                        type: c.name,
+                        contentDigest: createContentDigest(v),
+                        content: JSON.stringify(v),
+                        mediaType: c.mediaType || "application/json",
+                    },
                 });
+            });
         })
     );
 };
 
 // on the create node
-// no need at this time
-exports.onCreateNode = ({ node }) => {};
+// - turn a mdx node to post or page
+// - parse remote images from a mdx node
+exports.onCreateNode = async (params, themeOptions) => {
+  await Promise.all(
+    plugins.map(async (e) => {
+      const c = require(path.resolve(__dirname, e)).onCreateNode;
+      switch (typeof c) {
+        case 'function': return c(siteMetadata, params);
+      }
+    })
+  );
+};
 
 // create pages
-exports.createPages = async ({ actions }) => {
-    // load siteMetadata from zoefile
-    const { pages = {} } = siteMetadata;
-
-    // create pages from metadata, if we can found component page, set as a layout
-    Object.keys(pages).forEach((key) => {
-        // set p as a path, but how to set page like a template
-        // in some case, we define a page layout which can generate
-        // multi pages by data.
-        const page = pages[key];
-        const _path = page.path || key;
-
-        // create page from pageProps
-        // we need to modify the page with pageWrapper
-        actions.createPage({
-            path: _path,
-            component: path.resolve('./src/components/_page.jsx'),
-            context: {
-                key,
-                page,
-                pageWrapper: pageWrapHelper(siteMetadata.pageWrappers, _path)
-            }
-        });
-    });
+exports.createPages = async (params, themeOptions) => {
+  await Promise.all(
+    plugins.map(async (e) => {
+      const c = require(path.resolve(__dirname, e)).createPages;
+      if (!c) return;
+      switch (typeof c) {
+        case 'function': return c(siteMetadata, params);
+      }
+    })
+  )
 };
 
 // add more options or data to page

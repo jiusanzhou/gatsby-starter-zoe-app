@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, Flex, Text } from "@chakra-ui/core";
+import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Action from "../components/action";
 
@@ -11,7 +11,7 @@ const _defaultProps = {
     section: {
         p: ["1em", "2em", "2.5em 0", "5em 0"],
         mb: [".5em", "1em", "1.5em", "2em"],
-        width: ["100%", "100%", "100%", "70rem"], // TODO: with siteMeta and layout props
+        width: ["100%", "100%", "100%", "60rem"], // TODO: with siteMeta and layout props
         marginLeft: "auto",
         marginRight: "auto",
     },
@@ -25,7 +25,7 @@ const _defaultProps = {
         fontFamily: null,
         fontSize: ["sm", "md", "md", "xl"],
         fontWeight: "medium",
-        color: "gray",
+        color: "gray.700",
     },
     desc: {
         fontFamily: null,
@@ -38,13 +38,12 @@ const _themesProps = {
     dark: {
         section: {
             background: "#000",
-            color: "#fff",
+            // color: "#fff",
         },
     },
     light: {
         section: {
-            // background: "#fff",
-            color: "#000",
+            
         },
     },
     grey: {
@@ -58,10 +57,10 @@ const _themesProps = {
 const _positionProps = {
     left: {
         section: {
-            flexDirection: ["column", "column", "row", "row"],
+            flexDirection: ["column", "column", "row", "row", "row"],
             alignItems: "center",
             justifyContent: "space-between",
-            textAlign: ["center", "center", "left", "left"],
+            textAlign: ["center", "center", "left", "left", "left"],
         },
     },
     right: {
@@ -71,10 +70,11 @@ const _positionProps = {
                 "column-reverse",
                 "row-reverse",
                 "row-reverse",
+                "row-reverse",
             ],
             alignItems: "center",
             justifyContent: "space-between",
-            textAlign: ["center", "center", "left", "left"], // TODO: right or left
+            textAlign: ["center", "center", "left", "left", "left"], // TODO: right or left
         },
     },
     top: {
@@ -134,7 +134,7 @@ const MSection = ({
                 {..._getValue(_positionProps, {}, position, "section")}
                 {..._getValue(_themesProps, {}, theme, "section")}
                 {..._mustValue({
-                    width: ["100%", "80%", "80%", "80%", "70rem"],
+                    width: ["100%", "100%", "80%", "80%", "60rem"],
                 })} // TODO: from layout
                 {...props}
             >
@@ -146,7 +146,7 @@ const MSection = ({
                         {..._getValue(_themesProps, {}, theme, "header")}
                     >
                         {subTitle ? (
-                            <Text
+                            <Heading
                                 as="h3"
                                 {..._getValue(_defaultProps, {}, "subTitle")}
                                 {..._getValue(
@@ -164,10 +164,10 @@ const MSection = ({
                                 {...subTitleProps}
                             >
                                 {subTitle}
-                            </Text>
+                            </Heading>
                         ) : null}
                         {title ? (
-                            <Text
+                            <Heading
                                 as="h2"
                                 {..._getValue(_defaultProps, {}, "title")}
                                 {..._getValue(
@@ -180,7 +180,7 @@ const MSection = ({
                                 {...titleProps}
                             >
                                 {title}
-                            </Text>
+                            </Heading>
                         ) : null}
                         {description ? (
                             <Text

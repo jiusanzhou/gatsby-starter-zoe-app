@@ -1,11 +1,14 @@
 import React from "react";
 
+import { ChakraProvider } from "@chakra-ui/react";
+
 import _default from "./default";
 import empty from "./empty";
 
 import "../styles/global.css";
 import { useSiteMetadata } from "../utils/hooks";
 import { AccentGlobal } from "../components/accent";
+import MDXRoot from "../components/mdx";
 
 const _layouts = {
     default: _default,
@@ -41,9 +44,11 @@ export default ({ layout = "default", ...props }) => {
 
     // create children in here???
     return (
-        <>
+        <ChakraProvider>
             <AccentGlobal primaryColor={primaryColor} {..._props} />
-            {React.createElement(_layouts[name] || _default, _props)}
-        </>
+            <MDXRoot>
+                {React.createElement(_layouts[name] || _default, _props)}
+            </MDXRoot>
+        </ChakraProvider>
     );
 };

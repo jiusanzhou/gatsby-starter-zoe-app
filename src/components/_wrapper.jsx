@@ -1,5 +1,5 @@
 import React from "react";
-import _element from "./_element";
+import Element from "./_element";
 
 const wrapElement = ({ element, props: { pageContext: { pageWrapper = {} } } }) => {
     let m = false;
@@ -17,7 +17,7 @@ const wrapElement = ({ element, props: { pageContext: { pageWrapper = {} } } }) 
     // }
 
     // just return config element
-    return <_element {...pageWrapper.component} />;
+    return <Element {...pageWrapper.component} />;
 };
 
 export default wrapElement;

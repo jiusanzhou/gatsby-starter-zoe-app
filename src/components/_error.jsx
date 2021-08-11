@@ -1,5 +1,5 @@
 import React from "react";
-import { Code } from "@chakra-ui/core";
+import { Code } from "@chakra-ui/react";
 import Section from "./section";
 
 export default ({ type }) => {

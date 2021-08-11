@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Center, Flex, Text } from "@chakra-ui/core";
+import { Box, Center, Flex, Text } from "@chakra-ui/react";
 import Logo from "./logo";
 
 export default ({

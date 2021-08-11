@@ -18,7 +18,8 @@ import {
 import { RiTelegramLine } from "react-icons/ri";
 
 import PropTypes from "prop-types";
-import { Link, List, ListItem, IconButton } from "@chakra-ui/core";
+import { List, ListItem, IconButton } from "@chakra-ui/react";
+import MLink from "./link";
 
 const _data_base = {
     facebook: "https://www.facebook.com/",
@@ -46,7 +47,7 @@ export const SocialLink = ({ type, username, base, ...props }) => {
     if (!username || typeof base !== 'string') return null;
     const icon = _data_icon[type];
     return (
-        <Link isExternal href={`${base}${username}`} title={username}>
+        <MLink pure href={`${base}${username}`} title={username}>
             <IconButton
                 border=""
                 size="sm"
@@ -55,7 +56,7 @@ export const SocialLink = ({ type, username, base, ...props }) => {
                 icon={icon}
                 {...props}
             />
-        </Link>
+        </MLink>
     );
 };
 

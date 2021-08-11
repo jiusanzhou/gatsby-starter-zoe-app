@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Box, Button, Text } from "@chakra-ui/core";
+import { Box, Button, Text } from "@chakra-ui/react";
 
 const Action = ({
     children,
@@ -11,10 +11,11 @@ const Action = ({
     position = "bottom",
     to,
     onClick,
+    ...props
 }) => {
     return (
         <Box>
-            <Button to={to} onClick={onClick}>
+            <Button to={to} onClick={onClick} {...props}>
                 {[title, children].filter((i) => i)}
             </Button>
             {description ? <Text>{description}</Text> : null}

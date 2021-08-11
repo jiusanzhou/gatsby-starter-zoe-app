@@ -1,6 +1,6 @@
-import { Box, Link, List, ListItem, Text } from "@chakra-ui/core";
+import { Box, Link, List, ListItem, Text } from "@chakra-ui/react";
 import React from "react";
-import { Link as GatsbyLink } from "gatsby"
+import MLink from "./link";
 
 export default ({ links = [] }) => {
     // merge links with catetory
@@ -22,7 +22,7 @@ export default ({ links = [] }) => {
             <List>
                 {blocks[c].map((i) => (
                     <ListItem mt=".5rem" key={`_${i.title}`}>
-                        <Link as={GatsbyLink} to={i.href}>{i.title}</Link>
+                        <MLink pure href={i.href}>{i.title}</MLink>
                     </ListItem>
                 ))}
             </List>

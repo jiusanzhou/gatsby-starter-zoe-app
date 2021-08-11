@@ -1,0 +1,123 @@
+const path = require("path");
+const { purePath } = require("../utils/helper");
+
+const typeData = `
+type PostTag {
+    name: String!
+    slug: String!
+}
+
+type MdxPost implements Node {
+    id: ID!
+    slug: String @mdxpassthrough(fieldName: "slug")
+    title: String!
+    createdTime: Date! @dateformat
+    modifiedTime: Date! @dateformat
+    excerpt(pruneLength: Int = 140, truncate: Boolean = true): String! @mdxpassthrough(fieldName: "excerpt")
+    body: String! @mdxpassthrough(fieldName: "body")
+    html: String! @mdxpassthrough(fieldName: "html")
+    timeToRead: Int @mdxpassthrough(fieldName: "timeToRead")
+    tags: [PostTag]
+    banner: File @fileByRelativePath
+    description: String
+    canonicalUrl: String
+}`;
+
+const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
+    const {
+        basePathBlog,
+        blogListTemplate, blogPageTemplate,
+        tagListTemplate,
+        dateFormat,
+    } = siteMetadata;
+
+    const { createPage } = actions;
+
+    let _basePathBlog = basePathBlog || "/blog"
+
+    let _blogListTemplate = blogListTemplate || "./src/templates/post-list.jsx"
+    let _blogPageTemplate = blogPageTemplate || "./src/templates/post-page.jsx"
+    let _tagListTemplate = tagListTemplate || "./src/templates/tag-list.jsx"
+
+    let _dateFormat = dateFormat || "MMMM DD, YYYY"
+
+    // default blog list path is the blog root path
+    let _blogListPath = _basePathBlog
+
+    // if not ""(never) and /
+    if (_basePathBlog && _basePathBlog !== "/") {
+        // clean the last /
+        if (_basePathBlog.endsWith("/")) _basePathBlog = _basePathBlog.slice(0, -1)
+
+        // append s to the blog root path
+        _blogListPath = _basePathBlog + "s" // /blogs
+    }
+
+    // create blog list page with paginate??
+    createPage({
+        path: _blogListPath, // TODO: paginate?
+        component: path.resolve(_blogListTemplate),
+        context: {
+            formatString: _dateFormat
+            // TODO: paginate?
+            // limit: 10,
+            // skip: 0
+        },
+    })
+
+    // create tags list
+    createPage({
+        path: _blogListPath + "/tags",
+        component: path.resolve(_tagListTemplate),
+        context: {
+            blogListPath: _blogListPath
+        }
+    })
+
+    // query all post and create blog post
+    const result = await graphql(`
+        query {
+            allMdxPost(sort: { fields: createdTime, order: DESC }) {
+                nodes {
+                    slug
+                }
+            }
+            tags: allMdxPost(sort: { fields: tags___name, order: DESC }) {
+                group(field: tags___name) {
+                    fieldValue
+                }
+            }
+        }
+    `);
+
+    if (result.errors) {
+        reporter.panicOnBuild(`There was an error loading your posts or pages`, result.errors)
+        return
+    }
+
+    // create pages from MdxPage
+    const posts = result.data.allMdxPost.nodes
+
+    posts.forEach(({ slug }) => {
+        // create each post
+        createPage({
+            path: purePath(`${_basePathBlog}/${slug}`), // TODO: paginate?
+            component: path.resolve(_blogPageTemplate),
+            context: {
+                formatString: _dateFormat,
+                slug,
+            },
+        })
+    })
+
+    // create each tags
+    const tags = result.data.tags.group
+}
+
+// call in the sourceNodes to create nodes
+// exports.sourceNode = sourceNode;
+
+// register the types
+exports.typeData = typeData;
+
+exports.createPages = createPages;

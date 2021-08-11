@@ -1,3 +1,5 @@
+// const { loadObject, isConfig } = require("./config");
+
 // for global access
 const _global = {
     zoe: {}, // must set will parse
@@ -79,6 +81,11 @@ const _genVal = (s) => {
                 return _eval("`" + s + "`");
             }
 
+            // // @a.json, @a.yaml, @a.toml
+            // if (v.indexOf("@") === 0 && isConfig(v.slice(1))) {
+            //     v = loadObject(v.slice(1));
+            // }
+
             // TODO: load value hooks
             return v;
         default:
@@ -95,12 +102,24 @@ const buildPlugin = (plg) => {
         case "object":
             // build plugin with layout
             let name = Object.keys(plg)[0];
+            let opts = _genVal(plg[name]);
+
+            // Plugins plugins
+            Object.keys(opts).forEach(key => {
+                if (key === "plugins" || key.endsWith("Plugins")) {
+                    opts[key] = opts[key].map((i) => buildPlugin(i))
+                }
+            });
+
             return {
                 resolve: name,
-                options: _genVal(plg[name]),
+                options: opts,
             };
+            // if options.plugins
+            // then build plugin for too
         default:
-            return null;
+            // return plg???
+            return plg;
     }
 };
 

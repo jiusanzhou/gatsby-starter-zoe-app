@@ -6,7 +6,7 @@ logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/ff
 lang: zh-CN
 
 # display in the right of the logo
-version: beta
+version: alpha
 
 author:
   name: Zoe
@@ -14,7 +14,7 @@ author:
   homepage: 'https://zoe.im'
   # TODO: or use _zoe: Object
   avatar: https://avatars1.githubusercontent.com/u/2942042?s=200 # zoe(sharp=true)
-  minibio: 知行合一。人生若只如初见，何事秋风悲画扇。等闲变却故人心，却道故人心易变。骊山语罢清宵半，泪雨霖铃终不怨。何如薄幸锦衣郎，比翼连枝当日愿。 
+  minibio: 知行合一，不将有限的生命献给无知、平庸和低俗。 
   github: 'zoeim'
   twitter: 'jiusanzhou'
   facebook: 'jiusanzhou'
@@ -27,10 +27,12 @@ organization:
   logo: ${zoe.logo}
 
 copyright:
+  from: 2011
   # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
   holder: Zoe # take value from organization - author
   location: Hangzhou
 
+# footer links
 links:
 - title: Home
   category: Company
@@ -47,18 +49,62 @@ links:
 - title: More >>>
   category: Products
   href: /products
-- title: Golang
-  category: Services
-  href: /golang
+- title: App landing
+  category: Themes
+  href: /app-landing
 - title: More >>>
-  category: Services
+  category: Themes
   href: /projects
 
+# nav links
 navs:
-- title: Home
-  href: /
-- title: About
-  href: /about
+- title: Products
+  href: /products
+  items:
+  - title: KubeDB
+    description: Run production-grade Database on Kubernetes
+    href: https://kubedb.com/
+    icon: https://appscode.com/assets/images/products/kubedb/kubedb-icon.png
+    color: blue # ignore this?
+  - title: Stash
+    description: Backup your Kubernetes Stateful APplications
+    href: https://stash.run/
+    icon: https://appscode.com/assets/images/products/stash/stash-icon.png
+  - title: KubeVault
+    description: Tools for running HashiCorp Vault on Kubernetes
+    href: https://kubevault.com/
+    icon: https://appscode.com/assets/images/products/kubevault/kubevault-icon.png
+  - title: Kubeform
+    description: Provision cloud resources using Kubernetes CRDs & Terraform
+    href: https://kubeform.com/
+    icon: https://appscode.com/assets/images/products/kubeform/kubeform-icon.png
+- title: Open Source
+  href: /open-source/
+  items:
+  - title: Voyager
+    description: Secure HAProxy Ingress Controller for Kubernetes
+    href: https://voyagermesh.com/
+    icon: https://appscode.com/assets/images/products/voyager/voyager-icon.png
+  - title: Guard
+    description: Kubernetes Authentication WebHook Server
+    href: https://appscode.com/products/guard/
+    icon: https://appscode.com/assets/images/products/guard/guard-icon.png
+  - title: Kubed
+    description: Kubernetes cluster manager daemon
+    href: https://appscode.com/products/kubed/
+    icon: https://appscode.com/assets/images/products/kubed/kubed-icon.png
+  - title: Pharmer
+    description: Kubernetes Cluster Manager using Kubeadm & Cluster API
+    href: https://pharmer.cloud/
+    icon: https://appscode.com/assets/images/products/pharmer/pharmer-icon.png
+  - title: Swift
+    description: Ajax friendly Helm Tiller Proxy
+    href: https://appscode.com/products/swift/
+    icon: https://appscode.com/assets/images/products/swift/swift-icon.png
+  - title: Searchlight
+    description: Alerts for Kubernetes
+    href: https://appscode.com/products/searchlight/
+    icon: https://appscode.com/assets/images/products/searchlight/searchlight-icon.png
 - title: Services
   href: /services
   items:
@@ -67,7 +113,9 @@ navs:
   - title: Frontend from zero
     href: /services/frontend
 - title: Blog
-  href: /blog
+  href: /blogs
+- title: About
+  href: /about
 
 # social links with icons
 socials:
@@ -84,7 +132,7 @@ primaryColor: 'purple' #663399 # tomato how to change to colorSchema
 # layouts configuration
 layouts:
   default:
-    maxWidth: 70rem
+    maxWidth: 60rem
     header:
       logoProps:
         textColor: 'unset'
@@ -97,29 +145,6 @@ layouts:
       logoProps:
         textColor: 'unset'
 
-
-features:
-- title: Performance built-in
-  description: |
-    Gatsby automates code splitting, image optimization, inlining critical styles,
-    lazy-loading, prefetching resources, and more to ensure your site is fully optimized.
-    **No manual tuning required.**
-- title: Scalability — affordable and instant 
-  description: |
-    Gatsby sites don't require complex scaling operations or expensive hosting.
-    They scale when needed, but when traffic drops so does your usage — and your costs.
-    **Host at scale for pennies.**
-- title: Security by default
-  description: |
-    Gatsby’s serverless rendering generates static HTML at build time.
-    No server and no reachable database equals no malicious requests, DDOS attacks, or accidental exposure.
-    **A Gatsby site’s attack surface is nonexistent.**
-- title: Accessibility by design
-  description: |
-    Recognized by WebAIM as the most accessible web framework, we build in best practices like accessible routing,
-    progressive page enhancement and a built-in linting tool to find accessibility errors.
-    **Help make the web work for everyone.**
-
 # TODO: elements register elements
 elements:
   hero:
@@ -130,62 +155,21 @@ views:
 
 # pages, auto laod from src/pages
 pages:
-  /:
-    layout: default
-    children:
-    - type: MSection # TODO: auto register Section by src/components/section
-      title: ZoeAPP
-      subTitle:
-        type: IconButton
-        isRound: true
-        mt: 1rem
-        icon:
-          type: SunIcon
-      description:
-        children:
-        - type: Markdown
-          source: |
-            Create your app landing page ~~without code~~.
-            
-            Static websites and Progressive Web Applications are **secure**, **scalable**, **SEO-friendly**, and even up to **10x faster**.
-      action: # this is a simple action or with type
-        type: AppRelease # take a action type
-        provider: github # select a provider
-        dynamic: true
-        repo: mstripe/stripe-go
-        itemPrefix: 'Download '
-        justify: [center, center, flex-start, flex-start]
-        # hiddenUnsupported: false
-        # itemProps:
-        #   colorScheme: ${zoe.primaryColor}
-      children:
-        type: Center
-        mr: ['0', '0', 5rem, 5rem]
-        children:
-          type: ViewLogo
-          minimal: true
-          clickable: false
-          imageProps:
-            w: [5rem, 10rem, 15rem, 15rem]
-            rounded: [1rem, 1rem, 2rem, 2rem]
-      position: right
-      minH: calc(100vh - 20rem)
-      # theme: grey
-      # rounded: 2rem
-      mt: 1rem
-      wraperProps:
-        p: 1rem
+  /app-landing: pages/app-page.yaml # pages/index.json, index.jsx
+  # /about: ./content/about.md
 
 # for app release, we need to add github release source
 releases:
 - provider: github
   repo: moeapp/automate
 
-# Just for github [DEPRECATED]
-# releaseRepo:
-# - stripe/stripe-go
 
-# extend for app landing page
+# projects for labs projects
+projects:
+- provider: github
+  owners:
+  - jiusanzhou
+  tag: zoe-lab
 
 # previews
 
@@ -199,6 +183,14 @@ releases:
 
 googleAnalyticsTrackingId: 'xxxxxxx'
 
+# parse images from node
+# TODO: Mdx: http[s]://.+?.jpeg
+remoteImageNodes:
+- type: Mdx
+  field: rawBody
+  patterns:
+  - '!\[.*?\]\((.+?)[ \)]'
+
 remoteImageUrlPatterns: # must has :// as default
 - avatars[0-9]?\.githubusercontent\.com
 
@@ -208,6 +200,27 @@ pageWrappers:
   component:
     type: WechatBrokenGuide
 
+
+# turn mdx to common type
+customNodes:
+- name: MdxPage
+  when:
+    type: Mdx
+    name: content/pages
+- name: MdxPost
+  when:
+    type: Mdx
+    name: content/posts
+
+# for all pages?
+basePath: /
+# pageTemplate: 
+
+# what about blogs basePath
+basePathBlog: /blog
+blogListTemplate: 
+blogPageTemplate:
+
 # can register a component
 
 # important and just modify by template
@@ -216,10 +229,29 @@ pageWrappers:
 # we can add one
 
 plugins:
+# auto add those 2 plugins
+- gatsby-source-filesystem:
+    name: content/posts
+    path: ${__dirname}/content/posts
+- gatsby-source-filesystem:
+    name: content/pages
+    path: ${__dirname}/content/pages
+
 - gatsby-source-filesystem:
     name: default
     path: ${__dirname} # default load all files in current directory
     ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
+
+- gatsby-plugin-mdx:
+    lessBabel: true
+    extensions: [.mdx, .md]
+    gatsbyRemarkPlugins:
+    - gatsby-remark-images:
+        maxWidth: 1200
+    plugins:
+    - gatsby-remark-images:
+        maxWidth: 1200
+
 
 - gatsby-plugin-google-analytics:
     # TODO: extrac all fonts from siteMeta
@@ -239,9 +271,9 @@ plugins:
     display: minimal-ui
     icon: ${zoe.logo}
 
-- gatsby-plugin-chakra-ui:
-    isResettingCSS: true
-    isUsingColorMode: false
+- "@chakra-ui/gatsby-plugin":
+    resetCSS: true
+    isUsingColorMode: true
 
 # auto create remoteImageNode from siteMeta
 # TODO: auto register this plugin
@@ -253,3 +285,13 @@ plugins:
 - gatsby-plugin-sharp
 - gatsby-transformer-sharp
 - gatsby-plugin-offline
+- gatsby-plugin-image
+# - gatsby-transformer-remark:
+#     plugins:
+#     - resolve: gatsby-remark-images
+#       options:
+#         maxWidth: 590
+- gatsby-transformer-remark:
+    plugins:
+    - gatsby-remark-images:
+        maxWidth: 590

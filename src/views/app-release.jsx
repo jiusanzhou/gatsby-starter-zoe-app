@@ -7,12 +7,12 @@ import {
 } from "react-icons/ai";
 
 import { FaAppStore } from "react-icons/fa";
-import { Box, Button, Flex, SimpleGrid, Text } from "@chakra-ui/core";
+import { Box, Button, Flex, SimpleGrid, Text } from "@chakra-ui/react";
 
 import {
     GithubVersionProvider,
     GiteeVersionProvider,
-} from "../helper/app-release";
+} from "../plugins/app-release";
 import { useStaticQuery, graphql } from "gatsby";
 import { useSiteMetadata } from "../utils/hooks";
 
@@ -44,7 +44,7 @@ const _providers = {
     gitee: GiteeVersionProvider,
 };
 
-const _nodata = ({ message }) => {
+const Nodata = ({ message }) => {
     return (
         <Box bg="tomato" px="1em" py=".5em">
             <Text color="white">There is no any release.</Text>
@@ -135,7 +135,7 @@ const DownloadButtons = ({
     const { primaryColor } = useSiteMetadata();
 
     if (!_providers[provider]) {
-        return <_nodata message={"Unknown provider: " + provider} />;
+        return <Nodata message={"Unknown provider: " + provider} />;
     }
 
     if (
@@ -143,7 +143,7 @@ const DownloadButtons = ({
         Object.keys(assets).length === 0 &&
         Object.keys(urls).length === 0
     ) {
-        return <_nodata />;
+        return <Nodata />;
     }
 
     return (
@@ -210,7 +210,7 @@ const DownloadButtons = ({
                             </Text>
                         </SimpleGrid>
                     </Flex>
-                )) || <_nodata />}
+                )) || <Nodata />}
         </Flex>
     );
 };

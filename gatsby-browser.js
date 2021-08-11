@@ -7,8 +7,8 @@
 // You can delete this file if you're not using it
 
 import React from "react";
-import _wrapper from "./src/components/_wrapper";
+import Wrapper from "./src/components/_wrapper";
 
 export const wrapPageElement = (props) => {
-    return <_wrapper {...props} />
+    return <Wrapper {...props} />
 };

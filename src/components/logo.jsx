@@ -2,7 +2,7 @@ import React from "react";
 import { Link as NavLink } from "gatsby";
 
 import PropTypes from "prop-types";
-import { Flex, Text, Badge } from "@chakra-ui/core";
+import { Flex, Text, Badge } from "@chakra-ui/react";
 
 import Image from "../components/image";
 import { _withClickable } from "./_with";
@@ -27,13 +27,9 @@ const Logo = ({
             justifyContent={!expend ? "center" : "null"}
         >
             <_withClickable
-                as={NavLink}
-                to={href || "/"}
-                textDecoration="none"
+                href={href || "/"}
                 clickable={clickable}
-                _hover={{
-                    textDecoration: "none",
-                }}
+                pure
             >
                 <Flex h="100%" alignItems="center" {...props}>
                     {img && (
@@ -41,7 +37,7 @@ const Logo = ({
                             borderRadius="0"
                             alt={name}
                             mr={minimal ? "" : ".4em"}
-                            w={["1.5em", "1.75em", "1.75em", "2em"]}
+                            w={["2rem", "2rem", "2rem", "2rem"]}
                             src={img} // img is a remote or local one
                             rounded="full"
                             {...imageProps}

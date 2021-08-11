@@ -283,6 +283,7 @@ const _providers = {
     github: GithubVersionProvider,
     gitee: GithubVersionProvider,
 };
+
 const _loadVersions = ({ provider = "github", repo }) => {
     if (!_providers[provider]) return new Promise((resolve) => resolve([]));
     return new _providers[provider](repo)
@@ -290,7 +291,25 @@ const _loadVersions = ({ provider = "github", repo }) => {
         .then((e) => e.map((r) => ({ ...r, provider })));
 };
 
-const createNode = {
+const typeData = `
+    type Assets {
+        android: String
+    }
+
+    type VersionRelease implements Node {
+        provider: String
+        id: String
+        repo: String
+        title: String
+        version: String
+        created_at: String
+        published_at: String
+        prerelease: Boolean
+        release_note: String
+        assets: [Assets]
+    }`;
+
+const sourceNode = {
     name: "VersionRelease",
     mediaType: "appplication/json",
     // how to provider the data: []
@@ -313,7 +332,7 @@ const createNode = {
 
         return Promise.all([
             ...res.map((e) => _loadVersions(e)),
-            new Promise((resolve) => resolve([_demo])),
+            // new Promise((resolve) => resolve([_demo])),
         ]).then((r) => [].concat.apply([], r));
     },
 };
@@ -321,4 +340,11 @@ const createNode = {
 exports.GithubVersionProvider = GithubVersionProvider;
 exports.GiteeVersionProvider = GiteeVersionProvider;
 
-exports.createNode = createNode;
+// call in the onCreateNode to turn a node to another
+// exports.onCreateNode = onCreateNode;
+
+// call in the sourceNodes to create nodes
+exports.sourceNode = sourceNode;
+
+// register the types
+exports.typeData = typeData;

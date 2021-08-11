@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Box, ColorModeScript } from "@chakra-ui/core";
+import { Box, useColorModeValue } from "@chakra-ui/react";
 
 import SEO from "../../views/seo";
 import Header from "./header";
@@ -13,6 +13,7 @@ const Layout = ({
     header = {},
     footer = {},
     maxWidth = "60rem",
+    fixed = true,
     children,
     extendFooter,
     ...props
@@ -22,7 +23,7 @@ const Layout = ({
         : ["100%", "80%", "80%", "80%", maxWidth];
 
     // TODO: make this configurable
-    const bg = {
+    const lightBg = {
         size: "cover",
         repeat: "repeat-x",
         attachment: "scroll",
@@ -32,8 +33,7 @@ const Layout = ({
     // const [opened, setOpened] = useState(false);
     // background-image: url("https://assets.website-files.com/5e1c4fb5db4d5243c0021d34/5e1c4fb5db4d526c44021d44_bg-shapes.svg");
     return (
-        <_withBackground minH="calc(100vh)" bg={bg}>
-            <ColorModeScript initialColorMode="light" />
+        <_withBackground minH="calc(100vh)">
             {/* inject seo header */}
             <SEO
                 title={title}
@@ -47,9 +47,9 @@ const Layout = ({
                 ]}
             />
             {/* header */}
-            <Header w={_maxWidth} {...header} />
+            <Header fixed={fixed} w={_maxWidth} {...header} />
             {/* main body */}
-            <Box as="main" pt={["3em", "3.5em", "4em", "4.5em"]}>
+            <Box as="main" pt={fixed?["3em", "3.5em", "4em", "4.5em"]:null}>
                 {children}
             </Box>
             {/* footer */}

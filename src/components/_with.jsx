@@ -1,19 +1,23 @@
 import React from "react"
-import { Tooltip, Link, Box } from "@chakra-ui/core";
+import { Tooltip, Link, Box } from "@chakra-ui/react";
 import { useStaticQuery } from "gatsby";
 import { graphql } from "gatsby";
+import MLink from "./link";
 
 export const _withTooltip = (props) => {
     return props.label ? <Tooltip {...props} /> : props.children;
 };
 
-export const _withClickable = ({ clickable, as = Link, children, ...props }) => {
+export const _withClickable = ({ clickable, as = MLink, children, ...props }) => {
     return clickable ? React.createElement(as, {...props, children}) : children
 }
 
 export const _withBackground = ({ as, bg, background, ...props }) => {
     const _bgprops = {};
     const _bg = bg || background;
+
+    if (!_bg) return props.children;
+
     if (typeof _bg === "object") {
         Object.keys(_bg).forEach(
             (k) => (_bgprops[`bg${k[0].toUpperCase()}${k.slice(1)}`] = _bg[k])

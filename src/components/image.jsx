@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import PropTypes from "prop-types";
-import { Image, Box } from "@chakra-ui/core";
-import Img from "gatsby-image";
+import { Image, Box } from "@chakra-ui/react";
+import { GatsbyImage, StaticImage, getImage, getSrc } from "gatsby-plugin-image"
 
 import { useStaticQuery, graphql } from "gatsby";
 
@@ -18,12 +18,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
                     relativePath
                     publicURL
                     childImageSharp {
-                        fixed {
-                            ...GatsbyImageSharpFixed
-                        }
-                        fluid {
-                            ...GatsbyImageSharpFluid
-                        }
+                        gatsbyImageData
                     }
                 }
             }
@@ -33,12 +28,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
                     localImage {
                         publicURL
                         childImageSharp {
-                            fixed {
-                                ...GatsbyImageSharpFixed
-                            }
-                            fluid {
-                                ...GatsbyImageSharpFluid
-                            }
+                            gatsbyImageData
                         }
                     }
                 }
@@ -64,13 +54,13 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
     // if (isRemote && !match) return <Image src={src} {...props} />;
     if (!match) match = {};
 
-    const v = match.childImageSharp && match.childImageSharp[mode];
+    const v = match.childImageSharp; // && match.childImageSharp[mode];
 
     return !v ? (
         <Image src={match.publicURL || match.url || src} {...props} />
     ) : (
         <Image as={Box} overflow="hidden" {...props}>
-            <Img {...{ [mode]: v }} />
+            <GatsbyImage alt={props.alt||""} image={v.gatsbyImageData} />
         </Image>
     );
 };
