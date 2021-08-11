@@ -258,9 +258,9 @@ plugins:
     trackingId: ${zoe.googleAnalyticsTrackingId}
     respectDNT: true
 
-# - gatsby-plugin-web-font-loader:
-#     google:
-#       families: ['Poppins', 'Recoleta', 'Fredoka One', 'Cabin', 'Open Sans']
+- gatsby-plugin-web-font-loader:
+    google:
+      families: ['Poppins', 'Recoleta', 'Fredoka One', 'Cabin', 'Open Sans']
 
 - gatsby-plugin-manifest:
     name: ${zoe.title}

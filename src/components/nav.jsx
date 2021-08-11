@@ -1,9 +1,7 @@
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { SmallCloseIcon, HamburgerIcon, TriangleDownIcon, ChevronDownIcon } from "@chakra-ui/icons";
 import { Avatar, Box, Flex, Heading, Icon, IconButton, Link, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, SimpleGrid, Text, useColorMode, useColorModeValue, VStack } from "@chakra-ui/react";
-import { Link as GatsbyLink } from "gatsby";
 import React, { useState } from "react";
 
-import { GoTriangleDown } from "react-icons/go"
 import { colors } from "../styles/colors";
 import MLink from "./link";
 
@@ -29,7 +27,11 @@ const PCNav = ({ navs = [], ...props }) => {
                             {href
                                 ? <MLink pure href={href} _hover={{}}>{title}</MLink>
                                 : <Text>{title}</Text>}
-                            <Icon _groupHover={{transform: "rotate( -180deg )", transition: "all 0.2s ease-out 0.3s"}} ml=".2rem" as={GoTriangleDown} />
+                            <Icon as={ChevronDownIcon} ml=".2rem"
+                                _groupHover={{
+                                    transform: "rotate( -180deg )",
+                                    transition: "all 0.2s ease-out 0.3s"
+                                }} />
                         </Flex>
                     </PopoverTrigger>
 
@@ -71,9 +73,9 @@ const SMNav = ({ navs = [], ...props }) => {
                 borderRadius="full"
                 display={props.display}
                 transition="all .3s ease-in-out"
-                icon={isOpen?<CloseIcon />:<HamburgerIcon />} />
+                icon={isOpen?<SmallCloseIcon />:<HamburgerIcon />} />
         </PopoverTrigger>
-        <PopoverContent h="100vh" sx={{ width: "100vw", overflow: "auto"}}>
+        <PopoverContent display={props.display} h="100vh" sx={{ width: "100vw", overflow: "auto"}}>
             <PopoverBody>
                 <VStack my="5" alignItems="flex-start" spacing={5}>
                     {navs.map(({ title, href, items }, index) => {
