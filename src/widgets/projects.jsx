@@ -41,9 +41,12 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
     const group = getRootProps()
 
     // generate the language filter
-    let languages = {"": true} // "": for ALL
-    items.forEach(({ language }) => languages[language] = true)
-    languages = Object.keys(languages)
+    let languages = {"": 0} // "": for ALL
+    items.forEach(({ language }) => {
+        if (!languages[language]) languages[language] = 0
+        languages[""]++
+        languages[language]++
+    })
 
     // build the section list
     return <Box {...props}>
@@ -51,17 +54,17 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
         {/* preview should has this filter??? */}
         {!preview && <Flex {...group} mb="5" flexWrap="wrap"
         _first={{ borderLeftWidth: '1px' }}>
-            {languages.map(language => {
+            {(Object.keys(languages)).map(language => {
                 const radio = getRadioProps({ value: language })
                 return <RadioCard key={language} {...radio}>
-                    {language||"全部"}
+                    {`${language||"全部"} (${languages[language]})`}
                 </RadioCard>
             })}
         </Flex>}
 
         {/* the main body, if not preview modd, should't slice(slice the length) */}
         <ItemsView items={items.slice(0, preview?limit:items.length)
-            .filter(({ language }) => !preview||!selected||language === selected) // filter the language
+            .filter(({ language }) => !selected||language === selected) // filter the language
             .map(item => ({
                 ...item,
                 title: item.name,
