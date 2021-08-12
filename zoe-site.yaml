@@ -13,7 +13,7 @@ author:
   email: hi@zoe.im
   homepage: 'https://zoe.im'
   # TODO: or use _zoe: Object
-  avatar: https://avatars1.githubusercontent.com/u/2942042?s=200 # zoe(sharp=true)
+  avatar: https://github.com/jiusanzhou.png # zoe(sharp=true)
   minibio: 知行合一，不将有限的生命献给无知、平庸和低俗。 
   github: 'zoeim'
   twitter: 'jiusanzhou'
@@ -42,7 +42,7 @@ links:
   href: /about
 - title: Blog
   category: Company
-  href: /blog
+  href: /blogs
 - title: Rust
   category: Products
   href: /rust
@@ -193,6 +193,7 @@ remoteImageNodes:
 
 remoteImageUrlPatterns: # must has :// as default
 - avatars[0-9]?\.githubusercontent\.com
+- \.png$
 
 pageWrappers:
 - path: "*"

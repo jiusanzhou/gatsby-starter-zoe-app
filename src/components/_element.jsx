@@ -122,8 +122,8 @@ installComponent(require("./mdx"), { as: ["mdxProvider", "MDXProvider"] });
 installComponent(require("../views/app-release"), { as: "AppRelease" });
 installComponent(require("../views/logo"), { as: "ViewLogo" });
 installComponent(require("../views/author-card"), { as: "AuthorCard" });
-installComponent(require("../views/posts-preview"), { as: "PostsPreview" });
-installComponent(require("../views/projects-preview"), { as: "ProjectsPreview"})
+installComponent(require("../views/posts-list"), { as: "PostsList" });
+installComponent(require("../views/projects-list"), { as: "ProjectsList"})
 installComponent(require("../views/_wechat-broken-guide"), { as: "WechatBrokenGuide" });
 
 // with functoins

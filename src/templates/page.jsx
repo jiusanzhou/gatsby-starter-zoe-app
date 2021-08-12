@@ -8,7 +8,7 @@ const CustomPage = ({ data: { mdxPage } }) => {
     return <StaticPage page={{
         slug, layout, title,
         children: {
-            type: container || "MSection",
+            type: container || "Box",
             // TODO: use props from page.containerProps
             minH: "calc(100vh - 20rem)",
             textAlign: "left",

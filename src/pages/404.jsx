@@ -4,6 +4,7 @@ import { Link } from "gatsby";
 import Layout from "../layouts";
 import Section from "../components/section";
 import MLink from "../components/link";
+import { Center, Flex } from "@chakra-ui/react";
 
 const NotFoundPage = () => (
     <Layout title="404 Page not found">
@@ -13,7 +14,9 @@ const NotFoundPage = () => (
             title="NOT FOUND"
             description="You just hit a route that doesn&#39;t exist... the sadness."
         >
-            <MLink href="/">Back to home</MLink>
+            <Center>
+                <MLink href="/">Back to home</MLink>
+            </Center>
         </Section>
     </Layout>
 );

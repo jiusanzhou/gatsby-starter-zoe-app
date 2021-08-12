@@ -20,10 +20,10 @@ const Hr = () =>  <Divider
 
 const Quote = ({ ...props }) => {
     const { colorMode } = useColorMode()
-    return <Box
+    return <Box as="blockquote"
         p={[".5rem", "1rem"]}
         paddingLeft={["1rem", "2rem"]}
-        my={[".2em", ".5em"]}
+        // my={[".2em", ".5em"]}
         pos="relative"
         fontStyle="italic"
         fontFamily="'Palatino Linotype', 'Book Antiqua', Palatino, 'STKaiti', 'KaiTi', '楷体', 'SimKai', 'DFKai-SB', 'NSimSun', serif"
@@ -34,9 +34,9 @@ const Quote = ({ ...props }) => {
             content: "'\\201c'",
             fontSize: "8em",
             fontFamily: "serif",
-            color: colorMode === "light" ? "rgba(0, 0, 0, 0.1)" : "var(--chakra-colors-whiteAlpha-300)",
-        }}
-        as="blockquote" {...props} />
+            color: useColorModeValue("rgba(0, 0, 0, 0.1)", "var(--chakra-colors-whiteAlpha-300)")
+            // color: colorMode === "light" ? "rgba(0, 0, 0, 0.1)" : "var(--chakra-colors-whiteAlpha-300)",
+        }} {...props} />
 }
 
 const customs = {

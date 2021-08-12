@@ -25,7 +25,7 @@ const _defaultProps = {
         fontFamily: null,
         fontSize: ["sm", "md", "md", "xl"],
         fontWeight: "medium",
-        color: "gray.700",
+        color: "gray.500",
     },
     desc: {
         fontFamily: null,

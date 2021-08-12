@@ -15,13 +15,13 @@ const PostPage = ({ data }) => {
     return <Layout layout="default" fixed={false} title={title}>
         <MSection
         subTitleProps={{textAlign: "left"}}
-        subTitle={<MLink pure href="/blogs">
+        subTitle={<MLink pure href="/blogs" fontSize=".875rem">
           {/* TODO: useLinks get blogs list path */}
           ← Back to Blog
         </MLink>}
         title={title}
         minH="calc(100vh - 20rem)">
-            <Flex mb="4rem" alignItems="center">    
+            <Flex mb="1rem" alignItems="center">    
                 <Text mr="2rem">
                     <EditIcon mr=".5rem" />{createdTime}</Text>
                 <Text>

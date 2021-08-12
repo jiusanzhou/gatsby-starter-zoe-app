@@ -28,23 +28,23 @@ class GithubProjectProvider {
 
     // graphql
 
-    graphqlQuery = ```
-    {
-        search(query: "zoe-lab user:jiusanzhou", type: REPOSITORY, first: 10) {
-          nodes {
-            ... on Repository {
-              id
-              name
-              url
-              openGraphImageUrl
-            }
-          }
-          pageInfo {
-            hasNextPage
-          }
-        }
-      }
-    ```
+    // graphqlQuery = ```
+    // {
+    //     search(query: "zoe-lab user:jiusanzhou", type: REPOSITORY, first: 10) {
+    //       nodes {
+    //         ... on Repository {
+    //           id
+    //           name
+    //           url
+    //           openGraphImageUrl
+    //         }
+    //       }
+    //       pageInfo {
+    //         hasNextPage
+    //       }
+    //     }
+    //   }
+    // ```
 }
 
 const _providers = {

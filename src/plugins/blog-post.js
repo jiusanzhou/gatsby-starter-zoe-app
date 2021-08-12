@@ -1,3 +1,4 @@
+const kebabCase = require("lodash.kebabcase");
 const path = require("path");
 const { purePath } = require("../utils/helper");
 
@@ -27,7 +28,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     const {
         basePathBlog,
         blogListTemplate, blogPageTemplate,
-        tagListTemplate,
+        tagListTemplate, tagPageTemplate,
         dateFormat,
     } = siteMetadata;
 
@@ -38,6 +39,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     let _blogListTemplate = blogListTemplate || "./src/templates/post-list.jsx"
     let _blogPageTemplate = blogPageTemplate || "./src/templates/post-page.jsx"
     let _tagListTemplate = tagListTemplate || "./src/templates/tag-list.jsx"
+    let _tagPageTemplate = tagPageTemplate || "./src/templates/tag-page.jsx"
 
     let _dateFormat = dateFormat || "MMMM DD, YYYY"
 
@@ -95,9 +97,8 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         return
     }
 
-    // create pages from MdxPage
+    // create each post blog
     const posts = result.data.allMdxPost.nodes
-
     posts.forEach(({ slug }) => {
         // create each post
         createPage({
@@ -110,8 +111,23 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         })
     })
 
-    // create each tags
+    // create each tags filter page
     const tags = result.data.tags.group
+    tags.forEach(({ fieldValue }) => {
+        const tag = fieldValue
+        // create each tag filter
+        createPage({
+            path: purePath(`${_blogListPath}/tag/${kebabCase(tag)}`),
+            component: path.resolve(_tagPageTemplate),
+            context: {
+                formatString: _dateFormat,
+                tag,
+                // TODO: paginate?
+                // limit: 10,
+                // skip: 0
+            },
+        })
+    })
 }
 
 // call in the sourceNodes to create nodes
