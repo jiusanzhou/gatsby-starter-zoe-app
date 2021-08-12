@@ -1,4 +1,4 @@
-import { Box, Button, Center, Flex, Heading, Link, Radio, RadioGroup, SimpleGrid, Tag, Text, useColorModeValue, useRadio, useRadioGroup, VStack } from "@chakra-ui/react"
+import { Box, Button, Center, Flex, Heading, HStack, Link, Radio, RadioGroup, SimpleGrid, Tag, Text, useColorModeValue, useRadio, useRadioGroup, VStack } from "@chakra-ui/react"
 import React from "react"
 import { useState } from "react"
 import ItemsView from "../components/itemsView"
@@ -14,17 +14,18 @@ const RadioCard = (props) => {
     const checkbox = getCheckboxProps()
   
     return (
-      <Box as="label" borderWidth="1px" borderLeftWidth="0px">
-        <input {...input} />
-        <Box px={5} py={3} {...checkbox} cursor="pointer"
-            _checked={{
-                bg: `${primaryColor}.600`,
-                color: "white",
-                borderColor: `${primaryColor}.600`,
-            }} >
-          {props.children}
+        //  borderWidth="1px" borderLeftWidth="0px"  _first={{ borderLeftWidth: '1px' }}
+        <Box as="label">
+            <input {...input} />
+            <Box borderRadius="full" py="1" px="3" {...checkbox} cursor="pointer"
+                transition="all 0.3s ease-out-in"
+                _checked={{
+                    bg: `${primaryColor}.600`,
+                    color: "white",
+                }} >
+            {props.children}
+            </Box>
         </Box>
-      </Box>
     )
   }
 
@@ -52,14 +53,17 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
     return <Box {...props}>
         {/* if is not the preview mode, should show the filter */}
         {/* preview should has this filter??? */}
-        {!preview && <Flex {...group} mb="5" flexWrap="wrap"
-        _first={{ borderLeftWidth: '1px' }}>
-            {(Object.keys(languages)).map(language => {
-                const radio = getRadioProps({ value: language })
-                return <RadioCard key={language} {...radio}>
-                    {`${language||"全部"} (${languages[language]})`}
-                </RadioCard>
-            })}
+        {!preview && <Flex mb="5" justifyContent="center">
+            <HStack spaceing="2" w="fit-content" p="2" flexWrap="wrap" {...group}
+                bgColor={useColorModeValue(`gray.100`, `gray.700`)}  borderRadius="full">
+                {(Object.keys(languages)).map(language => {
+                    const radio = getRadioProps({ value: language })
+                    return <RadioCard key={language} {...radio}>
+                        {`${language||"全部"}`}
+                        {/*  (${languages[language]}) */}
+                    </RadioCard>
+                })}
+            </HStack>
         </Flex>}
 
         {/* the main body, if not preview modd, should't slice(slice the length) */}

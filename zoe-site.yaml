@@ -20,6 +20,7 @@ author:
   facebook: 'jiusanzhou'
   telegram: 'jiusanzhou'
   linkedin: 'johnzoe'
+  wechat: https://github.com/jiusanzhou/jiusanzhou.github.io/raw/archived/static/WeChat-JohnCx.jpeg
 
 organization:
   name: ${zoe.title}
@@ -194,6 +195,7 @@ remoteImageNodes:
 remoteImageUrlPatterns: # must has :// as default
 - avatars[0-9]?\.githubusercontent\.com
 - \.png$
+- \.jpeg$
 
 pageWrappers:
 - path: "*"

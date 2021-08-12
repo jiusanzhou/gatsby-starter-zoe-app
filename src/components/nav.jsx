@@ -30,7 +30,7 @@ const PCNav = ({ navs = [], ...props }) => {
                             <Icon as={ChevronDownIcon} ml=".2rem"
                                 _groupHover={{
                                     transform: "rotate( -180deg )",
-                                    transition: "all 0.2s ease-out 0.3s"
+                                    transition: "all 0.2s ease-out"
                                 }} />
                         </Flex>
                     </PopoverTrigger>

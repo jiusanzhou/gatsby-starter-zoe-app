@@ -23,45 +23,27 @@ const AuthorCard = ({ simple = false, ...props }) => {
 
     if (simple) return <AuthorSimple author={author} {...props} />;
 
+    const { avatar, name, minibio } = author;
+
     return <Box {...props}>
         <Flex>
-            {author.avatar && (
+            {avatar && (
                 <MImage
-                    src={author.avatar}
+                    src={avatar}
                     size="md" w="2rem" h="2rem"
                     rounded="full"
-                    alt={author.name} ame={author.name} />
+                    alt={name} name={name} />
             )}
-            {author.name && (
+            {name && (
                 <Box ml="1rem">
-                    <Text
-                        as={"h3"}
-                        fontWeight="bold">
-                        {author.name}
-                    </Text>
+                    <Text as={"h3"} textAlign="left" fontWeight="bold">{name}</Text>
                     {/* TODO: just add need */}
-                    <Socials
-                        socials={(() => {
-                            const data = {
-                                ...author,
-                            };
-                            delete data.name;
-                            delete data.avatar;
-                            delete data.minibio;
-                            return data;
-                        })()}
-                        mt=".2rem"
-                    />
+                    <Socials mt=".2rem" socials={author}/>
                 </Box>
             )}
         </Flex>
-        {author.minibio && (
-            <Box mt=".5rem">
-                <Text fontSize="sm">
-                    {author.minibio}
-                </Text>
-            </Box>
-        )}
+
+        {minibio && <Text mt=".5rem" fontSize="sm">{minibio}</Text>}
     </Box>
 }
 

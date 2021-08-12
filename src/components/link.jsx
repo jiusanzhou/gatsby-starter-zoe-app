@@ -18,6 +18,8 @@ const MLink = ({ href = "", pure = false, ...props }) => {
         _props.isExternal = true
     }
     
+    // TOOD: can't using for PopoverTrigger
+
     return <Link position="relative" display="inline-block" _before={!pure?{
         content: "''",
         position: "absolute",
