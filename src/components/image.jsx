@@ -56,6 +56,8 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
 
     const v = match.childImageSharp; // && match.childImageSharp[mode];
 
+    if (!props.alt) props.alt = ""
+
     return <Image as={v?GatsbyImage:Image}
         image={v&&v.gatsbyImageData} src={match.publicURL || match.url || src} {...props} />
 };
