@@ -36,7 +36,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
         }
     `);
 
-    const isRemote = src.indexOf("://") >= 0;
+    const isRemote = src && src.indexOf("://") >= 0;
 
     let match = useMemo(
         () =>
@@ -56,13 +56,8 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
 
     const v = match.childImageSharp; // && match.childImageSharp[mode];
 
-    return !v ? (
-        <Image src={match.publicURL || match.url || src} {...props} />
-    ) : (
-        <Image as={Box} overflow="hidden" {...props}>
-            <GatsbyImage alt={props.alt||""} image={v.gatsbyImageData} />
-        </Image>
-    );
+    return <Image as={v?GatsbyImage:Image}
+        image={v&&v.gatsbyImageData} src={match.publicURL || match.url || src} {...props} />
 };
 
 MImage.protoTypes = {

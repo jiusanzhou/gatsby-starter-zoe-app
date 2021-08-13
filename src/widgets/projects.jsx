@@ -1,3 +1,4 @@
+import { ArrowForwardIcon } from "@chakra-ui/icons"
 import { Box, Button, Center, Flex, Heading, HStack, Link, Radio, RadioGroup, SimpleGrid, Tag, Text, useColorModeValue, useRadio, useRadioGroup, VStack } from "@chakra-ui/react"
 import React from "react"
 import { useState } from "react"
@@ -78,7 +79,9 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
         {/* preivew mode should show more button */}
         {preview&&<Flex mt="2rem" w="100%" justifyContent="center">
             {/* TODO: the link should calcute from config */}
-            <MLink href="/projects">查看更多</MLink>
+            <MLink display="inline-flex" alignItems="center" href="/projects">
+                查看更多 <ArrowForwardIcon ml="1" />
+            </MLink>
         </Flex>}
     </Box>
 }

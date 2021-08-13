@@ -19,10 +19,12 @@ type MdxPost implements Node {
     html: String! @mdxpassthrough(fieldName: "html")
     timeToRead: Int @mdxpassthrough(fieldName: "timeToRead")
     tags: [PostTag]
-    banner: File @fileByRelativePath
+    banner: String
     description: String
     canonicalUrl: String
 }`;
+
+// banner: File @fileByRelativePath
 
 const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     const {

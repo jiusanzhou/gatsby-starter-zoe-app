@@ -4,6 +4,7 @@ import Cover from "./cover"
 import MLink from "./link"
 
 const defaultLeading = ({ data: {title, banner}, ...props }) => {
+    console.log("=====>", title, banner)
     return <Cover borderRadius=".5rem" title={title} src={banner} {...props} />
 }
 

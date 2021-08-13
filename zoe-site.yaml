@@ -65,47 +65,47 @@ navs:
   - title: KubeDB
     description: Run production-grade Database on Kubernetes
     href: https://kubedb.com/
-    icon: https://appscode.com/assets/images/products/kubedb/kubedb-icon.png
+    # icon: https://appscode.com/assets/images/products/kubedb/kubedb-icon.png
     color: blue # ignore this?
   - title: Stash
     description: Backup your Kubernetes Stateful APplications
     href: https://stash.run/
-    icon: https://appscode.com/assets/images/products/stash/stash-icon.png
+    # icon: https://appscode.com/assets/images/products/stash/stash-icon.png
   - title: KubeVault
     description: Tools for running HashiCorp Vault on Kubernetes
     href: https://kubevault.com/
-    icon: https://appscode.com/assets/images/products/kubevault/kubevault-icon.png
+    # icon: https://appscode.com/assets/images/products/kubevault/kubevault-icon.png
   - title: Kubeform
     description: Provision cloud resources using Kubernetes CRDs & Terraform
     href: https://kubeform.com/
-    icon: https://appscode.com/assets/images/products/kubeform/kubeform-icon.png
+    # icon: https://appscode.com/assets/images/products/kubeform/kubeform-icon.png
 - title: Open Source
   href: /open-source/
   items:
   - title: Voyager
     description: Secure HAProxy Ingress Controller for Kubernetes
     href: https://voyagermesh.com/
-    icon: https://appscode.com/assets/images/products/voyager/voyager-icon.png
+    # icon: https://appscode.com/assets/images/products/voyager/voyager-icon.png
   - title: Guard
     description: Kubernetes Authentication WebHook Server
     href: https://appscode.com/products/guard/
-    icon: https://appscode.com/assets/images/products/guard/guard-icon.png
+    # icon: https://appscode.com/assets/images/products/guard/guard-icon.png
   - title: Kubed
     description: Kubernetes cluster manager daemon
     href: https://appscode.com/products/kubed/
-    icon: https://appscode.com/assets/images/products/kubed/kubed-icon.png
+    # icon: https://appscode.com/assets/images/products/kubed/kubed-icon.png
   - title: Pharmer
     description: Kubernetes Cluster Manager using Kubeadm & Cluster API
     href: https://pharmer.cloud/
-    icon: https://appscode.com/assets/images/products/pharmer/pharmer-icon.png
+    # icon: https://appscode.com/assets/images/products/pharmer/pharmer-icon.png
   - title: Swift
     description: Ajax friendly Helm Tiller Proxy
     href: https://appscode.com/products/swift/
-    icon: https://appscode.com/assets/images/products/swift/swift-icon.png
+    # icon: https://appscode.com/assets/images/products/swift/swift-icon.png
   - title: Searchlight
     description: Alerts for Kubernetes
     href: https://appscode.com/products/searchlight/
-    icon: https://appscode.com/assets/images/products/searchlight/searchlight-icon.png
+    # icon: https://appscode.com/assets/images/products/searchlight/searchlight-icon.png
 - title: Services
   href: /services
   items:
@@ -191,7 +191,12 @@ remoteImageNodes:
   field: rawBody
   patterns:
   - '!\[.*?\]\((.+?)[ \)]'
+- type: Mdx
+  field: frontmatter.banner
+  patterns:
+  - 'https?:\/\/.+'
 
+# for current file.
 remoteImageUrlPatterns: # must has :// as default
 - avatars[0-9]?\.githubusercontent\.com
 - \.png$

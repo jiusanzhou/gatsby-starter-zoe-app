@@ -67,20 +67,21 @@ export const Socials = ({ socials = [], colorScheme, ...props }) => {
     return (
         <List d="flex" flexWrap="wrap" transform="translateX(-0.5rem)" {...props}>
             {Object.keys(socials).map((key) => (
+                _data_icon[key] ?
                 <ListItem key={`_${key}`}>
                     <SocialLink
                         type={key}
                         username={socials[key]}
                         colorScheme={colorScheme}
                     />
-                </ListItem>
+                </ListItem> : null
             ))}
         </List>
     );
 };
 
 SocialLink.propTypes = {
-    type: PropTypes.oneOf(Object.keys(_data_base)).isRequired,
+    type: PropTypes.string.isRequired, // PropTypes.oneOf(Object.keys(_data_base)).isRequired,
     username: PropTypes.string.isRequired,
     base: PropTypes.string,
 };

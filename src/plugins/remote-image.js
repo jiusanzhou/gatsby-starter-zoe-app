@@ -62,8 +62,11 @@ const onCreateNode = ({ remoteImageNodes = [] }, { node, actions, getNode, creat
         }
 
         // ok let build the remote images
-        // get content with fiel from node
-        let content = node[field];
+        // get content with field from node
+        let content = node
+        field.split(".").forEach((f) => {
+            content = content[f];
+        })
 
         // field content must be string
         if (typeof content !== 'string') {
@@ -74,10 +77,8 @@ const onCreateNode = ({ remoteImageNodes = [] }, { node, actions, getNode, creat
             // use pattern to exec the content
             [...content.matchAll((new RegExp(pattern, "g")))].forEach((v) => {
                 // pattern must with group, so v.length should > 2
-                if (v.length < 2) return;
-
                 // create the remote image
-                let url = v[1];
+                let url = v.length < 2 ? v[0] : v[1];
 
                 // what if if the local image???
                 if (!url.startsWith('http')) return;

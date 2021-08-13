@@ -1,4 +1,4 @@
-import { EditIcon, TimeIcon } from "@chakra-ui/icons"
+import { ArrowBackIcon, EditIcon, TimeIcon } from "@chakra-ui/icons"
 import { Box, Flex, HStack, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
@@ -15,9 +15,9 @@ const PostPage = ({ data }) => {
     return <Layout layout="default" fixed={false} title={title}>
         <MSection
         subTitleProps={{textAlign: "left"}}
-        subTitle={<MLink pure href="/blogs" fontSize=".875rem">
+        subTitle={<MLink pure display="inline-flex" alignItems="center" href="/blogs" fontSize=".875rem">
           {/* TODO: useLinks get blogs list path */}
-          ← Back to Blog
+          <ArrowBackIcon mr="2" /> Back to Blog
         </MLink>}
         title={title}
         minH="calc(100vh - 20rem)">
@@ -58,13 +58,17 @@ query ($slug: String!, $formatString: String!) {
           slug
         }
         body
-        banner {
+        banner
+    }
+  }
+`
+
+/**
+ *  {
           childImageSharp {
             resize(width: 1200, quality: 90) {
               src
             }
           }
         }
-    }
-  }
-`
+ */

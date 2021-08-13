@@ -5,6 +5,7 @@ import { useSiteMetadata } from "../utils/hooks"
 import { purePath } from "../utils/helper"
 import MLink from "../components/link"
 import Tags from "./tags"
+import { ArrowForwardIcon } from "@chakra-ui/icons"
 
 
 const PostList = ({ items = [], preview, ...props }) => {
@@ -36,7 +37,9 @@ const PostList = ({ items = [], preview, ...props }) => {
         
         {preview&&<Flex mt="2rem" w="100%" justifyContent="center">
             {/* TODO: the link should calcute from config */}
-            <MLink href={_blogListPath}>查看更多</MLink>
+            <MLink display="inline-flex" alignItems="center" href={_blogListPath}>
+                查看更多 <ArrowForwardIcon ml="1" />
+            </MLink>
         </Flex>}
         {/* TODO: paginate */}
     </Box>

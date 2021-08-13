@@ -15,6 +15,7 @@ query MdxPosts {
             excerpt(pruneLength: 80)
             timeToRead
             description
+            banner
             tags {
                 name
                 slug
