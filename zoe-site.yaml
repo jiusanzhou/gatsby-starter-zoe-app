@@ -130,10 +130,13 @@ socials:
 # theme for global
 primaryColor: 'purple' #663399 # tomato how to change to colorSchema
 
+# section should take this
+maxWidth: ["100%", "80%", "80%", "80%", "60rem"]
+
 # layouts configuration
 layouts:
   default:
-    maxWidth: 60rem
+    maxWidth: ["100%", "80%", "80%", "80%", "60rem"]
     header:
       logoProps:
         textColor: 'unset'

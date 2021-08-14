@@ -3,15 +3,24 @@ import PropTypes from "prop-types";
 import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Action from "../components/action";
+import { useSiteMetadata } from "../utils/hooks";
+
+const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
+
+const sectionWidth = (() => {
+    let x = Array(maxWidth.length-1).fill("100%");
+    x.push(maxWidth.slice(-1)[0]);
+    return x;
+})()
 
 const _defaultProps = {
     wraper: {
         justifyContent: "center",
     },
     section: {
-        p: ["1em", "2em", "2.5em 0", "5em 0"],
+        p: ["1em", "2em 0", "2.5em 0", "5em 0"],
         mb: [".5em", "1em", "1.5em", "2em"],
-        width: ["100%", "100%", "100%", "60rem"], // TODO: with siteMeta and layout props
+        width: sectionWidth, // TODO: with siteMeta and layout props
         marginLeft: "auto",
         marginRight: "auto",
     },
@@ -127,15 +136,13 @@ const MSection = ({
 
     return (
         // bg put here
-        <Flex {..._getValue(_defaultProps, {}, "wraper")} {...wraperProps}>
+        <Flex position="relative" {..._getValue(_defaultProps, {}, "wraper")} {...wraperProps}>
             <Flex
                 as="section"
                 {..._getValue(_defaultProps, {}, "section")}
                 {..._getValue(_positionProps, {}, position, "section")}
                 {..._getValue(_themesProps, {}, theme, "section")}
-                {..._mustValue({
-                    width: ["100%", "100%", "80%", "80%", "60rem"],
-                })} // TODO: from layout
+                width={maxWidth}
                 {...props}
             >
                 {_need_header && (

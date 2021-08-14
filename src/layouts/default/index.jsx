@@ -6,16 +6,19 @@ import SEO from "../../views/seo";
 import Header from "./header";
 import Footer from "./footer";
 import { _withBackground } from "../../components/_with";
+import { useSiteMetadata } from "../../utils/hooks";
+
+const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
 
 const Layout = ({
     title,
     description,
     header = {},
     footer = {},
-    maxWidth = "60rem",
     fixed = true,
     children,
     extendFooter,
+    // maxWidth = "60rem",
     ...props
 }) => {
     const _maxWidth = Array.isArray(maxWidth)

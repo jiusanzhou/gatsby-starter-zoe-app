@@ -58,7 +58,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
 
     if (!props.alt) props.alt = ""
 
-    return <Image as={v?GatsbyImage:Image}
+    return <Image objectFit="cover" as={v?GatsbyImage:Image}
         image={v&&v.gatsbyImageData} src={match.publicURL || match.url || src} {...props} />
 };
 

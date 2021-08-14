@@ -21,14 +21,15 @@ const PostPage = ({ data }) => {
         </MLink>}
         title={title}
         minH="calc(100vh - 20rem)">
-            <Flex mb="1rem" alignItems="center">    
-                <Text mr="2rem">
+            <HStack spacing="5" mb="1rem" alignItems="center">
+              {/*  marginLeft="auto" */}
+                <AuthorCard simple />
+                <Text fontSize=".875rem">
                     <EditIcon mr=".5rem" />{createdTime}</Text>
-                <Text>
+                <Text fontSize=".875rem">
                     <TimeIcon mr=".5rem" />{timeToRead} MINS</Text>
                 
-                <AuthorCard marginLeft="auto" simple />
-            </Flex>
+            </HStack>
 
             <Box textAlign="left">
                 <MDXRenderer>{[body]}</MDXRenderer>

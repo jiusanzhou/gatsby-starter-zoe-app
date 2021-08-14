@@ -31,7 +31,7 @@ const PostList = ({ items = [], preview, ...props }) => {
     return <Box {...props}>
         <ItemsView type={props.type||preview?"grid":"tile"} items={items.map((item) => ({
             ...item,
-            description: item.excerpt,
+            description: item.description || item.excerpt,
             href: purePath(`${_basePathBlog}/${item.slug}`),
         }))} {...itemProps} />
         
