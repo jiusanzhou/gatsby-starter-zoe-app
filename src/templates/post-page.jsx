@@ -1,5 +1,5 @@
 import { ArrowBackIcon, EditIcon, TimeIcon } from "@chakra-ui/icons"
-import { Box, Flex, HStack, Text } from "@chakra-ui/react"
+import { Box, Divider, Flex, HStack, Text } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
@@ -7,6 +7,7 @@ import MLink from "../components/link"
 import MSection from "../components/section"
 import Layout from "../layouts"
 import AuthorCard from "../views/author-card"
+import Comments from "../views/comments"
 import Tags from "../widgets/tags"
 
 const PostPage = ({ data }) => {
@@ -38,6 +39,8 @@ const PostPage = ({ data }) => {
             <Flex mt="4rem">
                 <Tags items={tags} />
             </Flex>
+            <Divider my="2rem" />
+            <Comments />
         </MSection>
     </Layout>
 }

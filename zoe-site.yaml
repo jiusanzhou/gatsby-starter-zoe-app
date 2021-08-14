@@ -239,6 +239,15 @@ blogPageTemplate:
 # but if we can install it with config
 # we can add one
 
+# Comments system
+comments:
+  provider: giscus
+  repo: jiusanzhou/jiusanzhou.github.io
+  repoID: "MDEwOlJlcG9zaXRvcnkxMzQ2MDAzMDM="
+  categoryID: "DIC_kwDOCAXWb84B-qn9"
+  # category: Announcements
+  theme: preferred_color_scheme
+
 plugins:
 # auto add those 2 plugins
 - gatsby-source-filesystem:
