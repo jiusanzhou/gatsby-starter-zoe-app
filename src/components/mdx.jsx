@@ -42,27 +42,27 @@ const Quote = ({ ...props }) => {
 const customs = {
     h1: (props) => <Heading as="h1" size="md" fontWeight="bold"
         fontSize={["3xl", "3xl", "3xl", "3xl"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     h2: (props) => <Heading as="h2" fontWeight="bold"
         fontSize={["2xl", "2xl", "2xl", "2xl"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     h3: (props) => <Heading as="h3" size="lg" fontWeight="bold"
         fontSize={["xl", "xl", "xl", "xl"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     h4: (props) => <Heading as="h4" size="sm" fontWeight="bold"
         fontSize={["md", "md", "md", "md"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     h5: (props) => <Heading as="h5" size="sm" fontWeight="bold"
         fontSize={["sm", "sm", "sm", "sm"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     h6: (props) => <Heading as="h6" size="xs" fontWeight="bold"
         fontSize={["xs", "xs", "xs", "xs"]}
-        my={[".5rem", ".675rem", ".875rem", "1rem"]}
+        my={[".875rem", "1rem"]}
         {...props} />,
     p: (props) => <Text as="p" lineHeight="tall"
         // fontSize ={["sm", "md", "md", "xl"]}

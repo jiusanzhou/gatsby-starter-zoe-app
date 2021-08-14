@@ -1,4 +1,4 @@
-import { Box, Center, Flex, Heading, Link, SimpleGrid, Text, useColorModeValue, VStack } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, Link, SimpleGrid, Text, useColorModeValue, VStack } from "@chakra-ui/react"
 import React from "react"
 import ItemsView from "../components/itemsView"
 import { useSiteMetadata } from "../utils/hooks"
@@ -7,9 +7,8 @@ import MLink from "../components/link"
 import Tags from "./tags"
 import { ArrowForwardIcon } from "@chakra-ui/icons"
 
-
 const PostList = ({ items = [], preview, ...props }) => {
-    const { basePathBlog } = useSiteMetadata()
+    const { basePathBlog, primaryColor } = useSiteMetadata()
     const _basePathBlog = basePathBlog || "/blog"
     const _blogListPath = _basePathBlog === "/" ? "/" : _basePathBlog + "s"
 
@@ -37,9 +36,14 @@ const PostList = ({ items = [], preview, ...props }) => {
         
         {preview&&<Flex mt="2rem" w="100%" justifyContent="center">
             {/* TODO: the link should calcute from config */}
-            <MLink display="inline-flex" alignItems="center" href={_blogListPath}>
+            {/* <MLink display="inline-flex" alignItems="center" href={_blogListPath}>
                 查看更多 <ArrowForwardIcon ml="1" />
-            </MLink>
+            </MLink> */}
+
+            <Button size="sm" as={MLink} href={_blogListPath} pure
+                rightIcon={<ArrowForwardIcon />} colorScheme={primaryColor} variant="outline">
+                查看更多
+            </Button>
         </Flex>}
         {/* TODO: paginate */}
     </Box>

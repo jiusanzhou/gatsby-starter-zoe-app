@@ -36,7 +36,7 @@ const PostPage = ({ data }) => {
                 <MDXRenderer>{[body]}</MDXRenderer>
             </Box>
 
-            <Flex mt="4rem">
+            <Flex mt="2rem">
                 <Tags items={tags} />
             </Flex>
             <Divider my="2rem" />

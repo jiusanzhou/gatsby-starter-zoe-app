@@ -28,7 +28,7 @@ const _defaultProps = {
         fontFamily: null,
         fontSize: ["md", "xl", "xl", "2xl"],
         fontWeight: "bold",
-        my: [".2em", ".5em", ".5em", "1em"],
+        my: [".875rem", "1rem"],
     },
     subTitle: {
         fontFamily: null,

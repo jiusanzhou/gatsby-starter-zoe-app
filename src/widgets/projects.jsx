@@ -79,9 +79,14 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
         {/* preivew mode should show more button */}
         {preview&&<Flex mt="2rem" w="100%" justifyContent="center">
             {/* TODO: the link should calcute from config */}
-            <MLink display="inline-flex" alignItems="center" href="/projects">
+            {/* <MLink display="inline-flex" alignItems="center" href="/projects">
                 查看更多 <ArrowForwardIcon ml="1" />
-            </MLink>
+            </MLink> */}
+
+            <Button size="sm" as={MLink} href="/projects" pure
+                rightIcon={<ArrowForwardIcon />} colorScheme={primaryColor} variant="outline">
+                查看更多
+            </Button>
         </Flex>}
     </Box>
 }

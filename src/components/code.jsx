@@ -118,7 +118,7 @@ const MCode = ({
                   
                 {showCopyButton && <Copy content={codeString} fileName={title} />}
                 {title && (
-                    <Box style={style} p=".2em" paddingBottom=".5em" _before={{
+                    <Box style={style} p=".2rem" paddingBottom=".5em" _before={{
                         background: "#fc625d",
                         borderRadius: "50%",
                         boxShadow: "20px 0 #fdbc40, 40px 0 #35cd4b",
