@@ -11,7 +11,8 @@ const CustomPage = ({ data: { mdxPage } }) => {
             type: container || "Box",
             // TODO: use props from page.containerProps
             minH: "calc(100vh - 20rem)",
-            textAlign: "left",
+            textAlign: "left", // TODO: set this as props?
+            title,
             children: {
                 type: "MDXRenderer",
                 children: [ body ]

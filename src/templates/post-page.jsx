@@ -18,7 +18,7 @@ const PostPage = ({ data }) => {
         subTitleProps={{textAlign: "left"}}
         subTitle={<MLink pure display="inline-flex" alignItems="center" href="/blogs" fontSize=".875rem">
           {/* TODO: useLinks get blogs list path */}
-          <ArrowBackIcon mr="2" /> Back to Blog
+          <ArrowBackIcon mr="2" /> 返回到博客
         </MLink>}
         title={title}
         minH="calc(100vh - 20rem)">
