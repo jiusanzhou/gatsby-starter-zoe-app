@@ -27,7 +27,7 @@ const MLink = ({ href = "", pure = false, ...props }) => {
         height: "3px", width: "100%",
         bgColor: useColorModeValue(`${primaryColor}.200`, `${primaryColor}.700`),
         transition: "all .2s ease-in-out",
-        transform: "rotate(1deg)",
+        // transform: "rotate(1deg)",
         zIndex: "-1"
     }:{}}
     _hover={{
