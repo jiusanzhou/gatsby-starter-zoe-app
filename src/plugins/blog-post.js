@@ -31,6 +31,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         basePathBlog,
         blogListTemplate, blogPageTemplate,
         tagListTemplate, tagPageTemplate,
+        archiveListTemplate,
         dateFormat,
     } = siteMetadata;
 
@@ -42,6 +43,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     let _blogPageTemplate = blogPageTemplate || "./src/templates/post-page.jsx"
     let _tagListTemplate = tagListTemplate || "./src/templates/tag-list.jsx"
     let _tagPageTemplate = tagPageTemplate || "./src/templates/tag-page.jsx"
+    let _archiveListTemplate = archiveListTemplate || "./src/templates/post-archives.jsx"
 
     let _dateFormat = dateFormat || "MMMM DD, YYYY"
 
@@ -62,11 +64,22 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         path: _blogListPath, // TODO: paginate?
         component: path.resolve(_blogListTemplate),
         context: {
+            basePathBlog: _basePathBlog,
             formatString: _dateFormat
             // TODO: paginate?
             // limit: 10,
             // skip: 0
         },
+    })
+
+    // create archives
+    createPage({
+        path: _blogListPath + "/archives",
+        component: path.resolve(_archiveListTemplate),
+        context: {
+            basePathBlog, _basePathBlog,
+            blogListPath: _blogListPath
+        }
     })
 
     // create tags list

@@ -10,9 +10,7 @@ import { useSiteMetadata } from "../utils/hooks"
 import Tags from "../widgets/tags"
 import { default as PostsListWidget } from "../widgets/posts"
 
-const PostList = ({ data, pageContext }) => {
-  const { basePathBlog } = useSiteMetadata()
-  const _basePathBlog = basePathBlog || "/blog"
+const PostList = ({ data, pageContext: { basePathBlog } }) => {
 
   const posts = data.allMdxPost.nodes
 
@@ -21,7 +19,7 @@ const PostList = ({ data, pageContext }) => {
     <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
       title="博客文章" description="写作是一种自我学习的方式">
       <HStack my="2rem" spacing="5" justifyContent="flex-end">
-        {/* <MLink href="archives">查看归档</MLink> */}
+        <MLink href="archives">文章归档</MLink>
         <MLink href="tags">全部标签</MLink>
       </HStack>
       <PostsListWidget items={posts} />

@@ -60,17 +60,25 @@ const _viewTypeContainers = {
         },
         bodyProps: {
             flex: 1,
-            overflow: "hidden"
+            overflow: "hidden",
+
+            display: "flex",
+            alignItems: "flex-start",
+            flexDirection: "column",
         }
     }
 }
 
 const ItemsView = ({
+    containerProps = {},
+
     leading = defaultLeading,
     leadingProps = {},
 
     trailing = defaultTrailing,
     trailingProps = {},
+
+    bodyProps = {},
 
     title = defaultTitle,
     titleProps = {},
@@ -90,9 +98,9 @@ const ItemsView = ({
     if (!viewContainer) return <Box p="2" bg="red" color="white">Uknown view type {type}!</Box>
     
     return React.createElement(viewContainer.as, {
-        children: items.map((item, index) => (<Flex key={index} {...viewContainer.containerProps}>
+        children: items.map((item, index) => (<Flex key={index} {...viewContainer.containerProps} {...containerProps}>
             {React.createElement(leading, { data: item, ...viewContainer.leadingProps, ...leadingProps })}
-            <Box {...viewContainer.bodyProps}>
+            <Box {...viewContainer.bodyProps} {...bodyProps}>
                 <MLink pure href={item.href} w="100%">
                 {React.createElement(title, { data: item, ...titleProps, isTruncated: type !== "grid" })}
                 </MLink>
