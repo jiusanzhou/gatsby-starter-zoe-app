@@ -4,6 +4,7 @@ import { Box, Flex, Heading, Text, useColorModeValue } from "@chakra-ui/react";
 
 import Action from "../components/action";
 import { useSiteMetadata } from "../utils/hooks";
+import kebabCase from "lodash.kebabcase";
 
 const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
 
@@ -185,6 +186,7 @@ const MSection = ({
                                 )}
                                 {..._getValue(_themesProps, {}, theme, "title")}
                                 {...titleProps}
+                                id={typeof title === "string" ? kebabCase(title) : null}
                             >
                                 {title}
                             </Heading>

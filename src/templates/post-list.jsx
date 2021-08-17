@@ -20,8 +20,8 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
       title="博客文章" description={<Flex w="full" justifyContent="space-between">
         <Text>写作是一种自我学习的方式</Text>
         <HStack color={useColorModeValue("black", "white")} spacing="5" justifyContent="flex-end">
-          <MLink href="archives">文章归档</MLink>
-          <MLink href="tags">全部标签</MLink>
+          <MLink href="archives">归档</MLink>
+          <MLink href="tags">标签</MLink>
         </HStack>
       </Flex>}>
       <PostsListWidget mt="2rem" items={posts} />

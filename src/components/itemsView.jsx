@@ -49,7 +49,7 @@ const _viewTypeContainers = {
             flexDirection: "row",
             textAlign: "left",
             w: "100%",
-            h: ["4rem", "6rem"],
+            // h: ["4rem", "6rem"],
             overflow: "hidden"
         },
         leadingProps: {

@@ -13,6 +13,7 @@ import { allComponents } from "./_element";
 import MCode from "./code";
 import MImage from "./image";
 import MLink from "./link";
+import kebabCase from "lodash.kebabcase";
 
 const Hr = () =>  <Divider
     borderColor={useColorModeValue(['gray.200', 'gray.600'])}
@@ -43,26 +44,32 @@ const customs = {
     h1: (props) => <Heading as="h1" size="md" fontWeight="bold"
         fontSize={["3xl", "3xl", "3xl", "3xl"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     h2: (props) => <Heading as="h2" fontWeight="bold"
         fontSize={["2xl", "2xl", "2xl", "2xl"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     h3: (props) => <Heading as="h3" size="lg" fontWeight="bold"
         fontSize={["xl", "xl", "xl", "xl"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     h4: (props) => <Heading as="h4" size="sm" fontWeight="bold"
         fontSize={["md", "md", "md", "md"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     h5: (props) => <Heading as="h5" size="sm" fontWeight="bold"
         fontSize={["sm", "sm", "sm", "sm"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     h6: (props) => <Heading as="h6" size="xs" fontWeight="bold"
         fontSize={["xs", "xs", "xs", "xs"]}
         my={[".875rem", "1rem"]}
+        id={typeof props.children === "string" ? kebabCase(props.children) : null}
         {...props} />,
     p: (props) => <Text as="p" lineHeight="tall"
         // fontSize ={["sm", "md", "md", "xl"]}
