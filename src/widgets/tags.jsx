@@ -5,7 +5,7 @@ import MLink from '../components/link'
 import { genColor } from '../styles/colors'
 
 const Tags = ({ items = [], simple = false, counted = false, ...props }) => {
-    return <Wrap spacing={3} {...props}>{items.map(({name, totalCount}, idx) => (
+    return <Wrap spacing={4} {...props}>{items.map(({name, totalCount}, idx) => (
         <WrapItem key={idx}>
             <Box>
                 <MLink pure href={`/blogs/tag/${kebabCase(name)}`}>
