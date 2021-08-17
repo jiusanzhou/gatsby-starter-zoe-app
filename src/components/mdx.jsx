@@ -45,32 +45,74 @@ const customs = {
         fontSize={["3xl", "3xl", "3xl", "3xl"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     h2: (props) => <Heading as="h2" fontWeight="bold"
         fontSize={["2xl", "2xl", "2xl", "2xl"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     h3: (props) => <Heading as="h3" size="lg" fontWeight="bold"
         fontSize={["xl", "xl", "xl", "xl"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     h4: (props) => <Heading as="h4" size="sm" fontWeight="bold"
         fontSize={["md", "md", "md", "md"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     h5: (props) => <Heading as="h5" size="sm" fontWeight="bold"
         fontSize={["sm", "sm", "sm", "sm"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     h6: (props) => <Heading as="h6" size="xs" fontWeight="bold"
         fontSize={["xs", "xs", "xs", "xs"]}
         my={[".875rem", "1rem"]}
         id={typeof props.children === "string" ? kebabCase(props.children) : null}
-        {...props} />,
+        role="group"
+        {...props}>
+            {props.children}
+            {typeof props.children === "string" ?
+            <MLink display="none" ml=".375rem" aria-label="anchor"
+                _groupHover={{display: "inline-block"}}
+                href={`#${kebabCase(props.children)}`}>#</MLink> : null}
+        </Heading>,
     p: (props) => <Text as="p" lineHeight="tall"
         // fontSize ={["sm", "md", "md", "xl"]}
         overflowWrap="break-word"
