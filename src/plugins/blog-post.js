@@ -77,7 +77,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         path: _blogListPath + "/archives",
         component: path.resolve(_archiveListTemplate),
         context: {
-            basePathBlog, _basePathBlog,
+            basePathBlog: _basePathBlog,
             blogListPath: _blogListPath
         }
     })
@@ -95,8 +95,19 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     const result = await graphql(`
         query {
             allMdxPost(sort: { fields: createdTime, order: DESC }) {
-                nodes {
-                    slug
+                edges {
+                    next {
+                      slug
+                      title
+                    }
+                    previous {
+                      slug
+                      title
+                    }
+                    node {
+                      slug
+                      title
+                    }
                 }
             }
             tags: allMdxPost(sort: { fields: tags___name, order: DESC }) {
@@ -113,15 +124,17 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     }
 
     // create each post blog
-    const posts = result.data.allMdxPost.nodes
-    posts.forEach(({ slug }) => {
+    const nodes = result.data.allMdxPost.edges
+    nodes.forEach(({ node: { slug, title }, next, previous }) => {
         // create each post
         createPage({
             path: purePath(`${_basePathBlog}/${slug}`), // TODO: paginate?
             component: path.resolve(_blogPageTemplate),
             context: {
                 formatString: _dateFormat,
-                slug,
+                basePathBlog: _basePathBlog,
+                slug, title,
+                next, previous,
             },
         })
     })
