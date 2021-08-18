@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-e01af7d63d4cbf5173fc.js"
+    "url": "webpack-runtime-735d508008d9f6e04f74.js"
   },
   {
     "url": "framework-4c7ec0139c7c494b54b7.js"
@@ -48,21 +48,49 @@ self.__precacheManifest = [
     "url": "9f96d65d-e24471fa1e55add7167c.js"
   },
   {
-    "url": "app-f1c508d2cc1e7d00f982.js"
+    "url": "app-807900958ab0de035427.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "dfa68324cc82c4006c9360acf17ec9c0"
+    "revision": "79187af6fe53580a82e615e29ffb7f63"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-f3e74a39de4e35ec1fc2.js"
+  },
+  {
+    "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
+    "revision": "60041c10ad1decedc6877675a2b50b5a"
+  },
+  {
+    "url": "page-data/sq/d/1137061806.json",
+    "revision": "68c29ec0449fc7c9215eb1c340418325"
+  },
+  {
+    "url": "page-data/sq/d/3230166491.json",
+    "revision": "e4e4a8ba835f214a67d8de4824521d9c"
+  },
+  {
+    "url": "page-data/sq/d/3549944518.json",
+    "revision": "e2cdc6602b6f6c8c81680ec794c7092c"
+  },
+  {
+    "url": "page-data/sq/d/4217087647.json",
+    "revision": "4017688287dc0ca70731c997ab3f0523"
+  },
+  {
+    "url": "page-data/sq/d/4276287135.json",
+    "revision": "f0011a2757a90e870740ad6eaf692790"
+  },
+  {
+    "url": "page-data/app-data.json",
+    "revision": "a78d20b54c3cf8f9db909d15ba4cf493"
   },
   {
     "url": "polyfill-653687283647d4b26886.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "52189114661adc25b198bb4d7c4ad938"
+    "revision": "d24dccef1dbd3229f15cbb7d535ae16c"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -149,12 +177,12 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   lastNavigationRequest = event.request.url
 
   let { pathname } = new URL(event.request.url)
-  pathname = pathname.replace(new RegExp(`^`), ``)
+  pathname = pathname.replace(new RegExp(`^/gatsby-starter-zoe-app`), ``)
 
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/app-f1c508d2cc1e7d00f982.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-807900958ab0de035427.js`))) {
     return await fetch(event.request)
   }
 
@@ -167,7 +195,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
     }
   }
 
-  const offlineShell = `/offline-plugin-app-shell-fallback/index.html`
+  const offlineShell = `/gatsby-starter-zoe-app/offline-plugin-app-shell-fallback/index.html`
   const offlineShellWithKey = workbox.precaching.getCacheKeyForURL(offlineShell)
   return await caches.match(offlineShellWithKey)
 })
