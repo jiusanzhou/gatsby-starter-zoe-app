@@ -318,6 +318,7 @@ plugins:
             description
             url
             site_url: url
+            basePathBlog
           }
         }
       }
