@@ -73,7 +73,7 @@ type MdxPage implements Node {
 `;
 
 const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
-    const { basePath, staticPageTemplate, customPageTemplate } = siteMetadata;
+    const { staticPageTemplate, customPageTemplate } = siteMetadata;
 
     const { createPage } = actions;
 
@@ -108,7 +108,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     // create pages from MdxPage
     const pages = result.data.allMdxPage.nodes
     pages.forEach((page) => {
-        const _path = purePath(`/${basePath}/${page.slug}`)
+        const _path = purePath(`/${page.slug}`)
 
         // create page use page query and custom page template
         createPage({

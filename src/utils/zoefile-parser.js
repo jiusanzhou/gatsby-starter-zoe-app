@@ -71,21 +71,21 @@ const _genVal = (s) => {
             let v;
             const _st = s.indexOf("${");
             if (_st < 0) {
-                if (s.indexOf("=>") >= 2) {
-                    try {
-                        v = eval(s)
-                    } catch(e) {
-                        v = s
-                    }
-                } else {
-                    v = s;
-                }
+                v = s
             } else if (_st === 0 && s.slice(-1) === "}") {
                 // ${a} who to access global
                 return _eval(s.slice(2, -1));
             } else {
                 // a${a} ${a}a a${a}a
                 return _eval("`" + s + "`");
+            }
+
+            if (s.indexOf("=>") >= 2) {
+                try {
+                    v = eval(s)
+                } catch(e) {
+                    v = s
+                }
             }
 
             // // @a.json, @a.yaml, @a.toml

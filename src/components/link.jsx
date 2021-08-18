@@ -4,13 +4,14 @@ import { Link as GatsbyLink } from "gatsby"
 
 import { useSiteMetadata } from "../utils/hooks";
 
-const { primaryColor } = useSiteMetadata()
+const { primaryColor, pathPrefix } = useSiteMetadata()
 
 const MLink = ({ href = "", pure = false, ...props }) => {
     const _props = {}
     if (href.indexOf("://") < 0 && href.indexOf("mailto:") < 0) {
-        _props.to = href
-
+        // note: fix duplicate pathPrefix for mdx content
+        // https://github.com/ChristopherBiscardi/gatsby-mdx/issues/377
+        _props.to = href.replace(pathPrefix, "")
         _props.as = GatsbyLink
     } else {
         _props.href = href

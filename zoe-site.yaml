@@ -1,10 +1,9 @@
 # merge with providerd
 title: ZoeAPP
 description: A starter template for zoe app.
-url: https://labs.zoe.im/zoe-app
+url: https://labs.zoe.im/gatsby-starter-zoe-app
 logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
-
 
 # display in the right of the logo
 version: alpha
@@ -226,6 +225,7 @@ customNodes:
 
 # for all pages?
 basePath: /
+pathPrefix: ${zoe.basePath}
 # pageTemplate: 
 
 # what about blogs basePath
@@ -340,13 +340,14 @@ plugins:
         }
       serialize: |
         ({ query: { site, allMdxPost } }) => {
+          const { basePathBlog } = site.siteMetadata
           return allMdxPost.edges.map(edge => {
             return Object.assign({}, edge.node.frontmatter, {
               title: edge.node.title,
               description: edge.node.description || edge.node.excerpt,
               date: edge.node.createdTime,
-              url: site.siteMetadata.url + edge.node.slug,
-              guid: site.siteMetadata.url + edge.node.slug,
+              url: site.siteMetadata.url + basePathBlog + edge.node.slug,
+              guid: site.siteMetadata.url + basePathBlog + edge.node.slug,
               custom_elements: [{ "content:encoded": edge.node.html }],
             })
           })
