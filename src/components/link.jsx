@@ -11,7 +11,8 @@ const MLink = ({ href = "", pure = false, ...props }) => {
     if (href.indexOf("://") < 0 && href.indexOf("mailto:") < 0) {
         // note: fix duplicate pathPrefix for mdx content
         // https://github.com/ChristopherBiscardi/gatsby-mdx/issues/377
-        _props.to = href.replace(pathPrefix, "")
+        _props.to = (pathPrefix&&pathPrefix!=="/")?href.replace(pathPrefix, ""):href
+        if (_props.to.slice(0,1)!=="/"){_props.to = "/"+_props.to}
         _props.as = GatsbyLink
     } else {
         _props.href = href
