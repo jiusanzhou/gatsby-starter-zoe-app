@@ -30,16 +30,16 @@ const onCreateNode = ({ customNodes = [] }, { node, actions, getNode, createNode
     // - layout
     const fieldData = { ...node.frontmatter };
 
-    // death code for tags
+    // hard code for tags
     if (fieldData.tags) fieldData.tags = fieldData.tags.map(tag => ({
         name: tag, slug: kebabCase(tag),
     }));
 
-    // death code for time
+    // hard code for time
     if (!fieldData.modifiedTime) fieldData.modifiedTime = fileNode.modifiedTime;
     if (!fieldData.createdTime) fieldData.createdTime = fileNode.birthTime;
 
-    // death code for layout
+    // hard code for layout
     if (!fieldData.layout) fieldData.layout = "default";
 
     const rid = createNodeId(`${node.id}@${name}`);

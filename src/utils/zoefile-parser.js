@@ -71,8 +71,15 @@ const _genVal = (s) => {
             let v;
             const _st = s.indexOf("${");
             if (_st < 0) {
-                // a
-                v = s;
+                if (s.indexOf("=>") >= 2) {
+                    try {
+                        v = eval(s)
+                    } catch(e) {
+                        v = s
+                    }
+                } else {
+                    v = s;
+                }
             } else if (_st === 0 && s.slice(-1) === "}") {
                 // ${a} who to access global
                 return _eval(s.slice(2, -1));
@@ -98,7 +105,8 @@ const buildPlugin = (plg) => {
     switch (typ) {
         case "string":
             // return string directly
-            return plg;
+            // if we have => , maybe we are a function define
+            return plg
         case "object":
             // build plugin with layout
             let name = Object.keys(plg)[0];

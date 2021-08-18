@@ -5,6 +5,7 @@ url: https://labs.zoe.im/zoe-app
 logo: images/logo-512x512.png # https://via.placeholder.com/120x60/E53E3E.png/fff
 lang: zh-CN
 
+
 # display in the right of the logo
 version: alpha
 
@@ -20,7 +21,7 @@ author:
   facebook: 'jiusanzhou'
   telegram: 'jiusanzhou'
   linkedin: 'johnzoe'
-  wechat: https://github.com/jiusanzhou/jiusanzhou.github.io/raw/archived/static/WeChat-JohnCx.jpeg
+  wechat: https://cdn.jsdelivr.net/gh/jiusanzhou/jiusanzhou.github.io@archived/static/WeChat-JohnCx.jpeg
 
 organization:
   name: ${zoe.title}
@@ -306,6 +307,53 @@ plugins:
 - gatsby-transformer-sharp
 - gatsby-plugin-offline
 - gatsby-plugin-image
+
+# need options!!!
+- gatsby-plugin-feed:
+    query: |
+      {
+        site {
+          siteMetadata {
+            title
+            description
+            url
+            site_url: url
+          }
+        }
+      }
+    feeds:
+    - query: |
+        {
+          allMdxPost(
+            sort: { order: DESC, fields: [createdTime] },
+          ) {
+            edges {
+              node {
+                excerpt
+                description
+                slug
+                title
+                html
+              }
+            }
+          }
+        }
+      serialize: |
+        ({ query: { site, allMdxPost } }) => {
+          return allMdxPost.edges.map(edge => {
+            return Object.assign({}, edge.node.frontmatter, {
+              title: edge.node.title,
+              description: edge.node.description || edge.node.excerpt,
+              date: edge.node.createdTime,
+              url: site.siteMetadata.url + edge.node.slug,
+              guid: site.siteMetadata.url + edge.node.slug,
+              custom_elements: [{ "content:encoded": edge.node.html }],
+            })
+          })
+        }
+      output: "/rss.xml"
+      title: ${zoe.title} RSS Feed
+
 # - gatsby-transformer-remark:
 #     plugins:
 #     - resolve: gatsby-remark-images

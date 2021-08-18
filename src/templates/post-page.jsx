@@ -12,7 +12,6 @@ import PostFooterNav from "../widgets/post-footer"
 import Tags from "../widgets/tags"
 
 const PostPage = ({ data, pageContext: { basePathBlog, slug, next, previous } }) => {
-    console.log("====>", slug, next, previous)
     const { title, body, tags, createdTime, timeToRead } = data.mdxPost
     return <Layout layout="default" fixed={false} title={title}>
         <MSection

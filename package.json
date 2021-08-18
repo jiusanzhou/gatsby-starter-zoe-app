@@ -17,6 +17,7 @@
     "@octokit/graphql": "^4.6.4",
     "framer-motion": "^3.10.6",
     "gatsby": "^3.6.1",
+    "gatsby-plugin-feed": "^3.11.0",
     "gatsby-plugin-google-analytics": "^3.8.0",
     "gatsby-plugin-image": "^1.8.0",
     "gatsby-plugin-manifest": "^3.8.0",

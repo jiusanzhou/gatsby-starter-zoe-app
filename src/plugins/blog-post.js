@@ -22,6 +22,8 @@ type MdxPost implements Node {
     banner: String
     description: String
     canonicalUrl: String
+    published: Boolean
+    pinned: Boolean
 }`;
 
 // banner: File @fileByRelativePath

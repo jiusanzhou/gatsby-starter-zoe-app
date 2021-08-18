@@ -116,7 +116,10 @@ installComponent(require("./section"), { as: ["MSection", "Section"] });
 installComponent(require("./seo"), { as: "SEO" });
 installComponent(require("./socials"), { key: "Socials" });
 installComponent(require("./colormode"), { as: "ColorModeSwitcher" });
-installComponent(require("./mdx"), { as: ["mdxProvider", "MDXProvider"] });
+
+// this will cause:
+//   WebpackError: ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
+// installComponent(require("./mdx"), { as: ["mdxProvider", "MDXProvider"] });
 
 // install custom views
 installComponent(require("../views/app-release"), { as: "AppRelease" });
