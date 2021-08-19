@@ -35,6 +35,7 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
             description: item.description || item.excerpt,
             href: purePath(`${basePathBlog}/${item.slug}`),
           }))}
+          titleProps={{fontWeight: 'semibold'}}
           containerProps={{h: null}} spacing="5"
           trailing={({ data: { createdTime }, ...props}) => (
             <Flex display={["none", "none", "flex", "flex", "flex"]}
