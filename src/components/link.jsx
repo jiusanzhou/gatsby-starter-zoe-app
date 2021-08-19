@@ -22,7 +22,7 @@ const MLink = ({ href = "", pure = false, ...props }) => {
     
     // TOOD: can't using for PopoverTrigger
 
-    return <Link position="relative" display="inline-block" _before={!pure?{
+    return <Link position="relative" display="inline-block" display={null} _before={!pure?{
         content: "''",
         position: "absolute",
         left: 0, bottom: "2px",

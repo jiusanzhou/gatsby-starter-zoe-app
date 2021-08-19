@@ -77,7 +77,7 @@ const SMNav = ({ navs = [], ...props }) => {
         </PopoverTrigger>
         <PopoverContent display={props.display} h="100vh" sx={{ width: "100vw", overflow: "auto"}}>
             <PopoverBody>
-                <VStack my="5" alignItems="flex-start" spacing={5}>
+                <VStack my="5" mb="5rem" alignItems="flex-start" spacing={5}>
                     {navs.map(({ title, href, items }, index) => {
                         return (!items || items.length === 0) ?
                             // just return link or text
@@ -95,7 +95,9 @@ const SMNav = ({ navs = [], ...props }) => {
                             <VStack mt="1rem" ml="1rem" alignItems="flex-start">
                                 {items.map(({title, description, href, icon, color}, index) => <Flex key={index}>
                                     <Avatar mr=".5rem" size="xs" src={icon} name={title} />
-                                    <Text fontSize=".875rem">{title}</Text>
+                                    {href
+                                    ? <MLink pure href={href} _hover={{}}>{title}</MLink>
+                                    : <Text fontSize=".875rem">{title}</Text>}
                                 </Flex>)}
                             </VStack>
                         </Flex>
