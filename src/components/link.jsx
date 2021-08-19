@@ -12,7 +12,7 @@ const MLink = ({ href = "", pure = false, ...props }) => {
         // note: fix duplicate pathPrefix for mdx content
         // https://github.com/ChristopherBiscardi/gatsby-mdx/issues/377
         _props.to = (pathPrefix&&pathPrefix!=="/")?href.replace(pathPrefix, ""):href
-        if (_props.to.slice(0,1)!=="/"){_props.to = "/"+_props.to}
+        // if (_props.to.slice(0,1)!=="/"){_props.to = "/"+_props.to}
         _props.as = GatsbyLink
     } else {
         _props.href = href
