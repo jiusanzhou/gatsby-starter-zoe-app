@@ -55,12 +55,12 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
         {/* if is not the preview mode, should show the filter */}
         {/* preview should has this filter??? */}
         {!preview && <Flex mb="5" justifyContent="center">
-            <HStack spaceing="2" w="fit-content" p="2" flexWrap="wrap" {...group}
+            <HStack overflow="auto" spacing="2" w="fit-content" p="2" {...group}
                 bgColor={useColorModeValue(`gray.100`, `gray.700`)}  borderRadius="full">
                 {(Object.keys(languages)).map(language => {
                     const radio = getRadioProps({ value: language })
                     return <RadioCard key={language} {...radio}>
-                        {`${language||"全部"}`}
+                        {`${language||"All"}`}
                         {/*  (${languages[language]}) */}
                     </RadioCard>
                 })}
