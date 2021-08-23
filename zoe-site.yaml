@@ -44,17 +44,14 @@ links:
 - title: Blog
   category: Company
   href: /blogs
-- title: Rust
-  category: Products
-  href: /rust
-- title: Help
-  category: Products
+- title: Help Center
+  category: Plugins
   href: /help
 - title: App landing
-  category: Themes
+  category: Plugins
   href: /app-landing
-- title: More >>>
-  category: Themes
+- title: Projects
+  category: Products
   href: /projects
 
 # nav links
@@ -106,13 +103,12 @@ navs:
     description: Alerts for Kubernetes
     href: https://appscode.com/products/searchlight/
     # icon: https://appscode.com/assets/images/products/searchlight/searchlight-icon.png
-- title: Services
-  href: /services
+- title: Plugins
   items:
-  - title: Golang turorials
-    href: /services/golang
-  - title: Frontend from zero
-    href: /services/frontend
+  - title: Help Center
+    href: /help
+  - title: App Landing
+    href: /app-landing
 - title: Blog
   href: /blogs
 - title: About
