@@ -134,3 +134,7 @@ installComponent(require("./_with"), { key: "_withBackground" })
 
 // templates for alone veiw
 
+// just for debugging HelpItemsList HelpCenterHeader
+installComponent(require("../widgets/helpqa"), { key: "HelpCenterHeader" })
+installComponent(require("../widgets/helpqa"), { key: "HelpCategoriesList" })
+installComponent(require("../widgets/helpqa"), { key: "HelpItemsList" })

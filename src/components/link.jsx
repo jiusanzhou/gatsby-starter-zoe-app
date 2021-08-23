@@ -14,13 +14,17 @@ const MLink = ({ href = "", pure = false, ...props }) => {
         _props.to = (pathPrefix&&pathPrefix!=="/")?href.replace(pathPrefix, ""):href
         // if (_props.to.slice(0,1)!=="/"){_props.to = "/"+_props.to}
         _props.as = GatsbyLink
+
+        // const params = new URLSearchParams(location.search)
+        // TODO: handle if href exits query params
+        _props.to = _props.to + location.search
+
     } else {
         _props.href = href
-
         _props.isExternal = true
     }
     
-    // TOOD: can't using for PopoverTrigger
+    // TOOD: can't using ref for some component
 
     return <Link position="relative" display="inline-block" display={null} _before={!pure?{
         content: "''",

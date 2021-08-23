@@ -48,6 +48,12 @@ const _sysKeysMap = () => {
 const _eval = (s) => {
     const __dirname = _global.__dirname
     const zoe = _global.zoe
+
+    // hard code fix eval in browsers
+    if (typeof window !== 'undefined' && window) {
+        window.process = {env: {}}
+    }
+    
     // ignore the lint
     if (__dirname === zoe) {}
     return eval(s)

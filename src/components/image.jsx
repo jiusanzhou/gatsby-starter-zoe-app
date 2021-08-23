@@ -18,7 +18,9 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
                     relativePath
                     publicURL
                     childImageSharp {
-                        gatsbyImageData
+                        gatsbyImageData(
+                            formats: [WEBP]
+                        )
                     }
                 }
             }
@@ -28,7 +30,9 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
                     localImage {
                         publicURL
                         childImageSharp {
-                            gatsbyImageData
+                            gatsbyImageData(
+                                formats: [WEBP]
+                            )
                         }
                     }
                 }

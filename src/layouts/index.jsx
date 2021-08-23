@@ -1,6 +1,10 @@
 import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
+import {
+    useParams,
+    useLocation
+} from "react-router-dom";
 
 import _default from "./default";
 import empty from "./empty";
@@ -15,7 +19,11 @@ const _layouts = {
     empty,
 };
 
+// merge props from siteMeta
+const { primaryColor, layouts = {} } = useSiteMetadata();
+
 export default ({ layout = "default", ...props }) => {
+
     // if layout is string create with or { name }
     let name;
     let _props = {};
@@ -32,8 +40,10 @@ export default ({ layout = "default", ...props }) => {
             break;
     }
 
-    // merge props from siteMeta
-    const { primaryColor, layouts = {} } = useSiteMetadata();
+    // query layout from url query
+    const params = new URLSearchParams(location.search)
+    const _layout = params.get("_layout")
+    if (_layout && _layouts[_layout]) name = _layout
 
     _props = { ..._props, ...(layouts[name] || {}) };
 

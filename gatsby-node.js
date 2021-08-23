@@ -15,14 +15,18 @@ const { mdxResolverPassthrough, purePath } = require("./src/utils/helper");
 const { siteMetadata } = loadZoefile();
 
 // TODO: auto search in src and
-const plugins = [
-    "src/plugins/app-release",
-    "src/plugins/remote-image",
-    "src/plugins/static-page", // must before custom page
-    "src/plugins/custom-page",
-    "src/plugins/repo-project",
-    "src/plugins/blog-post",
-];
+// const plugins = [
+//     "src/plugins/app-release",
+//     "src/plugins/remote-image",
+//     "src/plugins/static-page", // must before custom page
+//     "src/plugins/custom-page",
+//     "src/plugins/repo-project",
+//     "src/plugins/blog-post",
+//     "src/plugins/issue-helpqa",
+// ];
+
+// from zoe-site.yaml
+const plugins = siteMetadata.zoePlugins || [];
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -93,7 +97,8 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions = {}) => 
 // ======== create node source ======
 
 // import nodes to create, how to create multi
-exports.sourceNodes = async ({ actions, createContentDigest }) => {
+exports.sourceNodes = async (opts) => {
+    const { actions, createContentDigest } = opts
     // loads all nodes we need to create
     await Promise.all(
         plugins.map(async (e) => {
@@ -101,29 +106,39 @@ exports.sourceNodes = async ({ actions, createContentDigest }) => {
             if (!c) return;
 
             // just call the function
-            if (typeof c === "function") return c(actions);
+            if (typeof c === "function") return c(siteMetadata, opts);
 
-            // name, and data
-            if (!c.createData) return;
-            const data = c.createData(siteMetadata);
-            const res = typeof data.then !== "function" ? data : await data;
+            // if c is array
+            let sources = [];
+            if (Array.isArray(c)) {
+              sources.push(...c);
+            } else if (typeof c === "object") {
+              sources.push(c);
+            }
 
-            // TODO: check is res is a array
-            if (!Array.isArray(res)) return;
-
-            res.forEach((v) => {
-                // create release node
-                actions.createNode({
-                    ...v,
-                    id: v.id || "" + Date.now(), // TODO: use a rela id
-                    internal: {
-                        type: c.name,
-                        contentDigest: createContentDigest(v),
-                        content: JSON.stringify(v),
-                        mediaType: c.mediaType || "application/json",
-                    },
-                });
-            });
+            await Promise.all(sources.map(async (c) => {
+              // name, and data
+              if (!c.createData) return;
+              const data = c.createData(siteMetadata);
+              const res = typeof data.then !== "function" ? data : await data;
+  
+              // TODO: check is res is a array
+              if (!Array.isArray(res)) return;
+  
+              res.forEach((v) => {
+                  // create release node
+                  actions.createNode({
+                      ...v,
+                      id: v.id || "" + Date.now(), // TODO: use a rela id
+                      internal: {
+                          type: c.name,
+                          contentDigest: createContentDigest(v),
+                          content: JSON.stringify(v),
+                          mediaType: c.mediaType || "application/json",
+                      },
+                  });
+              });
+            }));
         })
     );
 };

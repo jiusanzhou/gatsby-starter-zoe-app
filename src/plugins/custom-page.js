@@ -3,6 +3,7 @@ const kebabCase = require(`lodash.kebabcase`);
 const { purePath } = require("../utils/helper");
 
 // create nodes from mdx
+// remove to another plugin
 
 const onCreateNode = ({ customNodes = [] }, { node, actions, getNode, createNodeId, createContentDigest }) => {
     const { createNode, createParentChildLink } = actions;
@@ -41,6 +42,8 @@ const onCreateNode = ({ customNodes = [] }, { node, actions, getNode, createNode
 
     // hard code for layout
     if (!fieldData.layout) fieldData.layout = "default";
+
+    // TODO: auto set first image for banner(hard code)
 
     const rid = createNodeId(`${node.id}@${name}`);
 

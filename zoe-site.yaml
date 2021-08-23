@@ -47,9 +47,9 @@ links:
 - title: Rust
   category: Products
   href: /rust
-- title: More >>>
+- title: Help
   category: Products
-  href: /products
+  href: /help
 - title: App landing
   category: Themes
   href: /app-landing
@@ -163,17 +163,30 @@ pages:
   # /about: ./content/about.md
 
 # for app release, we need to add github release source
+# appReleases
 releases:
 - provider: github
   repo: moeapp/automate
 
 
 # projects for labs projects
+# repoProjects
 projects:
 - provider: github
   owners:
   - jiusanzhou
   tag: zoe-lab
+
+# Help center, mostly for Q&A. This is not docs center
+# labels: help:xx
+# issues: help:
+helpqa:
+- provider: github
+  repo: jiusanzhou/gatsby-starter-zoe-app
+  labelPrefix: help # tag layout, use this as a category
+  # _: ":"
+  # source: issues??? can be other
+  # state: OPEN?
 
 # previews
 
@@ -233,6 +246,10 @@ basePathBlog: /blog
 blogListTemplate: 
 blogPageTemplate:
 
+basePathHelp: /help
+
+# TODO: path config move to each plugin config
+
 # can register a component
 
 # important and just modify by template
@@ -248,6 +265,18 @@ comments:
   categoryID: "DIC_kwDOCAXWb84B-qn9"
   # category: Announcements
   theme: preferred_color_scheme
+
+# plugins for custom
+zoePlugins:
+- src/plugins/app-release
+- src/plugins/remote-image
+- src/plugins/static-page
+- src/plugins/custom-page
+- src/plugins/repo-project
+- src/plugins/blog-post
+- src/plugins/issue-helpqa
+
+# Gatsby plugins
 
 plugins:
 # auto add those 2 plugins
@@ -309,6 +338,7 @@ plugins:
 - gatsby-plugin-image
 
 # need options!!!
+# how to register plugin from internal plugin in src/plugins
 - gatsby-plugin-feed:
     query: |
       {
@@ -355,6 +385,15 @@ plugins:
         }
       output: "/rss.xml"
       title: ${zoe.title} RSS Feed
+
+# registered by some plugins
+- gatsby-source-graphql:
+    typeName: Github
+    fieldName: github
+    url: "https://api.github.com/graphql"
+    headers:
+      Authorization: Bearer ${process.env.GITHUB_TOKEN}
+    
 
 # - gatsby-transformer-remark:
 #     plugins:

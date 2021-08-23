@@ -1,0 +1,1 @@
+> Extract those from plugins

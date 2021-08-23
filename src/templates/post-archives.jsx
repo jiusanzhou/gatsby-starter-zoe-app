@@ -4,7 +4,7 @@ import React from "react"
 import ItemsView from "../components/itemsView"
 import MLink from "../components/link"
 import MSection from "../components/section"
-import Layout from "../layouts/default"
+import Layout from "../layouts"
 import { purePath } from "../utils/helper"
 
 const PostList = ({ data, pageContext: { basePathBlog } }) => {
