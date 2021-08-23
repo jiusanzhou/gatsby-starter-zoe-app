@@ -1,13 +1,9 @@
 import { Flex, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
-import ItemsView from "../components/itemsView"
 import MLink from "../components/link"
 import MSection from "../components/section"
 import Layout from "../layouts"
-import { purePath } from "../utils/helper"
-import { useSiteMetadata } from "../utils/hooks"
-import Tags from "../widgets/tags"
 import { default as PostsListWidget } from "../widgets/posts"
 
 const PostList = ({ data, pageContext: { basePathBlog } }) => {
@@ -19,7 +15,7 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
     <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
       title="博客文章" description={<Flex w="full" justifyContent="space-between">
         <Text>写作是一种自我学习的方式</Text>
-        <HStack color={useColorModeValue("black", "white")} spacing="5" justifyContent="flex-end">
+        <HStack spacing="5" justifyContent="flex-end">
           <MLink href="archives">归档</MLink>
           <MLink href="tags">标签</MLink>
         </HStack>
@@ -36,7 +32,7 @@ export default PostList
 export const query = graphql`
   query ($formatString: String!) {
     allMdxPost(
-      sort: { fields: createdTime, order: DESC }
+      sort: { fields: [pinned, createdTime], order: [ASC, DESC] }
     ) {
       nodes {
         slug
@@ -46,6 +42,7 @@ export const query = graphql`
         excerpt
         timeToRead
         description
+        pinned
         tags {
           name
           slug

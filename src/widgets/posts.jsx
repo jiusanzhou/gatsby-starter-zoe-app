@@ -5,7 +5,7 @@ import { useSiteMetadata } from "../utils/hooks"
 import { purePath } from "../utils/helper"
 import MLink from "../components/link"
 import Tags from "./tags"
-import { ArrowForwardIcon } from "@chakra-ui/icons"
+import { ArrowForwardIcon, StarIcon } from "@chakra-ui/icons"
 
 const PostList = ({ items = [], preview, ...props }) => {
     const { basePathBlog, primaryColor } = useSiteMetadata()
@@ -19,9 +19,12 @@ const PostList = ({ items = [], preview, ...props }) => {
             <Tags simple items={tags.slice(0, 3)} />
         </Flex>)
 
-    if (!preview) itemProps.trailing = ({ data: { createdTime }, ...props}) => (
-        <Flex display={["none", "none", "flex", "flex", "flex"]} ml="1rem" alignItems="center" w="fit-content" color={useColorModeValue("gray.400", "gray.700")}>
-            <Text>{createdTime}</Text>
+    if (!preview) itemProps.trailing = ({ data: { createdTime, pinned }, ...props}) => (
+        <Flex flexDir="column" ml="1rem"
+        alignItems="flex-end" w="fit-content">
+            {pinned&&<StarIcon color="yellow.400" />}
+            <Text color={useColorModeValue("gray.400", "gray.700")}
+            display={["none", "inline-block"]}>{createdTime}</Text>
         </Flex>)
     
     if (!preview) itemProps.leading = ({ data: {}, ...props}) => null

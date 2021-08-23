@@ -38,6 +38,8 @@ const onCreateNode = ({ customNodes = [] }, { node, actions, getNode, createNode
 
     // hard code for time
     if (!fieldData.modifiedTime) fieldData.modifiedTime = fileNode.modifiedTime;
+    
+    if (!fieldData.createdTime) fieldData.createdTime = fieldData.date;
     if (!fieldData.createdTime) fieldData.createdTime = fileNode.birthTime;
 
     // hard code for layout
