@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@chakra-ui/icons';
-import { Box, Center, Divider, Flex, Heading, SimpleGrid, StackDivider, Text, useColorModeValue, VStack, Wrap, WrapItem } from '@chakra-ui/react';
+import { Box, Button, Center, Divider, Flex, Heading, HStack, SimpleGrid, StackDivider, Text, useColorModeValue, VStack, Wrap, WrapItem } from '@chakra-ui/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import React from 'react';
+import React, { useState } from 'react';
 import Markdown from 'react-markdown';
 
 import MLink from '../components/link';
@@ -94,10 +94,32 @@ const HelpItemsList = ({ basePathHelp="/help", title="常见问题", items = _he
 
 const HelpItemDetail = ({ basePathHelp="/help", item: { title, body } }) => {
     // TODO: use mdx
+    const [voted, setvoted] = useState(null)
     return <MSection textAlign="left">
         <Heading fontSize="1.25rem">{title}</Heading>
         <Divider my="3" />
         <Markdown children={body} />
+
+
+        <Center flexDir="column"
+        bg={useColorModeValue("gray.100", "gray.600")}
+        borderRadius="md" mt={["1rem", "2rem"]} p={["1rem", "2rem"]}>
+            <Text>是否解决了您的问题？</Text>
+            <HStack spacing="5" mt="3">
+                {["😞", "😐", "😃"].map((icon, index) => 
+                <Button variant="unstyled"
+                fontSize={["1.375rem", "2rem"]} key={index}
+                _hover={{
+                    transform: "scale(1.32)"
+                }}
+                onClick={() => setvoted(index)}
+                filter={voted!==null&&voted!==index?"grayscale(100%)":null}
+                transform={voted===index?"scale(1.32)":"scale(1)"}
+                transition="all 0.2s ease-out">
+                    {icon}
+                </Button>)}
+            </HStack>
+        </Center>
     </MSection>
 } 
 

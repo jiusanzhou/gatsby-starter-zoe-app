@@ -29,9 +29,11 @@ export default PostList
 
 // ($formatString: String!)
 // (formatString: $formatString)
+// only published
 export const query = graphql`
   query ($formatString: String!) {
     allMdxPost(
+      filter: {published: {eq: true}},
       sort: { fields: [pinned, createdTime], order: [ASC, DESC] }
     ) {
       nodes {

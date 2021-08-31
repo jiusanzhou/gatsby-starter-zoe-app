@@ -160,6 +160,7 @@ pages:
 
 # for app release, we need to add github release source
 # appReleases
+# changelog will comsume those data
 releases:
 - provider: github
   repo: moeapp/automate
