@@ -28,8 +28,9 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
       </HStack> */}
       {Object.keys(years).sort((a, b) => b - a).map((y, index) => (
       <Box mt="2rem">
-        <Heading as="h3" fontSize="1.5rem">{y}</Heading>
-        <Box mt="2rem" ml="2rem">
+        <Heading pb="3" borderBottomWidth="1px"
+          as="h3" fontSize="1.5rem">{y}</Heading>
+        <Box mt="2rem">
           <ItemsView type="tile" items={years[y].map((item) => ({
             ...item,
             description: item.description || item.excerpt,

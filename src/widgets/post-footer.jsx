@@ -12,7 +12,7 @@ const PostFooter = ({ basePathBlog, next, previous, ...props }) => {
         <Flex flexWrap="wrap" justifyContent="space-between">
             <Flex alignItems="center">
                 {previous?<>
-                <ArrowBackIcon mr=".5rem" />,
+                <ArrowBackIcon mr=".5rem" />
                 <MLink fontWeight="bold" pure href={purePath(`${basePathBlog}/${previous.slug}`)}>
                     {previous.title}
                 </MLink>
@@ -23,7 +23,7 @@ const PostFooter = ({ basePathBlog, next, previous, ...props }) => {
                 {next?<>
                 <MLink fontWeight="bold" pure href={purePath(`${basePathBlog}/${next.slug}`)}>
                     {next.title}
-                </MLink>,
+                </MLink>
                 <ArrowForwardIcon ml=".5rem" />
                 </>:null}
                 
