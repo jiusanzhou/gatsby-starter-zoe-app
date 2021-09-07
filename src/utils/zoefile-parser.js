@@ -195,7 +195,7 @@ exports.mergeConfig = (c1 = {}, c2 = {}) => {
         "zoePlugins",
     ]
 
-    fields.forEach(field => {
+    metaFields.forEach(field => {
         c[field] = [
             ...(c1[field]||[]),
             ...(c2[field]||[]),
