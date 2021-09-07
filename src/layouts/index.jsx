@@ -1,10 +1,6 @@
 import React from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
-import {
-    useParams,
-    useLocation
-} from "react-router-dom";
 
 import _default from "./default";
 import empty from "./empty";
