@@ -10,7 +10,7 @@ exports.loadObject = (config) => {
 
     if (config.endsWith(".json")) {
         return json.parse(data);
-    } else if (config.endsWith(".yaml") || f.endsWith(".yml")) {
+    } else if (config.endsWith(".yaml") || config.endsWith(".yml")) {
         return yaml.safeLoad(data);
     } else if (config.endsWith(".toml")) {
         return toml.parse(data);
