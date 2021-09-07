@@ -5,25 +5,39 @@ const { purePath } = require("../utils/helper");
 // create nodes from mdx
 // remove to another plugin
 
-const onCreateNode = ({ customNodes = [] }, { node, actions, getNode, createNodeId, createContentDigest }) => {
+const onCreateNode = ({ customNodes = [], baseContentDir = [] }, { node, actions, getNode, createNodeId, createContentDigest }) => {
     const { createNode, createParentChildLink } = actions;
-    let m;
 
     // at most time we are a child of file type
     const fileNode = getNode(node.parent);
     if (!fileNode) return;
 
-    const source = fileNode.sourceInstanceName;
+    // const source = fileNode.sourceInstanceName;
+    let dir = fileNode.dir;
+    if (!dir) return;
 
+    // remove baseContentDir of dir
+    // must have / prefix
+    // sort with length to handle correct with child-parent.
+    baseContentDir.sort((a, b) => b.length - a.length).forEach((d) => {
+        dir = dir.replace(d, "");
+    })
+
+    let m;
     // filter if we need to create another node
     for (let i = 0; i < customNodes.length; i++) {
-        let { type, name } = customNodes[i].when || {};
-        if (node.internal.type === type && source === name) {
-            m = customNodes[i];
+        let { type, path } = customNodes[i].when || {};
+        if (node.internal.type === type) {
+            if (dir === path || "/" + path === dir) {
+                m = customNodes[i];
+                break;
+            }
         }
     }
 
     if (!m) return;
+
+    // TODO: code bellow should config with zoefile: transformer
 
     const { name } = m;
 

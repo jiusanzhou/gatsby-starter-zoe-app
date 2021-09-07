@@ -88,7 +88,7 @@ const _genVal = (s) => {
 
             if (s.indexOf("=>") >= 2) {
                 try {
-                    v = eval(s)
+                    v = _eval(s)
                 } catch(e) {
                     v = s
                 }
@@ -168,10 +168,37 @@ const buildConfig = (zoe) => {
         siteMetadata[k] = v;
     });
 
+    // TODO: add plugins from siteMetadata
+
     config.siteMetadata = siteMetadata;
 
     return config;
 };
+
+// mergeConfig merge 2 configs
+// merge second to the first one
+// and don't go to next level
+// just replace fields, except
+// some special fields(plugins, baseContentDir, customNodes, zoePlugins)
+// value should be merged
+exports.mergeConfig = (c1, c2) => {
+    c = { ...c1, ...c2 }
+
+    // some fields should be merged, must be array
+    // TODO: auto configurable with plugins
+    const fields = [
+        "remoteImageNodes", "remoteImageUrlPatterns",
+        "pageWrappers",
+        "baseContentDir",
+        "customNodes",
+        "zoePlugins",
+        "plugins",
+    ]
+
+    fields.forEach(field => {c[field] = [...(c1[field]||[]), ...(c2[field]||[])]})
+
+    return c
+}
 
 exports.buildZoefile = (data, props = {}) => {
     Object.keys(props).forEach((k) => (_global[k] = props[k]));

@@ -132,7 +132,7 @@ maxWidth: ["100%", "80%", "80%", "80%", "60rem"]
 # layouts configuration
 layouts:
   default:
-    maxWidth: ["100%", "80%", "80%", "80%", "60rem"]
+    maxWidth: ${zoe.maxWidth} # ["100%", "80%", "80%", "80%", "60rem"]
     header:
       logoProps:
         textColor: 'unset'
@@ -144,14 +144,6 @@ layouts:
       disableLinks: false
       logoProps:
         textColor: 'unset'
-
-# TODO: elements register elements
-elements:
-  hero:
-
-# TODO: views, auto load from src/views, views
-views:
-  hero: 
 
 # pages, auto laod from src/pages
 pages:
@@ -170,9 +162,9 @@ releases:
 # repoProjects
 projects:
 - provider: github
+  tag: zoe-lab
   owners:
   - jiusanzhou
-  tag: zoe-lab
 
 # Help center, mostly for Q&A. This is not docs center
 # labels: help:xx
@@ -197,7 +189,7 @@ helpqa:
 
 googleAnalyticsTrackingId: 'xxxxxxx'
 
-# parse images from node
+# parse images from node [merge]
 # TODO: Mdx: http[s]://.+?.jpeg
 remoteImageNodes:
 - type: Mdx
@@ -209,29 +201,38 @@ remoteImageNodes:
   patterns:
   - 'https?:\/\/.+'
 
-# for current file.
+# for current file. [merge]
 remoteImageUrlPatterns: # must has :// as default
 - avatars[0-9]?\.githubusercontent\.com
 - \.png$
 - \.jpeg$
 
+# page wrapper [merge]
 pageWrappers:
 - path: "*"
   match: "/[Mm]icro[Mm]essenger|[Aa]lipay/.test(navigator.userAgent)"
   component:
     type: WechatBrokenGuide
 
+# should register filesystem plugin
+# add more in custom config  [merge]
+baseContentDir:
+- ${__dirname}
+- ${__dirname}/_example
+- ${__dirname}/_example/content
 
 # turn mdx to common type
+# auto register plugins
+# add more in custom config  [merge]
 customNodes:
 - name: MdxPage
   when:
     type: Mdx
-    name: content/pages
+    path: pages
 - name: MdxPost
   when:
     type: Mdx
-    name: content/posts
+    path: posts
 
 # for all pages?
 basePath: /
@@ -263,7 +264,7 @@ comments:
   # category: Announcements
   theme: preferred_color_scheme
 
-# plugins for custom
+# plugins for custom  [merge]
 zoePlugins:
 - src/plugins/app-release
 - src/plugins/remote-image
@@ -273,22 +274,8 @@ zoePlugins:
 - src/plugins/blog-post
 - src/plugins/issue-helpqa
 
-# Gatsby plugins
-
+# Gatsby plugins  [merge]
 plugins:
-# auto add those 2 plugins
-- gatsby-source-filesystem:
-    name: content/posts
-    path: ${__dirname}/content/posts
-- gatsby-source-filesystem:
-    name: content/pages
-    path: ${__dirname}/content/pages
-
-- gatsby-source-filesystem:
-    name: default
-    path: ${__dirname} # default load all files in current directory
-    ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"] # important if we use project root path
-
 - gatsby-plugin-mdx:
     lessBabel: true
     extensions: [.mdx, .md]
@@ -299,12 +286,6 @@ plugins:
     - gatsby-remark-images:
         maxWidth: 1200
 
-
-- gatsby-plugin-google-analytics:
-    # TODO: extrac all fonts from siteMeta
-    trackingId: ${zoe.googleAnalyticsTrackingId}
-    respectDNT: true
-
 - gatsby-plugin-web-font-loader:
     google:
       families: ['Poppins', 'Recoleta', 'Fredoka One', 'Cabin', 'Open Sans']
@@ -312,7 +293,7 @@ plugins:
 - gatsby-plugin-manifest:
     name: ${zoe.title}
     short_name: ${zoe.title}
-    start_url: /
+    start_url: ${zoe.basePath}
     background_color: ${zoe.primaryColor}
     theme_color: ${zoe.primaryColor}
     display: minimal-ui
@@ -390,13 +371,7 @@ plugins:
     url: "https://api.github.com/graphql"
     headers:
       Authorization: Bearer ${process.env.GITHUB_TOKEN}
-    
 
-# - gatsby-transformer-remark:
-#     plugins:
-#     - resolve: gatsby-remark-images
-#       options:
-#         maxWidth: 590
 - gatsby-transformer-remark:
     plugins:
     - gatsby-remark-images:
