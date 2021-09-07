@@ -40,7 +40,7 @@ const _loadAndMergeCustomConfig = (config) => {
     // config-list.txt, should be relative path
     let customConfFiles = [];
     try {
-        const data = fs.readFileSync(`config-list.txt`)
+        const data = fs.readFileSync(`config-list.txt`).toString()
         customConfFiles = data.split("\n")
             .map((i) => i.trim())
             .filter((i) => i);

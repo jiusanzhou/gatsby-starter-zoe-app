@@ -24,7 +24,7 @@ const defaultConfListFileName = "config-list.txt";
 function in_theme_dir(theme) {
     try {
         let data = fs.readFileSync(".git/config");
-        return data.indexOf(theme) > 0;
+        return data.toString().indexOf(theme) > 0;
     } catch (e){
         return false;
     }
