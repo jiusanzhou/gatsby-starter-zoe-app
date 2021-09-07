@@ -199,7 +199,13 @@ exports.mergeConfig = (c1, c2) => {
         "plugins",
     ]
 
-    fields.forEach(field => {c.siteMetadata[field] = [...(c1.siteMetadata[field]||[]), ...(c2.siteMetadata[field]||[])]})
+    fields.forEach(field => {
+        c.siteMetadata[field] = [
+            ...(c1.siteMetadata[field]||[]),
+            ...(c2.siteMetadata[field]||[]),
+        ]
+    })
+    
     fields.forEach(field => {c[field] = [...(c1[field]||[]), ...(c2[field]||[])]})
 
     return c

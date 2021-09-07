@@ -39,12 +39,14 @@ const addPluginFromGoogleAnalytics = (config, { __dirname }) => {
 const _loadAndMergeCustomConfig = (config) => {
     // config-list.txt, should be relative path
     let customConfFiles = [];
-    fs.readFile(`config-list.txt`, 'utf8', (err, data) => {
-        if (err) return
+    try {
+        const data = fs.readFileSync(`config-list.txt`)
         customConfFiles = data.split("\n")
             .map((i) => i.trim())
             .filter((i) => i);
-    })
+    } catch (err) {
+
+    }
 
     customConfFiles.forEach(configFile => {
         config = mergeConfig(config, _loadZoefile(configFile));
