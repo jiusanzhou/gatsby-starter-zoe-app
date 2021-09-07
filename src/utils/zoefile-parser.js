@@ -181,8 +181,8 @@ const buildConfig = (zoe) => {
 // just replace fields, except
 // some special fields(plugins, baseContentDir, customNodes, zoePlugins)
 // value should be merged
-// siteMetadat, plugins
-exports.mergeConfig = (c1, c2) => {
+// siteMetadata, plugins
+exports.mergeConfig = (c1 = {}, c2 = {}) => {
     c = { ...c1, ...c2 }
 
     // some fields should be merged, must be array
@@ -195,18 +195,14 @@ exports.mergeConfig = (c1, c2) => {
         "zoePlugins",
     ]
 
-    const fields = [
-        "plugins",
-    ]
-
     fields.forEach(field => {
-        c.siteMetadata[field] = [
-            ...(c1.siteMetadata[field]||[]),
-            ...(c2.siteMetadata[field]||[]),
+        c[field] = [
+            ...(c1[field]||[]),
+            ...(c2[field]||[]),
         ]
     })
-    
-    fields.forEach(field => {c[field] = [...(c1[field]||[]), ...(c2[field]||[])]})
+
+    // fields.forEach(field => {c[field] = [...(c1[field]||[]), ...(c2[field]||[])]})
 
     return c
 }

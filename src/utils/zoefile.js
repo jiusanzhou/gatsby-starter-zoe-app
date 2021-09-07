@@ -49,9 +49,12 @@ const _loadAndMergeCustomConfig = (config) => {
     }
 
     customConfFiles.forEach(configFile => {
-        config = mergeConfig(config, _loadZoefile(configFile));
+        const c2 = _loadZoefile(configFile) || {}
+        config.siteMetadata = mergeConfig(config.siteMetadata, c2.siteMetadata);
         // and add configFile's directory to contextDir
         config.siteMetadata.baseContentDir.push(path.dirname(configFile))
+        // merge plugins
+        config.plugins.concat(c2.plugins)
     })
 
     // hard code to filter duplicates
