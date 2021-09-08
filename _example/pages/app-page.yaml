@@ -1,4 +1,6 @@
+# TODO: finish implement yaml page
 layout: default
+slug: /app-landing
 children:
 - type: MSection # TODO: auto register Section by src/components/section
   title: ZoeAPP
