@@ -17,7 +17,10 @@ const MLink = ({ href = "", pure = false, ...props }) => {
 
         // const params = new URLSearchParams(location.search)
         // TODO: handle if href exits query params
-        _props.to = _props.to + location.search
+        // only client should do this
+        if (typeof window !== "undefined") {
+            _props.to = _props.to + location.search
+        }
 
     } else {
         _props.href = href

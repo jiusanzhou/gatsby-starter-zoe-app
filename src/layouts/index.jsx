@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { ChakraProvider } from "@chakra-ui/react";
 
@@ -36,9 +36,12 @@ export default ({ layout = "default", ...props }) => {
     }
 
     // query layout from url query
-    const params = new URLSearchParams(location.search)
-    const _layout = params.get("_layout")
-    if (_layout && _layouts[_layout]) name = _layout
+    // must be client render
+    if (typeof window !== "undefined") {
+        const params = new URLSearchParams(location.search)
+        const _layout = params.get("_layout")
+        if (_layout && _layouts[_layout]) name = _layout
+    }
 
     _props = { ..._props, ...(layouts[name] || {}) };
 
