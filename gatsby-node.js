@@ -30,8 +30,8 @@ const plugins = siteMetadata.zoePlugins || [];
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
-exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
-    if (getConfig().mode === 'production') {
+exports.onCreateWebpackConfig = ({ getConfig, actions, stage }) => {
+    if (getConfig().mode === 'production' || stage === `build-javascript`) {
       actions.setWebpackConfig({
         devtool: false
       });
