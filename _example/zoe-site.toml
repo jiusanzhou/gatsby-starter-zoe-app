@@ -1,4 +1,3 @@
-title = "Demo1"
 pathPrefix = "/gatsby-starter-zoe-app"
 baseContentDir = [
     "${__dirname}/content"
