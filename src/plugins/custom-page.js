@@ -26,9 +26,10 @@ const onCreateNode = ({ customNodes = [], baseContentDir = [] }, { node, actions
     let m;
     // filter if we need to create another node
     for (let i = 0; i < customNodes.length; i++) {
-        let { type, path } = customNodes[i].when || {};
-        if (node.internal.type === type && source === customNodes[i].name) {
+        let { name, when: {type, path} = {} } = customNodes[i];
+        if (node.internal.type === type && source === name) {
             m = customNodes[i];
+            // TODO: create every custom node.
             break;
             // if (dir === path || "/" + path === dir) {
             // }
