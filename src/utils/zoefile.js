@@ -36,7 +36,7 @@ const addPluginFromGoogleAnalytics = (config, { __dirname }) => {
 }
 
 // load and merge custom config
-const _loadAndMergeCustomConfig = (config) => {
+const _loadAndMergeCustomConfig = (config, { __dirname }) => {
     // config-list.txt, should be relative path
     let customConfFiles = [];
     try {
@@ -57,17 +57,19 @@ const _loadAndMergeCustomConfig = (config) => {
         config.plugins.concat(c2.plugins)
     })
 
+    const meta = config.siteMetadata
+
     // hard code to add _example content dir
     if (process.env.NODE_ENV === 'development') {
-        config.siteMetadata.baseContentDir.concat(
-            `${process.cwd()}/_example`,
-            `${process.cwd()}/_example/content`,
+        meta.baseContentDir = meta.baseContentDir.concat(
+            `${__dirname}/_example`,
+            `${__dirname}/_example/content`,
         )
     }
 
     // hard code to filter duplicates
-    config.siteMetadata.baseContentDir
-        .filter((c, idx) => config.siteMetadata.baseContentDir.indexOf(c) === idx)
+    meta.baseContentDir = meta.baseContentDir
+        .filter((c, idx) => meta.baseContentDir.indexOf(c) === idx)
 
     return config;
 }
@@ -85,10 +87,12 @@ const _loadZoefile = (zoefile=`./zoe-site.yaml`) => {
 }
 
 exports.loadZoefile = (zoefile=`./zoe-site.yaml`) => {
+    __dirname = path.dirname(path.resolve(process.cwd(), zoefile));
+
     // load default zoe config: zoe-site.yaml
     let config = _loadZoefile(zoefile);
 
-    config = _loadAndMergeCustomConfig(config);
+    config = _loadAndMergeCustomConfig(config, { __dirname });
 
     // auto register plugins
     addPluginFromContentDir(config, { __dirname });
