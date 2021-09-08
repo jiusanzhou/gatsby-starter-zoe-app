@@ -86,7 +86,7 @@ const SMNav = ({ navs = [], ...props }) => {
                                 ? <MLink pure href={href} _hover={{}}>{title}</MLink>
                                 : <Text>{title}</Text>}
                             </Flex>
-                        : <Flex mx=".6rem" key={index} flexDir="column">
+                        : <Flex key={index} flexDir="column">
                             <Flex fontWeight="bold">
                                 {href
                                     ? <MLink pure href={href} _hover={{}}>{title}</MLink>
