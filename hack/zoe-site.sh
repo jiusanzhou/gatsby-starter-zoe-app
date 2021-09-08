@@ -1,21 +1,14 @@
 #!/bin/bash
 
-# /**
-#  * The main/index function, things we should do:
-#  * - clone the zoe site theme (default: jiusanzhou/gatsby-starter-zoe-app) 
-#  *   as theme
-#  * - generate the zoe-site config list  (loadzoefile should implement load multi file)
-#  * - build: npm run install && npm run build
-#  * - copy [dist] to [target]
-#  * - commint to current branch or create a new branch
-#  */
+theme="jiusanzhou/gatsby-starter-zoe-app"
+branch="master"
+script="hack/zoe-site.js"
+target="/tmp/zoe-site"
 
-DEFAULT_THEME = "jiusanzhou/gatsby-starter-zoe-app"
+if [ -d target ]; then mkdir -p $target; fi
 
-function main() {
-    echo "Welcome \`zoe site\`!"
+curl -sSL https://raw.githubusercontent.com/$theme/$branch/$script \
+    > $target/zoe-site.js
 
-}
-
-# zoe-site.sh build jiusanzhou/gatsby-starter-zoe-app
-main $@
+# start the main
+node /tmp/zoe-site/zoe-site.js $@

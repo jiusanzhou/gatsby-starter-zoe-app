@@ -8,8 +8,8 @@
  * - commint to current branch or create a new branch
  */
 
-const { execSync } = require("child_process");
-const os = require('os');
+const { execSync, spawn, spawnSync } = require("child_process");
+const child_process = require("child_process");
 const fs = require("fs");
 const path = require("path");
 
@@ -21,9 +21,23 @@ const defaultTheme = "jiusanzhou/gatsby-starter-zoe-app";
 const defaultConfName = "zoe-site";
 const defaultConfListFileName = "config-list.txt";
 
-function in_theme_dir(theme) {
+function get_git_root() {
+    let c = process.cwd();
+    while (c != "/" && !dir_exits(`${c}/.git`)) {
+        // check has .git
+        c = path.dirname(c);
+    }
+
+    if (c === "/") return null;
+
+    return c;
+}
+
+function in_theme_dir(theme, gitRoot) {
+    if (!gitRoot) return false;
+
     try {
-        let data = fs.readFileSync(".git/config");
+        let data = fs.readFileSync(`${gitRoot}/.git/config`);
         return data.toString().indexOf(theme) > 0;
     } catch (e){
         return false;
@@ -82,37 +96,97 @@ function clone_theme(theme, target) {
     execSync(`git clone ${theme} ${target}`)
 }
 
+function cmd_develop() {
+    print("Run `yarn develop`")
+    spawnSync("yarn", ["develop"], {
+        detached: false,
+        stdio: "inherit"
+    })
+}
+
+function cmd_build(assetsDir) {
+
+    // clean first
+    execSync(`yarn clean`);
+
+    print("Run `yarn build`");
+    spawnSync("yarn", ["build"], {
+        detached: false,
+        stdio: "inherit"
+    })
+
+    print(`Build successfully! Files in ${assetsDir}`);
+    // TODO: copy assets to target
+}
+
+function cmd_release(oldcwd, assetsDir, target) {
+    print(`Release assets from ${assetsDir}`);
+    // check if assets already has content
+    if (!dir_exits(assetsDir)) {
+        print("Assset directory not exits, make sure you have build it.");
+        return;
+    }
+
+    // TODO:
+    // static => just copy files
+    // .@gh-pages => copy files and commit to branch
+    // https://github.com/a/b@branch => copy files and commit to branch
+    // publish to remote
+}
+
 function main() {
     print("Welcome `zoe site`!")
 
+    // TODO: parse from args
     const contextDir = process.cwd(); // TODO: from args
     const confName = defaultConfName; // TODO: from args
     const theme = defaultTheme; // TODO: from args
     const confList = defaultConfListFileName; // TODO: from args
+    const tmpdir = "/tmp" // os.tmpdir();
+    const assetsDir='public';
 
-    const confs = get_conffiles(contextDir, confName);
-    if (confs.length === 0) {
-        print(`There are no config, make sure you have a ${confName}.[yaml|yml|toml|json] file`);
-        return;
+    // store current work directory
+    const oldCwd = process.cwd();
+    
+    // git root directory
+    const gitRoot = get_git_root();
+
+    const inThemeDir = in_theme_dir(theme, gitRoot);
+
+    if (inThemeDir) {
+        print("In the theme directory. Recommand run `yarn [command]`");
     }
 
-    if (in_theme_dir(theme)) {
-        print("In the theme directory. Just run `yarn [command]`");
-        return;
-    }
+    // set workdir
+    const workdir = gitRoot;
 
-    const tmpdir = "/tmp" // os.tmpdir()
-    const workdir = `${tmpdir}/zoe-site/${theme.split('/').slice(-1)[0]}`;
+    const _assetsDir = path.join(workdir, assetsDir)
+
+    // if out of theme directory, change workdir to tmp one 
+    if (!inThemeDir) {
+        workdir = `${tmpdir}/zoe-site/${theme.split('/').slice(-1)[0]}`;
+
+        // clone theme to directory, make sure theme directory exists
+        clone_theme(theme, workdir);
+    }
 
     print("Work directory: " + workdir);
 
-    // clone theme to directory, make sure theme directory exists
-    clone_theme(theme, workdir);
+    // in the theme directory, means we are most likely development
+    // don't generate config list if git root equals cwd
+    if (!inThemeDir || oldCwd !== gitRoot) {
+        // generate config list
+        const confs = get_conffiles(contextDir, confName);
+        // if (confs.length === 0) {
+        //     print(`There are no config, make sure you have a ${confName}.[yaml|yml|toml|json] file`);
+        //     return;
+        // }
 
-    // write confs relative path to theme directory .txt
-    const _conflistfile = path.join(workdir, confList);
-    print(`Generating config list into: ${_conflistfile}`);
-    fs.writeFileSync(_conflistfile, confs.join("\n"));
+        // write confs relative path to theme directory .txt
+        const _conflistfile = path.join(workdir, confList);
+        print(`Generating config list into: ${_conflistfile}`);
+        fs.writeFileSync(_conflistfile, confs.join("\n"));
+    }
 
     // change directory
     print(`Change working directory: ${workdir}`)
@@ -123,10 +197,27 @@ function main() {
     print("Install depencences ...")
     execSync(`yarn`)
 
-    print("Start ...")
-    // execSync(`yarn `)
+    let cmd = "dev";
 
-    // TODO: copy to dist
+    const args = process.argv.slice(2);
+    if (args.length > 0) {
+        cmd = args[0];
+    }
+
+    switch (cmd) {
+        case "develop":
+        case "dev":
+            cmd_develop(...args.slice(1));
+            break;
+        case "build":
+            cmd_build(_assetsDir, ...args.slice(1));
+            break;
+        case "release":
+            cmd_release(oldCwd, _assetsDir, ...args.slice(1));
+            break;
+        default:
+            print(`Unknown command: ${cmd}`);
+    }
 }
 
 // start the main function
