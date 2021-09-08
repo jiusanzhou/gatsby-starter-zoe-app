@@ -197,7 +197,7 @@ function main() {
     print("Install depencences ...")
     execSync(`yarn`)
 
-    let cmd = "dev";
+    let cmd = "build";
 
     const args = process.argv.slice(2);
     if (args.length > 0) {
