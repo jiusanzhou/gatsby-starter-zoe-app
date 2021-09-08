@@ -55,6 +55,8 @@ const _loadAndMergeCustomConfig = (config, { __dirname }) => {
         config.siteMetadata.baseContentDir.push(path.dirname(configFile))
         // merge plugins
         config.plugins.concat(c2.plugins)
+        // set pathPrefix
+        if (c2.pathPrefix) config.pathPrefix = c2.pathPrefix
     })
 
     const meta = config.siteMetadata

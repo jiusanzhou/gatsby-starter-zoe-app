@@ -235,8 +235,8 @@ customNodes:
     path: posts
 
 # for all pages?
-basePath: /
-pathPrefix: ${zoe.basePath}
+pathPrefix: /
+
 # pageTemplate: 
 
 # what about blogs basePath
@@ -293,7 +293,7 @@ plugins:
 - gatsby-plugin-manifest:
     name: ${zoe.title}
     short_name: ${zoe.title}
-    start_url: ${zoe.basePath}
+    start_url: ${zoe.pathPrefix}
     background_color: ${zoe.primaryColor}
     theme_color: ${zoe.primaryColor}
     display: minimal-ui

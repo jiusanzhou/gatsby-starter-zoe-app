@@ -53,11 +53,11 @@ exports.onCreateWebpackConfig = ({ getConfig, actions }) => {
 exports.createSchemaCustomization = ({ actions, schema }, themeOptions = {}) => {
   const { createTypes, createFieldExtension } = actions;
 
-  const { basePath = "/" } = siteMetadata;
+  const { pathPrefix = "/" } = siteMetadata;
 
   const slugify = (source) => {
     const slug = source.slug || kebabCase(source.title);
-    return purePath(`/${basePath}/${slug}`)
+    return purePath(`/${pathPrefix}/${slug}`)
   }
 
   createFieldExtension({

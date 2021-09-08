@@ -6,7 +6,7 @@ import Logo from "../components/logo";
 import { useSiteMetadata } from "../utils/hooks";
 
 const ViewLogo = ({ ...props }) => {
-    const { title, basePath, logo, version, description, primaryColor } = useSiteMetadata();
+    const { title, logo, version, description, primaryColor } = useSiteMetadata();
     return (
         <Flex w="fit-content">
             <Logo

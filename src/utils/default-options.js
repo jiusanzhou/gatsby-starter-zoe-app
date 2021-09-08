@@ -1,5 +1,5 @@
 module.exports = (themeOptions) => {
-    const basePath = themeOptions.basePath || `/`
+    const pathPrefix = themeOptions.pathPrefix || `/`
     const blogPath = themeOptions.blogPath || `/blog`
     const postsPath = themeOptions.postsPath || `content/posts`
     const postsPrefix = themeOptions.postsPrefix || `/`
@@ -14,7 +14,7 @@ module.exports = (themeOptions) => {
     const sharp = typeof themeOptions.sharp === `undefined` ? true : themeOptions.sharp
   
     return {
-      basePath,
+      pathPrefix,
       blogPath,
       postsPath,
       postsPrefix,

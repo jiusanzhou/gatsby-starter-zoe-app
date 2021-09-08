@@ -1,2 +1,5 @@
-title="Demo1"
-basePath="/demo"
+title = "Demo1"
+pathPrefix = "/demo"
+baseContentDir = [
+    "${__dirname}/content"
+]

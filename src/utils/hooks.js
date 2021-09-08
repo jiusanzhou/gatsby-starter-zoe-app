@@ -27,7 +27,6 @@ const useSiteMetadata = () => {
 
     fragment SiteSiteMetadataFragment on SiteSiteMetadata {
       baseContentDir
-      basePath
       basePathBlog
       basePathHelp
       description

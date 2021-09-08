@@ -13,7 +13,7 @@ const _systemKeys = {
     },
     pathPrefix: {
         type: String,
-        keys: ["prefix", "pathPrefix"],
+        keys: ["pathPrefix"],
     },
     polyfill: {
         type: Boolean,

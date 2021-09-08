@@ -85,10 +85,10 @@ function clone_theme(theme, target) {
 function main() {
     print("Welcome `zoe site`!")
 
-    const contextDir = process.cwd(); // . ???
-    const confName = defaultConfName;
-    const theme = defaultTheme
-    const confList = defaultConfListFileName;
+    const contextDir = process.cwd(); // TODO: from args
+    const confName = defaultConfName; // TODO: from args
+    const theme = defaultTheme; // TODO: from args
+    const confList = defaultConfListFileName; // TODO: from args
 
     const confs = get_conffiles(contextDir, confName);
     if (confs.length === 0) {
@@ -125,6 +125,8 @@ function main() {
 
     print("Start ...")
     // execSync(`yarn `)
+
+    // TODO: copy to dist
 }
 
 // start the main function
