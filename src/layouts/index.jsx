@@ -15,10 +15,9 @@ const _layouts = {
     empty,
 };
 
-// merge props from siteMeta
-const { primaryColor, layouts = {} } = useSiteMetadata();
-
 export default ({ layout = "default", ...props }) => {
+    // merge props from siteMeta
+    const { primaryColor, layouts = {} } = useSiteMetadata();
 
     // if layout is string create with or { name }
     let name;

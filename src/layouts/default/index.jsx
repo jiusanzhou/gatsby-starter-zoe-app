@@ -8,8 +8,6 @@ import Footer from "./footer";
 import { _withBackground } from "../../components/_with";
 import { useSiteMetadata } from "../../utils/hooks";
 
-const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
-
 const Layout = ({
     title,
     description,
@@ -21,6 +19,9 @@ const Layout = ({
     // maxWidth = "60rem",
     ...props
 }) => {
+
+    const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
+    
     const _maxWidth = Array.isArray(maxWidth)
         ? maxWidth
         : ["100%", "80%", "80%", "80%", maxWidth];

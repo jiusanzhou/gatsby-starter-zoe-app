@@ -6,9 +6,10 @@ import ItemsView from "../components/itemsView"
 import MLink from "../components/link"
 import { useSiteMetadata } from "../utils/hooks"
 
-const { primaryColor } = useSiteMetadata()
-
 const RadioCard = (props) => {
+
+    const { primaryColor } = useSiteMetadata()
+
     const { getInputProps, getCheckboxProps } = useRadio(props)
   
     const input = getInputProps()
@@ -32,6 +33,7 @@ const RadioCard = (props) => {
 
 const ProjectList = ({ items, preview, limit = 3, ...props }) => {
     // if preview mode, just return list directly
+    const { primaryColor } = useSiteMetadata()
 
     const [ selected, setSelected ] = useState("")
 

@@ -131,7 +131,7 @@ maxWidth: ["100%", "80%", "80%", "80%", "60rem"]
 
 # layouts configuration
 layouts:
-  default:
+  default: |
     maxWidth: ${zoe.maxWidth} # ["100%", "80%", "80%", "80%", "60rem"]
     header:
       logoProps:
@@ -146,9 +146,8 @@ layouts:
         textColor: 'unset'
 
 # pages, auto laod from src/pages
-pages:
-  /app-landing: pages/app-page.yaml # pages/index.json, index.jsx
-  # /about: ./content/about.md
+# pages:
+#   /app-landing: pages/app-page.yaml # pages/index.json, index.jsx
 
 # for app release, we need to add github release source
 # appReleases

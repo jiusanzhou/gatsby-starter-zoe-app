@@ -6,14 +6,6 @@ import Action from "../components/action";
 import { useSiteMetadata } from "../utils/hooks";
 import kebabCase from "lodash.kebabcase";
 
-const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
-
-const sectionWidth = (() => {
-    let x = Array(maxWidth.length-1).fill("100%");
-    x.push(maxWidth.slice(-1)[0]);
-    return x;
-})()
-
 const _defaultProps = {
     wraper: {
         justifyContent: "center",
@@ -21,7 +13,7 @@ const _defaultProps = {
     section: {
         p: ["1em", "2em 0", "2.5em 0", "5em 0"],
         mb: [".5em", "1em", "1.5em", "2em"],
-        width: sectionWidth, // TODO: with siteMeta and layout props
+        // width: sectionWidth, // TODO: with siteMeta and layout props
         marginLeft: "auto",
         marginRight: "auto",
     },
@@ -134,6 +126,12 @@ const MSection = ({
     const _need_header = title || subTitle || description;
 
     // props from siteMeta
+    const { maxWidth = ["100%", "80%", "80%", "80%", "60rem"] } = useSiteMetadata();
+    const sectionWidth = (() => {
+        let x = Array(maxWidth.length-1).fill("100%");
+        x.push(maxWidth.slice(-1)[0]);
+        return x;
+    })()
 
     return (
         // bg put here

@@ -19,6 +19,10 @@ exports.loadObject = (config) => {
     return;
 }
 
+exports.parseObject = (config) => {
+    return yaml.safeLoad(config);
+}
+
 exports.isConfig = (config) => {
     return typeof config === "string" &&
         config.endsWith(".json")
