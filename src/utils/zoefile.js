@@ -58,7 +58,7 @@ const _loadAndMergeCustomConfig = (config) => {
     })
 
     // hard code to add _example content dir
-    if (process.env.NODE_ENV === 'develop') {
+    if (process.env.NODE_ENV === 'development') {
         config.siteMetadata.baseContentDir.concat(
             `${process.cwd()}/_example`,
             `${process.cwd()}/_example/content`,
