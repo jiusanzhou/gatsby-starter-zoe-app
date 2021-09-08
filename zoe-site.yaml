@@ -217,8 +217,9 @@ pageWrappers:
 # add more in custom config  [merge]
 baseContentDir:
 - ${__dirname}
-- ${__dirname}/_example
-- ${__dirname}/_example/content
+# hard code in development mode
+# - ${__dirname}/_example
+# - ${__dirname}/_example/content
 
 # turn mdx to common type
 # auto register plugins

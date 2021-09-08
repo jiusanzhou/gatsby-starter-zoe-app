@@ -57,6 +57,14 @@ const _loadAndMergeCustomConfig = (config) => {
         config.plugins.concat(c2.plugins)
     })
 
+    // hard code to add _example content dir
+    if (process.env.NODE_ENV === 'develop') {
+        config.siteMetadata.baseContentDir.concat(
+            `${process.cwd()}/_example`,
+            `${process.cwd()}/_example/content`,
+        )
+    }
+
     // hard code to filter duplicates
     config.siteMetadata.baseContentDir
         .filter((c, idx) => config.siteMetadata.baseContentDir.indexOf(c) === idx)
