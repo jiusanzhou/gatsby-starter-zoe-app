@@ -35,7 +35,7 @@ class GithubIssueProvider {
     _items = [];
 
 
-    _apiIssuesList = () => `${this._base_api}/${this.repo}/issues`;
+    _apiIssuesList = () => `${this._base_api}/${this.repo}/issues?state=all`;
     _apiLabelsList = () => `${this._base_api}/${this.repo}/labels`;
 
     _queryLabels = `
