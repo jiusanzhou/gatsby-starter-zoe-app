@@ -7,16 +7,38 @@ const { buildZoefile, mergeConfig } = require("./zoefile-parser");
 // TODO: parse remote images and use gatsby-plugin-remote-images
 
 const addPluginFromContentDir = (config, { __dirname }) => {
-    const { baseContentDir = [ __dirname ] } = config.siteMetadata;
 
-    baseContentDir.forEach((_dir) => {
-        config.plugins.push({
+    const { baseContentDir = [ __dirname ], customNodes = [] } = config.siteMetadata;
+
+    const dirs = baseContentDir.filter((i) => fs.existsSync(i)).sort((a, b) => a.length - b.length);
+
+    // the long the first
+    dirs.forEach((_dir) => {
+        config.plugins.unshift({
             resolve: "gatsby-source-filesystem",
             options: {
                 name: "default", // TODO:
                 path: _dir,
                 ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"]
             }
+        })
+    })
+
+    // and then generate filesystem from dirs x customNodes
+    dirs.unshift(__dirname) // add the root directory
+
+    dirs.forEach((_dir) => {
+        customNodes.forEach(({ name, when = {} }) => {
+            let _dir_ = path.join(_dir, when.path)
+            if (!when.path || !fs.existsSync(_dir_)) return
+            config.plugins.unshift({
+                resolve: "gatsby-source-filesystem",
+                options: {
+                    name, // use the custom node name
+                    path: _dir_,
+                    ignore: ["**/public/**", "**/.cache/**", "**/.git/**", "**/.svn/**"]
+                }
+            })
         })
     })
 }

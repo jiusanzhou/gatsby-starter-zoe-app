@@ -12,26 +12,26 @@ const onCreateNode = ({ customNodes = [], baseContentDir = [] }, { node, actions
     const fileNode = getNode(node.parent);
     if (!fileNode) return;
 
-    // const source = fileNode.sourceInstanceName;
-    let dir = fileNode.dir;
-    if (!dir) return;
+    const source = fileNode.sourceInstanceName;
+    // let dir = fileNode.dir;
+    // if (!dir) return;
 
     // remove baseContentDir of dir
     // must have / prefix
     // sort with length to handle correct with child-parent.
-    baseContentDir.sort((a, b) => b.length - a.length).forEach((d) => {
-        dir = dir.replace(d, "");
-    })
+    // baseContentDir.sort((a, b) => b.length - a.length).forEach((d) => {
+    //     dir = dir.replace(d, "");
+    // })
 
     let m;
     // filter if we need to create another node
     for (let i = 0; i < customNodes.length; i++) {
-        let { type, path } = customNodes[i].when || {};
-        if (node.internal.type === type) {
-            if (dir === path || "/" + path === dir) {
-                m = customNodes[i];
-                break;
-            }
+        let { type, name, path } = customNodes[i].when || {};
+        if (node.internal.type === type && source === name) {
+            m = customNodes[i];
+            break;
+            // if (dir === path || "/" + path === dir) {
+            // }
         }
     }
 

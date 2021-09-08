@@ -207,6 +207,7 @@ remoteImageUrlPatterns: # must has :// as default
 - \.jpeg$
 
 # page wrapper [merge]
+# TODO: make this to string can ad props (limited by graphql)
 pageWrappers:
 - path: "*"
   match: "/[Mm]icro[Mm]essenger|[Aa]lipay/.test(navigator.userAgent)"
