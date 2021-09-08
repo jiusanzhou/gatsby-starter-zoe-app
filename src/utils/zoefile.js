@@ -6,6 +6,22 @@ const { buildZoefile, mergeConfig } = require("./zoefile-parser");
 
 // TODO: parse remote images and use gatsby-plugin-remote-images
 
+const addPluginFromEnv = (config, { __dirname }) => {
+    if (process.env.GITHUB_TOKEN) {
+        config.plugins.push({
+            resolve: "gatsby-source-graphql",
+            options: {
+                typeName: "Github",
+                fieldName: "github",
+                url: "https://api.github.com/graphql",
+                headers: {
+                    "Authorization": `Bearer ${process.env.GITHUB_TOKEN}`
+                }
+            }
+        })
+    }
+}
+
 const addPluginFromContentDir = (config, { __dirname }) => {
 
     const { baseContentDir = [ __dirname ], customNodes = [] } = config.siteMetadata;
@@ -121,6 +137,7 @@ exports.loadZoefile = (zoefile=`./zoe-site.yaml`) => {
     // auto register plugins
     addPluginFromContentDir(config, { __dirname });
     addPluginFromGoogleAnalytics(config, { __dirname });
+    addPluginFromEnv(config, { __dirname });
 
     return config;
 };
