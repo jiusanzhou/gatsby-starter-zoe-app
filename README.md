@@ -27,7 +27,25 @@ Hope your guys enjoy it!
 
 ---
 
-## Usage
+### Usage
+
+**Just care about your own content. No need to fork or clone this repository!**
+
+1. Enter your content directory.
+
+2. Run the command to build site:
+    ```bash
+    curl -sSL https://git.io/zoe-site | bash
+    ```
+
+Customize your site by creating a new configuration file,
+which can be named `zoe-site.yaml` (or `zoe-site.toml`)
+
+Checkout the default [zoe-site.yaml](zoe-site.yaml) for full fields.
+
+### Advance
+
+If you want to modify some components, you can fork and clone the code.
 
 **1. Develop**
 
