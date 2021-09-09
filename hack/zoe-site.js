@@ -74,7 +74,7 @@ function clone_theme(theme, target) {
     if (dir_exits(target)) {
         // git pull, TODO: handle the branch and checkout changes
         print("Update theme from remote: git pull");
-        execSync(`cd ${target} && git pull`);
+        execSync(`cd ${target} && git checkout . && git pull`);
         return
     }
 
