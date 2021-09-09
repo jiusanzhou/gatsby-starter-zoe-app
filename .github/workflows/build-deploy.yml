@@ -6,22 +6,21 @@ name: Build and Deploy
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js
       uses: actions/setup-node@v2
       with:
         node-version: 12.x
         cache: 'npm'
     - run: cd _example && node ../hack/zoe-site.js
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
     - name: GH Pages deploy
       uses: Cecilapp/GitHub-Pages-deploy@3.2.0
       env:
@@ -29,3 +28,4 @@ jobs:
       with:
         email: hi@zoe.im
         build_dir: public
+    
