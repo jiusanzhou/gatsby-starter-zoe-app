@@ -267,6 +267,11 @@ comments:
   # category: Announcements
   theme: preferred_color_scheme
 
+# RSS config
+rss:
+  path: rss.xml
+  title: ${zoe.title} RSS Feed
+
 # plugins for custom  [merge]
 zoePlugins:
 - src/plugins/app-release
@@ -319,55 +324,6 @@ plugins:
 - gatsby-transformer-sharp
 - gatsby-plugin-offline
 - gatsby-plugin-image
-
-# need options!!!
-# how to register plugin from internal plugin in src/plugins
-- gatsby-plugin-feed:
-    query: |
-      {
-        site {
-          siteMetadata {
-            title
-            description
-            url
-            site_url: url
-            basePathBlog
-          }
-        }
-      }
-    feeds:
-    - query: |
-        {
-          allMdxPost(
-            sort: { order: DESC, fields: [createdTime] },
-          ) {
-            edges {
-              node {
-                excerpt
-                description
-                slug
-                title
-                html
-              }
-            }
-          }
-        }
-      serialize: |
-        ({ query: { site, allMdxPost } }) => {
-          const { basePathBlog } = site.siteMetadata
-          return allMdxPost.edges.map(edge => {
-            return Object.assign({}, edge.node.frontmatter, {
-              title: edge.node.title,
-              description: edge.node.description || edge.node.excerpt,
-              date: edge.node.createdTime,
-              url: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
-              guid: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
-              custom_elements: [{ "content:encoded": edge.node.html }],
-            })
-          })
-        }
-      output: "/rss.xml"
-      title: ${zoe.title} RSS Feed
 
 - gatsby-transformer-remark:
     plugins:

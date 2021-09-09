@@ -6,6 +6,63 @@ const { buildZoefile, mergeConfig } = require("./zoefile-parser");
 
 // TODO: parse remote images and use gatsby-plugin-remote-images
 
+const addPluginFromRss = (config, { __dirname }) => {
+    const { rss, title } = config.siteMetadata;
+
+    if (rss) {
+        config.plugins.push({
+            resolve: "gatsby-plugin-feed",
+            options: {
+                query: `{
+                    site {
+                      siteMetadata {
+                        title
+                        description
+                        url
+                        basePathBlog
+                      }
+                    }
+                }`,
+                feeds: rss.feeds || [
+                    {
+                        query: `{
+                            allMdxPost(
+                              sort: { order: DESC, fields: [createdTime] },
+                            ) {
+                              edges {
+                                node {
+                                  excerpt
+                                  description
+                                  createdTime
+                                  slug
+                                  title
+                                  html
+                                }
+                              }
+                            }
+                        }`,
+                        serialize: ({ query: { site, allMdxPost } }) => {
+                            const { basePathBlog } = site.siteMetadata
+                            return allMdxPost.edges.map(edge => {
+                              return Object.assign({}, edge.node.frontmatter, {
+                                title: edge.node.title,
+                                description: edge.node.description || edge.node.excerpt,
+                                pubDate: edge.node.createdTime,
+                                url: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
+                                guid: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
+                                // custom_elements: [{ "content:encoded": edge.node.html }],
+                              })
+                            })
+                        },
+                        output: rss.path || "/rss.xml",
+                        title: rss.title || `${title} RSS Feed`,
+                    },
+                ]
+            }
+        })
+    }
+}
+
 const addPluginFromEnv = (config, { __dirname }) => {
     if (process.env.GITHUB_TOKEN) {
         config.plugins.push({
@@ -139,6 +196,7 @@ exports.loadZoefile = (zoefile=`./zoe-site.yaml`) => {
     addPluginFromContentDir(config, { __dirname });
     addPluginFromGoogleAnalytics(config, { __dirname });
     addPluginFromEnv(config, { __dirname });
+    addPluginFromRss(config, { __dirname });
 
     return config;
 };
