@@ -195,6 +195,7 @@ function main() {
     // ok let's do normal things
 
     print("Install depencences ...")
+    execSync("npm install -g yarn")
     execSync(`yarn`)
 
     let cmd = "build";
