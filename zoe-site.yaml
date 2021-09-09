@@ -235,6 +235,8 @@ customNodes:
     type: Mdx
     path: posts
 
+assetPrefix: 
+
 # for all pages?
 pathPrefix: /
 
@@ -358,8 +360,8 @@ plugins:
               title: edge.node.title,
               description: edge.node.description || edge.node.excerpt,
               date: edge.node.createdTime,
-              url: site.siteMetadata.url + basePathBlog + edge.node.slug,
-              guid: site.siteMetadata.url + basePathBlog + edge.node.slug,
+              url: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
+              guid: site.siteMetadata.url + basePathBlog + "/" + edge.node.slug,
               custom_elements: [{ "content:encoded": edge.node.html }],
             })
           })

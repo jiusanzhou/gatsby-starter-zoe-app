@@ -95,6 +95,7 @@ const _loadAndMergeCustomConfig = (config, { __dirname }) => {
         config.plugins.concat(c2.plugins)
         // set pathPrefix
         if (c2.pathPrefix) config.pathPrefix = c2.pathPrefix
+        if (c2.assetPrefix) config.assetPrefix = c2.assetPrefix
     })
 
     const meta = config.siteMetadata

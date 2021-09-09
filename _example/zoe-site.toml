@@ -1,4 +1,6 @@
 pathPrefix = "/gatsby-starter-zoe-app"
+# assetPrefix(jsdelivr) can't works well with pathPrefix
+# assetPrefix = "https://cdn.jsdelivr.net/gh/jiusanzhou/gatsby-starter-zoe-app@gh-pages"
 baseContentDir = [
     "${__dirname}/content"
 ]

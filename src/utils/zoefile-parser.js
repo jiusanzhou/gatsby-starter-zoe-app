@@ -15,6 +15,10 @@ const _systemKeys = {
         type: String,
         keys: ["pathPrefix"],
     },
+    assetPrefix: {
+        type: String,
+        keys: ["assetPrefix"],
+    },
     polyfill: {
         type: Boolean,
         keys: ["polyfill"],
