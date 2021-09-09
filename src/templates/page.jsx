@@ -6,13 +6,12 @@ const CustomPage = ({ data: { mdxPage } }) => {
     const { slug, layout, container, title, body } = mdxPage
     
     return <StaticPage page={{
-        slug, layout,
+        slug, layout, title,
         children: {
             type: container || "Box",
             // TODO: use props from page.containerProps
             minH: "calc(100vh - 20rem)",
             textAlign: "left", // TODO: set this as props?
-            title,
             children: {
                 type: "MDXRenderer",
                 children: [ body ]
