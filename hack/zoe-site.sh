@@ -5,10 +5,10 @@ branch="master"
 script="hack/zoe-site.js"
 target="/tmp/zoe-site"
 
-if [ -d target ]; then mkdir -p $target; fi
+if [ ! -d $target ]; then mkdir -p $target; fi
 
 curl -sSL https://raw.githubusercontent.com/$theme/$branch/$script \
     > $target/zoe-site.js
 
 # start the main
-node /tmp/zoe-site/zoe-site.js $@
+node $target/zoe-site.js $@

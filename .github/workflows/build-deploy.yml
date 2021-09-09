@@ -21,7 +21,7 @@ jobs:
       with:
         node-version: 12.x
         cache: 'npm'
-    - run: cd _example && bash ../hack/zoe-site.sh
+    - run: cd _example && node ../hack/zoe-site.js
     - name: GH Pages deploy
       uses: Cecilapp/GitHub-Pages-deploy@3.2.0
       env:
