@@ -6,7 +6,7 @@ const CustomPage = ({ data: { mdxPage } }) => {
     const { slug, layout, container, title, body } = mdxPage
     
     return <StaticPage page={{
-        slug, layout, title,
+        slug, layout,
         children: {
             type: container || "Box",
             // TODO: use props from page.containerProps
