@@ -1,6 +1,34 @@
 pathPrefix = "/gatsby-starter-zoe-app"
+
 # assetPrefix(jsdelivr) can't works well with pathPrefix
 # assetPrefix = "https://cdn.jsdelivr.net/gh/jiusanzhou/gatsby-starter-zoe-app@gh-pages"
+
 baseContentDir = [
     "${__dirname}/content"
 ]
+
+[[navs]]
+title = "Plugins"
+
+  [[navs.items]]
+  title = "Help Center"
+  href = "/help"
+  description = "Help center use github issues as provider"
+  color = "blue"
+
+  [[navs.items]]
+  title = "App Landing"
+  href = "/app-landing"
+  description = "App landing use github issues as provider"
+
+[[navs]]
+title = "Projects"
+href = "/projects"
+
+[[navs]]
+title = "Blog"
+href = "/blogs"
+
+[[navs]]
+title = "About"
+href = "/about"

@@ -12,7 +12,6 @@ author:
   name: Zoe
   email: hi@zoe.im
   homepage: 'https://zoe.im'
-  # TODO: or use _zoe: Object
   avatar: https://github.com/jiusanzhou.png # zoe(sharp=true)
   minibio: 知行合一，不将有限的生命献给无知、平庸和低俗。 
   github: 'zoeim'
@@ -22,6 +21,7 @@ author:
   linkedin: 'johnzoe'
   wechat: https://cdn.jsdelivr.net/gh/jiusanzhou/jiusanzhou.github.io@archived/static/WeChat-JohnCx.jpeg
 
+# organization display in the footer
 organization:
   name: ${zoe.title}
   url: ${zoe.url}
@@ -29,9 +29,10 @@ organization:
 
 copyright:
   from: 2011
-  # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
-  holder: Zoe # take value from organization - author
+  holder: ${zoe.author.name} # take value from organization - author
   location: Hangzhou
+  # or just use content to replace all
+  # content: © ZoeAPP - All rights reserved. Made with ❤️ by Zoe 
 
 # footer links
 links:
@@ -56,63 +57,8 @@ links:
 
 # nav links
 navs:
-- title: Products
-  href: /products
-  items:
-  - title: KubeDB
-    description: Run production-grade Database on Kubernetes
-    href: https://kubedb.com/
-    # icon: https://appscode.com/assets/images/products/kubedb/kubedb-icon.png
-    color: blue # ignore this?
-  - title: Stash
-    description: Backup your Kubernetes Stateful APplications
-    href: https://stash.run/
-    # icon: https://appscode.com/assets/images/products/stash/stash-icon.png
-  - title: KubeVault
-    description: Tools for running HashiCorp Vault on Kubernetes
-    href: https://kubevault.com/
-    # icon: https://appscode.com/assets/images/products/kubevault/kubevault-icon.png
-  - title: Kubeform
-    description: Provision cloud resources using Kubernetes CRDs & Terraform
-    href: https://kubeform.com/
-    # icon: https://appscode.com/assets/images/products/kubeform/kubeform-icon.png
-- title: Open Source
-  href: /open-source/
-  items:
-  - title: Voyager
-    description: Secure HAProxy Ingress Controller for Kubernetes
-    href: https://voyagermesh.com/
-    # icon: https://appscode.com/assets/images/products/voyager/voyager-icon.png
-  - title: Guard
-    description: Kubernetes Authentication WebHook Server
-    href: https://appscode.com/products/guard/
-    # icon: https://appscode.com/assets/images/products/guard/guard-icon.png
-  - title: Kubed
-    description: Kubernetes cluster manager daemon
-    href: https://appscode.com/products/kubed/
-    # icon: https://appscode.com/assets/images/products/kubed/kubed-icon.png
-  - title: Pharmer
-    description: Kubernetes Cluster Manager using Kubeadm & Cluster API
-    href: https://pharmer.cloud/
-    # icon: https://appscode.com/assets/images/products/pharmer/pharmer-icon.png
-  - title: Swift
-    description: Ajax friendly Helm Tiller Proxy
-    href: https://appscode.com/products/swift/
-    # icon: https://appscode.com/assets/images/products/swift/swift-icon.png
-  - title: Searchlight
-    description: Alerts for Kubernetes
-    href: https://appscode.com/products/searchlight/
-    # icon: https://appscode.com/assets/images/products/searchlight/searchlight-icon.png
-- title: Plugins
-  items:
-  - title: Help Center
-    href: /help
-  - title: App Landing
-    href: /app-landing
 - title: Blog
   href: /blogs
-- title: About
-  href: /about
 
 # social links with icons
 socials:
@@ -218,7 +164,7 @@ pageWrappers:
 # add more in custom config  [merge]
 baseContentDir:
 - ${__dirname}
-# hard code in development mode
+# hard code in development mode, register in js
 # - ${__dirname}/_example
 # - ${__dirname}/_example/content
 
@@ -235,9 +181,10 @@ customNodes:
     type: Mdx
     path: posts
 
+# use cdn to load static assets
 assetPrefix: 
 
-# for all pages?
+# pathPrefix for all pages to deploy
 pathPrefix: /
 
 # pageTemplate: 
