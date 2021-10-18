@@ -71,15 +71,15 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/2239045899.json",
-    "revision": "23f19dcbfc3644d6a4c94d849aedeb6f"
+    "revision": "713bb56f5d30839cc064c189104d33cc"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "8d40009d7e6515ce23bef0b46b0b4ad4"
+    "revision": "3a0f434d00e6ddb8a67965be3d74d91d"
   },
   {
     "url": "page-data/sq/d/3912480317.json",
-    "revision": "7ed9f962bf01e8c95a5b50f9e1654cfe"
+    "revision": "544eb8240e968ca9e8eec1d7235a7034"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
