@@ -158,7 +158,7 @@ function main() {
     }
 
     // set workdir
-    const workdir = gitRoot;
+    let workdir = gitRoot;
 
     const _assetsDir = path.join(workdir, assetsDir)
 
