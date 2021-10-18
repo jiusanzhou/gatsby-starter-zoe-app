@@ -55,18 +55,66 @@ type Comment {
     theme: String
 }
 
+type Organization {
+    name: String
+    url: String
+    logo: String
+}
+
+type Copyright {
+    from: String
+    holder: String
+    location: String
+}
+
+type Component {
+    type: String
+}
+
+type PageWrappers {
+    match: String
+    path: String
+    component: Component
+}
+
+type Layouts {
+    default: String
+}
+
 type SiteSiteMetadata implements Node {
 
+    url: String
     title: String!
+    description: String
+    logo: String
+    lang: String
+    version: String
+
     author: Author
+    organization: Organization
+    socials: Author
     navs: [Nav]
     links: [Link]
-    socials: Author
+    copyright: Copyright
+
     releases: [Release]
     projects: [Project]
     helpqa: [Helpqa]
     comments: Comment
 
+    baseContentDir: [String]
+    basePathBlog: String
+    basePathHelp: String
+    pathPrefix: String
+
+    googleAnalyticsTrackingId: String
+
+    primaryColor: String
+    maxWidth: String
+    layouts: Layouts
+    pageWrappers: PageWrappers
+
+    zoePlugins: [String]
 }`;
 
 exports.typeData = typeData;
