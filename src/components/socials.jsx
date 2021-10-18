@@ -66,8 +66,8 @@ export const SocialLink = ({ type, username, base, ...props }) => {
 export const Socials = ({ socials = {}, colorScheme, ...props }) => {
     return (
         <List d="flex" flexWrap="wrap" transform="translateX(-0.5rem)" {...props}>
-            {Object.keys(socials).filter(k => k).map((key) => (
-                _data_icon[key] ?
+            {Object.keys(socials).map((key) => (
+                (_data_icon[key] && socials[key]) ?
                 <ListItem key={`_${key}`}>
                     <SocialLink
                         type={key}
