@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "9f96d65d-43b2df01ca5c9b101ae3.js"
   },
   {
-    "url": "app-e726e21b29ddcda53667.js"
+    "url": "app-7d5a878b0e6e9763a1dc.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "b2061ad5fb155d673277839ee0db8ffc"
+    "revision": "1c5e6d35d6315895420ac3fa91bc0d09"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a12c34d8f47c6528d910.js"
@@ -71,15 +71,15 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/3100876879.json",
-    "revision": "0cf4b8e4e1fcfde2c46713cadd5f3f8a"
+    "revision": "8bb14d6e87616a307a9858bc5f830e75"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "ac4b88879922e885646646bd1eec2688"
+    "revision": "e2f80b50221a6218f1c38e8dbd3df79a"
   },
   {
     "url": "page-data/sq/d/3912480317.json",
-    "revision": "1e9852893e6a3d635a8499d7dd6ceb79"
+    "revision": "97a10d8838ab1e7f697bbb3ec1cd60b3"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
@@ -87,7 +87,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "995cb3a52da1121f03a653e4814cd72f"
+    "revision": "bf40791af18e099a3f503cc8a61cfdde"
   },
   {
     "url": "polyfill-7644dbc8b87bbf2ba314.js"
@@ -186,7 +186,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-e726e21b29ddcda53667.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-7d5a878b0e6e9763a1dc.js`))) {
     return await fetch(event.request)
   }
 
