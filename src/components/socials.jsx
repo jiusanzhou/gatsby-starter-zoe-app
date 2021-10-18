@@ -63,10 +63,10 @@ export const SocialLink = ({ type, username, base, ...props }) => {
     return iconButton;
 };
 
-export const Socials = ({ socials = [], colorScheme, ...props }) => {
+export const Socials = ({ socials = {}, colorScheme, ...props }) => {
     return (
         <List d="flex" flexWrap="wrap" transform="translateX(-0.5rem)" {...props}>
-            {Object.keys(socials).map((key) => (
+            {Object.keys(socials).filter(k => k).map((key) => (
                 _data_icon[key] ?
                 <ListItem key={`_${key}`}>
                     <SocialLink
