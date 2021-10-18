@@ -17,6 +17,7 @@ type Author {
 
 type Nav {
     title: String
+    color: String
     href: String
     description: String
     items: [Nav]
