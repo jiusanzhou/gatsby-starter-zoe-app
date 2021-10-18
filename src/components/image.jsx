@@ -12,27 +12,20 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
     // TODO: auto query for remote images
     const data = useStaticQuery(graphql`
         query LocalImage {
-            allFile(filter: { internal: { mediaType: { regex: "/image/" } } }) {
+            allImageSharp {
                 nodes {
-                    name
-                    relativePath
-                    publicURL
-                    childImageSharp {
-                        gatsbyImageData(
-                            formats: [WEBP]
-                        )
-                    }
-                }
-            }
-            allRemoteImage {
-                nodes {
-                    url
-                    localImage {
-                        publicURL
-                        childImageSharp {
-                            gatsbyImageData(
-                                formats: [WEBP]
-                            )
+                    gatsbyImageData
+                    parent {
+                        ... on File {
+                            id
+                            relativePath
+                            publicURL
+                            parent {
+                                ... on RemoteImage {
+                                    id
+                                    url
+                                }
+                            }
                         }
                     }
                 }
@@ -42,28 +35,19 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
 
     const isRemote = src && src.indexOf("://") >= 0;
 
-    let match = useMemo(
-        () =>
-            data[
-                isRemote ? "allRemoteImage" : "allFile"
-            ].nodes.find(({ relativePath, url }) =>
-                isRemote ? src === url : src === relativePath
-            ),
-        [data, src, isRemote]
-    );
-
-    if (isRemote && match) match = match.localImage; // important!!!
-
-    // check if we are a remote image
-    // if (isRemote && !match) return <Image src={src} {...props} />;
-    if (!match) match = {};
-
-    const v = match.childImageSharp; // && match.childImageSharp[mode];
+    // find matched image
+    let match = data.allImageSharp.nodes.find(({
+        parent: { relativePath, parent = {} } }) => {
+            // for local iamge            // for remote image
+            return relativePath === src || parent && parent.url === src;
+        }) || { parent: {publicURL: src} }; // for remote failed image
 
     if (!props.alt) props.alt = ""
 
-    return <Image objectFit="cover" as={v?GatsbyImage:Image}
-        image={v&&v.gatsbyImageData} src={match.publicURL || match.url || src} {...props} />
+    return <Image objectFit="cover"
+        as={match.gatsbyImageData?GatsbyImage:Image}
+        image={match.gatsbyImageData}
+        src={match.parent.publicURL || src} {...props} />
 };
 
 MImage.protoTypes = {
