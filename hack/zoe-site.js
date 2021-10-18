@@ -17,6 +17,7 @@ const print = console.log;
 
 // how to load yaml file
 
+const defaultTempDir = "/tmp";
 const defaultTheme = "jiusanzhou/gatsby-starter-zoe-app";
 const defaultConfName = "zoe-site";
 const defaultConfListFileName = "config-list.txt";
@@ -142,7 +143,7 @@ function main() {
     const confName = defaultConfName; // TODO: from args
     const theme = defaultTheme; // TODO: from args
     const confList = defaultConfListFileName; // TODO: from args
-    const tmpdir = "/tmp" // os.tmpdir();
+    const tmpdir = process.env.ZOE_TEMPDIR || defaultTempDir; // os.tmpdir();
     const assetsDir='public';
 
     // store current work directory
