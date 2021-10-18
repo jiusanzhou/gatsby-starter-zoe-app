@@ -4,7 +4,7 @@ pathPrefix = "/gatsby-starter-zoe-app"
 # assetPrefix = "https://cdn.jsdelivr.net/gh/jiusanzhou/gatsby-starter-zoe-app@gh-pages"
 
 baseContentDir = [
-    "${__dirname}/content"
+  "${__dirname}/content"
 ]
 
 [[navs]]

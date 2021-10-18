@@ -221,6 +221,7 @@ rss:
 
 # plugins for custom  [merge]
 zoePlugins:
+- src/plugins/sitemeta
 - src/plugins/app-release
 - src/plugins/remote-image
 - src/plugins/static-page
