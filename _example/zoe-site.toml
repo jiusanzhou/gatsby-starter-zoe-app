@@ -10,16 +10,16 @@ baseContentDir = [
 [[navs]]
 title = "Plugins"
 
-  [[navs.items]]
-  title = "Help Center"
-  href = "/help"
-  description = "Help center use github issues as provider"
-  color = "blue"
+[[navs.items]]
+title = "Help Center"
+href = "/help"
+description = "Help center use github issues as provider"
+color = "blue"
 
-  [[navs.items]]
-  title = "App Landing"
-  href = "/app-landing"
-  description = "App landing use github issues as provider"
+[[navs.items]]
+title = "App Landing"
+href = "/app-landing"
+description = "App landing use github issues as provider"
 
 [[navs]]
 title = "Projects"

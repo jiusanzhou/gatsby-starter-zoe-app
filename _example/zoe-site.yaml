@@ -1,0 +1,69 @@
+
+# footer links
+links:
+- title: Home
+  category: Company
+  href: /
+- title: About
+  category: Company
+  href: /about
+- title: Blog
+  category: Company
+  href: /blogs
+- title: Help Center
+  category: Plugins
+  href: /help
+- title: App landing
+  category: Plugins
+  href: /app-landing
+- title: Projects
+  category: Open Source
+  href: /projects
+
+
+# social links with icons
+socials:
+  email: 'hi@zoe.im'
+  github: 'zoeim'
+  twitter: 'jiusanzhou'
+  facebook: 'jiusanzhou'
+  telegram: 'jiusanzhou'
+  linkedin: 'johnzoe'
+
+
+# for app release, we need to add github release source
+# appReleases
+# changelog will comsume those data
+releases:
+- provider: github
+  repo: moeapp/automate
+
+
+# projects for labs projects
+# repoProjects
+projects:
+- provider: github
+  tag: zoe-lab
+  owners:
+  - jiusanzhou
+
+# Help center, mostly for Q&A. This is not docs center
+# labels: help:xx
+# issues: help:
+helpqa:
+- provider: github
+  repo: jiusanzhou/gatsby-starter-zoe-app
+  labelPrefix: help # tag layout, use this as a category
+  # _: ":"
+  # source: issues??? can be other
+  # state: OPEN?
+
+
+# Comments system
+comments:
+  provider: giscus
+  repo: jiusanzhou/jiusanzhou.github.io
+  repoID: "MDEwOlJlcG9zaXRvcnkxMzQ2MDAzMDM="
+  categoryID: "DIC_kwDOCAXWb84B-qn9"
+  # category: Announcements
+  theme: preferred_color_scheme
