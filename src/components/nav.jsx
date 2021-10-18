@@ -12,7 +12,7 @@ const PCNav = ({ navs = [], ...props }) => {
     // responsive return
     const { colorMode } = useColorMode()
     return <Flex {...props}>
-        {navs.map(({ title, href, items = [] }, index) => {
+        {(navs||[]).map(({ title, href, items = [] }, index) => {
             return (!items || items.length === 0) ?
                 // just return link or text
                 <Flex fontWeight="bold" mx=".6rem" key={index}>
@@ -78,7 +78,7 @@ const SMNav = ({ navs = [], ...props }) => {
         <PopoverContent display={props.display} h="100vh" sx={{ width: "100vw", overflow: "auto"}}>
             <PopoverBody>
                 <VStack my="5" mb="5rem" alignItems="flex-start" spacing={5}>
-                    {navs.map(({ title, href, items = [] }, index) => {
+                    {(navs||[]).map(({ title, href, items = [] }, index) => {
                         return (!items || items.length === 0) ?
                             // just return link or text
                             <Flex fontWeight="bold" mx=".6rem" key={index}>
