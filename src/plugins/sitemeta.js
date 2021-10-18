@@ -110,7 +110,7 @@ type SiteSiteMetadata implements Node {
     googleAnalyticsTrackingId: String
 
     primaryColor: String
-    maxWidth: String
+    maxWidth: [String]
     layouts: Layouts
     pageWrappers: PageWrappers
 
