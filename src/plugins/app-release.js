@@ -315,7 +315,7 @@ const sourceNode = {
     // how to provider the data: []
     data: [],
     createData: ({ releaseRepo, releases = [] }) => {
-        if (!releaseRepo && releases.length === 0) return [_demo]; // for example to disable error
+        if (!releaseRepo && releases.length === 0) return []; // [_demo] no need any more // for example to disable error
 
         let res = [];
         // check type of releaseRepo
