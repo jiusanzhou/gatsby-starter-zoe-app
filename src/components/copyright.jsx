@@ -38,7 +38,7 @@ const Copyright = ({ copyright = {}, author = {}, ...props }) => {
                                 <Popover trigger="hover">
                                     <PopoverTrigger>
                                         <Box as="span">
-                                            <MLink href={author.href || author.homepage}>
+                                            <MLink href={author.href || author.homepage || ''}>
                                                 {author.name}
                                             </MLink>
                                         </Box>
