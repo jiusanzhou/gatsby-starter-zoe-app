@@ -1,3 +1,6 @@
+title = "Sample Site"
+logo = "https://unavatar.io/github/jiusanzhou"
+
 pathPrefix = "/gatsby-starter-zoe-app"
 
 # assetPrefix(jsdelivr) can't works well with pathPrefix

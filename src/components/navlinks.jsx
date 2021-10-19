@@ -5,7 +5,7 @@ import MLink from "./link";
 export default ({ links = [] }) => {
     // merge links with catetory
     let blocks = {};
-    links.forEach((e) => {
+    (links||[]).forEach((e) => {
         if (!blocks[e.category]) blocks[e.category||''] = [];
         blocks[e.category||''].push(e);
     });

@@ -67,3 +67,11 @@ comments:
   categoryID: "DIC_kwDOCAXWb84B-qn9"
   # category: Announcements
   theme: preferred_color_scheme
+
+
+# TODO: make this to string can ad props (limited by graphql)
+pageWrappers:
+- path: "*"
+  match: "/[Mm]icro[Mm]essenger|[Aa]lipay/.test(navigator.userAgent)"
+  component:
+    type: WechatBrokenGuide

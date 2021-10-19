@@ -59,7 +59,9 @@ const _eval = (s) => {
     }
     
     // ignore the lint
-    if (__dirname === zoe) {}
+    if (__dirname || zoe) {}
+
+    // TODO: try catch
     return eval(s)
 }
 
@@ -80,7 +82,8 @@ const _genVal = (s) => {
             // a${a} ${a}a ${a}
             let v;
             const _st = s.indexOf("${");
-            if (_st < 0) {
+            // without ${, or ignoreZoe is true and has ${zoe.
+            if (_st < 0 || _global._onlyZoe && s.slice(_st, 6) === "${zoe.") {
                 v = s
             } else if (_st === 0 && s.slice(-1) === "}") {
                 // ${a} who to access global
@@ -142,8 +145,18 @@ const buildPlugin = (plg) => {
 };
 
 const buildConfig = (zoe) => {
+
     // set to global!!!
     _global.zoe = zoe;
+
+    // if only zoe just return zoe data
+    if (_global._onlyZoe) {
+        let nzoe = {}
+        Object.keys(zoe).forEach((k) => {
+            nzoe[k] = _genVal(zoe[k]);
+        })
+        return nzoe;
+    }
 
     const config = {};
 
