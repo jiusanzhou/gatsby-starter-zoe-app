@@ -38,7 +38,7 @@ const MImage = ({ src, mode = "fluid", ...props }) => {
 
     // find matched image
     let match = data.allImageSharp.nodes.find(({
-        parent: { relativePath, parent = {} } }) => {
+        parent: { relativePath, absolutePath, parent = {} } }) => {
             // for local iamge            
             return relativePath === src || absolutePath === src 
                 // for remote image
