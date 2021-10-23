@@ -130,6 +130,33 @@ const addPluginFromGoogleAnalytics = (config, { __dirname }) => {
     }
 }
 
+const addPluginFromGoogleTag = (config, { __dirname }) => {
+    const {
+        gtagTrackingIds,
+        gtagOptimizeId,
+        gtagExclude,
+    } = config.siteMetadata;
+    if (!gtagTrackingIds || gtagTrackingIds.length <= 0) return;
+
+    config.plugins.push({
+        resolve: "gatsby-plugin-google-gtag",
+        options: {
+            trackingIds: gtagTrackingIds,
+            // TODO: make bellow more configurable
+            gtagConfig: {
+                optimize_id: gtagOptimizeId,
+                anonymize_ip: false,
+                cookie_expires: 0,
+            },
+            pluginConfig: {
+                head: false,
+                respectDNT: false,
+                exclude: gtagExclude,
+            },
+        }
+    })
+}
+
 // load and merge with zoe data
 const _loadAndMergeZoe = (config, { __dirname }) => {
     // config-list.txt, should be relative path
@@ -236,6 +263,7 @@ exports.loadZoefile = (zoefile=`./zoe-site.yaml`) => {
     addPluginFromGoogleAnalytics(config, { __dirname });
     addPluginFromEnv(config, { __dirname });
     addPluginFromRss(config, { __dirname });
+    addPluginFromGoogleTag(config, { __dirname });
 
     return config;
 };
