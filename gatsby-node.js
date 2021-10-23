@@ -26,7 +26,9 @@ const { siteMetadata } = loadZoefile();
 // ];
 
 // from zoe-site.yaml
-const plugins = siteMetadata.zoePlugins || [];
+// normalize the page with src/plugins
+const plugins = (siteMetadata.zoePlugins || []).map(plugin => 
+  plugin.indexOf("/") < 0 ? `src/plugins/${plugin}` : plugin);
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -159,6 +161,19 @@ exports.onCreateNode = async (params, themeOptions) => {
 
 // create pages
 exports.createPages = async (params, themeOptions) => {
+  // hook create page function
+  // to add page wrapper
+  // TODO: beacause onCreatePage not be called
+  // for dynamic pages
+  let _createPages = params.actions.createPage
+  params.actions.createPage = (page) => _createPages({
+    ...page,
+    context: {
+      pageWrapper: pageWrapHelper(siteMetadata.pageWrappers, page.path),
+      ...(page.context||{}),
+    }
+  });
+
   await Promise.all(
     plugins.map(async (e) => {
       const c = require(path.resolve(__dirname, e)).createPages;
@@ -171,15 +186,17 @@ exports.createPages = async (params, themeOptions) => {
 };
 
 // add more options or data to page
+// pages created by cratePages will not hooked by this function
+// maybe bugs?
 exports.onCreatePage = ({ page, actions }) => {
-    let c = pageWrapHelper(siteMetadata.pageWrappers, page.path)
-    if (!c) return;
-    actions.deletePage(page)
-    actions.createPage({
-        ...page,
-        context: {
-            ...page.context,
-            pageWrapper: c,
-        }
-    })
+  let c = pageWrapHelper(siteMetadata.pageWrappers, page.path)
+  if (!c) return;
+  actions.deletePage(page)
+  actions.createPage({
+      ...page,
+      context: {
+          ...page.context,
+          pageWrapper: c,
+      }
+  })
 }
