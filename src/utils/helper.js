@@ -1,4 +1,3 @@
-
 exports.mdxResolverPassthrough = (fieldName) => async (source, args, context, info) => {
     const type = info.schema.getType(`Mdx`);
     const mdxNode = context.nodeModel.getNodeById({
@@ -12,3 +11,7 @@ exports.mdxResolverPassthrough = (fieldName) => async (source, args, context, in
 }
 
 exports.purePath = (a) => a.replace(/\/\/+/g, "/")
+
+exports.normalizePlugins = (plugins = [], baseDir = "src/plugins") => {
+  return plugins.map(p =>  p.indexOf("/") < 0 ? `${baseDir}/${p}` : p)
+}

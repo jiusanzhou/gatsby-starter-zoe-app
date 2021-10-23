@@ -153,10 +153,6 @@ zoePlugins:
 - src/plugins/remote-image
 - src/plugins/static-page
 - src/plugins/custom-page
-- src/plugins/app-release
-- src/plugins/repo-project
-- src/plugins/blog-post
-- src/plugins/issue-helpqa
 
 remarkImageMaxWidth: 1200
 

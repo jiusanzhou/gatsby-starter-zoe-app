@@ -7,6 +7,8 @@
 const path = require("path");
 const kebabCase = require(`lodash.kebabcase`);
 
+const { loadPlugins } = require("./src/utils/node-helper");
+const { normalizePlugins } = require("./src/utils/helper");
 const { loadZoefile } = require("./src/utils/zoefile");
 const { pageWrapHelper } = require("./src/utils/wraper");
 const { mdxResolverPassthrough, purePath } = require("./src/utils/helper");
@@ -25,10 +27,11 @@ const { siteMetadata } = loadZoefile();
 //     "src/plugins/issue-helpqa",
 // ];
 
+const allPlugins = loadPlugins();
+
 // from zoe-site.yaml
 // normalize the page with src/plugins
-const plugins = (siteMetadata.zoePlugins || []).map(plugin => 
-  plugin.indexOf("/") < 0 ? `src/plugins/${plugin}` : plugin);
+const plugins = normalizePlugins(siteMetadata.zoePlugins||[]);
 
 // This is a shortcut so MDX can import components without gross relative paths.
 // Example: import { Image } from '$components';
@@ -83,8 +86,8 @@ exports.createSchemaCustomization = ({ actions, schema }, themeOptions = {}) => 
       }
   });
 
-  // ok let's create the types
-  createTypes(plugins.map((e) => {
+  // ok let's create the types from allPlugins
+  createTypes(allPlugins.map((e) => {
     let td = require(path.resolve(__dirname, e)).typeData;
     switch (typeof td) {
       case 'string': return td;
