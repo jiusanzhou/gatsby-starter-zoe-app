@@ -11,6 +11,7 @@ import MLink from "./link";
 const PCNav = ({ navs = [], ...props }) => {
     // responsive return
     const { colorMode } = useColorMode()
+    if (!navs || navs.length === 0) return <></>
     return <Flex {...props}>
         {(navs||[]).map(({ title, href, items = [] }, index) => {
             return (!items || items.length === 0) ?
@@ -67,6 +68,7 @@ const PCNav = ({ navs = [], ...props }) => {
 const SMNav = ({ navs = [], ...props }) => {
     const [isOpen, setIsOpen] = useState(false)
     const toggle = () => setIsOpen(!isOpen)
+    if (!navs || navs.length === 0) return <></>
     return <Popover trigger="click" onOpen={toggle} onClose={toggle} {...props}>
         <PopoverTrigger>
             <IconButton
