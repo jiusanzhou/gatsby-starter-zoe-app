@@ -1,4 +1,11 @@
 
+# it's ok without src/plugins/ or not
+zoePlugins:
+- src/plugins/app-release
+- repo-project
+- blog-post
+- issue-helpqa
+
 # footer links
 links:
 - title: Home
@@ -71,7 +78,7 @@ comments:
 
 # TODO: make this to string can ad props (limited by graphql)
 pageWrappers:
-- path: "*"
+- path: "**"
   match: "/[Mm]icro[Mm]essenger|[Aa]lipay/.test(navigator.userAgent)"
   component:
     type: WechatBrokenGuide

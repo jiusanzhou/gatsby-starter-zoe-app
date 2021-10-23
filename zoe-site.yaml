@@ -146,16 +146,12 @@ rss:
   path: rss.xml
   title: ${zoe.title} RSS Feed
 
-# plugins for custom  [merge]
+# plugins for custom [merge]
 zoePlugins:
 - src/plugins/sitemeta
-- src/plugins/app-release
 - src/plugins/remote-image
 - src/plugins/static-page
 - src/plugins/custom-page
-- src/plugins/repo-project
-- src/plugins/blog-post
-- src/plugins/issue-helpqa
 
 remarkImageMaxWidth: 1200
 

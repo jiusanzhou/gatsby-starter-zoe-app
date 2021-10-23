@@ -216,7 +216,7 @@ exports.mergeConfig = (c1 = {}, c2 = {}) => {
         c[field] = [
             ...(c1[field]||[]),
             ...(c2[field]||[]),
-        ]
+        ] // todo duplicate?
     })
 
     // fields.forEach(field => {c[field] = [...(c1[field]||[]), ...(c2[field]||[])]})
