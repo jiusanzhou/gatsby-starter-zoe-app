@@ -1,10 +1,8 @@
 
 # it's ok without src/plugins/ or not
-zoePlugins:
-- src/plugins/app-release
-- repo-project
-- blog-post
-- issue-helpqa
+# TODO: current cann't split out
+# query will panic with no field error
+zoePlugins: []
 
 # footer links
 links:
