@@ -147,11 +147,16 @@ rss:
   title: ${zoe.title} RSS Feed
 
 # plugins for custom [merge]
+# it's ok without src/plugins/ or not
 zoePlugins:
 - src/plugins/sitemeta
 - src/plugins/remote-image
 - src/plugins/static-page
 - src/plugins/custom-page
+- src/plugins/app-release
+- src/plugins/repo-project
+- src/plugins/blog-post
+- src/plugins/issue-helpqa
 
 remarkImageMaxWidth: 1200
 
