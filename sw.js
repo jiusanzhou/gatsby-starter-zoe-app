@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-f86bdf59b10682037efa.js"
+    "url": "webpack-runtime-544554f411b52410f422.js"
   },
   {
     "url": "framework-1cd12a274124f71c1bad.js"
@@ -48,18 +48,18 @@ self.__precacheManifest = [
     "url": "9f96d65d-43b2df01ca5c9b101ae3.js"
   },
   {
-    "url": "app-77a1a56b592130448e65.js"
+    "url": "app-29a05c660ae4c298164a.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "6535353de1ce9f9d87fc68898ad66c06"
+    "revision": "f5745f1d81ffdda3ca01d4c4a04b848f"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a12c34d8f47c6528d910.js"
   },
   {
     "url": "page-data/offline-plugin-app-shell-fallback/page-data.json",
-    "revision": "4b7b66ec252d3e42deced073f1f6792f"
+    "revision": "ba1dd9f8d3a92ebb6b1f0d75c49b6443"
   },
   {
     "url": "page-data/sq/d/1137061806.json",
@@ -67,34 +67,34 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/1138555179.json",
-    "revision": "1cde65517bc3a488091dbd8d0bb8cb54"
+    "revision": "075aa394f7e727f609545e848816f3e4"
   },
   {
-    "url": "page-data/sq/d/2239045899.json",
-    "revision": "713bb56f5d30839cc064c189104d33cc"
+    "url": "page-data/sq/d/1730835263.json",
+    "revision": "74f167882c8bab286a42ceeec70ac232"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "3a0f434d00e6ddb8a67965be3d74d91d"
+    "revision": "976c31d34c7596daedfb865a22a11860"
   },
   {
     "url": "page-data/sq/d/3912480317.json",
-    "revision": "544eb8240e968ca9e8eec1d7235a7034"
+    "revision": "cfe3d5ea07efa989bdb0ab1486f37a1a"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
-    "revision": "1d36b34511621f141b4a8b03a6545115"
+    "revision": "169709d7f3a792211e88101ac5cb1d68"
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "6b392ea50f8c36c998aa245f240b34ca"
+    "revision": "2018229bdecefcbb02d25ccd5b480c62"
   },
   {
     "url": "polyfill-7644dbc8b87bbf2ba314.js"
   },
   {
     "url": "manifest.webmanifest",
-    "revision": "d24dccef1dbd3229f15cbb7d535ae16c"
+    "revision": "dc9b9c5b795a20fef58f12c75495c407"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
@@ -186,7 +186,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-77a1a56b592130448e65.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-29a05c660ae4c298164a.js`))) {
     return await fetch(event.request)
   }
 
