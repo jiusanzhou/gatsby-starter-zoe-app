@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-d608b9fec30e586664fd.js"
+    "url": "webpack-runtime-5987a943abae0970df78.js"
   },
   {
     "url": "framework-1cd12a274124f71c1bad.js"
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "9f96d65d-43b2df01ca5c9b101ae3.js"
   },
   {
-    "url": "app-f6ee3d92de1b4d53d881.js"
+    "url": "app-905beab7e7b4674f6a0e.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "9af81e3d97973bedf3c4a9231609eff2"
+    "revision": "e7d7d4bae19b20ee90ed2229ac7fec28"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a12c34d8f47c6528d910.js"
@@ -67,27 +67,27 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/1138555179.json",
-    "revision": "0d9c97b4031c3ffc0d62467cb8806d73"
+    "revision": "d2a7c190e54659c4fc2c7ce275c10340"
   },
   {
     "url": "page-data/sq/d/1730835263.json",
-    "revision": "c14b86124d064b4bf96202b65b8bed62"
+    "revision": "c597c042375e4f94da9e9ad9810d5d1d"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "03d6d85183bfabcc99125308a71cedf3"
+    "revision": "a28d2a01d469fb0356d7515b81a2a967"
   },
   {
     "url": "page-data/sq/d/3912480317.json",
-    "revision": "4713518ca426c974660644ed86ce030a"
+    "revision": "1f91308f5f6fce8c07d6713c25cd3595"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
-    "revision": "169709d7f3a792211e88101ac5cb1d68"
+    "revision": "ad080130bd1772ed49da0504e20b659b"
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "88e6d429b7b579781190038dc96bcd94"
+    "revision": "c55e2c65336f1ef749ad739c3050d65b"
   },
   {
     "url": "polyfill-7644dbc8b87bbf2ba314.js"
@@ -186,7 +186,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-f6ee3d92de1b4d53d881.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-905beab7e7b4674f6a0e.js`))) {
     return await fetch(event.request)
   }
 
