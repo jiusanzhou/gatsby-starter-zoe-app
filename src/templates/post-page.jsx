@@ -1,5 +1,5 @@
 import { ArrowBackIcon, EditIcon, TimeIcon } from "@chakra-ui/icons"
-import { Box, Divider, Flex, HStack, Text } from "@chakra-ui/react"
+import { Box, Divider, Flex, HStack, Text, Tag } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import React from "react"
@@ -12,7 +12,7 @@ import PostFooterNav from "../widgets/post-footer"
 import Tags from "../widgets/tags"
 
 const PostPage = ({ data, pageContext: { basePathBlog, slug, next, previous } }) => {
-    const { title, body, tags, createdTime, timeToRead } = data.mdxPost
+    const { title, body, tags, createdTime, timeToRead, published } = data.mdxPost
     return <Layout layout="default" fixed={false} title={title}>
         <MSection
         subTitleProps={{textAlign: "left"}}
@@ -29,7 +29,10 @@ const PostPage = ({ data, pageContext: { basePathBlog, slug, next, previous } })
                     <EditIcon mr=".5rem" />{createdTime}</Text>
                 <Text fontSize=".875rem">
                     <TimeIcon mr=".5rem" />{timeToRead} MINS</Text>
-                
+
+                {published ? null :
+                <Tag size="sm" colorScheme="red" mr=".5rem">DRAFT</Tag>}
+
             </HStack>
 
             <Box textAlign="left">
@@ -45,7 +48,7 @@ const PostPage = ({ data, pageContext: { basePathBlog, slug, next, previous } })
             <PostFooterNav basePathBlog={basePathBlog}
               next={next} previous={previous} />
 
-            <Comments mt="2rem" />
+            {published && <Comments mt="2rem" />}
         </MSection>
     </Layout>
 }
@@ -62,6 +65,7 @@ query ($slug: String!, $formatString: String!) {
         excerpt
         timeToRead
         description
+        published
         tags {
           name
           slug

@@ -1,8 +1,7 @@
-import { Box, Flex, Heading, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react"
+import { Box, Flex, Heading, HStack, Link, Tag, Text, useColorModeValue } from "@chakra-ui/react"
 import { graphql } from "gatsby"
 import React from "react"
 import ItemsView from "../components/itemsView"
-import MLink from "../components/link"
 import MSection from "../components/section"
 import Layout from "../layouts"
 import { purePath } from "../utils/helper"
@@ -44,7 +43,12 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
               color={useColorModeValue("gray.400", "gray.700")}>
                 <Text>{createdTime.split("T")[0]}</Text>
             </Flex>)}
-          leading={()=>null} description={()=>null} />
+          leading={({ data: { published } })=>
+            published?
+            null:
+            <Tag size="sm" colorScheme="red" mr="1rem">DRAFT</Tag>
+          }
+          description={()=>null} />
         </Box>
       </Box>))}
     </MSection>
@@ -55,6 +59,7 @@ export default PostList
 
 // ($formatString: String!)
 // (formatString: $formatString)
+// filter: {published: {eq: true}},
 export const query = graphql`
   query {
     allMdxPost(
@@ -68,6 +73,7 @@ export const query = graphql`
         excerpt
         timeToRead
         description
+        published
         tags {
           name
           slug

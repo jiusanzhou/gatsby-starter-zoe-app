@@ -75,6 +75,22 @@ comments:
   # category: Announcements
   theme: preferred_color_scheme
 
+# Remote git content, also can be array
+gitContent:
+  name: "me"
+  remote: https://github.com/jiusanzhou/me.git
+  local: /tmp/repo-me
+  patterns:
+  - "📖posts/**"
+
+# also we need to add custom node for post
+# because 📖posts is not a common blog path
+customNodes:
+- name: MdxPost
+  when:
+    sourceName: me # todo
+    type: Mdx
+    path: 📖posts
 
 # TODO: make this to string can ad props (limited by graphql)
 pageWrappers:

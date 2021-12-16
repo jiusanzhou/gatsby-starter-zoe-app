@@ -116,6 +116,46 @@ const addPluginFromContentDir = (config, { __dirname }) => {
     })
 }
 
+const addPluginFromRemoteGit = (config, { __dirname }) => {
+    // gitContent: {}, []
+    const { gitContent, baseContentDir = [] } = config.siteMetadata;
+    if (!baseContentDir) {
+        config.siteMetadata.baseContentDir = baseContentDir;
+    }
+
+    let gits = [];
+    if (Array.isArray(gitContent)) {
+        gits.push(...gitContent);
+    } else if (typeof gitContent === 'object') {
+        gits.push(gitContent);
+    }
+
+    const defaultPathPrefix = ".cache/gatsby-source-git";
+
+    // add gatsby-source-git plugin
+    gits.forEach((git) => {
+        let name = git.name || 'git-content';
+
+        // add the path to content dir
+        // make sure this plugin before content dir plugin
+        let localPath = git.local || path.join(defaultPathPrefix, name);
+        baseContentDir.push(localPath)
+        // how to add blog from content dir???
+        // we auto load from `*/blog`
+        // but in the remote we don't want to use blog as directory
+        // name.
+        // we need to dynamic load content as blog and content data
+
+        config.plugins.push({
+            resolve: "gatsby-source-git",
+            options: {
+                ...git,
+                name,
+            }
+        })
+    })
+}
+
 const addPluginFromGoogleAnalytics = (config, { __dirname }) => {
     const { googleAnalyticsTrackingId } = config.siteMetadata;
 
@@ -259,6 +299,7 @@ exports.loadZoefile = (zoefile=`./zoe-site.yaml`) => {
     config = buildZoefile(config, { __dirname, _onlyZoe: false });
 
     // auto register plugins
+    addPluginFromRemoteGit(config, { __dirname });
     addPluginFromContentDir(config, { __dirname });
     addPluginFromGoogleAnalytics(config, { __dirname });
     addPluginFromEnv(config, { __dirname });

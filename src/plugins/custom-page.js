@@ -26,13 +26,13 @@ const onCreateNode = ({ customNodes = [], baseContentDir = [] }, { node, actions
     let m;
     // filter if we need to create another node
     for (let i = 0; i < customNodes.length; i++) {
-        let { name, when: {type, path} = {} } = customNodes[i];
+        let { name, when: {type, sourceName, path} = {} } = customNodes[i];
         if (node.internal.type === type && source === name) {
             m = customNodes[i];
-            // TODO: create every custom node.
             break;
-            // if (dir === path || "/" + path === dir) {
-            // }
+
+            // this code are deprecated, which be replaced by zoefile parser
+            // register a custom source name
         }
     }
 
@@ -56,6 +56,14 @@ const onCreateNode = ({ customNodes = [], baseContentDir = [] }, { node, actions
     
     if (!fieldData.createdTime) fieldData.createdTime = fieldData.date;
     if (!fieldData.createdTime) fieldData.createdTime = fileNode.birthTime;
+
+    let pureName = fileNode.relativePath.replace(fileNode.ext, "");
+    // TODO: hard code for slug as default: file name?
+    // remove ext and ...
+    if (!fieldData.slug) fieldData.slug = pureName;
+    
+    // TODO: hard code for default title, file name
+    if (!fieldData.title) fieldData.title = pureName;
 
     // hard code for layout
     if (!fieldData.layout) fieldData.layout = "default";
