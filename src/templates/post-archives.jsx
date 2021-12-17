@@ -30,7 +30,8 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
         <Heading pb="3" borderBottomWidth="1px"
           as="h3" fontSize="1.5rem">{y}</Heading>
         <Box mt="2rem">
-          <ItemsView type="tile" items={years[y].map((item) => ({
+          <ItemsView type="tile" items={years[y]
+            .sort((a, b) => b.createdTime - a.createdTime).map((item) => ({
             ...item,
             description: item.description || item.excerpt,
             href: purePath(`${basePathBlog}/${item.slug}`),
