@@ -70,6 +70,7 @@ const Copy = ({ content, duration = 5000, fileName = ``, trim = false }) => {
         pos="absolute"
         d="none"
         right="0"
+        zIndex="1"
         onClick={onCopy}
         isRound
         _groupHover={{d: "block"}}
