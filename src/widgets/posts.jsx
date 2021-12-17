@@ -13,10 +13,10 @@ const PostList = ({ items = [], preview, ...props }) => {
     const _blogListPath = _basePathBlog === "/" ? "/" : _basePathBlog + "s"
 
     const itemProps = {}
-    if (!preview) itemProps.subTitle = ({ data: { tags }, ...props }) => (
+    if (!preview) itemProps.subTitle = ({ data: { tags = [] }, ...props }) => (
         <Flex color={useColorModeValue("gray.400", "gray.700")} mt=".3rem">
             {/* <Text>{createdTime}</Text> */}
-            <Tags simple items={tags.slice(0, 3)} />
+            <Tags simple items={(tags||[]).slice(0, 3)} />
         </Flex>)
 
     if (!preview) itemProps.trailing = ({ data: { createdTime, pinned }, ...props}) => (
