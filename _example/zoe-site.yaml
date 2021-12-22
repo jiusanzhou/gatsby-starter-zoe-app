@@ -78,7 +78,7 @@ comments:
 # Remote git content, also can be array
 gitContent:
   name: "me"
-  remote: https://github.com/jiusanzhou/me.git
+  remote: https://jiusanzhou:${process.env.GITHUB_TOKEN}@github.com/jiusanzhou/me.git
   local: /tmp/repo-me
   patterns:
   - "📖posts/**"
