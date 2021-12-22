@@ -80,7 +80,7 @@ gitContent:
   name: "me"
   remote: https://jiusanzhou:${process.env.GITHUB_TOKEN}@github.com/jiusanzhou/me.git
   local: /tmp/repo-me
-  patterns:
+  patterns: # patterns:{a: "", b: ""}
   - "📖posts/**"
 
 # also we need to add custom node for post
