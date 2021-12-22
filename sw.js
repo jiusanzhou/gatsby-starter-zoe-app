@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-8b9e45a1c144306733f6.js"
+    "url": "webpack-runtime-71f4df1763fa8858a3d5.js"
   },
   {
     "url": "framework-1cd12a274124f71c1bad.js"
@@ -48,11 +48,11 @@ self.__precacheManifest = [
     "url": "9f96d65d-43b2df01ca5c9b101ae3.js"
   },
   {
-    "url": "app-15606750a3c1ed05e100.js"
+    "url": "app-50f4485c19e55fea076b.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "07222bb80c1ffde1f10531a66a88e684"
+    "revision": "8858b3bae2736bb1f9e666c587bfc0c4"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a12c34d8f47c6528d910.js"
@@ -71,15 +71,15 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/1730835263.json",
-    "revision": "6ef689b551cd0bc2f563bdf6dd9dfdcb"
+    "revision": "36e380d46832a73b497280603cf2e239"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "897c96a1204b81fbb8420792138157fd"
+    "revision": "3d200ce55eaf540a7b4bb27daed86200"
   },
   {
     "url": "page-data/sq/d/3912480317.json",
-    "revision": "a4822d0e47033473dd508758a0a87b86"
+    "revision": "952240c2f799b8ed07b92255d340f914"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
@@ -87,7 +87,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "0d9cd4f774ff9ef80df3a26ed075bdef"
+    "revision": "3ff67074aab96dde7483c86c80fd02aa"
   },
   {
     "url": "polyfill-7644dbc8b87bbf2ba314.js"
@@ -186,7 +186,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-15606750a3c1ed05e100.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-50f4485c19e55fea076b.js`))) {
     return await fetch(event.request)
   }
 
