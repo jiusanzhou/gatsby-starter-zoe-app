@@ -33,7 +33,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         basePathBlog,
         blogListTemplate, blogPageTemplate,
         tagListTemplate, tagPageTemplate,
-        archiveListTemplate,
+        archiveListTemplate, draftListTemplate,
         dateFormat,
     } = siteMetadata;
 
@@ -46,6 +46,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     let _tagListTemplate = tagListTemplate || "./src/templates/tag-list.jsx"
     let _tagPageTemplate = tagPageTemplate || "./src/templates/tag-page.jsx"
     let _archiveListTemplate = archiveListTemplate || "./src/templates/post-archives.jsx"
+    let _draftListTemplate = draftListTemplate || "./src/templates/post-draft.jsx"
 
     let _dateFormat = dateFormat || "MMMM DD, YYYY"
 
@@ -84,6 +85,17 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         }
     })
 
+    // create draft
+    createPage({
+        path: _blogListPath + "/drafts",
+        component: path.resolve(_draftListTemplate),
+        context: {
+            basePathBlog: _basePathBlog,
+            blogListPath: _blogListPath,
+            title: "草稿"
+        }
+    })
+
     // create tags list
     createPage({
         path: _blogListPath + "/tags",
@@ -96,7 +108,10 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
     // query all post and create blog post
     const result = await graphql(`
         query {
-            allMdxPost(sort: { fields: createdTime, order: DESC }) {
+            allMdxPost(
+                filter: {published: {eq: true}},
+                sort: { fields: createdTime, order: DESC }
+            ) {
                 edges {
                     next {
                       slug

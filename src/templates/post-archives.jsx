@@ -6,7 +6,7 @@ import MSection from "../components/section"
 import Layout from "../layouts"
 import { purePath } from "../utils/helper"
 
-const PostList = ({ data, pageContext: { basePathBlog } }) => {
+const PostList = ({ data, pageContext: { basePathBlog, title="文章归档" } }) => {
 
   const posts = data.allMdxPost.nodes
 
@@ -21,7 +21,7 @@ const PostList = ({ data, pageContext: { basePathBlog } }) => {
   return <Layout layout="default" title="博客">
     {/* TODO: use BlogsList widget */}
     <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
-      title="文章归档" description={`共 ${posts.length} 篇文章`}>
+      title={title} description={`共 ${posts.length} 篇文章`}>
       {/* <HStack my="2rem" spacing="5" justifyContent="flex-end">
         <MLink href="tags">全部标签</MLink>
       </HStack> */}
@@ -64,6 +64,7 @@ export default PostList
 export const query = graphql`
   query {
     allMdxPost(
+      filter: {published: {eq: true}},
       sort: { fields: createdTime, order: DESC }
     ) {
       nodes {
