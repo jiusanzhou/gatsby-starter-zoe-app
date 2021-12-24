@@ -27,6 +27,7 @@ const addPluginFromRss = (config, { __dirname }) => {
                     {
                         query: `{
                             allMdxPost(
+                              filter: {published: {eq: true}},
                               sort: { order: DESC, fields: [createdTime] },
                             ) {
                               edges {
