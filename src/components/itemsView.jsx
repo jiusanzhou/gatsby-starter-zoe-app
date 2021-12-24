@@ -98,17 +98,17 @@ const ItemsView = ({
     
     return React.createElement(viewContainer.as, {
         children: items.map((item, index) => (<Flex key={index} {...viewContainer.containerProps} {...containerProps}>
-            {React.createElement(leading, { data: item, ...viewContainer.leadingProps, ...leadingProps })}
+            {leading&&React.createElement(leading, { data: item, ...viewContainer.leadingProps, ...leadingProps })}
             <Box {...viewContainer.bodyProps} {...bodyProps}>
                 <MLink pure href={item.href} w="100%">
-                {React.createElement(title, { data: item, ...titleProps, isTruncated: type !== "grid" })}
+                {title&&React.createElement(title, { data: item, ...titleProps, isTruncated: type !== "grid" })}
                 </MLink>
                 <MLink pure href={item.href} w="100%">
-                {React.createElement(description, { data: item, ...descriptionProps, isTruncated: type !== "grid" })}
+                {description&&React.createElement(description, { data: item, ...descriptionProps, isTruncated: type !== "grid" })}
                 </MLink>
-                {React.createElement(subTitle, { data: item, ...subTitleProps })}
+                {subTitle&&React.createElement(subTitle, { data: item, ...subTitleProps })}
             </Box>
-            {React.createElement(trailing, { data: item, ...trailingProps })}
+            {trailing&&React.createElement(trailing, { data: item, ...trailingProps })}
         </Flex>)),
         ...viewContainer.props,
         ...props,

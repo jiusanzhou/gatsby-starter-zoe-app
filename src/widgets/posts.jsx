@@ -7,12 +7,11 @@ import MLink from "../components/link"
 import Tags from "./tags"
 import { ArrowForwardIcon, StarIcon } from "@chakra-ui/icons"
 
-const PostList = ({ items = [], preview, ...props }) => {
+const PostList = ({ preview, items = [], itemProps = {}, ...props }) => {
     const { basePathBlog, primaryColor } = useSiteMetadata()
     const _basePathBlog = basePathBlog || "/blog"
     const _blogListPath = _basePathBlog === "/" ? "/" : _basePathBlog + "s"
 
-    const itemProps = {}
     if (!preview) itemProps.subTitle = ({ data: { tags = [] }, ...props }) => (
         <Flex color={useColorModeValue("gray.400", "gray.700")} mt=".3rem">
             {/* <Text>{createdTime}</Text> */}
@@ -27,7 +26,7 @@ const PostList = ({ items = [], preview, ...props }) => {
             display={["none", "inline-block"]}>{createdTime}</Text>
         </Flex>)
     
-    if (!preview) itemProps.leading = ({ data: {}, ...props}) => null
+    if (!preview) itemProps.leading = null
 
 
     return <Box {...props}>

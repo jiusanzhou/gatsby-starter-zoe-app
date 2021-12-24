@@ -31,7 +31,7 @@ const RadioCard = (props) => {
     )
   }
 
-const ProjectList = ({ items, preview, limit = 3, ...props }) => {
+const ProjectList = ({ items, preview, limit = 3, itemProps = {}, ...props }) => {
     // if preview mode, just return list directly
     const { primaryColor } = useSiteMetadata()
 
@@ -76,7 +76,7 @@ const ProjectList = ({ items, preview, limit = 3, ...props }) => {
                 ...item,
                 title: item.name,
                 href: item.homepage || item.html_url,
-            }))} />
+            }))} {...itemProps} />
 
         {/* preivew mode should show more button */}
         {preview&&<Flex mt="2rem" w="100%" justifyContent="center">

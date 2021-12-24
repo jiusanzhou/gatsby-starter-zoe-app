@@ -6,7 +6,7 @@ const PostsList = ({ preview = true, limit = 3, ...props }) => {
 
     const data = useStaticQuery(graphql`
 query MdxPosts {
-    allMdxPost(sort: { fields: [pinned, createdTime], order: [ASC, DESC] }) {
+    allMdxPost(filter: {published: {eq: true}}, sort: { fields: [pinned, createdTime], order: [ASC, DESC] }) {
         nodes {
             slug
             title
