@@ -219,7 +219,7 @@ const _loadAndMergeZoe = (config, { __dirname }) => {
     })
 
     // hard code to add _example content dir
-    if (process.env.NODE_ENV === 'development') {
+    if (false && process.env.NODE_ENV === 'development') {
         config.baseContentDir = config.baseContentDir.concat(
             `${__dirname}/_example`,
             `${__dirname}/_example/content`,
