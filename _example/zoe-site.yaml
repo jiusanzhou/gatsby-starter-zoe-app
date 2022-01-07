@@ -37,6 +37,7 @@ socials:
   facebook: 'jiusanzhou'
   telegram: 'jiusanzhou'
   linkedin: 'johnzoe'
+  rss: rss.xml
 
 
 # for app release, we need to add github release source
