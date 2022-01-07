@@ -16,6 +16,7 @@ const Footer = ({
     disableLogo,
     disableSocials,
     disableLinks,
+    copyrightJustify = "center",
     logoProps = {},
     ...props
 }) => {
@@ -75,6 +76,7 @@ const Footer = ({
                     mt="2rem"
                     copyright={copyright}
                     author={author}
+                    justifyContent={copyrightJustify}
                 />
             </Box>
         </Box>

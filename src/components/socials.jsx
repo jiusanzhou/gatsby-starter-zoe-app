@@ -7,6 +7,7 @@ import {
     FiMail,
     FiFacebook,
     FiLink,
+    FiRss
 } from "react-icons/fi";
 import { RiTelegramLine, RiWechat2Line } from "react-icons/ri";
 import { AiOutlineWechat } from "react-icons/ai";
@@ -25,6 +26,7 @@ const _data_base = {
     email: "mailto:",
     homepage: '',
     wechat: '',
+    rss: '',
 };
 
 const _data_icon = {
@@ -36,6 +38,7 @@ const _data_icon = {
     email: <FiMail />,
     homepage: <FiLink />,
     wechat: <RiWechat2Line />,
+    rss: <FiRss />
 };
 
 export const SocialLink = ({ type, username, base, ...props }) => {
@@ -51,6 +54,8 @@ export const SocialLink = ({ type, username, base, ...props }) => {
                 variant="outline" icon={icon} {...props} />
         </MLink>)
 
+    // special for wechat
+    // TODO: use register a function
     if (type === "wechat") {
         return <Tooltip placement="top" hasArrow bg="white"
             label={<MImage w="10rem" h="10rem" src={username} />}>

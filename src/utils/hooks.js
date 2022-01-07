@@ -47,6 +47,7 @@ const useSiteMetadata = () => {
         linkedin
         telegram
         twitter
+        rss
       }
       copyright {
         from
@@ -114,6 +115,7 @@ const useSiteMetadata = () => {
         telegram
         twitter
         wechat
+        rss
       }
       layouts {
         default

@@ -54,6 +54,7 @@ layouts:
       disableLogo: false
       disableSocials: false
       disableLinks: false
+      copyrightJustify: space-between
       logoProps:
         textColor: 'unset'
 
