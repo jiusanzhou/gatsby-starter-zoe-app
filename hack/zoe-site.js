@@ -111,13 +111,28 @@ function cmd_build(assetsDir) {
     execSync(`yarn clean`);
 
     print("Run `yarn build`");
-    spawnSync("yarn", ["build"], {
+    let res = spawnSync("yarn", ["build"], {
         detached: false,
         stdio: "inherit"
     })
+    if (res.status !== 0) {
+        print("Build failed.");
+        // exit process directlly
+        process.exit(1);
+    }
 
-    print(`Build successfully! Files in ${assetsDir}`);
+    print(`Build successfully! Files in public!`);
+    spawnSync("ls", ["-al"], {
+        detached: false,
+        stdio: "inherit"
+    })
     // TODO: copy assets to target
+    // copy public => 
+    print(`[TODO] Copy assets to ${assetsDir}`);
+    // spawnSync("cp", ["-r", "public", assetsDir], {
+    //     detached: false,
+    //     stdio: "inherit"
+    // })
 }
 
 function cmd_release(oldcwd, assetsDir, target) {
