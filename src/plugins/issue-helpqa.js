@@ -193,7 +193,7 @@ const typeData = `
 
     type HelpQAItem implements Node {
         title: String!
-        body: String!
+        body: String
         closed: Boolean
         createdAt: String
         isPinned: Boolean
