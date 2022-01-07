@@ -1,5 +1,5 @@
 primaryColor: black
-
+dateFormat: YYYY-MM-DD
 # it's ok without src/plugins/ or not
 zoePlugins:
 - src/plugins/app-release

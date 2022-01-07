@@ -35,6 +35,7 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         tagListTemplate, tagPageTemplate,
         archiveListTemplate, draftListTemplate,
         dateFormat,
+        blog = {},
     } = siteMetadata;
 
     const { createPage } = actions;
@@ -68,7 +69,9 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         component: path.resolve(_blogListTemplate),
         context: {
             basePathBlog: _basePathBlog,
-            formatString: _dateFormat
+            formatString: _dateFormat,
+            title: blog.title,
+            description: blog.description,
             // TODO: paginate?
             // limit: 10,
             // skip: 0
@@ -81,7 +84,8 @@ const createPages = async (siteMetadata, { actions, graphql, reporter }) => {
         component: path.resolve(_archiveListTemplate),
         context: {
             basePathBlog: _basePathBlog,
-            blogListPath: _blogListPath
+            blogListPath: _blogListPath,
+            formatString: _dateFormat,
         }
     })
 

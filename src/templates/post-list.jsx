@@ -6,15 +6,19 @@ import MSection from "../components/section"
 import Layout from "../layouts"
 import { default as PostsListWidget } from "../widgets/posts"
 
-const PostList = ({ data, pageContext: { basePathBlog } }) => {
+const PostList = ({ data, pageContext: {
+  basePathBlog,
+  title,
+  description,
+} }) => {
 
   const posts = data.allMdxPost.nodes
 
   return <Layout layout="default" title="博客">
     {/* TODO: use BlogsList widget */}
     <MSection minH="calc(100vh - 20rem)" justifyContent="" textAlign="left"
-      title="博客文章" description={<Flex w="full" justifyContent="space-between">
-        <Text>写作是一种自我学习的方式</Text>
+      title={title||"文章"} description={<Flex w="full" justifyContent="space-between">
+        <Text>{description}</Text>
         <HStack spacing="5" justifyContent="flex-end">
           <MLink href="archives">归档</MLink>
           <MLink href="tags">标签</MLink>

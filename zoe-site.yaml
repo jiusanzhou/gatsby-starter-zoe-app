@@ -126,6 +126,26 @@ pathPrefix: /
 # pageTemplate: 
 
 # what about blogs basePath
+blog:
+  title: 博客文章
+  description: 写作亦是一种自我学习的方式
+  # basePath: /blog
+  # paths:
+  #   base: /blog
+  #   # list: /blogs
+  #   archive: archives
+  #   tag: tag
+  # links:
+  # - title: 归档
+  #   href: archive
+  # - title: 标签
+  #   href: tags
+  # templates:
+  #   list:
+  #   archive:
+  #   page:
+
+
 basePathBlog: /blog
 blogListTemplate: 
 blogPageTemplate:

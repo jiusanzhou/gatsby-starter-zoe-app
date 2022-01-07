@@ -42,6 +42,7 @@ const PostList = ({ data, pageContext: { basePathBlog, title="文章归档" } })
             <Flex display={["none", "none", "flex", "flex", "flex"]}
               ml="1rem" alignItems="center" w="fit-content"
               color={useColorModeValue("gray.400", "gray.700")}>
+                {/* remote split */}
                 <Text>{createdTime.split("T")[0]}</Text>
             </Flex>)}
           leading={({ data: { published } })=>
@@ -62,7 +63,7 @@ export default PostList
 // (formatString: $formatString)
 // filter: {published: {eq: true}},
 export const query = graphql`
-  query {
+  query($formatString: String!) {
     allMdxPost(
       filter: {published: {eq: true}},
       sort: { fields: createdTime, order: DESC }
@@ -70,8 +71,8 @@ export const query = graphql`
       nodes {
         slug
         title
-        createdTime
-        modifiedTime
+        createdTime(formatString: $formatString)
+        modifiedTime(formatString: $formatString)
         excerpt
         timeToRead
         description
