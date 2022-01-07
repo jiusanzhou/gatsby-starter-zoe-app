@@ -34,7 +34,7 @@ const MLink = ({ href = "", pure = false, ...props }) => {
     return <Link position="relative" display="inline-block" display={null} _before={!pure?{
         content: "''",
         position: "absolute",
-        left: 0, bottom: "2px",
+        left: 0, bottom: "-.2rem",
         height: "3px", width: "100%",
         bgColor: useColorModeValue(bgColors[0], bgColors[1]),
         transition: "all .2s ease-in-out",

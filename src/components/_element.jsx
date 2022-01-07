@@ -116,6 +116,7 @@ installComponent(require("./section"), { as: ["MSection", "Section"] });
 installComponent(require("./seo"), { as: "SEO" });
 installComponent(require("./socials"), { key: "Socials" });
 installComponent(require("./colormode"), { as: "ColorModeSwitcher" });
+installComponent(require("./text"), { as: "InlineText" });
 
 // this will cause:
 //   WebpackError: ReferenceError: Cannot access '__WEBPACK_DEFAULT_EXPORT__' before initialization
