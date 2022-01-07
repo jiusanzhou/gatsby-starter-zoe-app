@@ -25,9 +25,9 @@ const PostPage = ({ data, pageContext: { basePathBlog, slug, next, previous } })
             <HStack spacing="5" mb="1rem" alignItems="center">
               {/*  marginLeft="auto" */}
                 <AuthorCard simple />
-                <Text fontSize=".875rem">
+                <Text display="inline-flex" alignItems="center" fontSize=".875rem">
                     <EditIcon mr=".5rem" />{createdTime}</Text>
-                <Text fontSize=".875rem">
+                <Text display="inline-flex" alignItems="center" fontSize=".875rem">
                     <TimeIcon mr=".5rem" />{timeToRead} MINS</Text>
 
                 {published ? null :
