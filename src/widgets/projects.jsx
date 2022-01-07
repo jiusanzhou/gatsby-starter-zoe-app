@@ -14,6 +14,11 @@ const RadioCard = (props) => {
   
     const input = getInputProps()
     const checkbox = getCheckboxProps()
+
+    let bgColor = `${primaryColor}.600`;
+    if (primaryColor === "black" || primaryColor === "white") {
+        bgColor = "gray.400"
+    }
   
     return (
         //  borderWidth="1px" borderLeftWidth="0px"  _first={{ borderLeftWidth: '1px' }}
@@ -22,7 +27,7 @@ const RadioCard = (props) => {
             <Box borderRadius="full" py="1" px="3" {...checkbox} cursor="pointer"
                 transition="all 0.3s ease-out-in"
                 _checked={{
-                    bg: `${primaryColor}.600`,
+                    bgColor,
                     color: "white",
                 }} >
             {props.children}

@@ -3,6 +3,7 @@ import React from 'react'
 import { Link as GatsbyLink } from "gatsby"
 
 import { useSiteMetadata } from "../utils/hooks";
+import { bgColorFromPrimary } from '../utils/helper';
 
 const MLink = ({ href = "", pure = false, ...props }) => {
     const { primaryColor, pathPrefix } = useSiteMetadata()
@@ -28,13 +29,14 @@ const MLink = ({ href = "", pure = false, ...props }) => {
     }
     
     // TOOD: can't using ref for some component
+    let bgColors = bgColorFromPrimary(primaryColor)
 
     return <Link position="relative" display="inline-block" display={null} _before={!pure?{
         content: "''",
         position: "absolute",
         left: 0, bottom: "2px",
         height: "3px", width: "100%",
-        bgColor: useColorModeValue(`${primaryColor}.200`, `${primaryColor}.700`),
+        bgColor: useColorModeValue(bgColors[0], bgColors[1]),
         transition: "all .2s ease-in-out",
         // transform: "rotate(1deg)",
         zIndex: "-1"
