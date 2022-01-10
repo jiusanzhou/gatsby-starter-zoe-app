@@ -6,6 +6,8 @@ import _default from "./default";
 import empty from "./empty";
 
 import "../styles/global.css";
+import { theme } from "../styles/theme"
+
 import { useSiteMetadata } from "../utils/hooks";
 import { AccentGlobal } from "../components/accent";
 import MDXRoot from "../components/mdx";
@@ -52,8 +54,8 @@ export default ({ layout = "default", ...props }) => {
 
     // create children in here???
     return (
-        <ChakraProvider>
-            <AccentGlobal primaryColor={primaryColor} {..._props} />
+        <ChakraProvider theme={theme}>
+            {/* <AccentGlobal primaryColor={primaryColor} {..._props} /> */}
             <MDXRoot>
                 {React.createElement(_layouts[name] || _default, _props)}
             </MDXRoot>
