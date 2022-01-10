@@ -52,6 +52,14 @@ export default ({ layout = "default", ...props }) => {
 
     // store _props in global css
 
+    // system color mode
+    // if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    //     // dark mode
+    // }
+    // window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+    //     const newColorScheme = event.matches ? "dark" : "light";
+    // });
+
     // create children in here???
     return (
         <ChakraProvider theme={theme}>
