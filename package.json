@@ -50,6 +50,7 @@
     "react-icons": "^3.7.0",
     "react-live": "^2.2.3",
     "react-markdown": "^6.0.2",
+    "react-typed": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.4"
   },
   "devDependencies": {
