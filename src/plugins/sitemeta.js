@@ -13,6 +13,7 @@ type Author {
     telegram: String
     linkedin: String
     wechat: String
+    rss: String
 }
 
 type Nav {
