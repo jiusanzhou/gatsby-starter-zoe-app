@@ -3,10 +3,13 @@ slug: "/"
 title: "Zoe的主页"
 ---
 
-<MSection title={[
-    "从零开始", "构建一个",
-    <InlineText texts={["用起来不太复杂", "看起来还不错", "符合现代Web规范"]} underline gradient="linear(to-l, #7928CA, #FF0080)">还不错</InlineText>,
-    "的网站"]} description="下面会有一些模块的示例">
+import { useColorModeValue } from "@chakra-ui/react";
+
+<MSection title={<>
+    <Text>从零开始, 构建一个</Text>
+    <InlineText texts={["用起来不太复杂", "看起来还不错", "符合现代Web规范"]} underline gradient="linear(to-l, #7928CA, #FF0080)">还不错</InlineText>
+    的网站</>}
+    description="下面会有一些模块的示例">
 
 这是一个 [Gatsby](https://www.gatsbyjs.com/) 的 Starter。
 同时也是一个快速建立站点的工具。你可以在 [Github](https://github.com/jiusanzhou/gatsby-starter-zoe-app)
@@ -17,7 +20,9 @@ title: "Zoe的主页"
 </MSection>
 
 
-<MSection title="理念" position="left" description="始终相信并致力于推动">
+<MSection
+    wraperProps={{bg: useColorModeValue("gray.50", "gray.700")}} 
+    title="理念" position="left" description="始终相信并致力于推动">
 
 <Box>
 
