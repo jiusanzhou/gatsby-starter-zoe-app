@@ -104,6 +104,7 @@ export const installComponent = (m, { key = "default", as } = {}) => {
 // import third package
 installComponent(require("react-markdown"), { as: "Markdown" });
 installComponent(require("gatsby-plugin-mdx"), { key: "MDXRenderer" });
+installComponent(require("react-lottie"), { as: "Lottie" });
 
 // install custom component
 installComponent(require("./copyright"), { key: "Copyright" });
