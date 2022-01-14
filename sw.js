@@ -27,7 +27,7 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [
   {
-    "url": "webpack-runtime-0a5f68229bbfc28fea74.js"
+    "url": "webpack-runtime-918fb18e36fd6e9ba170.js"
   },
   {
     "url": "framework-1cd12a274124f71c1bad.js"
@@ -45,14 +45,17 @@ self.__precacheManifest = [
     "url": "d7eeaac4-9e91b0de5b67b759a72d.js"
   },
   {
+    "url": "ea88be26-18eb8f6667ba65641e90.js"
+  },
+  {
     "url": "9f96d65d-43b2df01ca5c9b101ae3.js"
   },
   {
-    "url": "app-7fe5e9678535b957e2d7.js"
+    "url": "app-41ef0716dad86e79e571.js"
   },
   {
     "url": "offline-plugin-app-shell-fallback/index.html",
-    "revision": "d84bf8c080d8a2f26bea08b6415f9a4e"
+    "revision": "dda8ea290b9ddc86a88da0981aadfcf8"
   },
   {
     "url": "component---cache-caches-gatsby-plugin-offline-app-shell-js-a12c34d8f47c6528d910.js"
@@ -67,15 +70,15 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/sq/d/1383339252.json",
-    "revision": "bb801a51eb17a73beee17a31a089b150"
+    "revision": "b86c7d34c2ccb859e6b8cd0d51c53f24"
   },
   {
     "url": "page-data/sq/d/1730835263.json",
-    "revision": "4cb6d20e5cf8d54a34bda8371bb94a12"
+    "revision": "369c5380c3130c255e75b94e66be604d"
   },
   {
     "url": "page-data/sq/d/3230166491.json",
-    "revision": "4d08ce34d503efddef11ac8fae587bc2"
+    "revision": "8e6645e0a660805a63a0bad25795e1f8"
   },
   {
     "url": "page-data/sq/d/4276287135.json",
@@ -87,7 +90,7 @@ self.__precacheManifest = [
   },
   {
     "url": "page-data/app-data.json",
-    "revision": "0d7046a1acfaac29be3f06ec29fe78d9"
+    "revision": "a1cfc747bab933ea1c28f8bc6410fc45"
   },
   {
     "url": "polyfill-7644dbc8b87bbf2ba314.js"
@@ -186,7 +189,7 @@ const navigationRoute = new NavigationRoute(async ({ event }) => {
   // Check for resources + the app bundle
   // The latter may not exist if the SW is updating to a new version
   const resources = await idbKeyval.get(`resources:${pathname}`)
-  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-7fe5e9678535b957e2d7.js`))) {
+  if (!resources || !(await caches.match(`/gatsby-starter-zoe-app/app-41ef0716dad86e79e571.js`))) {
     return await fetch(event.request)
   }
 
