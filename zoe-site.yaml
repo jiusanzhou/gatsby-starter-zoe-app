@@ -183,6 +183,7 @@ plugins:
     lessBabel: true
     extensions: [.mdx, .md]
     gatsbyRemarkPlugins:
+    - gatsby-remark-mermaid
     - gatsby-remark-images:
         maxWidth: ${zoe.remarkImageMaxWidth}
     plugins:
@@ -217,8 +218,3 @@ plugins:
 - gatsby-transformer-sharp
 - gatsby-plugin-offline
 - gatsby-plugin-image
-
-- gatsby-transformer-remark:
-    plugins:
-    - gatsby-remark-images:
-        maxWidth: ${zoe.remarkImageMaxWidth}
