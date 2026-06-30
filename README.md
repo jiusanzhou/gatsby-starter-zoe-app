@@ -1,56 +1,46 @@
 <div align="center">
 
-# `zoe app`
+# `zoe app` · Legacy (Gatsby)
 
-Yeh! A easy way to manage your site or application stuff.
+> ⚠️ **This repository is archived. The project has been rewritten in Next.js.**
+>
+> **👉 New home: [jiusanzhou/nextjs-starter-zoe-app](https://github.com/jiusanzhou/nextjs-starter-zoe-app)**
 
 </div>
 
-When I want to start a side project, I need to care about lots of things
-which may not the real matter, but I have no choice to let them go, things
-like:
-
-- version release: release a new version of application
-- change log: a landing page to preview change logs
-- user agreement and privacy policy:
-- a landing page:
-- help documents:
-- Q&A:
-- some simple json pieces:
-- media data: logo or banner or something else
-
-I don't want to re copy and paste those code again and again. And I real have
-no need to use a CMS. So I build this to help me to manage those boring things.
-
-Hope your guys enjoy it!
-
-
 ---
 
-### Usage
+## What changed
 
-**Just care about your own content. No need to fork or clone this repository!**
+The original Gatsby-based `zoe-site` (this repo, 2019–2021) has been fully rewritten as a Next.js 16 + Tailwind 4 + shadcn/ui starter. The new version is **config-driven, zero-fork, static-export ready**, with 7 production themes, MDX blog, `/releases` landing page, and built-in GitHub Actions templates.
 
-1. Enter your content directory.
+The legacy short link **`https://git.io/zoe-site`** continues to work — it now transparently forwards to the new script:
 
-2. Run the command to build site:
-    ```bash
-    curl -sSL https://git.io/zoe-site | bash
-    ```
+```bash
+# Still works (now points to the Next.js version):
+curl -sSL https://git.io/zoe-site | bash -s new my-site
 
-Customize your site by creating a new configuration file,
-which can be named `zoe-site.yaml` (or `zoe-site.toml`)
+# Or directly:
+curl -sSL https://raw.githubusercontent.com/jiusanzhou/nextjs-starter-zoe-app/main/scripts/zoe-site.sh \
+  | bash -s new my-site
+```
 
-Checkout the default [zoe-site.yaml](zoe-site.yaml) for full fields.
+The original Gatsby script (`hack/zoe-site.js`) is preserved in git history for reference but is no longer maintained.
 
-### Advance
+## Migration
 
-If you want to modify some components, you can fork and clone the code.
+If you had a site built with the old Gatsby `zoe-site`:
 
-**1. Develop**
+1. Keep your `zoe-site.yaml` — most field names are compatible (review themes / section types in the new repo).
+2. Move Markdown content from `content/` (same layout).
+3. Run `curl -sSL https://git.io/zoe-site | bash -s build` — output goes to `./out`.
 
-`yarn site dev`
+See the new repo's [README](https://github.com/jiusanzhou/nextjs-starter-zoe-app#readme), [deployment guide](https://github.com/jiusanzhou/nextjs-starter-zoe-app/blob/main/docs/deployment.md), and [releases guide](https://github.com/jiusanzhou/nextjs-starter-zoe-app/blob/main/docs/releases.md).
 
-**2. Build**
+## Original README (for reference)
 
-`yarn site build`
+When I started a side project I had to care about lots of small things — version releases, changelogs, ToS / privacy pages, landing page, help docs, Q&A, simple JSON snippets, logos. I didn't want to copy-paste boilerplate every time, and didn't want a full CMS — so I built `zoe-site` to manage all this from a single config.
+
+The Gatsby version pioneered the idea; the Next.js rewrite carries it forward with modern tooling.
+
+— Zoe

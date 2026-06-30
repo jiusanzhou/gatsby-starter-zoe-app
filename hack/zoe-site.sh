@@ -1,14 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# This package has migrated to the Next.js version.
+# git.io/zoe-site (legacy short link) is preserved by forwarding to the new repo.
+#
+#   New: https://github.com/jiusanzhou/nextjs-starter-zoe-app
+#   Old: https://github.com/jiusanzhou/gatsby-starter-zoe-app  (this repo, archived)
+#
+# Usage: curl -sSL https://git.io/zoe-site | bash -s <command> [args...]
 
-theme="jiusanzhou/gatsby-starter-zoe-app"
-branch="master"
-script="hack/zoe-site.js"
-target="/tmp/zoe-site"
+set -euo pipefail
 
-if [ ! -d $target ]; then mkdir -p $target; fi
+NEW_SCRIPT="https://raw.githubusercontent.com/jiusanzhou/nextjs-starter-zoe-app/main/scripts/zoe-site.sh"
 
-curl -sSL https://raw.githubusercontent.com/$theme/$branch/$script \
-    > $target/zoe-site.js
-
-# start the main
-node $target/zoe-site.js $@
+exec bash -c "$(curl -fsSL "$NEW_SCRIPT")" -- "$@"
